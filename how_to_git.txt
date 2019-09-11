@@ -6,19 +6,19 @@
 # Make a clone of the project into
 git clone git@YOUR_PROJECT_PATH.git
 
-# Change the branch (to master) 
+# Change the branch (to master)
 git checkout master
 
 # Update the folders to current state
 git pull
 
-# Creation of new branch 
+# Creation of new branch
 git branch YOUR_BRANCH_NAME
 
 # Show current branch
 git branch
 
-# Show of changes
+# Show changes from last commit
 git show
 
 ### For creation of merge request ###
