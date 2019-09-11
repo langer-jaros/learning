@@ -1,0 +1,39 @@
+# Jaroslav Langer
+# 11/09/2019
+
+### Absolute start with git ###
+
+# Make a clone of the project into
+git clone git@YOUR_PROJECT_PATH.git
+
+# Change the branch (to master) 
+git checkout master
+
+# Update the folders to current state
+git pull
+
+# Creation of new branch 
+git branch YOUR_BRANCH_NAME
+
+# Show current branch
+git branch
+
+# Show of changes
+git show
+
+### For creation of merge request ###
+
+# Add a files for commit (or -all)
+git add --all
+
+# Show status of git files
+git status
+
+# Commit
+git commit -m "Meaningful comment."
+
+# Push to the master branch
+git push -u origin NAME_OF_BRANCH
+
+# In case of troubles
+git help
