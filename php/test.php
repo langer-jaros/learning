@@ -1,44 +1,38 @@
 <?php
-/*
-$a = 
-var_dump($a);
 
-$a['a'][]= 10
-*/
-// TELL TYPE
-function tell_type($x){
-    echo is_numeric($x)? "numeric\n" : "";
-    echo is_float($x)? "float\n" : "";
-    echo is_bool($x)? "bool\n" : "";
-    echo is_array($x)? "array\n" : "";
-    echo is_string($x)? "string\n" : "";
-    echo is_integer($x)? "numeric\n" : "";
-    echo is_object($x)? "numeric\n" : "";
+$input =<<< INPUT
+Rohlík 5Kč
+CZK400 Knížka
+Pivo 42,-
+Houska 4 Kč
+Máslo 49,00 Kč
+Herní konzole 4.900 CZK
+Rádio CZK550
+CZK 1.600,59 Natural 95
+INPUT;
+
+// Kč
+$s1 = "Rohlík 5Kč";
+$s2 = "Houska 4 Kč";
+// ,- cele cislo bez haleru
+$s3 = "Pivo 42,-";
+$s4 = "Pivo 42,-";
+// CZK
+$s5 = "CZK400 Knížka";
+$s6 = "Herní konzole 4.900 CZK";
+$s7 = "Rádio CZK550";
+$s8 = "CZK 1.600,59 Natural 95";
+
+function match ($list, $pattern){
+    foreach ($list as $subject) {
+        preg_match($pattern, $subject, $matches);
+        print_r($matches?: "");
+    }
 }
-
-
-$i = "10"; $s = 8; $t = '1e1';
-
-tell_type($i);
-tell_type($s);
-tell_type($t);
-
-
-$aa = array(12,343,523,235,235,45);
-var_dump($aa);
-
-echo $aa[-1]."\n";
-
-/* FUNCTION SWAP
-function swap(&$a, &$b){
-    $b = $b + $a;
-    $a = $b - $a;
-    $b = $b - $a; 
-}
-$a = 5; $b = 10;
-var_dump($a);
-var_dump($b);
-swap($a, $b);
-var_dump($a);
-var_dump($b);
-*/
+/*/
+$subject = $s1;
+preg_match($pattern, $subject, $matches);
+/*/
+$pattern = '/[[:digit:]\,\.]+\ *(Kč|\,\-)/';
+$list = explode("\n", $input);
+match($list, $pattern);
