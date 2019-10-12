@@ -48,5 +48,10 @@ git merge master
 git push origin master
 
 ---
+# Delete folder from git competence
+>If you added this path by mistake, you can remove it from the index with:
+git rm --cached FOLDER_NAME
+
+---
 ### In case of any troubles
 > git help
