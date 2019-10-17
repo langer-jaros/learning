@@ -36,6 +36,10 @@ The zero argument is the file itself.
 You can use it as any array such with end() etc */
 $input = file_get_contents(end($argv));
 
+# Variables
+$startsWithDollar;
+// Constatns doesn't
+const CONSTANT = 'const_value';
 
 # Data types recognition #
 is_numeric($x)? "numeric\n" : "";
@@ -46,6 +50,11 @@ is_string($x)? "string\n" : "";
 is_integer($x)? "numeric\n" : "";
 is_object($x)? "numeric\n" : "";
 
+# String
+// Replace substring (delete spaces)
+$myString = str_replace ( ' ', '', $myString);
+// Deletion of last character
+$string = substr_replace($string ,"", -1);
 
 # Arrays #
 // Creation with brackets
@@ -60,6 +69,10 @@ array_push($array, $nextElement);
 echo $aa[-1]."\n";
 // Create array from string
 $list = explode("\n", $input);
+// and string from array
+$string = implode("\n",$value);
+// Sort the array by the keys
+$array = ksort($array, sorttype);
 
 
 # Conditions #

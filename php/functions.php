@@ -7,6 +7,12 @@ function swap(&$a, &$b){
     $a = $b - $a;
     $b = $b - $a; 
 }
+// passing any number of arguments
+function vanish($string, ...$useless){
+    foreach ($useless as $use => $less) {
+    }
+    return $string;
+}
 
 # Built-in functions
 // Random number function
