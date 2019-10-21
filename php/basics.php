@@ -29,6 +29,18 @@ Decsription: Homework-01 from BI-PHP.1
 SAMEPHRASE;
 
 
+# Read Input #
+$input = file_get_contents($argv[1]);
+/* The $argv is array of arguments.
+The zero argument is the file itself.
+You can use it as any array such with end() etc */
+$input = file_get_contents(end($argv));
+
+# Variables
+$startsWithDollar;
+// Constatns doesn't
+const CONSTANT = 'const_value';
+
 # Data types recognition #
 is_numeric($x)? "numeric\n" : "";
 is_float($x)? "float\n" : "";
@@ -38,18 +50,29 @@ is_string($x)? "string\n" : "";
 is_integer($x)? "numeric\n" : "";
 is_object($x)? "numeric\n" : "";
 
+# String
+// Replace substring (delete spaces)
+$myString = str_replace ( ' ', '', $myString);
+// Deletion of last character
+$string = substr_replace($string ,"", -1);
 
 # Arrays #
 // Creation with brackets
 $letters = [1,2,3,4,5];
 // Creation with keyword
 $aa = array(12,343,523,235,235,45);
-// Addition at new available index
-$a['a'][]= 10;
+// Addition at next index of array
+$array[]= $nextElement;
+// Much faster than
+array_push($array, $nextElement);
 // Index -1 isn't the last, makes ERROR
 echo $aa[-1]."\n";
 // Create array from string
 $list = explode("\n", $input);
+// and string from array
+$string = implode("\n",$value);
+// Sort the array by the keys
+$array = ksort($array, sorttype);
 
 
 # Conditions #
@@ -66,3 +89,10 @@ foreach ($array as $key => $value) {
 foreach ($string as $letter) {
     echo "Next letter is: ".$lettter."\n";
 };
+
+
+# Time tracking #
+$start = microtime(true);
+// Any code here ...
+$time_elapsed_secs = microtime(true) - $start;
+echo "Any code took: $time_elapsed_secs s\n";
