@@ -7,6 +7,12 @@ function swap(&$a, &$b){
     $a = $b - $a;
     $b = $b - $a; 
 }
+// passing any number of arguments
+function vanish($string, ...$useless){
+    foreach ($useless as $use => $less) {
+    }
+    return $string;
+}
 
 # Built-in functions
 // Random number function
@@ -23,3 +29,11 @@ print_r($matches); // [ "def" ]
 $string = "1+2-3";
 $array = preg_split('/[+-]/', $string);
 print_r($array);    // [1, 2, 3]
+
+# REGEX advanced
+// Matching numbers
+'/[[:digit:]]*/';
+// befor digits expects white space
+'1234'; // OK
+'1234abc'; // OK
+'abc1234'; // not found
