@@ -35,11 +35,22 @@ $input = file_get_contents($argv[1]);
 The zero argument is the file itself.
 You can use it as any array such with end() etc */
 $input = file_get_contents(end($argv));
+// import code once - error will stop the code.
+require_once './the/path/you/desire.php';
+// import code once - only warrning will be shown if error.
+include_once './the/path/you/desire.php';
+// Or you can include | require all over again
+require '.something.php';
+include '.something.php';
 
 # Variables
 $startsWithDollar;
 // Constatns doesn't
 const CONSTANT = 'const_value';
+// Determin, whether the variable exits.
+$array['1']='one';
+// compare with null, in this case return false;
+var_dump(isset($array['1']['2']['3']));
 
 # Data types recognition #
 is_numeric($x)? "numeric\n" : "";
@@ -73,7 +84,10 @@ $list = explode("\n", $input);
 $string = implode("\n",$value);
 // Sort the array by the keys
 $array = ksort($array, sorttype);
-
+// Determin, whether an array contain the key
+var_dump( array_key_exists($array_key, $array_name) );
+// Sum all values of the $array
+$sum = array_sum($array);
 
 # Conditions #
 // Ternary operator
@@ -96,3 +110,9 @@ $start = microtime(true);
 // Any code here ...
 $time_elapsed_secs = microtime(true) - $start;
 echo "Any code took: $time_elapsed_secs s\n";
+
+# Asserts
+// Needs to set zend.assertions = 1 at php.ini file
+// you can find it via php -ini
+// i had it there   /etc/php/7.2/cli/php.ini
+assert($a === 1, '$a is not 1');
