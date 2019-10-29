@@ -1,0 +1,54 @@
+body {
+    margin: 0vh 15vw 0vh 15vw;
+}
+
+h1, h2 {
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+div {
+    background-color: whitesmoke;   
+}
+
+p {
+    display: inline;
+    
+}
+
+input {
+    display: inline-flex;
+    width: 10vw;
+    text-align: center;
+}
+
+.bar, .results {
+    display: block;
+    padding: 0% 35% 0 35%;
+}
+
+
+#value {
+    width: 10vw;
+}
+
+#button {
+    color: whitesmoke;
+    background-color:green;
+    width: 20vw;
+    text-align: center;
+    display: block;
+    margin-left: 35%;
+}
+
+@media (orientation: landscape) {
+    body {
+        background-color: aquamarine;
+    }
+}
+
+@media (orientation: portrait) {
+    body {
+        background-color: coral;
+    }
+}

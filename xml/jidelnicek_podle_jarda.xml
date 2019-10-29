@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="jarda_style.css" type="text/css"?>
+<jidelnicek podnik='MenzaPodleJarda' xmlns="JardaMenzoveXML:" xmlns:ans="NaJardaAlergickeXML">
+ <tyden cislo='40'>
+  <den cislo='1' cesky='pondělí'>
+   <polevka>Slepičí vývar s krupicovými nočky<ans:alrgn>1,3,9</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Smažený krůtí řízek, šťouchané brambory s pórkem, řez citronu<ans:alrgn>1,3,6,7,11,12</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>	Semolinové rigatoni s kuřecím masem, sušenými rajčaty a mozzarellou<ans:alrgn>1,3,7</ans:alrgn></hlavni_jidlo>
+  </den>
+  <den cislo='2' cesky='úterý'>
+   <polevka>Zelná s uzeninou<ans:alrgn>1,7,9,10,12</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Veprová plec na smetaně houskový knedlík<ans:alrgn>1,3,7,9</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Smažený sýr, brambory vařené, tatarská omáčka<ans:alrgn>1,3,7</ans:alrgn></hlavni_jidlo>
+  </den>
+   <den cislo='3' cesky='středa'>
+   <polevka>Květáková<ans:alrgn>1,7</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Vepřová pečeně uherská, houskový knedlík<ans:alrgn>1,10</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Hovězí flank steak s liškovým ragú, opečené bramborové plátky<ans:alrgn>1,3,6,7,9,12</ans:alrgn></hlavni_jidlo>
+  </den>
+    <den cislo='4' cesky='čtvrtek'>
+   <polevka>Masový krém<ans:alrgn>1,3,6,7,9</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Čočka na kyselo, opečená klobása, okurka<ans:alrgn>1</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Krémové špenátové rizoto se sýrem a rukolou<ans:alrgn>1,3,6,7,8,9,14</ans:alrgn></hlavni_jidlo>
+  </den>
+    <den cislo='5' cesky='pátek'>
+   <polevka>Francouzská<ans:alrgn>1,3,6,7,9</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Hovězí guláš vídeňský, houskové knedliky<ans:alrgn>1,3,7,9,13</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Lívance s povidly a šlehačkou, kakao<ans:alrgn>1,3,5,6,7,10,12</ans:alrgn></hlavni_jidlo>
+  </den>
+ </tyden>
+ <tyden cislo='41'>
+   <den cislo='1' cesky='pondělí'>
+   <polevka>Gulášová<ans:alrgn>1,6,9,10</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Talíř losos<ans:alrgn>1,4,7,10,11</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Zeleninový salát ala César<ans:alrgn></ans:alrgn>1,3,6,7,9,10</hlavni_jidlo>
+  </den>
+  <den cislo='2' cesky='úterý'>
+   <polevka>Pekingská slepičí<ans:alrgn>6,9,10,12</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Zapečen brambory s vepřovým masem a zeleninou, okurka sterilovaná<ans:alrgn>1,3,7,9,10</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Těstovinový s majonézovým jogurtem<ans:alrgn>1,3,6,7,9,10</ans:alrgn></hlavni_jidlo>
+  </den>
+   <den cislo='3' cesky='středa'>
+   <polevka>Hrachová<ans:alrgn>1,7,12</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Marinovaná vepřová krkovička, bramborové hranolky<ans:alrgn>1,3,6,7,9,10,11</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Dukátové buchtičky se šodó krémem<ans:alrgn>1,3,6,7</ans:alrgn></hlavni_jidlo>
+  </den>
+    <den cislo='4' cesky='čtvrtek'>
+   <polevka>Zeleninový vývar s mušličkami<ans:alrgn>1,3,6,7,9,12</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Hovězí hamburger se sýrem, bramborové hranolky<ans:alrgn>1,3,7,10,11</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Bramborové šišky s mákem/ tvarohem<ans:alrgn>1,3,6,7,12</ans:alrgn></hlavni_jidlo>
+  </den>
+    <den cislo='5' cesky='pátek'>
+   <polevka>Hrachová s opečenou houstičkou<ans:alrgn>1,3</ans:alrgn></polevka>
+   <hlavni_jidlo cislo='1'>Vepřové maso na kmíně, brambory vařene<ans:alrgn>1,3,7,9</ans:alrgn></hlavni_jidlo>
+   <hlavni_jidlo cislo='2'>Zeleninové lečo, vařené brambory<ans:alrgn>3,7</ans:alrgn></hlavni_jidlo>
+  </den>
+ </tyden>
+</jidelnicek>

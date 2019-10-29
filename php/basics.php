@@ -49,6 +49,9 @@ $startsWithDollar;
 const CONSTANT = 'const_value';
 // Determin, whether the variable exits.
 $array['1']='one';
+// References
+$a = 5; $b = &$a;
+$b = 1; echo $a;
 // compare with null, in this case return false;
 var_dump(isset($array['1']['2']['3']));
 

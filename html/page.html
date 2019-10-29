@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+        <meta charset="utf-8"/>
+        <title> Homework for IP - JS </title>
+        <style></style>
+    </head>
+    <body>
+        <h1>Homework - slider with random generator</h1>
+        <div class="page">
+            <h2>Click RANDOM for any number in inerval 0 - <span id='value'>1000</span></h2>
+            <div class="bar">            
+                <p>0</p>
+                <input id="range" type="range" max="1000" onchange="output.value = range.value" />
+                <p>1000</p><br>
+            </div>
+            <p id="button">RANDOM</p>
+            <div class="results">    
+                <p>Random number = </p>
+                <input id="output" type="text" onchange="range.value = output.value"/>
+            </div>
+        </div>
+        <script src="../java_script/script.js"></script>
+    </body>
+    </html>
+    
+    <!--<input type="submit" />-->
