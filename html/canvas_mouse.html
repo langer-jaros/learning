@@ -1,0 +1,51 @@
+<style> 
+    body {
+        background-color: antiquewhite; 
+    }
+    canvas { 
+        position: relative;
+        border: solid;
+        /*
+        
+        */
+    }
+</style>
+<!-- style="width: 300px; height: 300px;"-->
+<canvas id="00" onmousemove="mouseClick(event)" 
+onmousedown=""></canvas>
+<script>
+    var canvas = document.getElementById('00');
+    console.log('can: ', canvas);
+    
+    var ctx = canvas.getContext('2d');
+
+    console.log('Jeho 2D-kontext: ', ctx);
+    
+    // červený obdélník
+    ctx.fillStyle = "rgb(200, 0, 0)";
+    ctx.fillRect(10, 10, 50, 40);
+
+    // modrý poloprůhledný obdélník
+    ctx.fillStyle = "rgba(0, 0, 200, 0.7)";
+    ctx.fillRect(40, 30, 50, 40);
+    ctx.fillStyle = 'green';
+
+    ctx.fillCircle = function(x, y, r){
+        this.beginPath();
+        this.arc(x, y, r, 0, 2*Math.PI);
+        this.fill();
+    }
+
+    var mouseClick = function(evt) {    
+        console.log( evt.layerX, evt.layerY );
+        var [x, y] = [ evt.layerX, evt.layerY ];
+        ctx.fillCircle(x-1, y-1, 4);
+    }
+
+/*// objekt události
+console.log( evt.clientX, evt.clientY );
+console.log( evt.pageX, evt.pageY );
+console.log( evt.x, evt.y );
+console.log("---------------------");
+*/
+</script>
