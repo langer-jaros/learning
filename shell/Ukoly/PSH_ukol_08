@@ -1,0 +1,17 @@
+# Jaroslav Langer 
+# 17/04/2019
+
+#1      
+cut -d ':' -f 1 /etc/passwd > name; cut -d ':' -f 3 /etc/passwd > uid; paste name uid -d '/' > uzivatele
+
+#2
+sed 's/\([[:alpha:]]*\)\([[:digit:]]*\)$/Vzdalenost Ateny - \1je \2 km\./' mesta
+
+#3
+sort -k 2 -r  mesta 
+
+#4
+sed -i '2~2d' jmena.txt
+
+#5
+who | cut -d ' ' -f 1 | sort > users-online
