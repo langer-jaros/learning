@@ -8,8 +8,14 @@
     }
 </style>
 <!-- style="width: 300px; height: 300px;"-->
-<canvas id="00" onmousemove="mouseMove(event)" 
-onmousedown="mouseDown(event)" onmouseup="mouseUp(event)"></canvas>
+<canvas id="00" 
+onmousedown="mouseDown(event)"
+onpointerdown="mouseDown(event)"
+onmousemove="mouseMove(event)"
+onpointermove="mouseMove(event)"
+onmouseup="mouseUp(event)"
+onpointerup="mouseUp(event)">
+</canvas>
 <script>
     var canvas = document.getElementById('00');
     console.log('can: ', canvas);

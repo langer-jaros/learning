@@ -1,0 +1,104 @@
+<style> 
+    body {
+        background-color: antiquewhite; 
+    }
+    canvas { 
+        position: relative;
+        border: solid;
+        display: block;
+    }
+    .color {
+        width: 10vw;
+        height: 10vw;
+        background-color: blue;
+    }
+    @media (orientation: landscape) {
+        .color {
+            width: 6vh;
+            height: 6vh;
+        }
+    }
+
+    div {
+        display: inline-block;
+        align-items: center;
+    }
+    #black {
+        background-color: black;
+    }
+    #blue {
+        background-color: blue;
+    }
+    #red {
+        background-color: red;
+    }
+    #yellow {
+        background-color: yellow;
+    } 
+    #purple {
+        background-color: purple;
+    }
+</style>
+<!-- style="width: 300px; height: 300px;"-->
+<canvas id="00" onpointermove="mouseMove(event)" onpointerdown="mouseDown(event)" onpointerup="mouseUp(event)"></canvas>
+<!--
+<canvas id="00" onmousedown="mouseDown(event)" ontouchstart="mouseDown(event)" onmousemove="mouseMove(event)" ontouchmove="mouseMove(event)" onmouseup="mouseUp(event)" ontouchend="mouseUp(event)"></canvas>
+-->
+<div class="color" id="black" onclick="changeColor('black')"></div>
+<div class="color" id="blue" onclick="changeColor('blue')"></div>
+<div class="color" id="red" onclick="changeColor('red')"></div>
+<div class="color" id="yellow" onclick="changeColor('yellow')"></div>
+<div class="color" id="purple" onclick="changeColor('purple')"></div>
+<script>
+    var canvas = document.getElementById('00');
+    console.log('can: ', canvas);
+    
+    var ctx = canvas.getContext('2d');
+    console.log('Jeho 2D-kontext: ', ctx);
+    
+    window.draw = 0;
+    window.prevX = 0
+    window.prevY = 0;
+
+    ctx.drawCircle = function(x, y, r){
+        this.beginPath();
+        this.arc(x, y, r, 0, 2*Math.PI);
+        this.fill();
+    }
+
+    ctx.drawLine = function(x, y){
+        this.beginPath();
+        this.moveTo(window.prevX, window.prevY);
+        this.lineTo(x, y);
+        this.stroke();
+        [window.prevX, window.prevY] = [ x, y ];
+    }
+
+    var changeColor = function(color){
+        ctx.strokeStyle = color;
+    }
+
+    var mouseDown = function(evt) {    
+        [window.prevX, window.prevY] = [ evt.layerX, evt.layerY ];
+        window.draw = 1;
+    }
+
+    var mouseUp = function(evt) {    
+        window.draw = 0;
+    }
+
+    var mouseMove = function(evt) {    
+        console.log( evt.layerX, evt.layerY );
+        var [x, y] = [ evt.layerX, evt.layerY ];
+        if (window.draw == 1){
+            ctx.drawLine(x-1, y-1)
+            //ctx.drawCircle(x-1, y-1, 2)
+        }
+    }
+    
+    var touchMove = function(){
+        var [x, y] = [ evt.layerX, evt.layerY ];
+        ctx.drawLine(x-1, y-1)
+    }
+
+</script>
