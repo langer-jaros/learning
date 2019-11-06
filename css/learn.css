@@ -1,22 +1,7 @@
-/*/ Positioning 
-static -  by default
-absolute - stupid
-relative - relative to it's parent
-fixed - at the same spot relative to screen
-/*/
-
-/*/ Display
-inline;
-block;
-inline-block;
-flex;
-/*/
-
 body { 
-    background: grey; 
+    flex-direction: column;
 }
-div { background: white; 
-    display: block; 
+div {
     text-indent: 5rem; 
 }
 h1 { 
@@ -30,29 +15,4 @@ h1 {
 .three {
     transition: backround 3s 5s, border-radius 5s, 1s;
     transition: all 4s 5s;
-}
-
-@media screen and (max-aspect-ratio: 1/1) {
-    body {
-        background: blue; 
-    }
-}
-
-@media screen and (min-aspect-ratio: 1/1) {
-    body {
-        background: violet; 
-    }
-}
-
-@media (orientation: portrait) {
-    body {
-        background-color: coral;
-        flex-direction: column;
-    }
-}
-
-@media (orientation: landscape) {
-    body {
-        background-color: aquamarine;
-    }
 }

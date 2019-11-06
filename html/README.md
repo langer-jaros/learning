@@ -1,10 +1,19 @@
 # Learn HTML5 and CSS3
 
+## MENU
+
++ [Images knowledge](#images-knowledge)
++ [Types of values](#types-of-values)
++ [Google Fonts](#google-fonts)
+
+
+
 ## Extracted information from youtube video course
 
 [Link to the video. (freeCodeCamp.org)](https://youtu.be/mU6anWqZJcc)
 
-## Images knowledge [ 16) Images - 51:17 ]
+## Images knowledge 
+[ 16) Images - 51:17 ]
 
 ### Sites with free images    
 [pixabay](https://pixabay.com)
@@ -14,7 +23,9 @@
 ## 74) External Resources - 04:52:57
 [Color pallete](https://coolors.co/)
 
-## 77) Percent Values - 05:02:13 | 78) Em Values - 05:05:44 | 79) Rem Values - 05:11:42
+## Types of values
+
+[ 77) Percent Values - 05:02:13 | 78) Em Values - 05:05:44 | 79) Rem Values - 05:11:42 ]
 ```
 percents depend on parant</p>
 ems depend on parant</p>
@@ -25,7 +36,8 @@ rems depend on root of document</p>
     box-sizing: border-box;
 }
 ```
-## 86) Google Fonts - 05:39:23</h2>
+## Google Fonts
+[ 86) - 05:39:23 ]
 
 [Fonts google](https://fonts.google.com/)
 
@@ -141,11 +153,27 @@ autoprefixer css online
 ##  146) Semantic Tags - 11:19:23
 semantic HTML
 
+## Events handling
 
-## Canvas
-[draw a line](https://www.w3schools.com/tags/canvas_lineto.asp)
-[line tutorial](https://www.html5canvastutorials.com/tutorials/html5-canvas-line-color/)
-
-#### On touch screen
-[Pointer](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
-[touch](https://www.w3schools.com/jsref/obj_touchevent.asp)
+### Click
+```
+onclick="changeColor('black')
+```
+### Touch
+```
+ontouchmove="funMove(event)" 
+ontouchstart="funStart(event)" 
+ontouchend="funEnd(event)"
+```
+### Mouse
+```
+onmousedown="mouseDown(event)" 
+onmousemove="mouseMove(event)" 
+onmouseup="mouseUp(event)" 
+```
+### Pointer
+```
+onpointermove="funMove(event)"
+onpointerdown="funDown(event)"
+onpointerup="funUp(event)"
+```
