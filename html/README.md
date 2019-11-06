@@ -140,3 +140,12 @@ autoprefixer css online
 
 ##  146) Semantic Tags - 11:19:23
 semantic HTML
+
+
+## Canvas
+[draw a line](https://www.w3schools.com/tags/canvas_lineto.asp)
+[line tutorial](https://www.html5canvastutorials.com/tutorials/html5-canvas-line-color/)
+
+#### On touch screen
+[Pointer](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
+[touch](https://www.w3schools.com/jsref/obj_touchevent.asp)
