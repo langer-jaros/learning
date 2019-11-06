@@ -1,6 +1,3 @@
-// Alert, blocking anything
-alert('NEVSTUPUJ POKUD SE BOJIS!');
-
 // Best way for variables is keyword var
 var total = 0;
 
@@ -12,9 +9,6 @@ var arr = [6,6,7];
 for (var i in arr) {
     total = total + i;
 }
-
-// Write to log, great for debug
-console.log(total, typeof total);
 
 // reference na DOM-objekt elementu <div id="odstavec"> ze stránky
 var outputElement = document.getElementById('odstavec');

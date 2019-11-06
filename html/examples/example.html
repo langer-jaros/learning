@@ -1,0 +1,25 @@
+<style>
+    /* Disable intrinsic user agent touch behaviors (such as panning or zooming) so
+    that all events on the canvas element are given to the application instead. */
+  
+    canvas { touch-action: none; }
+  </style>
+  
+  <canvas id="drawSurface" width="500px" height="500px" style="border:1px solid black;"></canvas>
+  
+  <script>
+      var canvas = document.getElementById("drawSurface");
+      context = canvas.getContext("2d");
+  
+      if (window.PointerEvent) {
+          canvas.addEventListener("pointermove", paint);
+      } else {
+          // provide fallback for user agents that do not support Pointer Events
+          canvas.addEventListener("mousemove", paint);
+      }
+  
+      function paint(event) {
+          if(event.buttons>0)
+             context.fillRect(event.clientX, event.clientY, 5, 5);
+      }
+  </script>
