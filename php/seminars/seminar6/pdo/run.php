@@ -52,12 +52,18 @@ foreach ($data as $item) {
         ]);
 }
 
-$statement = $db->prepare('SELECT * FROM stamgast LEFT JOIN pivo ON pivo.vypil=stamgast.id');
-//$statement = $db->prepare('SELECT * FROM stamgast');
+//$statement = $db->prepare('SELECT * FROM stamgast LEFT JOIN pivo ON pivo.vypil=stamgast.id');
+$statement = $db->prepare('SELECT * FROM stamgast');
 
 $statement->execute();
 
+$fetched = $statement->fetchAll(PDO::FETCH_ASSOC);
+//->fetch(PDO::FETCH_ASSOC);
+print_r($fetched);
+    
+/*/
 do {
     $fet = $statement->fetch();    
     print_r($fet);
 } while ($fet);
+/*/
