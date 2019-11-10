@@ -3,11 +3,12 @@
 ## MENU
 
 + [Printing](#printing)
-+ [Varialbes](#varialbes)
++ [Variables](#variables)
 + [Functions](#functions)
 + [Get HTML element](#get-html-element)
 + [Canvas](#canvas)
-
++ [Coordinates](#coordinates)
+---
 ## Printing
 Alert, blocks anything
 ```
@@ -17,9 +18,8 @@ Write to log, great for debuging
 ```
 console.log(total, typeof total);
 ```
-
-
-## Varialbes
+---
+## Variables
 ```
 var name = 0;
 ```
@@ -30,6 +30,7 @@ window.name = 0;
 [source](https://www.javatpoint.com/javascript-global-variable)
 [scope of variables](https://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/)
 
+---
 ## Functions
 ```
 var x = myFunction(4, 3);   // Function is called, return value will end up in x
@@ -40,11 +41,12 @@ function myFunction(a, b) {
 ```
 [source](https://www.w3schools.com/js/js_functions.asp)
 
+---
 ## Get HTML element
 ```
 var canvas = document.getElementById('canvas01');
 ```
-
+---
 ## Canvas
 Nessesity to call, accessing through ctx.ANYTHING...
 ```
@@ -104,8 +106,9 @@ var changeColor = function(color){
     ctx.strokeStyle = color;
 }
 ```
+---
 ## Coordinates
-
+```
 var actionDown = function(evt){
     console.log('clientX/Y: ', evt.clientX, evt.clientY );
     console.log('layerX/Y: ', evt.layerX, evt.layerY );
@@ -113,3 +116,6 @@ var actionDown = function(evt){
     console.log('x/y', evt.x, evt.y );
     console.log("---------------------");
 }
+```
+---
+```10/11/2019, Jaroslav Langer```

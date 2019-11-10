@@ -2,6 +2,8 @@
 Jaroslav Langer 
 13/10/2019
  
+## Guessing the behaviour will be intuitive is the worst codding pracitice in history of all codding practices maybe ever!
+
 ## GIT
 + delete branch to how_to_git
 > https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323
@@ -20,3 +22,18 @@ Jaroslav Langer
 
 + delete user
 > https://www.cyberciti.biz/faq/linux-remove-user-command/
+
+## PHP
+
+### Composer
+OVER SEE HISTORY HOW TO InSTALL COMPOSER
+```
+mv composer.phar /usr/local/bin/composer
+```
+[source](https://getcomposer.org/doc/00-intro.md)
+
+### UNIT TEST
+```
+sudo apt-get install php-xml
+sudo apt-get install php-mbstring
+```

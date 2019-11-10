@@ -69,7 +69,9 @@ public function setLeft(?Node $left): Node
         return $this;
     }
 ```
-There is a shortcut for setting all the values while creation:
+### There is a shortcut for setting all the values while creation:
+
+(It's possible as the setters returns ```$this```)
 ```
 $tree1 = (new Node(1))
 	->setLeft((new Node(2))

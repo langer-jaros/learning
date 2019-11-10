@@ -4,31 +4,39 @@
 //TODO
 
 ## Autoloading
+Load all classes correctly can be quite painful, autoloading may help.
 
 ### Without namespaces
 
 When you write something like:
-```$obj = new Class1();```
-You needed to require or include the Class1 in a way like:
-```require_once './path/you/desire/Class1.php';```
-
-Much nicer way is to use this block of code:
+```
+$obj = new Class1();
+```
+You needed to require or include the Class1 in a way similar to:
+```
+require_once './path/you/desire/Class1.php';
+```
+For one require it is perfect but when you need to require dozen of classes much nicer is to use this block:
 ```
 spl_autoload_register(function ($className){
     require __DIR__.'/path/you/desire/'.$className.'.php';
 });
 ```
-Which once it reaches Class1 will search for ./path/you/desire/Class1.php
+Once the interpret reaches Class1 in code, it will automaticly search for ./path/you/desire/Class1.php
 
 ### With namespaces
+When using namespaces (highly recommended) the interpret will reach something like:
+```
+$obj = new Namespace1\Namespace2\Class1();
+```
+#### In case of UNIX like system
+(where for directories is used separator '/')
 
-With namespaces, the interpret will reach something like:
-```$obj = new Namespace1\Namespace2\Class1();```
-
-Because in UNIX like systems is for directory used separator '/'
 You only need to replace the backslashes from namespace with slashes and it will work fine again.
 ```
 spl_autoload_register(function($className) {
     require __DIR__.'/path/you/desire/'.str_replace('\\', '/', $className).'.php';
 });
 ```
+---
+```10/11/2019, Jaroslav Langer```
