@@ -11,6 +11,7 @@
 + [Compare two files](#compare-two-files)
 + [Find](#find)
 + [Change password](#change-password)
++ [Regular Expressions](#regular-expressions)
 + [Knowledge from seminars](#seminar-1)
 ---
 ## Open anything in terminal
@@ -53,6 +54,12 @@ sudo dpkg -i package_name.deb
 sudo apt-get install -f
 ```
 [source](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt)
+
+### Search for package
+```
+apt-cache search KEYWORD
+```
+[source](https://askubuntu.com/questions/160897/how-do-i-search-for-available-packages-from-the-command-line)
 
 ---
 ## Compression and decompression
@@ -267,13 +274,15 @@ vi 		normal mode		hjkl	gg G 	w e b 	x X 	r 	J 	o O
 						:wqa!
 		visual mode		v V ctrl+V
 ```
-## Seminar 6
+
+## Regular Expressions
+`“REGEX” or “REGEXP”?  ->  /REGEXP?/`
 ```
-REGULAR EXPRESSIONS - REGEXP
 	. * [^- ] ^ $ 		- BRE
 	+ ? { } ( ) | \		- ERE
 BRE: 	grep - BRE
 ERE: 	egrep 	grep -E 	grep \ERE 
+
 grep -options 'RE' where
 	[abc]
 options: -n -c -i -v
