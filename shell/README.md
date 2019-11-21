@@ -9,10 +9,12 @@
 + [Install stuff](#install-stuff)
 + [Compression and decompression](#Compression-and-decompression)
 + [Compare two files](#compare-two-files)
-+ [Find](#find)
-+ [Change password](#change-password)
++ [Find anything](#find-anything)
++ [User management and priviledges](#user-management-and-priviledges)
++ [Find process](#find-process)
++ [Vi basics](#vi-basics)
 + [Regular Expressions](#regular-expressions)
-+ [Knowledge from seminars](#seminar-1)
++ [Knowledge from seminars](#knowledge-from-seminars)
 ---
 ## Open anything in terminal
 (double-click like)
@@ -99,7 +101,138 @@ diff -u file1 file2
 [source2](https://www.computerhope.com/unix/udiff.htm)
 
 ---
-## Seminar 1
+## Find anything
+```
+find /  -name "toBeFound"       ACTIONS -delete
+        -type f d l                     -ls 
+        -user                           -exec ls -l {} \;
+        -size   +-nc k M G              -ok
+        -empty
+        -mindepth -maxdepth n
+        -perm 	400 	u=rw 	-u=rmw 	/u=r,o=x
+		-user 	langera
+		-group
+```
+---
+## User management and priviledges
+### Add,delete  user | group
+```
+adduser
+deluser
+groupadd
+goupdel
+```
+### Change password
+```
+[sudo] passwd [username]
+```
+### Switch user
+```
+su USERNAME
+```
+### Superuser
+Login as superuser, superuser's password required.
+```
+su
+```
+Login as superuser, current user's password required.
+```
+sudo su
+```
+grant to the command priviledges of superuser
+```
+sudo COMMAND
+```
+### Other handy commands
+```
+groupmod
+whoami
+who
+groups
+```
+### User permissions
+- rwx rwx rwx
+^filetype	d - directory 
+			l - link 	
+			b - bloc type (harddisc) 
+			c - chartype
+  --- --- --- } filemode user group others
+
+### Change permissions
+chmod u-x
+	rename needs directory priviladges
+	to read files directory needs r+x
+	to rename files directory needs w+x
+	--- 000	0
+	--x 001 1
+	-w- 010 2
+	-wx 011 3
+	r-- 100 4... 	chmod 755 text.txt chmod u=rw,g+rw ccc.txt
+
+### Change ownership
+```
+chown USER[:GROUP] OBJECT
+```
+---
+
+## Find process
+```
+ps aux | grep cat
+```
+---
+## Vi basics
+```
+vi 		normal mode		hjkl	gg G 	w e b 	x X 	r 	J 	o O 	
+						dd p P yy 7yy	. u CTR+r
+		insert mode	 	i esc
+		command mode	:	q	q!	:w 	:r 	:e :set tabstop=4
+						:set nu!
+						:set :split	:vsplit		ctrl+w+w
+						:wqa!
+		visual mode		v V ctrl+V
+```
+---
+## Regular Expressions
+`“REGEX” or “REGEXP”?  ->  /REGEXP?/`
+```
+	. * [^- ] ^ $ 		- BRE
+	+ ? { } ( ) | \		- ERE
+BRE: 	grep - BRE
+ERE: 	egrep 	grep -E 	grep \ERE 
+
+grep -options 'RE' where
+	[abc]
+options: -n -c -i -v
+	[: :]
+		[:alpha:] 	[a-zA-Z]
+		[:digit:] 	[0-9]
+		[:lower:]	
+		[:upper:]
+		[:alnum:]
+		[:word:]	[a-zA-Z_]
+		[:blank:]	[mezera\t]
+		[:xdigit]	[a-fA-F0-9]
+	kvantifikatory:
+		* + ? {}
+		{min, max}
+		? nemusi a kdyz tak pouze jednou
+		+ musi minimalne jednou
+		*
+
+	Specialni znaky
+		\b \< \> \w \W \s 	skoro_i \d
+	RE1|RE2
+	'<(h[1-6])>.*</\1>'
+fgrep
+rgrep
+USAGE:
+	less /
+	find -regex 
+	locate --regexp [bre] --regex [ere]
+```
+---
+## Knowledge from seminars
+### Seminar 1
 ```
 147.251.253.55
 CLI
@@ -139,7 +272,7 @@ MANIPULATION
     ctrl t
     kill ring CTRL K ctrl+y alt y
 ```
-## Seminar 2
+### Seminar 2
 ```
 pwd tree    cd  ~jmeno
 touch   
@@ -169,20 +302,10 @@ WILDCARDS
     ls ?[[:digit:]]*        [:digit:] [:alpha:] [:alnum:] [:upper:] [:lower:]
     ls ?[4-6]       [a-dsu]     [3-7a-g]
 ```
-## Seminar 3
+### Seminar 3
 ```
 locate -b -i -n 17 -S -u
-```
-## Find
-```
-find /  -name "toBeFound"       ACTIONS -delete
-        -type f d l                     -ls 
-        -user                           -exec ls -l {} \;
-        -size   +-nc k M G              -ok
-        -empty
-        -mindepth -maxdepth n
-```
-```
+
 VSTUP, VYSTUP, PRESMEROVANI
 STDIN STDOUT STDERR
 0<      1> >>   2>       
@@ -194,7 +317,7 @@ PIPE    |   sort, uniq, less, head,
     tee
 file
 ```
-## Seminar 4
+### Seminar 4
 ```
 Expanse
 	* ? ' ' \ . .. $
@@ -211,109 +334,20 @@ bc	scale=2				echo "(((11+45)/2)%3)" | bc -l
 - parameter 	$x ${x}
 env
 - command 		$() 	`which cp`
-
-USER PERMISSIONS
-	- rwx rwx rwx
-	^filetype	d - directory 
-				l - link 	
-				b - bloc type (harddisc) 
-				c - chartype
-	  --- --- --- } filemode user group others
-chmod u-x
-	rename needs directory priviladges
-	to read files directory needs r+x
-	to rename files directory needs w+x
-	--- 000	0
-	--x 001 1
-	-w- 010 2
-	-wx 011 3
-	r-- 100 4... 	chmod 755 text.txt chmod u=rw,g+rw ccc.txt
-	
 ```
-## Seminar 5
-```
-chown user[:group] objekt
 
-find	-perm 	400 	u=rw 	-u=rmw 	/u=r,o=x
-		-user 	langera
-		-group
+### Seminar 5
+```
 /etc/shadow
-ps aux | grep cat
-	
+
 setuid bit 		chmod 	u+s ... 4777
 setgid bit 		chmod	g+s ...	2777
 sticky bit 		chmod	+t ...	1777
 
 umask	0224		d- 777	f- 666
-
-adduser
-deluser
-```
-### Change password
-```
-[sudo] passwd [username]
-```
-```
-groupadd
-goupdel
-groupmod
-
-whoami
-who
-groups
-
-sudo		sudo su langera
-su ...		
-
-vi 		normal mode		hjkl	gg G 	w e b 	x X 	r 	J 	o O 	
-						dd p P yy 7yy	. u CTR+r
-		insert mode	 	i esc
-		command mode	:	q	q!	:w 	:r 	:e :set tabstop=4
-						:set nu!
-						:set :split	:vsplit		ctrl+w+w
-						:wqa!
-		visual mode		v V ctrl+V
 ```
 
-## Regular Expressions
-`“REGEX” or “REGEXP”?  ->  /REGEXP?/`
-```
-	. * [^- ] ^ $ 		- BRE
-	+ ? { } ( ) | \		- ERE
-BRE: 	grep - BRE
-ERE: 	egrep 	grep -E 	grep \ERE 
-
-grep -options 'RE' where
-	[abc]
-options: -n -c -i -v
-	[: :]
-		[:alpha:] 	[a-zA-Z]
-		[:digit:] 	[0-9]
-		[:lower:]	
-		[:upper:]
-		[:alnum:]
-		[:word:]	[a-zA-Z_]
-		[:blank:]	[mezera\t]
-		[:xdigit]	[a-fA-F0-9]
-	kvantifikatory:
-		* + ? {}
-		{min, max}
-		? nemusi a kdyz tak pouze jednou
-		+ musi minimalne jednou
-		*
-
-	Specialni znaky
-		\b \< \> \w \W \s 	skoro_i \d
-	RE1|RE2
-	'<(h[1-6])>.*</\1>'
-fgrep
-rgrep
-USAGE:
-	less /
-	find -regex 
-	locate --regexp [bre] --regex [ere]
-```
-## Seminar 8
+### Seminar 8
 ```
 split - rozdeleni obsahu
     split -l 100 filename (rozdeli soubor podle definovaneho poctu radku)        
@@ -435,7 +469,7 @@ ostatni
                 s/pes/slon/
                 s/oves/zito/
 ```
-## Seminar 9
+### Seminar 9
 ```
 sed i a =   p d n
             P D N
@@ -467,7 +501,7 @@ awk [-options]  '{program}' filenames
         while(){}
         for(){}
 ```
-## Seminar 11 (24/04/2019)
+### Seminar 11 (24/04/2019)
 ```
 ENVIROMENT
     GLOBAL: env, printenv ...
@@ -599,7 +633,7 @@ fi
 date -r s1
 stat
 ```
-## Seminar 12 (15/05/2019)
+### Seminar 12 (15/05/2019)
 ```
 case variable in
     pattern)   commands;
@@ -665,7 +699,7 @@ Variables:
 VI
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 ```
-## Seminar 13 (22/05/2019)
+### Seminar 13 (22/05/2019)
 ```
 $# -> počet argmentů
 $* -> přehled věšech argumentu
@@ -742,4 +776,4 @@ screen
 top #command shows processes
 ```
 ---
-```10/11/2019, Jaroslav Langer```
+```21/11/2019, Jaroslav Langer```
