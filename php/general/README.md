@@ -39,4 +39,8 @@ spl_autoload_register(function($className) {
 });
 ```
 ---
+## Error handling
+https://stackoverflow.com/questions/5683592/phpunit-assert-that-an-exception-was-thrown
+https://www.php.net/manual/en/book.errorfunc.php
+
 ```10/11/2019, Jaroslav Langer```

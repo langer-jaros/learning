@@ -1,6 +1,6 @@
 # Shell 
 ##### The art of using PC like human being
-```06/11/2019, Jaroslav Langer - using linux mint 19```
+```Using linux mint 19```
 
 ## MENU
 
@@ -10,6 +10,7 @@
 + [Compression and decompression](#Compression-and-decompression)
 + [Compare two files](#compare-two-files)
 + [Change password](#change-password)
++ [Knowledge from seminars](#seminar-1)
 ---
 ## Open anything in terminal
 (double-click like)
@@ -17,6 +18,18 @@
 ```
 xdg-open ANY_NAME.ANYTHING
 ```
+### Push it to the backround in shell
+#### press ctrl+z, then type:
+```
+bg
+```
+the proccess will continue in background.
+#### If you want to bring the process back to the foreground. Press:
+```
+fg
+```
+[source](https://superuser.com/questions/154486/how-to-run-programs-from-a-linux-terminal-without-blocking-the-terminal)
+
 ---
 ## Copy from terminal to clipboard
 ```
@@ -44,17 +57,27 @@ sudo apt-get install -f
 ## Compression and decompression
 (Uploading and downloading in ohter way is **damn** slow)
 
+### Command zip
+Zip files into new.zip
+```
+zip new file1 file2 file3
+```
+Unzip files from new.zip
+```
+unzip new.zip
+```
+
 ### Command tar
-+ Compress to .tar.gz
++ Compress files to new.tar.gz
 ```
-tar -cvzf new_archive.tar.gz for_compression
+tar -cvzf new.tar.gz file1 file2 file3
 ```
-+ Decompress from .tar.gz
++ Decompress from new.tar.gz
 ```
-tar -xvzf for_decompression
+tar -xvzf new.tar.gz
 ```
 [source](https://www.interserver.net/tips/kb/use-tar-command-linux-examples/)
-
+---
 ## Compare two files
 ### Command diff
 ```
@@ -703,3 +726,5 @@ screen
 
 top #command shows processes
 ```
+---
+```10/11/2019, Jaroslav Langer```
