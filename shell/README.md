@@ -9,6 +9,7 @@
 + [Install stuff](#install-stuff)
 + [Compression and decompression](#Compression-and-decompression)
 + [Compare two files](#compare-two-files)
++ [Find](#find)
 + [Change password](#change-password)
 + [Knowledge from seminars](#seminar-1)
 ---
@@ -164,12 +165,17 @@ WILDCARDS
 ## Seminar 3
 ```
 locate -b -i -n 17 -S -u
-find /  -name "hledámSe"        ACTIONS -delete
+```
+## Find
+```
+find /  -name "toBeFound"       ACTIONS -delete
         -type f d l                     -ls 
         -user                           -exec ls -l {} \;
         -size   +-nc k M G              -ok
         -empty
         -mindepth -maxdepth n
+```
+```
 VSTUP, VYSTUP, PRESMEROVANI
 STDIN STDOUT STDERR
 0<      1> >>   2>       
