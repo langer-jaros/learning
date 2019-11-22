@@ -212,4 +212,9 @@ you can find it via php -ini (I had it there   /etc/php/7.2/cli/php.ini)
 assert($a === 1, '$a is not 1');
 ```
 ---
+## PHP init file
+```
+/etc/php/7.2/cli/php.ini
+```
+---
 ``` 10/11/2019, Jaroslav Langer```
