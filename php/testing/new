@@ -1,0 +1,133 @@
+<?php
+
+
+namespace HW\Tests;
+
+
+use PHPUnit\Framework\TestCase;
+
+class MathUtilsTest extends TestCase
+{   
+    public function testSum()
+    {
+        $arr = [1, 2, 3, 4, 5];
+        $this->assertEquals(\HW\Lib\MathUtils::sum($arr), array_sum($arr));
+
+        $arr = [0];
+        $this->assertEquals(\HW\Lib\MathUtils::sum($arr), array_sum($arr));
+    }
+    
+    public function solveLinear($a, $b)
+    {
+        if ($a == 0){
+            throw new \InvalidArgumentException();
+        }
+        return (- $b)/$a;
+    }
+
+    public function testSolveLinear()
+    {
+        // ax + b = 0
+        $a = 0;
+        $b = 17;
+        $this->expectException(\InvalidArgumentException::class);
+        \HW\Lib\MathUtils::solveLinear($a, $b);
+        //$this->assertEquals(\HW\Lib\MathUtils::solveLinear($a, $b), $this->solveLinear($a, $b));
+
+        $a = 13;
+        $b = 17;
+        $this->assertEquals(\HW\Lib\MathUtils::solveLinear($a, $b), $this->solveLinear($a, $b));
+    }
+
+    public function solveQuadratic($a, $b, $c)
+    {
+        $x1 = null;
+        $x2 = null;
+        
+        if ($a == 0) {
+            throw new \InvalidArgumentException();
+        }
+        $d = $b*$b - 4*$a*$c;
+        if($d < 0) {
+            throw new \InvalidArgumentException();
+        } elseif($d = 0) {
+            $x1 = (-$b / 2*$a);
+            $x2 = (-$b / 2*$a);
+            //echo "x1 = $x1 , x2 = $x2 \n";
+        } else {
+            $x1 = ((-$b + sqrt($d)) / (2*$a));
+            $x2 = ((-$b - sqrt($d)) / (2*$a));
+            //echo "x1 = $x1 , x2 = $x2 \n";
+        }
+        return [$x1, $x2];
+    }
+    /*/
+    public function testSolveQuadratic()
+    {
+        // ax^2 + bx + c = 0
+        $a = 0;
+        $b = 0;
+        $c = 10;
+        $this->expectException(\InvalidArgumentException::class);
+        \HW\Lib\MathUtils::solveQuadratic($a, $b, $c);
+        
+        $a = 13;
+        $b = 17;
+        $c = 57;
+        $this->assertEquals(\HW\Lib\MathUtils::solveQuadratic($a, $b, $c), $this->solveQuadratic($a, $b, $c));
+        
+        $a = 1;
+        $b = 0;
+        $c = 0;
+        $this->assertEquals(\HW\Lib\MathUtils::solveQuadratic($a, $b, $c), $this->solveQuadratic($a, $b, $c));
+
+        $a = 1;
+        $b = 0;
+        $c = 10;
+        $this->expectException(InvalidArgumentException::class);
+        \HW\Lib\MathUtils::solveQuadratic($a, $b, $c);
+     
+    }/*/
+
+    public function testSolveQuadratic() {
+        [$a, $b, $c] = [1, 1, -1];
+        $this->assertEquals(\HW\Lib\MathUtils::solveQuadratic($a, $b, $c), $this->solveQuadratic($a, $b, $c));
+        [$a, $b, $c] = [13, 17, -57];
+        $this->assertEquals(\HW\Lib\MathUtils::solveQuadratic($a, $b, $c), $this->solveQuadratic($a, $b, $c));
+        [$a, $b, $c] = [1, 0, 0];
+        $this->assertEquals(\HW\Lib\MathUtils::solveQuadratic($a, $b, $c), $this->solveQuadratic($a, $b, $c));
+    }
+
+    /**
+     * @dataProvider p2
+     */
+    public function testSolveQuadraticException($a, $b, $c) {
+        $this->expectException(\InvalidArgumentException::class);
+        \HW\Lib\MathUtils::solveQuadratic($a, $b, $c);
+    }
+
+    public function p2() {
+        return [
+            [13, 17, 57],
+            [0, 0, 10],
+            [1, 0, 10],
+        ];
+    }
+    
+
+        //$stub = $this->createMock(SomeClass:class);
+        //$stub->method('doSomething')->willReturn('foo');
+        /*/
+        $this->assertEquals('foo', $stub->doSomething());
+
+        $stack = [];
+        $this->assertSame(0, count($stack));
+
+        array_push($stack, 'foo');
+        $this->assertSame('foo', $stack[count($stack)-1]);
+        $this->assertSame(1, count($stack));
+
+        $this->assertSame('foo', array_pop($stack));
+        $this->assertSame(0, count($stack));
+        /*/
+}

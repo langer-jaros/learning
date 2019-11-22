@@ -1,11 +1,11 @@
 <?php
 
-$a = [4, 3];
-$a = $b = null;
+//var_dump (gettype(uniqid()) );
 
-//echo '$a = [4, 3]'."\n";
-//var_dump($a);
-//echo "<br>";
-//echo "ahoj <br> mami";
-var_dump($a);
-var_dump($b);
+$var = null;
+
+if( !$var){
+    echo "gaaar";
+} else {
+    echo 'else';
+}
