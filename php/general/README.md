@@ -1,6 +1,13 @@
 # General goods for PHP
 
-## Namespaces 
+## MENU
++ [Namespaces](#namespaces)
++ [Autoloading](#autoloading)
++ [Error handling](#error-handling)
++ [Work with files](#work-with-files)
++ [Work with JSON](#work-with-json)
+
+## Namespaces
 //TODO
 
 ## Autoloading
@@ -42,5 +49,33 @@ spl_autoload_register(function($className) {
 ## Error handling
 https://stackoverflow.com/questions/5683592/phpunit-assert-that-an-exception-was-thrown
 https://www.php.net/manual/en/book.errorfunc.php
+
+## Work with files
+### Write to file
+```
+file_put_contents ( './myNewFile.json', '{ "number", "1" }', FILE_APPEND ); 
+//file_put_contents ( string $filename , mixed $data [, int $flags = 0 [, resource $context ]] ) 
+```
+[source](https://www.php.net/manual/en/function.file-put-contents.php)
+### Read file
+Into array
+```
+```
+Into string 
+```
+file_get_contents
+
+```
+[source](https://www.php.net/manual/en/function.file-get-contents.php)
+
+## Work with JSON
+### encode
+```
+```
+### decode
+```
+json_decode ( string $json [, bool $assoc = FALSE [, int $depth = 512 [, int $options = 0 ]]] ) : mixed
+```
+https://www.php.net/manual/en/function.json-decode.php
 
 ```10/11/2019, Jaroslav Langer```

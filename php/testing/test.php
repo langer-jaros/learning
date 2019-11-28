@@ -2,10 +2,5 @@
 
 //var_dump (gettype(uniqid()) );
 
-$var = null;
 
-if( !$var){
-    echo "gaaar";
-} else {
-    echo 'else';
-}
+file_put_contents ( './myNewFile.json', '{ "number", "1" }', FILE_APPEND ); 

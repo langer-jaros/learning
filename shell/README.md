@@ -63,6 +63,10 @@ apt-cache search KEYWORD
 ```
 [source](https://askubuntu.com/questions/160897/how-do-i-search-for-available-packages-from-the-command-line)
 
+### Check if installed
+```
+dpkg-query -l 'someth*'
+```
 ---
 ## Compression and decompression
 (Uploading and downloading in ohter way is **damn** slow)
@@ -103,8 +107,9 @@ diff -u file1 file2
 ---
 ## Find anything
 ```
-find /  -name "toBeFound"       ACTIONS -delete
-        -type f d l                     -ls 
+find /  -name   "toBeFound"     ACTIONS -delete
+        -regex  '.*anything.*'
+        -type f d l s                   -ls 
         -user                           -exec ls -l {} \;
         -size   +-nc k M G              -ok
         -empty
@@ -113,6 +118,8 @@ find /  -name "toBeFound"       ACTIONS -delete
 		-user 	langera
 		-group
 ```
+
+
 ---
 ## User management and priviledges
 ### Add,delete  user | group
@@ -227,8 +234,8 @@ fgrep
 rgrep
 USAGE:
 	less /
-	find -regex 
 	locate --regexp [bre] --regex [ere]
+    [Find anything](#find-anything)
 ```
 ---
 ## Knowledge from seminars
