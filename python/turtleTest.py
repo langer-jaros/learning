@@ -99,10 +99,9 @@ def plant(ch):
     else:
         return ch
 
-def getNextGen(sP):
+def getNextGen(automat, start, sP):
     sN = ''
     fl = False
-    automat = plant
 
     for ch in sP:
         fl = True if (ch is 'X') else False
@@ -111,9 +110,24 @@ def getNextGen(sP):
     return sN
 
 #s0 = '1111[11[1[0]0]1[0]0]11[1[0]0]1[0]0'
-s0 = 'X'
-s1 = getNextGen(s0)
-s2 = getNextGen(s1)
+#s0 = 'X'
+'''
+s0 = '0'
+s1 = getNextGen(tree, start, s0)
+'''
+
+s = '0'
+gens = 2
+for ii in range(gens):
+    s = getNextGen(tree, '0', s)
+    print('s ' + str(ii) + ' ' + s)
+    if (ii == gens-1):
+        showTree(s)
+
+#s2 = getNextGen(s1)
+
+
+'''
 s3 = getNextGen(s2)
 s4 = getNextGen(s3)
 s5 = getNextGen(s4)
@@ -124,6 +138,7 @@ s8 = getNextGen(s7)
 print(s1)
 print(s2)
 showPlant(s6)
+'''
 
 '''
 # nakreslení čtyř stran čtverce

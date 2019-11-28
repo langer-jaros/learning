@@ -1,5 +1,14 @@
 # Unit Tests
 
+## For unit test
+```
+sudo apt-get install php-xml
+sudo apt-get install php-mbstring
+```
+```
+composer global require laravel/installer
+```
+
 ## Coverage
 ### Install xdebug
 https://xdebug.org/docs/install
@@ -22,5 +31,3 @@ add this to php.ini
 ```
 zend_extension=/usr/lib/php/20170718/xdebug.so
 ```
-
-##
