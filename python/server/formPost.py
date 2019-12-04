@@ -1,4 +1,4 @@
-`import cgi
+import cgi
  
 html = """
     <meta charset="utf-8" />

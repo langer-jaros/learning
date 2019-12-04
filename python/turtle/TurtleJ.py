@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
- 
+
 # import modulu
 import turtle as t
+import sys
 
 # CONSTANTS
 width, height = 1800, 1000
-leng = 6
+leng = 20
 deg = 45
 ang = 25
 defClr = 'brown'
@@ -74,15 +75,14 @@ def showPlant(s):
     t.mainloop()
     # t.done()
 
-
-# RULES
+# AUTOMATS
+# TREE
 '''
 variables : 0, 1
 constants: [, ]
 axiom : 0
 rules : (1 → 11), (0 → 1[0]0)
 '''
-# AUTOMAT
 def tree(ch):
     if ch is '0':
         return '1[0]0'
@@ -90,7 +90,7 @@ def tree(ch):
         return '11'
     else:
         return ch
-# RULES
+# PLANT
 '''
 variables : X F
 constants : + − [ ]
@@ -134,7 +134,8 @@ viewer = showTree
 '''
 # Plant
 s = 'X'
-gens = 6
+gens = int(sys.argv[1]) if(len(sys.argv) > 1) else 6
+leng = int(sys.argv[2]) if(len(sys.argv) > 2) else 20
 automat = plant
 viewer = showPlant
 
