@@ -4,11 +4,12 @@
 import turtle as t
 
 # CONSTANTS
-leng = 20
+width, height = 1800, 1000
+leng = 6
 deg = 45
+ang = 25
 defClr = 'brown'
 penSize = 3
-ang = 25
 
 # INITS
 '''
@@ -18,11 +19,17 @@ t.setworldcoordinates (-ww_half, 0, ww_half, ww)
 '''
 
 stack = []
+t.screensize(width, height)
+t.speed(0)
+t.tracer(1000)
+
+t.penup()
 t.color(defClr)
 t.pensize(penSize)
 t.left(90)
-t.speed(0)
-t.tracer(1000)
+#t.setposition(width/2, height)
+t.setposition(0, -height/2)
+t.pendown()
 
 def showTree(s):
     for ch in s:
@@ -99,46 +106,44 @@ def plant(ch):
     else:
         return ch
 
-def getNextGen(automat, start, sP):
+def getNextGen(automat, sP):
     sN = ''
     fl = False
 
     for ch in sP:
-        fl = True if (ch is 'X') else False
+        """
+        fl = True if (ch is start) else False
         chN = automat(ch) if (fl) else ch
+        """
+        chN = automat(ch)
         sN += chN
     return sN
 
-#s0 = '1111[11[1[0]0]1[0]0]11[1[0]0]1[0]0'
-#s0 = 'X'
-'''
-s0 = '0'
-s1 = getNextGen(tree, start, s0)
-'''
+def p(key,value):
+    print("{k} : {v}".format(k=key,v=value))
 
+
+# MAIN 
+
+# Tree
+'''
 s = '0'
-gens = 2
+gens = 8
+automat = tree
+viewer = showTree
+'''
+# Plant
+s = 'X'
+gens = 6
+automat = plant
+viewer = showPlant
+
+
 for ii in range(gens):
-    s = getNextGen(tree, '0', s)
-    print('s ' + str(ii) + ' ' + s)
+    s = getNextGen(automat, s)
+    #print('s ' + str(ii) + ' ' + s)
     if (ii == gens-1):
-        showTree(s)
-
-#s2 = getNextGen(s1)
-
-
-'''
-s3 = getNextGen(s2)
-s4 = getNextGen(s3)
-s5 = getNextGen(s4)
-s6 = getNextGen(s5)
-s7 = getNextGen(s6)
-s8 = getNextGen(s7)
-
-print(s1)
-print(s2)
-showPlant(s6)
-'''
+        viewer(s)
 
 '''
 # nakreslení čtyř stran čtverce
@@ -156,3 +161,4 @@ while True:
         break
 t.end_fill()
 '''
+
