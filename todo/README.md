@@ -37,3 +37,7 @@ mv composer.phar /usr/local/bin/composer
 sudo apt-get install php-xml
 sudo apt-get install php-mbstring
 ```
+
+## Shortcuts
+
+[source](https://tahoeninjas.blog/2019/03/30/multi-cursor-editing-in-visual-studio-code/) ctrl+shift+l
