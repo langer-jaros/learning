@@ -4,10 +4,14 @@
 
 + [Printing](#printing)
 + [Variables](#variables)
++ [Data types](#data-types)
++ [Conditions](#conditions)
++ [Loops](#loops)
 + [Functions](#functions)
-+ [Get HTML element](#get-html-element)
-+ [Canvas](#canvas)
++ [HTML elements](#html-elements)
++ [Handlers](#Handlers)
 + [Coordinates](#coordinates)
++ [Math](#math)
 ---
 ## Printing
 Alert, blocks anything
@@ -20,16 +24,81 @@ console.log(total, typeof total);
 ```
 ---
 ## Variables
+Best way for variables is keyword var
 ```
 var name = 0;
 ```
 global variable 
 ```
-window.name = 0;
+[window.prevX, window.prevY] = [ x, y ];
 ```
 [source](https://www.javatpoint.com/javascript-global-variable)
 [scope of variables](https://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/)
 
+## Data types
+### String
+lenght 
+```
+myString.length
+```
+#### Concatenate strings
+```
+var hello = 'hell' + 'o';
+// be careful
+var fivety = '5' + 0; // will be '50'
+```
+#### Accessing chars of string
+(like myString[i] in other languages)
+```
+myString.charAt(i);
+```
+---
+
+### Arrays
+```
+var arr = [6,6,7];
+```
+#### Number of items
+```
+myArray.length
+```
+### Adding item to array
+```
+myArray.push("something");
+```
+[source](https://www.w3schools.com/js/js_arrays.asp)
+### Pop last item
+```
+item = myArray.pop();
+```
+---
+## Conditions
+Switch
+```
+switch(clicked%4) {
+    case 0:
+        break;
+    case 1:
+        clicked++;
+        break;
+    default:
+        clicked = 0;
+}
+```
+## Loops
+```
+var i;
+for (i = 0; i < cars.length; i++) { 
+  text += cars[i] + "<br>";
+}
+```
+[source](https://www.w3schools.com/js/js_loop_for.asp)
+For loop i is key, not value
+```
+for (var i in arr) {
+    total = total + i;
+}
+```
 ---
 ## Functions
 ```
@@ -42,24 +111,35 @@ function myFunction(a, b) {
 [source](https://www.w3schools.com/js/js_functions.asp)
 
 ---
-## Get HTML element
+## HTML elements
+reference to DOM-object of element '<div id="odstavec">' from page
 ```
 var canvas = document.getElementById('canvas01');
 ```
+Get root DOM object
+```
+var outputElement = document.documentElement;
+```
+vložení připraveného HTML-fragmentu do cílového místa
+```
+outputElement.innerHTML = txt;
+```
 ---
-## Canvas
-Nessesity to call, accessing through ctx.ANYTHING...
+## Handlers
+### function handling action, gets event, which called it
 ```
-var ctx = canvas.getContext('2d');
+var onclickHandler = function(evt) {
+    console.log('Click on <div id="odstavec">:', evt);
+};
 ```
-
-### Get offset of the canvas
+### Connects event with handler
 ```
-var rect = event.target.getBoundingClientRect();
-var x = event.pageX - rect.left;
-var y = event.pageY - rect.top;
+outputElement.onclick = onclickHandler;
 ```
-
+### Access target from event
+```
+evt.target.style.backgroundColor = 'yellow';
+```
 ### Handeling general touch 
 + [Pointer](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
 
@@ -67,45 +147,6 @@ var y = event.pageY - rect.top;
 + [touch](https://www.w3schools.com/jsref/obj_touchevent.asp)
 + [Touch events](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Using_Touch_Events)
 
-### Buttons 
-```
-if(event.buttons>0)
-    ctx.fillRect(x, y, 5, 5);
-```
-[source](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons)
-### Drawing
-Circle 
-```
-ctx.drawCircle = function(x, y, r){
-        this.beginPath();
-        this.arc(x, y, r, 0, 2*Math.PI);
-        this.fill();
-    }
-```
-Line
-```
-ctx.drawLine = function(x, y){
-    this.beginPath();
-    this.moveTo(window.prevX, window.prevY);
-    this.lineTo(x, y);
-    this.stroke();
-    [window.prevX, window.prevY] = [ x, y ];
-}
-```
-+ [draw a line](https://www.w3schools.com/tags/canvas_lineto.asp)
-+ [line tutorial](https://www.html5canvastutorials.com/tutorials/html5-canvas-line-color/)
-
-#### Properties
-Line width
-```
-ctx.lineWidth = 50;
-```
-Line color
-```
-var changeColor = function(color){
-    ctx.strokeStyle = color;
-}
-```
 ---
 ## Coordinates
 ```
@@ -117,5 +158,15 @@ var actionDown = function(evt){
     console.log("---------------------");
 }
 ```
+## Math
+### Radians from degrees
+```
+rad = Math.PI * deg/180;
+```
+### Trigonometric functions
+```
+newX = this.X + length * Math.cos(this.heading);
+newY = this.Y - length * Math.sin(this.heading);
+```
 ---
-```10/11/2019, Jaroslav Langer```
+```2019/12/04, Jaroslav Langer```

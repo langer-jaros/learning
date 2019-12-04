@@ -41,3 +41,9 @@ sudo apt-get install php-mbstring
 ## Shortcuts
 
 [source](https://tahoeninjas.blog/2019/03/30/multi-cursor-editing-in-visual-studio-code/) ctrl+shift+l
+
+## Javascript
+Stačí napsat tohle, a pak to umí každé vytvořené pole.
+```
+Array prototype valueIn = function()
+```
