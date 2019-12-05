@@ -4,6 +4,7 @@
 
 ## MENU
 
++ [Tricks](#tricks)
 + [Open anything in terminal](#open-anything-in-terminal)
 + [Copy from terminal to clipboard](#copy-from-terminal-to-clipboard)
 + [Install stuff](#install-stuff)
@@ -12,9 +13,18 @@
 + [Find anything](#find-anything)
 + [User management and priviledges](#user-management-and-priviledges)
 + [Find process](#find-process)
-+ [Vi basics](#vi-basics)
++ [Linux directory structure](#linux-directory-structure)
 + [Regular Expressions](#regular-expressions)
++ [Vi basics](#vi-basics)
 + [Knowledge from seminars](#knowledge-from-seminars)
+---
+## Tricks
+### USE TAB autocompletion
+whenever, you press tab, the terminal autocomplete the word you are writting.
+if there is more than one posibility, nothing happens. Until you press tab twice.
+Than it shows you the possible completions.
+It's unbeliveable great feature.
+
 ---
 ## Open anything in terminal
 (double-click like)
@@ -782,5 +792,16 @@ screen
 
 top #command shows processes
 ```
+## Linux directory structure
+
++ /bin - executables
++ /home/* | /root - *users | roots personal data
++ /opt – Optional software (thigs you can't instal with package manager)
++ /etc - configuration files
++ /lib – Shared libraries
+
+[more here](https://linuxhandbook.com/linux-directory-structure/)
+
+
 ---
-```21/11/2019, Jaroslav Langer```
+```2019/12/05, Jaroslav Langer```
