@@ -47,3 +47,8 @@ Stačí napsat tohle, a pak to umí každé vytvořené pole.
 ```
 Array prototype valueIn = function()
 ```
+
+
+## uzávěry???
+----
+`2019/12/05, Jaroslav Langer`

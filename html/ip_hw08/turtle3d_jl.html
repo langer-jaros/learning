@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    </head>
+    <body>
+        <a-scene background="color: #FAFAFA" id='scene01'>
+            <!-- Rotation first  
+            <a-cylinder position="-2 0.5 -3" radius="0.01" height="1" color="#4CC3D9" rotation="0 0 -30" shadow></a-cylinder>
+            <a-cylinder position="0 0.5 -3" radius="0.01" height="1" color="#4CC3D9" rotation="0 0 -30" shadow></a-cylinder>
+            -->  
+            <a-plane position="0 0 -9" rotation="0 0 0" width="10" height="10" color="#7BC8A4" shadow></a-plane>
+        </a-scene>
+    
+    <script>
+        /*/
+        // CANVAS
+        var canvas = document.getElementById('cnvs01');
+        var context = canvas.getContext('2d');
+        [canvas.width, canvas.height] = [window.innerWidth, window.innerHeight];
+        canvas.style.backgroundColor = 'lightblue';
+        /*/
+        /*/
+        context.drawLine = function(x0, y0, x1, y1){
+            this.beginPath();
+            this.moveTo(x0, y0);
+            this.lineTo(x1, y1);
+            this.stroke();
+        }
+        /*/
+
+        // SUBFUNCTIONS
+        var drawCylinder = function(x, y, deg){
+            console.log('x, y, deg', x, y, deg);
+            /*/
+            
+            console.log('[this.X, this.Y]', this.X, this.Y);
+            /*/
+            let el = document.createElement('a-cylinder');
+            var position = '' + x + ' ' + y + ' ' + -3;
+            console.log('position', position);
+            el.setAttribute('position', position);
+            el.setAttribute('height', '1');
+            el.setAttribute('radius', '0.01');
+            el.setAttribute('color', '#4CC3D9');
+            var rotation = '0 0 ' + deg;
+            el.setAttribute('rotation',rotation);
+            el.setAttribute('shadow');
+            scene01.appendChild(el);
+            
+        }
+      
+        // TURTLE
+        const Turtle = function(h=90, x=0, y=0){
+            //this.canvas = ctx.canvas;
+            [this.X, this.Y] = [x, y];
+            this.heading = Math.PI*h/180;
+            this.deg = h;
+            this.penIsDown = true;
+        
+            this.forward = function(length){
+
+
+                newX = this.X + length*Math.cos(this.heading);
+                newY = this.Y - length*Math.sin(this.heading);
+                drawCylinder(this.X + (newX-this.X)/2, this.Y + (newY-this.Y)/2, this.deg);
+
+                //ctx.drawLine(this.X, this.Y, newX, newY);
+                console.log('[this.X, this.Y]', this.X, this.Y);
+                [this.X, this.Y] = [newX, newY];
+            };
+          
+            this.left = function(deg){
+                this.heading = this.heading + Math.PI*deg/180;
+                this.deg = deg;
+            };
+          
+            this.right = function(deg){
+                this.heading = this.heading - Math.PI*deg/180;
+            };
+          
+            this.penup = function(){
+                this.penIsDown = false;
+            };
+            this.pendown = function(){
+                this.penIsDown = true;
+            };
+            this.setposition = function(x, y){
+                [this.X, this.Y] = [x, y];
+            };
+            this.setheading = function(h){
+                this.heading = h;
+            };
+        };
+      
+        // PLANT
+        var viewPlant = function(s, step, angle){
+            var len = s.length;
+            this.stack = [];
+        
+            for (k = 0; k < len; k++) {
+                switch (s.charAt(k)) {
+                case 'F':
+                    t.forward(step);
+                    break;
+                case '-':
+                    t.left(angle);
+                    break;
+                case '+':
+                    t.right(angle);
+                    break;
+                case '[':
+                    this.stack.push([[t.X, t.Y],t.heading])
+                    break;
+                case ']':
+                    [p, h] = this.stack.pop();
+                    t.penup();
+                    t.setposition(p[0], p[1]);
+                    t.setheading(h);
+                    t.pendown();
+                    break;
+                default:
+                    if(s.charAt(k) != 'X'){
+                        alert('INVALID CHARACTER OCCURED!');
+                    }
+                }
+            }
+        }
+      
+        var plant = function(ch){
+            switch(ch) {
+            case 'X':
+                return 'F+[[X]-X]-F[-FX]+X'
+            case 'F':
+                return 'FF'
+            default:
+                return ch;
+            }
+        }
+      
+        var getNextGen = function(sP){
+            var sN = '';
+            var len = sP.length;
+            for (j = 0; j < len; j++) { 
+                sN += plant(sP.charAt(j));
+            }
+            return sN;
+        }
+      
+        // MAIN
+        const step_length = 1;
+        const turn_angle = 25;
+        const start_angle = 145;
+        //var t = new Turtle(context, start_angle, window.innerWidth*(9/10), window.innerHeight*(19/20));
+        var t = new Turtle(start_angle);
+        /*/
+        t.forward(100);
+
+        /*/
+        var s = 'X';
+        var gens = 2;
+        var i;
+        //context.strokeStyle = 'darkgreen';
+        for (i = 0; i < gens; i++) { 
+            s = getNextGen(s);
+            if (i == gens-1) {
+                console.log("before view plant")
+                viewPlant(s, step_length, turn_angle);
+            }
+        }
+        
+      
+      
+    </script>
+  </body>
+</html>
+    
