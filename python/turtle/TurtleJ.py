@@ -142,7 +142,7 @@ viewer = showPlant
 
 for ii in range(gens):
     s = getNextGen(automat, s)
-    #print('s ' + str(ii) + ' ' + s)
+    print('s ' + str(ii) + ' ' + s)
     if (ii == gens-1):
         viewer(s)
 
