@@ -105,9 +105,13 @@ var getNextGen = function(sP){
 // MAIN
 const step_length = 1;
 const turn_angle = 25;
-const start_angle = 145;
+const start_angle = 90;
 var t = new Turtle(context, start_angle, window.innerWidth*(9/10), window.innerHeight*(19/20));
-    
+t.forward(20);
+t.forward(20);
+t.left(90);
+t.forward(20);
+/*/
 var s = 'X';
 var gens = 9;
 var i;
@@ -118,3 +122,4 @@ for (i = 0; i < gens; i++) {
         viewPlant(s, step_length, turn_angle);
     }
 }
+/*/
