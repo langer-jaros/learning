@@ -94,13 +94,28 @@ unzip new.zip
 ### Command tar
 + Compress files to new.tar.gz
 ```
+# -c = create
+# -v = verbose
+# -z = gzip / gz / zip
+# -f = following files
+
 tar -cvzf new.tar.gz file1 file2 file3
 ```
 + Decompress from new.tar.gz
 ```
-tar -xvzf new.tar.gz
+# -x = extract
+
+tar -xvzf oldFile.tar.gz
 ```
-[source](https://www.interserver.net/tips/kb/use-tar-command-linux-examples/)
+```
+# -j = bz2
+# -C = where to extract
+
+tar -xvjf oldFile.tar.gz -C /path/Directory
+```
+[source](https://www.interserver.net/tips/kb/use-tar-command-linux-examples/),
+[source - bz2](https://linuxize.com/post/how-to-extract-unzip-tar-bz2-file/)
+
 ---
 ## Compare two files
 ### Command diff
