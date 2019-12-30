@@ -1,5 +1,11 @@
 # How to GIT
 
+## MENU
++ [Absolute start with git](#absolute-start-with-git)
++ [Showing](#showing)
++ [Create a merge request](#create-a-merge-request)
++ [Delete folder from git competence](#delete-folder-from-git-competence)
+
 ## Absolute start with git
 (First step may actually be to create the fork on Git page)
 
@@ -81,9 +87,16 @@ git push origin master
 ```
 git rm --cached FOLDER_NAME
 ```
+**or**
+```
+git rm -rf --cached FOLDER_NAME/
+```
+[source](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
+
 ---
-## In case of any troubles
+
+In case of any troubles
 ```
 git help
 ```
-```06/11/2019, Jaroslav Langer```
+```2019/12/30, Jaroslav Langer```
