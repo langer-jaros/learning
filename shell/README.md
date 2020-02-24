@@ -1,5 +1,5 @@
 # Shell 
-##### The art of using PC like human being
+##### The art of using PC like a human being
 ```Using linux mint 19```
 
 ## MENU
@@ -14,8 +14,9 @@
 + [User management and priviledges](#user-management-and-priviledges)
 + [Find process](#find-process)
 + [Linux directory structure](#linux-directory-structure)
-+ [Regular Expressions](#regular-expressions)
 + [Vi basics](#vi-basics)
++ [Regular Expressions](#regular-expressions)
++ [Enviroments and variables](#enviroments-and-variables)
 + [Knowledge from seminars](#knowledge-from-seminars)
 ---
 ## Tricks
@@ -262,6 +263,57 @@ USAGE:
 	less /
 	locate --regexp [bre] --regex [ere]
     [Find anything](#find-anything)
+```
+---
+## Enviroments and variables
+
+Variables and functions, can be exported (global) or not.
+
+### set
+can be used to set various shell options, or the positional parameters. If no arguments or options are given, then it prints all shell variables and functions.
+
+### Print value of variable
+```
+echo ${...}
+```
+
+### compgen -v
+outputs only names of all shell variables, exported or not.
+
+### GLOBAL: env, printenv ...
+
+#### export
+can be used to export variables or functions. With the -p option, it prints exported variables and functions
+
+#### env
+The env command can run other commands with modified environments. If no command is given, env prints environment variables (i.e., exported variables)
+
+### printenv
+prints environment variables
+
+### LOCAL
+    set | grep ''
+    vara=123a
+
+[source](https://askubuntu.com/questions/953579/what-is-the-difference-between-env-declare-and-compgen-v)
+
+```
+    CONSTS: $USER; $PATH; $SHLVL; $SHELL;
+
+    variables:  name=value [[:alnum:]]
+                unset ... (local)
+                declare [-i; -r] ...
+
+    bash    child[sub]   interactive / uninteractiv - | read   
+                exit
+    startup
+        login shell            
+            /etc/profile
+            $HOME/ [.profile; .bash_profile; .bash_login]
+        non-login shell
+            /etc/.bashrc
+            $HOME/.bashrc
+            source
 ```
 ---
 ## Knowledge from seminars
@@ -536,30 +588,6 @@ awk [-options]  '{program}' filenames
 ```
 ### Seminar 11 (24/04/2019)
 ```
-ENVIROMENT
-    GLOBAL: env, printenv ...
-            echo ${...}
-                    
-    LOCAL:  set | grep ''
-            vara=123a
-            export ...
-    CONSTS: $USER; $PATH; $SHLVL; $SHELL;
-
-    variables:  name=value [[:alnum:]]
-                unset ... (local)
-                declare [-i; -r] ...
-
-    bash    child[sub]   interactive / uninteractiv - | read   
-                exit
-    startup
-        login shell            
-            /etc/profile
-            $HOME/ [.profile; .bash_profile; .bash_login]
-        non-login shell
-            /etc/.bashrc
-            $HOME/.bashrc
-            source
-
 shell
     max 255 znaků
     echo $0
