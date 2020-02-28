@@ -34,4 +34,9 @@ print ("Number of arguments: {}".format(len(sys.argv[0])))
 1
 ```
 ---
+## jupyter notebook
+[install](https://jupyter.org/install)
+http://guessthecorrelation.com/
+
+---
 `2019/12/04, Jaroslav Langer`

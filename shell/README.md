@@ -11,6 +11,7 @@
 + [Compression and decompression](#Compression-and-decompression)
 + [Compare two files](#compare-two-files)
 + [Find anything](#find-anything)
++ [History](#history)
 + [User management and priviledges](#user-management-and-priviledges)
 + [Find process](#find-process)
 + [Linux directory structure](#linux-directory-structure)
@@ -145,7 +146,34 @@ find /  -name   "toBeFound"     ACTIONS -delete
 		-user 	langera
 		-group
 ```
+---
+## History
 
+settings of history file 
+```
+~/.bashrc
+```
+Edit size of history command and history file
+```
+HISTSIZE=1000
+HISTFILESIZE=10000
+```
+path to historyfile
+```
+echo $HISTFILE
+```
+how to stop logging ls command in history
+```
+echo 'export HISTIGNORE="ls"' >> ~/.bashrc
+```
+run 111st command
+```
+history !111
+```
+
+press - ctrl+R - for searching of a commands from past
+
+[source](https://www.rootusers.com/17-bash-history-command-examples-in-linux/)
 
 ---
 ## User management and priviledges
@@ -344,9 +372,6 @@ unalias
 help man info apropos / man -k 
 
 which whatis / man -f
-
-history !111 !!
-ctrl R
 
 MOVE
     alt B / F
