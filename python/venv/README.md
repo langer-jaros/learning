@@ -32,3 +32,4 @@ pip3 install -U scikit-learn
 pip3 install seaborn
 pip3 install lxml
 pip3 install BeautifulSoup4
+pip3 install xlrd
