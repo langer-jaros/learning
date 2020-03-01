@@ -4,20 +4,29 @@
 
 ## MENU
 
+### How to use shell
+
 + [Tricks](#tricks)
 + [Open anything in terminal](#open-anything-in-terminal)
 + [Copy from terminal to clipboard](#copy-from-terminal-to-clipboard)
 + [Install stuff](#install-stuff)
++ [Find process](#find-process)
++ [Enviroments and variables](#enviroments-and-variables)
+
+### Work with files
+
 + [Compression and decompression](#Compression-and-decompression)
 + [Compare two files](#compare-two-files)
 + [Find anything](#find-anything)
 + [History](#history)
 + [User management and priviledges](#user-management-and-priviledges)
-+ [Find process](#find-process)
 + [Linux directory structure](#linux-directory-structure)
 + [Vi basics](#vi-basics)
 + [Regular Expressions](#regular-expressions)
-+ [Enviroments and variables](#enviroments-and-variables)
++ [BOM](#bom)
+
+### To be restructuralized
+
 + [Knowledge from seminars](#knowledge-from-seminars)
 ---
 ## Tricks
@@ -343,6 +352,22 @@ prints environment variables
             $HOME/.bashrc
             source
 ```
+---
+## BOM 
+
+[top](#shell)
+
+    byte order mark (BOM) is a particular usageof the special Unicode character, U+FEFF`
+### UTF-8 bom
+```
+0xEF,0xBB,0xBF
+```
+### UTF-16 BOM
+```
+U+FEFF
+```
+[source](https://en.wikipedia.org/wiki/Byte_order_mark)
+
 ---
 ## Knowledge from seminars
 ### Seminar 1
