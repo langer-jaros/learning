@@ -1,10 +1,13 @@
 # How to GIT
 
+```2020/03/03, Jaroslav Langer```
+
 ## MENU
 + [Absolute start with git](#absolute-start-with-git)
 + [Showing](#showing)
 + [Create a merge request](#create-a-merge-request)
 + [Delete folder from git competence](#delete-folder-from-git-competence)
++ [Create a repository (command line)](#create-a-repository-(command-line))
 
 ## Absolute start with git
 (First step may actually be to create the fork on Git page)
@@ -99,4 +102,16 @@ In case of any troubles
 ```
 git help
 ```
-```2019/12/30, Jaroslav Langer```
+
+## Create a repository (command line)
+```
+echo "# rep_name" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:acc_name/rep_name.git
+git push -u origin master
+```
+[source](https://github.com/)
+
+
