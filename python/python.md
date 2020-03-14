@@ -37,12 +37,34 @@
 priceless method, can be used for number of characters of a string as well as number of elements of an array
 
 ### type()
+
 Recognize type of a passed object
 ```
 type(a) == type({})
 ```
 
+### String
+
+There is four types how to quote a string
+```py
+# Two equivalens how write single-line string
+'string'
+"another string"
+# Two equivalens how write multi-line string
+'''
+multiline string
+'''
+"""
+another multiline string
+"""
+```
+Raw string
+```py
+r'in this string, the \n won\'nt be and newline'
+```
+
 ### Lists
+
 Generator notation
 ```
 myList = [x for x in range(5)]
