@@ -1,110 +1,242 @@
 # Shell 
-##### The art of using PC like a human being
-```Using linux mint 19```
+
+The art of using PC like a human being
+
+```2020/03/15, Jaroslav Langer, using linux mint 19```
 
 ## MENU
 
-### How to use shell
+Basics - [click](#basics)
 
-+ [Tricks](#tricks)
-+ [Open anything in terminal](#open-anything-in-terminal)
-+ [Copy from terminal to clipboard](#copy-from-terminal-to-clipboard)
++ [First of all](#first-of-all)
++ [Shell principle - commands structure](#shell-principle---commands-structure)
++ [Paths](#paths)
++ [Manipulation with files and directories](#manipulation-with-files-and-directories)
++ [Find anything](#find-anything)
++ [Wildcards - symbols with special meaning](#wildcards---symbols-with-special-meaning)
 + [Install stuff](#install-stuff)
++ [Compression and decompression](#Compression-and-decompression)
+
+Advanced - [click](#advanced)
+
++ [User management and priviledges](#user-management-and-priviledges)
++ [Files - introduction](#files---introduction)
++ [Compare two files](#compare-two-files)
++ [Usefull commands - good to know](#usefull-commands---good-to-know)
++ [Practicals](#practicals)
 + [Find process](#find-process)
 + [Enviroments and variables](#enviroments-and-variables)
-
-### Work with files
-
-+ [Compression and decompression](#Compression-and-decompression)
-+ [Compare two files](#compare-two-files)
-+ [Find anything](#find-anything)
 + [History](#history)
-+ [User management and priviledges](#user-management-and-priviledges)
-+ [Linux directory structure](#linux-directory-structure)
-+ [Vi basics](#vi-basics)
 + [Regular Expressions](#regular-expressions)
++ [Vi basics](#vi-basics)
+
+Theory - [click](#theory)
+
++ [Linux directory structure](#linux-directory-structure)
 + [BOM](#bom)
++ [Theory from seminars](#theory-from-seminars)
 
-### To be restructuralized
-
-+ [Knowledge from seminars](#knowledge-from-seminars)
 ---
-## Tricks
+
+Basics
+===
+
+## First of all
+
 ### USE TAB autocompletion
-whenever, you press tab, the terminal autocomplete the word you are writting.
-if there is more than one posibility, nothing happens. Until you press tab twice.
-Than it shows you the possible completions.
-It's unbeliveable great feature.
+
+Whenever, you press tab, the terminal autocomplete the word you are writting.
+If there is more than one posibility, nothing happens. Until you press tab twice.
+Than it shows you the all the possible completions.
+**It's unbeliveable great feature**.
 
 ---
-## Open anything in terminal
-(double-click like)
-### Command xdg
+
+## Shell principle - commands structure
+
+Shell is case-sensitive, so `exit` works, `Exit` doesn't.
+
+All the shell works like this. 
++ One line is (usually) one command, executed when enter.
++ The line starts with command name, folows options and arguments
++ Options can be either
+    - single letter, starts with minus `-x`
+    + full text, stars with double minus `--xxxx`
++ Argument can be anything
+
+Command structure
+```sh
+command [-options] [args]
 ```
-xdg-open ANY_NAME.ANYTHING
-```
-### Push it to the backround in shell
-#### press ctrl+z, then type:
-```
-bg
-```
-the proccess will continue in background.
-#### If you want to bring the process back to the foreground. Press:
-```
-fg
-```
-[source](https://superuser.com/questions/154486/how-to-run-programs-from-a-linux-terminal-without-blocking-the-terminal)
+[Back to menu](#menu)
 
 ---
-## Copy from terminal to clipboard
+
+## Paths
+
+We always need to specify the path. It can be path to the image. Path to the aplication we need to run. Path to the document we want to read.
+
+```sh
+# Path to the current dictionary
+.
+
+# Path to the root dicionary
+/
+
+# Path to your home dicionary
+~
+
+# Dictionary separator
+/
+
+# Show path to the current dictionary
+pwd
 ```
-pwd | xclip -selection clipboard
+[Back to menu](#menu)
+
+## Manipulation with files and directories
+
+```sh
+# Move to the specified dictionary
+cd ./path/to/the/dictionary
+
+# Show structure of all files and dictionaries from your dictionary 
+tree
+
+# Create new directory
+mkdir
+
+# Copy file1 to file2
+cp file1 file2
+# Copy all from dir1 to dir2
+cp -r dir1 dir2
+
+# File to new place
+mv /old/path/to/file1 /new/path/to/file1
+# Rename file1 as file2 and check if not overwriting
+mv -i file1 file2
+
+# Remove file
+rm file
+# Remove directory (recursively with all files)
+rm -r
 ```
-[source](https://askubuntu.com/questions/597788/copy-to-clipboard-current-path-from-console-with-no-mouse)
+[Back to menu](#menu)
+
+## Find anything
+
+```sh
+find /  -name   "toBeFound"     ACTIONS -delete
+        -regex  '.*anything.*'
+        -type f d l s                   -ls 
+        -user                           -exec ls -l {} \;
+        -size   +-nc k M G              -ok
+        -empty
+        -mindepth -maxdepth n
+        -perm 	400 	u=rw 	-u=rmw 	/u=r,o=x
+		-user 	langera
+		-group
+```
+[Back to menu](#menu)
 
 ---
+
+## Wildcards - symbols with special meaning
+
+Especially useful when we don't know the name exactly or we perpahps want to use more than one exact name.
+
+```sh
+# Anything
+*
+
+# One character
+?
+
+# Not containig anything from bracket
+[! ]
+# Equivalent in RegEx
+[^ ]
+
+# Ranges
+[a-dsu]
+[3-7a-g]
+
+# Groups
+[:digit:]
+[:alpha:]
+[:alnum:]
+[:upper:]
+[:lower:]
+
+# Examples
+ls ?[[:digit:]]*
+ls ?[4-6]
+```
+[Back to menu](#menu) |
+[More information](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm)
+
+---
+
 ## Install stuff
+
 ### Install from official repositories
-```
+
+```sh
 sudo apt-get install almost_anything
 ```
+
 ### Install from package .deb
-```
+
+works the same way for an update
+
+```sh
 sudo dpkg -i package_name.deb
 ```
+
 #### For resolving possibly corupted dependencies
-```
+
+```sh
 sudo apt-get install -f
 ```
 [source](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt)
 
 ### Search for package
-```
+
+```sh
 apt-cache search KEYWORD
 ```
 [source](https://askubuntu.com/questions/160897/how-do-i-search-for-available-packages-from-the-command-line)
 
 ### Check if installed
-```
+
+```sh
 dpkg-query -l 'someth*'
 ```
+[Back to menu](#menu)
+
 ---
+
 ## Compression and decompression
+
 (Uploading and downloading in ohter way is **damn** slow)
 
 ### Command zip
+
 Zip files into new.zip
-```
+
+```sh
 zip new file1 file2 file3
 ```
+
 Unzip files from new.zip
-```
+```sh
 unzip new.zip
 ```
 
 ### Command tar
+
 + Compress files to new.tar.gz
-```
+```sh
 # -c = create
 # -v = verbose
 # -z = gzip / gz / zip
@@ -125,103 +257,64 @@ tar -xvzf oldFile.tar.gz
 
 tar -xvjf oldFile.tar.bz2 -C /path/Directory
 ```
-[source](https://www.interserver.net/tips/kb/use-tar-command-linux-examples/),
+[Back to menu](#menu) |
+[source](https://www.interserver.net/tips/kb/use-tar-command-linux-examples/) |
 [source - bz2](https://linuxize.com/post/how-to-extract-unzip-tar-bz2-file/)
 
 ---
-## Compare two files
-### Command diff
-```
-diff --side-by-side --suppress-common-lines FILE_A FILE_B
-```
-or
-```
-diff -u file1 file2
-```
-[source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files)
-[source2](https://www.computerhope.com/unix/udiff.htm)
 
----
-## Find anything
-```
-find /  -name   "toBeFound"     ACTIONS -delete
-        -regex  '.*anything.*'
-        -type f d l s                   -ls 
-        -user                           -exec ls -l {} \;
-        -size   +-nc k M G              -ok
-        -empty
-        -mindepth -maxdepth n
-        -perm 	400 	u=rw 	-u=rmw 	/u=r,o=x
-		-user 	langera
-		-group
-```
----
-## History
+Advanced
+===
 
-settings of history file 
-```
-~/.bashrc
-```
-Edit size of history command and history file
-```
-HISTSIZE=1000
-HISTFILESIZE=10000
-```
-path to historyfile
-```
-echo $HISTFILE
-```
-how to stop logging ls command in history
-```
-echo 'export HISTIGNORE="ls"' >> ~/.bashrc
-```
-run 111st command
-```
-history !111
-```
-
-press - ctrl+R - for searching of a commands from past
-
-[source](https://www.rootusers.com/17-bash-history-command-examples-in-linux/)
-
----
 ## User management and priviledges
-### Add,delete  user | group
-```
-adduser
-deluser
-groupadd
-goupdel
-```
-### Change password
-```
-[sudo] passwd [username]
-```
-### Switch user
-```
-su USERNAME
-```
-### Superuser
-Login as superuser, superuser's password required.
-```
-su
-```
-Login as superuser, current user's password required.
-```
-sudo su
-```
-grant to the command priviledges of superuser
-```
-sudo COMMAND
-```
-### Other handy commands
-```
+
+### TBD Bacis commands
+
+```sh
 groupmod
 whoami
 who
 groups
 ```
+
+### Add,delete  user | group
+
+```sh
+adduser
+deluser
+groupadd
+goupdel
+```
+
+### Change password
+
+```sh
+[sudo] passwd [username]
+```
+
+### Switch user
+
+```sh
+su USERNAME
+```
+
+### Superuser
+
+Login as superuser, superuser's password required.
+```sh
+su
+```
+Login as superuser, current user's password required.
+```sh
+sudo su
+```
+grant to the command priviledges of superuser
+```sh
+sudo COMMAND
+```
+
 ### User permissions
+
 - rwx rwx rwx
 ^filetype	d - directory 
 			l - link 	
@@ -230,6 +323,7 @@ groups
   --- --- --- } filemode user group others
 
 ### Change permissions
+
 chmod u-x
 	rename needs directory priviladges
 	to read files directory needs r+x
@@ -241,31 +335,264 @@ chmod u-x
 	r-- 100 4... 	chmod 755 text.txt chmod u=rw,g+rw ccc.txt
 
 ### Change ownership
-```
+
+```sh
 chown USER[:GROUP] OBJECT
 ```
+[Back to menu](#menu)
+
+---
+
+## Files - introduction
+
+```sh
+# Create new (empty) file
+touch path/to/my/newFileName.anything
+
+# Print sth to terminal
+echo sth
+
+# Take output of command and writes it to the file
+command > file
+echo text > fileExample
+
+# Take output of command and writes it at the end of file
+command >> file
+echo next >> soubor
+
+# Output every line from file
+cat file
+
+# Output every line from file in reverse order
+tac file
+
+# Output first 5 lines from file in reverse order
+head file
+# Output first n lines from file in reverse order
+head -n 3 file
+
+# Output last 5 lines from file in reverse order
+tail file
+```
+[Back to menu](#menu)
+
+---
+
+## Compare two files
+
+### Command diff
+
+```sh
+diff --side-by-side --suppress-common-lines FILE_A FILE_B
+```
+or
+```sh
+diff -u file1 file2
+```
+[Back to menu](#menu) |
+[source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
+[source2](https://www.computerhope.com/unix/udiff.htm)
+
+---
+
+## Usefull commands - good to know
+
+### Get basic info about command
+
+```sh
+# Where is the command from
+which command_name
+
+# One line information
+whatis command_name
+# Equivalent to
+man -f command_name
+```
+
+### Show everything from file in a terminal
+
+```sh
+# q to quit
+more
+# :q to quit
+less
+```
+[Back to menu](#menu)
+
+---
+
+## Practicals
+
++ [Copy from terminal to clipboard](#copy-from-terminal-to-clipboard)
+
+### Open anything in terminal
+
+Works like double-click
+```sh
+xdg-open ANY_NAME.ANYTHING
+```
+
+### Push process the backround
+
+"I have opened something with terminal, now i see the process and can not use the terminal anymore"
+
+Situation as described is the single most common example when is super nice to push the process to the background.
+
+#### How to do it?
+
+Press **Ctrl+Z**, then type
+```sh
+bg
+```
+
+the proccess will continue in background.
+
+If you want to bring the process back to the foreground, type
+```sh
+fg
+```
+[source](https://superuser.com/questions/154486/how-to-run-programs-from-a-linux-terminal-without-blocking-the-terminal)
+
+---
+
+### Copy from terminal to clipboard
+
+```sh
+pwd | xclip -selection clipboard
+```
+[Source](https://askubuntu.com/questions/597788/copy-to-clipboard-current-path-from-console-with-no-mouse)
+
+### See images in terminal
+
+```sh
+cacaview image.jpg
+```
+[Back to menu](#menu)
+
+---
+
+### Links
+
++ hard link
+```sh
+ln
+cp -l
+```
++ soft link
+```
+ln -s
+cp -s
+```
+
+[Back to menu](#menu)
+
 ---
 
 ## Find process
-```
+
+```sh
 ps aux | grep cat
 ```
+[Back to menu](#menu)
+
 ---
-## Vi basics
+
+## Enviroments and variables
+
+Variables and functions, can be exported (global) or not.
+
+### set
+
+can be used to set various shell options, or the positional parameters. If no arguments or options are given, then it prints all shell variables and functions.
+
+### Print value of variable
+
+```sh
+echo ${...}
 ```
-vi 		normal mode		hjkl	gg G 	w e b 	x X 	r 	J 	o O 	
-						dd p P yy 7yy	. u CTR+r
-		insert mode	 	i esc
-		command mode	:	q	q!	:w 	:r 	:e :set tabstop=4
-						:set nu!
-						:set :split	:vsplit		ctrl+w+w
-						:wqa!
-		visual mode		v V ctrl+V
+
+### compgen -v
+
+outputs only names of all shell variables, exported or not.
+
+### GLOBAL: env, printenv ...
+
+#### export
+
+can be used to export variables or functions. With the -p option, it prints exported variables and functions
+
+#### env
+
+The env command can run other commands with modified environments. If no command is given, env prints environment variables (i.e., exported variables)
+
+### printenv
+
+prints environment variables
+
+### LOCAL
+
+    set | grep ''
+    vara=123a
+
+[source](https://askubuntu.com/questions/953579/what-is-the-difference-between-env-declare-and-compgen-v)
+
+```sh
+    CONSTS: $USER; $PATH; $SHLVL; $SHELL;
+
+    variables:  name=value [[:alnum:]]
+                unset ... (local)
+                declare [-i; -r] ...
+
+    bash    child[sub]   interactive / uninteractiv - | read   
+                exit
+    startup
+        login shell            
+            /etc/profile
+            $HOME/ [.profile; .bash_profile; .bash_login]
+        non-login shell
+            /etc/.bashrc
+            $HOME/.bashrc
+            source
 ```
+[Back to menu](#menu)
+
 ---
+
+## History
+
+settings of history file 
+```sh
+~/.bashrc
+```
+Edit size of history command and history file
+```sh
+HISTSIZE=1000
+HISTFILESIZE=10000
+```
+path to historyfile
+```sh
+echo $HISTFILE
+```
+how to stop logging ls command in history
+```sh
+echo 'export HISTIGNORE="ls"' >> ~/.bashrc
+```
+run 111st command
+```sh
+history !111
+```
+
+press - ctrl+R - for searching of a commands from past
+
+[Back to menu](#menu) |
+[Source](https://www.rootusers.com/17-bash-history-command-examples-in-linux/)
+
+---
+
 ## Regular Expressions
+
 `“REGEX” or “REGEXP”?  ->  /REGEXP?/`
-```
+```sh
 	. * [^- ] ^ $ 		- BRE
 	+ ? { } ( ) | \		- ERE
 BRE: 	grep - BRE
@@ -301,144 +628,117 @@ USAGE:
 	locate --regexp [bre] --regex [ere]
     [Find anything](#find-anything)
 ```
+[Back to menu](#menu)
+
 ---
-## Enviroments and variables
 
-Variables and functions, can be exported (global) or not.
+## Vi basics
 
-### set
-can be used to set various shell options, or the positional parameters. If no arguments or options are given, then it prints all shell variables and functions.
-
-### Print value of variable
+```sh
+vi 		normal mode		hjkl	gg G 	w e b 	x X 	r 	J 	o O 	
+						dd p P yy 7yy	. u CTR+r
+		insert mode	 	i esc
+		command mode	:	q	q!	:w 	:r 	:e :set tabstop=4
+						:set nu!
+						:set :split	:vsplit		ctrl+w+w
+						:wqa!
+		visual mode		v V ctrl+V
 ```
-echo ${...}
-```
+[Back to menu](#menu)
 
-### compgen -v
-outputs only names of all shell variables, exported or not.
-
-### GLOBAL: env, printenv ...
-
-#### export
-can be used to export variables or functions. With the -p option, it prints exported variables and functions
-
-#### env
-The env command can run other commands with modified environments. If no command is given, env prints environment variables (i.e., exported variables)
-
-### printenv
-prints environment variables
-
-### LOCAL
-    set | grep ''
-    vara=123a
-
-[source](https://askubuntu.com/questions/953579/what-is-the-difference-between-env-declare-and-compgen-v)
-
-```
-    CONSTS: $USER; $PATH; $SHLVL; $SHELL;
-
-    variables:  name=value [[:alnum:]]
-                unset ... (local)
-                declare [-i; -r] ...
-
-    bash    child[sub]   interactive / uninteractiv - | read   
-                exit
-    startup
-        login shell            
-            /etc/profile
-            $HOME/ [.profile; .bash_profile; .bash_login]
-        non-login shell
-            /etc/.bashrc
-            $HOME/.bashrc
-            source
-```
 ---
-## BOM 
 
-[top](#shell)
+Theory
+===
+
+Shell, Linux, Computers
+
+## Linux directory structure
+
++ /bin - executables
++ /home/* | /root - *users | roots personal data
++ /opt – Optional software (thigs you can't instal with package manager)
++ /etc - configuration files
++ /lib – Shared libraries
+
+[Back to menu](#menu) |
+[More information](https://linuxhandbook.com/linux-directory-structure/)
+
+---
+
+## BOM
 
     byte order mark (BOM) is a particular usageof the special Unicode character, U+FEFF`
+
 ### UTF-8 bom
-```
+
+```sh
 0xEF,0xBB,0xBF
 ```
+
 ### UTF-16 BOM
-```
+
+```sh
 U+FEFF
 ```
-[source](https://en.wikipedia.org/wiki/Byte_order_mark)
+[Back to menu](#menu) |
+[Source](https://en.wikipedia.org/wiki/Byte_order_mark)
 
 ---
-## Knowledge from seminars
-### Seminar 1
-```
+
+## Theory from seminars
+
+### Theory from seminar 1
+
 147.251.253.55
 CLI
 	prompt + kurzor PS1 prompt vice radkovej v PS2
 $ norm usr -x- # super user
 
-Typy prikazu
-	unkonwn
-	built in 	enable or compgen -b
-	executable	/bin 	/usr/bin
-	funkce
-	alias seskupovani vice prikazu
+#### Types of commands
 
-command [-options] [args]
-options single letter -x  full text --xxxxxxx
+1) unkonwn
+1) built in 	enable or compgen -b
+1) executable	/bin 	/usr/bin
+1) functions
+1) aliases - concatenating more commands
 
 enable
 compgen -b
 
+#### Create function
+```sh
 function pozdrav() { echo "ahoj"; }
+```
+
+#### Alias
+```sh
 alias neco='prikaz; prikaz'
 unalias
-
-help man info apropos / man -k 
-
-which whatis / man -f
-
-MOVE
-    alt B / F
-    
-MANIPULATION
-    alt U / l
-    alt t
-    ctrl t
-    kill ring CTRL K ctrl+y alt y
 ```
-### Seminar 2
-```
-pwd tree    cd  ~jmeno
-touch   
-echo text > soubor
-echo next >> soubor
-mkdir
-cp -r
-mv -i
-rm -r
 
-Linky
-    hard link   ln      cp -l
-    soft link   ln -s   cp -s
-cacaview
-cat     tac
-head -n 3 soubor
-tail
+#### Info about commands
 
-more
-less
+1) help
+1) man
+1) info
+1) apropos / man -k 
 
-WILDCARDS 
-    *
-    ?
-    [! ]
-            [^ ]
-    ls ?[[:digit:]]*        [:digit:] [:alpha:] [:alnum:] [:upper:] [:lower:]
-    ls ?[4-6]       [a-dsu]     [3-7a-g]
-```
-### Seminar 3
-```
+#### Move in terminal
+
++ alt B / F
+
+#### Manipulation with text in terminal
+
++ alt U / l
++ alt t
++ ctrl t
++ kill ring CTRL K ctrl+y alt y
+
+
+### Knowledge from seminar 3
+
+```sh
 locate -b -i -n 17 -S -u
 
 VSTUP, VYSTUP, PRESMEROVANI
@@ -452,8 +752,10 @@ PIPE    |   sort, uniq, less, head,
     tee
 file
 ```
-### Seminar 4
-```
+
+### Knowledge from seminar 4
+
+```sh
 Expanse
 	* ? ' ' \ . .. $
 - space suppression " " - suppress all except $ notation
@@ -471,8 +773,9 @@ env
 - command 		$() 	`which cp`
 ```
 
-### Seminar 5
-```
+### Knowledge from seminar 5
+
+```sh
 /etc/shadow
 
 setuid bit 		chmod 	u+s ... 4777
@@ -482,8 +785,9 @@ sticky bit 		chmod	+t ...	1777
 umask	0224		d- 777	f- 666
 ```
 
-### Seminar 8
-```
+### Knowledge from seminar 8
+
+```sh
 split - rozdeleni obsahu
     split -l 100 filename (rozdeli soubor podle definovaneho poctu radku)        
         split -n 3 filename (rozdeli soubor na zadany pocet souboru, proporcne podle velikosti)
@@ -604,8 +908,10 @@ ostatni
                 s/pes/slon/
                 s/oves/zito/
 ```
-### Seminar 9
-```
+
+### Knowledge from seminar 9
+
+```sh
 sed i a =   p d n
             P D N
 #   sed '/prvni/{N; s/\n/ /}' radky2
@@ -636,8 +942,10 @@ awk [-options]  '{program}' filenames
         while(){}
         for(){}
 ```
-### Seminar 11 (24/04/2019)
-```
+
+### Knowledge from seminar 11 (24/04/2019)
+
+```sh
 shell
     max 255 znaků
     echo $0
@@ -744,8 +1052,10 @@ fi
 date -r s1
 stat
 ```
-### Seminar 12 (15/05/2019)
-```
+
+### Knowledge from seminar 12 (15/05/2019)
+
+```sh
 case variable in
     pattern)   commands;
         ;;
@@ -810,8 +1120,10 @@ Variables:
 VI
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 ```
-### Seminar 13 (22/05/2019)
-```
+
+### Knowledge from seminar 13 (22/05/2019)
+
+```sh
 $# -> počet argmentů
 $* -> přehled věšech argumentu
 shift [n]
@@ -886,16 +1198,3 @@ screen
 
 top #command shows processes
 ```
-## Linux directory structure
-
-+ /bin - executables
-+ /home/* | /root - *users | roots personal data
-+ /opt – Optional software (thigs you can't instal with package manager)
-+ /etc - configuration files
-+ /lib – Shared libraries
-
-[more here](https://linuxhandbook.com/linux-directory-structure/)
-
-
----
-```2019/12/05, Jaroslav Langer```
