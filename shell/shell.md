@@ -575,7 +575,7 @@ echo $HISTFILE
 ```
 how to stop logging ls command in history
 ```sh
-echo 'export HISTIGNORE="ls"' >> ~/.bashrc
+echo 'export HISTIGNORE="ls:tree:cat:tail:head"' >> ~/.bashrc
 ```
 run 111st command
 ```sh
