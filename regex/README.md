@@ -5,6 +5,24 @@
 + [Integer](#integer)
 + [Float](#float)
 
+## Regex Or |
+
+every thing from | to closest bracets, left and right
+
+```
+/onePattern|secondPattern/
+```
+is equivalent to
+```
+/(onePattern|secondPattern)/
+```
+not equivalent to this
+```
+/(one)(Pattern|second)(Pattern)/
+```
+
+
+
 ---
 ## Integer
 ### anywhere on the line

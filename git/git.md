@@ -108,6 +108,12 @@ git branch
 git show
 ```
 
+### Show all commits
+
+```sh
+git log
+```
+
 ---
 
 ## Create a merge request
