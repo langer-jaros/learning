@@ -18,6 +18,10 @@
 + [Input arguments](#input-arguments)
 + [Files](#files)
 + [Asserting](#asserting)
+
+Advanced
++ [Regex](#regex)
++ [lambda](#lambda)
 + [Python 2 differences](#python-2-differences)
 
 ## First things first
@@ -105,11 +109,25 @@ r'in this string, the \n won\'nt be and newline'
 # pathToNewFile = '{folder}{file}.{fileType}'.format(folder=download_folder, file=xlsName, fileType='xls')
 ```
 
+## Collections
+
 ### Lists
 
 Generator notation
-```
+```py
 myList = [x for x in range(5)]
+```
+Copy vs. deep copy
+```py
+# Shallow copy, changes in list2 affects list1
+list2 = list1
+# Two independent lists, changes in one doesn't effect the other one
+list2 = list1.copy()
+```
+
+### Dictionary
+
+```py
 ```
 
 ## Conditions
@@ -174,6 +192,37 @@ with open('obrazek.png', mode='rb') as f:
 ```
 assert(len(tables)==1), "len(tables) = {}".format(len(tables))
 ```
+
+## Regex
+
+```py
+import re
+
+# Using more flags
+x = re.findall(r'CAT.+?END','Cat \n eND',flags=re.I | re.DOTALL)
+```
+
+### Match 
+
+Matches from the begining of the string
+
+### fullmatch
+
+the whole pattern must match
+
+[Module re](https://docs.python.org/2/library/re.html)
+[Regular Expression HOWTO](https://docs.python.org/3/howto/regex.html)
+
+## Lambda
+
+```py
+candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
+    np.nan if (pd.isnull(x[0]) & pd.isnull(x[1])) else
+        x[0] if pd.isnull(x[1]) else
+            x[1] if pd.isnull(x[0]) else x[0]+x[1], axis=1)
+```
+
+[More information](https://thispointer.com/python-how-to-use-if-else-elif-in-lambda-functions/)
 
 ## Python 2 differences
 
