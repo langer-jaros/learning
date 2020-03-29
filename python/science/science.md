@@ -62,26 +62,20 @@ matplotlib.style.use('ggplot')
 ```py
 # Set size of figures in inches
 plt.figure(figsize=(10,18))
+# Or
+fig.set_size_inches(11.7, 8.27)
 
 # Examples of six ploted graphs
 # Next graph will be plotted to pos 1 in grid 3 rows 2 columns
-plt.subplot(321)
-survived.Age.plot.hist(color='Green', bins=20)
-
-plt.subplot(322)
-not_survived.Age.hist(color='Black', bins=20)
-
-plt.subplot(323)
-survived['Pclass'].plot.hist(color='Green')
-
-plt.subplot(324)
-not_survived['Pclass'].plot.hist(color='Black')
-
-plt.subplot(325)
+plt.subplot(121)
 survived['Sex'].apply(lambda x: 1 if x == 'female' else 0).plot.hist(color='Green')
-
-plt.subplot(326)
+plt.subplot(122)
 not_survived['Sex'].apply(lambda x: 1 if x == 'female' else 0).plot.hist(color='Black')
+
+# Or
+fig, (ax1, ax2) = plt.subplots(1, 2)
+survived['Sex'].apply(lambda x: 1 if x == 'female' else 0).plot.hist(color='Green', ax=ax1)
+not_survived['Sex'].plot.hist(color='Black', ax=ax2)
 ```
 
 ### Move legend from graph
@@ -89,6 +83,13 @@ not_survived['Sex'].apply(lambda x: 1 if x == 'female' else 0).plot.hist(color='
 plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 ```
 [link](https://stackoverflow.com/questions/30490740/move-legend-outside-figure-in-seaborn-tsplot)
+
+
+### Labels
+
+```py
+plt.xticks(rotation=‌​45)
+```
 
 ## jupyter notebook
 
@@ -129,6 +130,7 @@ Accessing the dataframes
 + [Accessing columns](#accessing-columns)
 + [Accessing rows](#accessing-rows)
 + [Rows and cols - loc, iloc](#rows-and-cols---loc,-iloc)
++ [More dataframes](#More-dataframes)
 
 Modifing the dataframes
 + [Work with the dataframes](#work-with-the-dataframes)
@@ -374,6 +376,14 @@ data1.iloc[(data1['Age'] < 30).values, [3,5]]
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
 
+### More dataframes
+
+```py
+df1.equals(df2)
+```
+
+[Back to pandas](#pandas) | [Back to the top](#Science)
+
 ### Work with the dataframes
 
 ```py
@@ -391,6 +401,8 @@ data.equals(dataIgnored) # True
 # Correlation matrix
 cor_matrix = df.corr()
 
+# Sort rows or columns
+DataFrame.sort_values(by, axis=0, ascending=True, inplace=True, kind='quicksort')
 ```
 
 Group by
@@ -409,6 +421,8 @@ dataUJAK[dataUJAK['Rok'] > 2000].groupby(['Název práce']).size().sort_values(a
 data2_tmp = data2_tmp.drop(['FootSize',data2.columns[0]], axis=1)
 
 # Rename columns
+df.columns = [COLNAME1, COLNAME1, COLNAME1]
+# Rename specific columns
 data2_tmp = data2_tmp.rename(columns = {'BirthYear': 'Age'})
 
 # Rename colums with numbers from range
@@ -439,10 +453,12 @@ df["a"] = pd.to_numeric(df["a"])
 ```py
 # Change all data of one column
 data2_tmp['Age'] = 1912 - data2_tmp['Age']
-# More complicated change
+# More complicated change - apply
 data['Sex'] = data['Sex'].apply(lambda x: 1 if x == 'female' else 0)
 
 # Even more complicated change apply
+# Default axis for DataFrame.apply is axis=0, goes through lines
+# to acess columns use axis=1
 candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
     np.nan if (pd.isnull(x[0]) & pd.isnull(x[1])) else
         x[0] if pd.isnull(x[1]) else
@@ -493,7 +509,7 @@ data.plot(figsize=(10,10))
 # Histogram (bins = number of piles)
 data.Age.plot(kind='hist', bins=50)
 # Same as
-data.Age.hist(bins=50)
+data.Age.hist(color='green', bins=50)
 
 # Scatter
 survived.plot.scatter(x='Age', y='Pclass', color='Green', label='Survived')
@@ -575,9 +591,12 @@ hue=
 import seaborn as sns
 ```
 
-### line plot
-```
+### lineplot
+
+```py
 g = sns.relplot(x="time", y="value", kind="line", data=df)
+
+g2 = sns.lineplot(    sort=False)
 ```
 [source](https://seaborn.pydata.org/generated/seaborn.relplot.html)
 
@@ -597,6 +616,8 @@ sns.heatmap(cor_matrix, annot=True)
 ```py
 sns.stripplot(x="Pclass", y="Age", hue="Survived", data=data, palette= ['black','green']) #, jitter=False) 
 sns.swarmplot(x='Rok', hue='Kandidátní listina - název', y='Věk', data=candidates)
+
+sns.scatterplot()
 ```
 
 ### Plot pairwise relationships in dataset
@@ -608,6 +629,23 @@ sns.pairplot(data, hue='Survived', palette=['red', 'green']) #, diag_kind='hist'
 ```py
 ```
 https://seaborn.pydata.org/tutorial/distributions.html
+
+### Color palettes
+
+```py
+# Create the palette
+pall = sns.color_palette("hls", 8)
+# See the palette
+sns.palplot(pall)
+```
+
+### Set style
+
+```py
+sns.set_style("dark")
+```
+
+[Seaborn aesthetics](https://seaborn.pydata.org/tutorial/aesthetics.html)
 
 ---
 

@@ -128,6 +128,13 @@ list2 = list1.copy()
 ### Dictionary
 
 ```py
+# For loop with dictionaries
+for key in myDict:
+    print(myDict[key])
+
+for key, value in myDict.items():
+    print(key)
+    print(value)
 ```
 
 ## Conditions
