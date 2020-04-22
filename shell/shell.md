@@ -315,12 +315,25 @@ sudo COMMAND
 
 ### User permissions
 
-- rwx rwx rwx
-^filetype	d - directory 
-			l - link 	
-			b - bloc type (harddisc) 
-			c - chartype
-  --- --- --- } filemode user group others
+Everything has set permissions.
+
+Exemple
+
+```sh
+ls -la
+#drwxrwxrwx NUMBER USER USER NUMBER DATE NAME_OF_THE_FILE
+```
+The first 10 letters are the permissions, the structre follows
+```
+-        ---  ---   ---
+filemode user group others
+```
+filetypes
+
++ d - directory 
++ l - link 	
++ b - bloc type (harddisc) 
++ c - chartype
 
 ### Change permissions
 

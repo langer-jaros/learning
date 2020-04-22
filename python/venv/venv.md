@@ -40,4 +40,5 @@ pip3 install lxml
 pip3 install BeautifulSoup4
 pip3 install xlrd
 pip3 install pywebcopy
+pip3 install pillow
 ```
