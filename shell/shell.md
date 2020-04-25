@@ -36,6 +36,12 @@ Theory - [click](#theory)
 + [BOM](#bom)
 + [Theory from seminars](#theory-from-seminars)
 
+## Todo
+
+```sh
+top
+```
+
 ---
 
 Basics
