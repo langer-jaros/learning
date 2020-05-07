@@ -104,9 +104,13 @@ Raw string
 r'in this string, the \n won\'nt be and newline'
 ```
 
-#### Format
+#### Format and f string
 ```py
-# pathToNewFile = '{folder}{file}.{fileType}'.format(folder=download_folder, file=xlsName, fileType='xls')
+# Using stirng.format()
+pathToNewFile = '{folder}{file}.{fileType}'.format(
+    folder=download_folder, file=xlsName, fileType='xls')
+# f string
+pathToNewFile = f'{download_folder}{xlsName}.{"xls"}'
 ```
 
 ## Collections
@@ -196,8 +200,8 @@ with open('obrazek.png', mode='rb') as f:
 [source](http://vyuka.ookami.cz/materialy/python/files/basics.xml)
 
 ## Asserting
-```
-assert(len(tables)==1), "len(tables) = {}".format(len(tables))
+```py
+assert(len(tables)==1), f"len(tables) = {len(tables)}"
 ```
 
 ## Regex

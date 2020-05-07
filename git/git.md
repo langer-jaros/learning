@@ -4,12 +4,13 @@
 
 ## MENU
 
-+ [Absolute start with git](#absolute-start-with-git)
-+ [Start using git (basics)](#start-using-git-(basics))
-+ [Showing](#showing)
-+ [Create a merge request](#create-a-merge-request)
-+ [Delete folder from git competence](#delete-folder-from-git-competence)
-+ [Create repository from existing git repository](#create-repository-from-existing-git-repository)
+- [Absolute start with git](#absolute-start-with-git)
+- [Start using git (basics)](#start-using-git-(basics))
+- [Showing](#showing)
+- [Delete changes](#delete-changes)
+- [Create a merge request](#create-a-merge-request)
+- [Delete folder from git competence](#delete-folder-from-git-competence)
+- [Create repository from existing git repository](#create-repository-from-existing-git-repository)
 
 ## Absolute start with git
 
@@ -115,6 +116,13 @@ git log
 ```
 
 ---
+
+## Delete changes
+
+### Delete changes (not added)
+```sh
+git checkout -- FILENAME
+```
 
 ## Create a merge request
 

@@ -274,8 +274,13 @@ df1.equals(df2)
 ### Work with the dataframes
 
 ```py
-# deep copy, very important
+# First to deep copy the data (important)
 data1_tmp = data1.copy()
+
+# Create dataframe from dictionary
+df = pd.DataFrame({'A': [a], 'B': [b]})
+# or
+df = pd.DataFrame({'A': a, 'B': b}, index=[0])
 
 # Contencat two DataFrames
 data = pd.concat([data1,data2_tmp])
@@ -292,7 +297,8 @@ cor_matrix = df.corr()
 DataFrame.sort_values(by, axis=0, ascending=True, inplace=True, kind='quicksort')
 ```
 
-Group by
+#### Group by
+
 ```py
 # Groupby data like sql groupby
 dataUJAK[dataUJAK['Rok'] > 2000].groupby(['Název práce']).size().sort_values(ascending=False)
@@ -331,6 +337,11 @@ df = df.reindex(sorted(df.columns), axis=1)
 # Convert data type
 # convert column "a" of a DataFrame to number type
 df["a"] = pd.to_numeric(df["a"])
+
+# Change columns type to datetime
+df[df.columns[0]] = pd.to_datetime(df.columns[0])
+# Days from datetime
+rfm[RECENCY] = rfm[RECENCY].astype('timedelta64[D]')
 ```
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
