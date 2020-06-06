@@ -9,7 +9,7 @@
 - [Showing](#showing)
 - [Delete changes](#delete-changes)
 - [Create a merge request](#create-a-merge-request)
-- [Delete folder from git competence](#delete-folder-from-git-competence)
+- [Delete folder from git](#delete-folder-from-git)
 - [Create repository from existing git repository](#create-repository-from-existing-git-repository)
 
 ## Absolute start with git
@@ -180,7 +180,7 @@ git push origin master
 
 ---
 
-## Delete folder from git competence
+## Delete folder from git
 
 > If you added this path by mistake, you can remove it from the index with:
 ```sh
@@ -202,7 +202,23 @@ git push -u origin --all
 git push -u origin --tags
 ```
 
+## Add repository from other git
+
+git clone --bare https://githost.org/OLD_REPOSITORY.git
+
+cd OLD_REPOSITORY.git
+
+git push --mirror https://github.com/NEW_REPOSITORY.git
+
+[source](https://stackoverflow.com/questions/30268549/mirroring-from-gitlab-to-github)
+
 ---
+
+## Add submodule
+
+```sh
+git submodule add https://github.com/NEW_REPOSITORY.git REPO_NAME
+```
 
 In case of any troubles
 
