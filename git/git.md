@@ -54,11 +54,14 @@ echo "# rep_name" >> README.md #touch README.md
 
 #Create an empty Git repository or reinitialize an existing one
 git init
+# Add the local things for next commit
 git add .
+# Commits the added content
 git commit -m "first commit"
 
 # Adds remote origin for the repository at git@GITSITE:USER/REPOSITORY.git
 git remote add origin git@github.com:acc_name/rep_name.git
+# Push the local content to master branch of origin
 git push -u origin master
 ```
 [source](https://github.com/)
@@ -114,8 +117,37 @@ git show
 ```sh
 git log
 ```
-
 ---
+
+## Add things for the next commit
+```sh
+git add -A
+```
+
+## Remove things from git and delete THEM
+```sh
+git rm -r THEM
+```
+
+## show remotes
+```sh
+git remote -v
+```
+
+## Add remote
+```sh
+git remote add NAME URL
+```
+
+## Add remote and fetch
+```sh
+git remote add -f NAME URL
+```
+
+## Delete remote
+```sh
+git remote remove NAME URL
+```
 
 ## Delete changes
 
@@ -164,6 +196,12 @@ git merge master
 ```
 
 ---
+
+
+## Merge the local conent with BRANCH_NAME of REMOTE_NAME
+```sh
+git merge --allow-unrelated-histories REMOTE_NAME/BRANCH_NAME
+```
 
 ## Merge the new branch 
 
