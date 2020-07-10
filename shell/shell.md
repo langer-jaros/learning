@@ -122,6 +122,9 @@ mv /old/path/to/file1 /new/path/to/file1
 # Rename file1 as file2 and check if not overwriting
 mv -i file1 file2
 
+# Create new directory and put everything in
+mv ./!(dir1) ./dir1/
+
 # Remove file
 rm file
 # Remove directory (recursively with all files)
@@ -412,6 +415,12 @@ diff -u file1 file2
 [source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
 [source2](https://www.computerhope.com/unix/udiff.htm)
 
+### cmp
+
+```sh
+cmp file1 file2
+```
+
 ---
 
 ## Usefull commands - good to know
@@ -437,6 +446,12 @@ more
 less
 ```
 [Back to menu](#menu)
+
+### show file stats
+
+```sh
+stat file1
+```
 
 ---
 
