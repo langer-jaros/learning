@@ -2,41 +2,48 @@
 
 The art of using PC like a human being
 
-```2020/03/15, Jaroslav Langer, using linux mint 19```
+```2020/07/11, Jaroslav Langer, using linux mint 19```
 
 ## MENU
 
 Basics - [click](#basics)
 
-+ [First of all](#first-of-all)
-+ [Shell principle - commands structure](#shell-principle---commands-structure)
-+ [Paths](#paths)
-+ [Manipulation with files and directories](#manipulation-with-files-and-directories)
-+ [Find anything](#find-anything)
-+ [Wildcards - symbols with special meaning](#wildcards---symbols-with-special-meaning)
-+ [Install stuff](#install-stuff)
-+ [Compression and decompression](#Compression-and-decompression)
+- [First of all](#first-of-all)
+- [Shell principle - commands structure](#shell-principle---commands-structure)
+- [Paths](#paths)
+- [Manipulation with files and directories](#manipulation-with-files-and-directories)
+- [Find anything](#find-anything)
+- [Wildcards - symbols with special meaning](#wildcards---symbols-with-special-meaning)
+- [Install stuff](#install-stuff)
+- [Compression and decompression](#Compression-and-decompression)
 
 Advanced - [click](#advanced)
 
-+ [User management and priviledges](#user-management-and-priviledges)
-+ [Files - introduction](#files---introduction)
-+ [Compare two files](#compare-two-files)
-+ [Usefull commands - good to know](#usefull-commands---good-to-know)
-+ [Practicals](#practicals)
-+ [Find process](#find-process)
-+ [Enviroments and variables](#enviroments-and-variables)
-+ [History](#history)
-+ [Regular Expressions](#regular-expressions)
-+ [Vi basics](#vi-basics)
+- [User management and priviledges](#user-management-and-priviledges)
+- [Files - introduction](#files---introduction)
+- [Compare two files](#compare-two-files)
+- [Usefull commands - good to know](#usefull-commands---good-to-know)
+- [Practicals](#practicals)
+- [Find process](#find-process)
+- [Enviroments and variables](#enviroments-and-variables)
+- [History](#history)
+- [Regular Expressions](#regular-expressions)
+- [Vi basics](#vi-basics)
 
-Theory - [click](#theory)
+Linux - [click](#linux)
+- [Linux directory structure](#linux-directory-structure)
+- [Type special characters](#Type-special-characters)
 
-+ [Linux directory structure](#linux-directory-structure)
-+ [BOM](#bom)
-+ [Theory from seminars](#theory-from-seminars)
+Computers - [click](#computers)
+- [BOM](#bom)
+
+Theory from seminars - [click](#theory-from-seminars)
 
 ## Todo
+
+1) difference between bash, shell, terminal etc
+
+1)
 
 ```sh
 top
@@ -44,8 +51,48 @@ top
 
 ---
 
+## Introduction
+
+This document is written in purpose to simplify the access to the advanced usage of a computer.
+The knowledge is based on the PVS course of VSCHT, Prague.
+
+### Conventions and symbols
+
+- [ ] (square brackets) - means optionality i.e. the things inside may be left out
+- / (slash) - means exclusive or i.e. it is possible to use either the left or the right part but not both
+- | (vertical bar) - means logical (inclusive) or between the the things on the right and on the left
+- CAPITAL_LETTER - the words written in uppercase means they should be substituted - in this case with "A" for example. 
+
 Basics
 ===
+
+## Open terminal
+
+Press Ctrl+Alt+T.
+
+If it does not work:
+1) open menu ~ press super key (windows key)
+1) type "term" and you should see either "Terminal", "xterm" or something similar.
+1) open it ~ press Enter (double-click).
+
+### Putty access from Windows
+
+TBD
+
+147.251.253.55
+
+## The terminal enviroment
+
+Once the terminal is open, what you see is the Command-line interface (CLI).
+On the left to the cursor is the prompt, which prompts you to take action.
+
+Usually the prompts tells a name of a current user, the name of the machine (hostname) and the location where the user is relatively to the machine (path). Typicaly it also shows, whether the logged user is a normal user ($) or superuser (#).
+
+Example of common appearance should be:
+
+```
+USER_NAME@HOSTNAME:PATH$
+```
 
 ## First of all
 
@@ -60,34 +107,53 @@ Than it shows you the all the possible completions.
 
 ## Shell principle - commands structure
 
-Shell is case-sensitive, so `exit` works, `Exit` doesn't.
+Next to the prompt there is a place for typing commands. 
+Shell is case-sensitive, so `exit` works, where `Exit` doesn't.
 
-All the shell works like this. 
-+ One line is (usually) one command, executed when enter.
-+ The line starts with command name, folows options and arguments
-+ Options can be either
-    - single letter, starts with minus `-x`
-    + full text, stars with double minus `--xxxx`
-+ Argument can be anything
+The shell works like this. 
+- The line is executed on press of an enter.
+- Most simple is to put one command on one line.
+- For one command scenario, the line starts with a command name, folow options and arguments
+- Options can be either
+    + single letter, starts with hyphen-minus character `-x`
+    + full text (no spaces), stars with double minus `--xxxx`
+- Argument can be anything
 
 Command structure
 ```sh
-command [-options] [args]
+command [-o | --options] [arguments]
 ```
 [Back to menu](#menu)
 
 ---
 
-## Paths
+## Comments
 
-We always need to specify the path. It can be path to the image. Path to the aplication we need to run. Path to the document we want to read.
+The hash symbol is used for a commenting, so the terminal ignores the whole line, which follows after this symbol #
 
 ```sh
-# Path to the current dictionary
-.
+# here can be written anything and nothing happens
+```
 
+## Files and directories
+
+### Paths
+
+There is always a need to specify a path to the file a directory you want to work with.
+The file can be a document you want to read, an image or simply anything.
+Directory is a container for such a files and other directories.
+Besides the files and directories the path may specify a command to be used.
+
+There is already a [directory structure](#linux-directory-structure) by default.
+Important is that there is one root directory, where every other directories are either in the root directory or nested into its subdirectories. Also every user has its own user directory.
+At every point in a terminal you are in some directory.
+
+```sh
 # Path to the root dicionary
 /
+
+# Path to the current dictionary
+.
 
 # Path to your home dicionary
 ~
@@ -98,12 +164,26 @@ We always need to specify the path. It can be path to the image. Path to the apl
 # Show path to the current dictionary
 pwd
 ```
+
+If i would have a directory called "tutorial" in my user directory, the path would be
+
+```sh
+# The path to the tutorial directory
+/home/USER_NAME/tutorial
+
+# or
+~/tutorial
+
+# or, if I am in my user directory
+./tutorial
+```
+
 [Back to menu](#menu)
 
 ## Manipulation with files and directories
 
 ```sh
-# Move to the specified dictionary
+# Go (move) to the specified dictionary
 cd ./path/to/the/dictionary
 
 # Show structure of all files and dictionaries from your dictionary 
@@ -117,7 +197,7 @@ cp file1 file2
 # Copy all from dir1 to dir2
 cp -r dir1 dir2
 
-# File to new place
+# Move file to another place
 mv /old/path/to/file1 /new/path/to/file1
 # Rename file1 as file2 and check if not overwriting
 mv -i file1 file2
@@ -400,29 +480,6 @@ tail file
 
 ---
 
-## Compare two files
-
-### Command diff
-
-```sh
-diff --side-by-side --suppress-common-lines FILE_A FILE_B
-```
-or
-```sh
-diff -u file1 file2
-```
-[Back to menu](#menu) |
-[source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
-[source2](https://www.computerhope.com/unix/udiff.htm)
-
-### cmp
-
-```sh
-cmp file1 file2
-```
-
----
-
 ## Usefull commands - good to know
 
 ### Get basic info about command
@@ -437,7 +494,7 @@ whatis command_name
 man -f command_name
 ```
 
-### Show everything from file in a terminal
+### Show big files in a terminal
 
 ```sh
 # q to quit
@@ -447,10 +504,56 @@ less
 ```
 [Back to menu](#menu)
 
+### show terminal heigth and width
+
+```sh
+# show heigth
+tput lines
+# show width
+tput cols
+```
+
+### Count lines, words and bytes
+
+Command wc (word count)
+
+```sh
+# show number of lines (-l) words (-w) and bytes (-c)
+wc FILE_NAME
+# show number of lines of a file
+wc -l FILE_NAME
+```
+
+
 ### show file stats
 
 ```sh
 stat file1
+```
+
+---
+
+## Compare two files
+
+### Command diff
+
+```sh
+diff --side-by-side --suppress-common-lines FILE_A FILE_B
+
+diff --side-by-side --suppress-common-lines FILE_A FILE_B | more
+```
+or
+```sh
+diff -u file1 file2
+```
+[Back to menu](#menu) |
+[source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
+[source2](https://www.computerhope.com/unix/udiff.htm)
+
+### cmp
+
+```sh
+cmp file1 file2
 ```
 
 ---
@@ -682,10 +785,18 @@ vi 		normal mode		hjkl	gg G 	w e b 	x X 	r 	J 	o O
 
 ---
 
-Theory
+Linux
 ===
 
-Shell, Linux, Computers
+## Copy and past in terminal
+
+### Copy from terminal
+
+Highlight the text and press Ctrl+Shift+C
+
+### Past to terminal
+
+Press Ctrl+Shift+V
 
 ## Linux directory structure
 
@@ -699,6 +810,21 @@ Shell, Linux, Computers
 [More information](https://linuxhandbook.com/linux-directory-structure/)
 
 ---
+
+## Type special characters
+
+Perhaps to write a dash, in linux there is a way to write unicode symbols.
+
+1) press Ctrl+Shift+U
+1) type the unicode code, perhaps 2014
+1) press Space
+
+voila —
+
+---
+
+Computers
+===
 
 ## BOM
 
@@ -723,11 +849,6 @@ U+FEFF
 ## Theory from seminars
 
 ### Theory from seminar 1
-
-147.251.253.55
-CLI
-	prompt + kurzor PS1 prompt vice radkovej v PS2
-$ norm usr -x- # super user
 
 #### Types of commands
 
@@ -782,7 +903,6 @@ STDIN STDOUT STDERR
 &> kamChci
 PIPE    |   sort, uniq, less, head, 
     tail -f
-    wc -l
     tee
 file
 ```
