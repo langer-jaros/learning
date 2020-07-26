@@ -320,6 +320,8 @@ zip new file1 file2 file3
 Unzip files from new.zip
 ```sh
 unzip new.zip
+# to NEW_DIR
+unzip new.zip -d PATH/NEW_DIR
 ```
 
 ### Command tar
