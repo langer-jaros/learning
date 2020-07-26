@@ -198,7 +198,7 @@ git merge master
 ---
 
 
-## Merge the local conent with BRANCH_NAME of REMOTE_NAME
+## Merge the local content with BRANCH_NAME of REMOTE_NAME
 ```sh
 git merge --allow-unrelated-histories REMOTE_NAME/BRANCH_NAME
 ```
