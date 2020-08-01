@@ -1,39 +1,46 @@
-# How to GIT
+# Git
 
-`2020/03/15, Jaroslav Langer`
+How to git successfully even with low background knowledge.
+
+`2020/08/01, Jaroslav Langer`
 
 ## MENU
 
 - [Absolute start with git](#absolute-start-with-git)
 - [Start using git (basics)](#start-using-git-(basics))
-- [Showing](#showing)
-- [Delete changes](#delete-changes)
-- [Create a merge request](#create-a-merge-request)
-- [Delete folder from git](#delete-folder-from-git)
-- [Create repository from existing git repository](#create-repository-from-existing-git-repository)
+- [Bit advanced](#bit-advanced)
 
 ## Absolute start with git
 
-First step is to create git repository (project) on a git site.
+### Git account
 
-(First step may actually be to create the fork on Git page)
+First step is to create account on some git site such as GitHub, GitLab etc.
 
+Once you have it, add a public key to it.
 
-### Git global setup - to be recognizable
+### Git installation and setup
+
+After the terminal git installation, there is a need of some configurations.
 
 ```sh
 git config --global user.name "Name Surname"
 git config --global user.email "username@email.com"
 ```
 
-### Creation of a repository from scratch
+### Creation of a project
+
+It is either possible to create a new repository (project) or to fork some already existing.
+
+Both can be easily done on the git website. 
+
+### Create repository from scratch
 
 ```sh
 # Clone the repository (project) to your machine
 git clone git@YOUR_PROJECT_PATH.git
 
 # Create README.md about your project
-echo "# rep_name" >> README.md #touch README.md
+echo "# REPOSITORY_NAME" >> README.md #touch README.md
 
 # Add the README.md to the index
 git add README.md
@@ -49,18 +56,21 @@ git push -u origin master
 ### Create repository from existing folder
 
 ```sh
-cd existing_folder
-echo "# rep_name" >> README.md #touch README.md
+cd EXISTING_FOLDER
+echo "# REPOSITORY_NAME" >> README.md #touch README.md
 
 #Create an empty Git repository or reinitialize an existing one
 git init
+
 # Add the local things for next commit
 git add .
+
 # Commits the added content
 git commit -m "first commit"
 
 # Adds remote origin for the repository at git@GITSITE:USER/REPOSITORY.git
-git remote add origin git@github.com:acc_name/rep_name.git
+git remote add origin git@GITSITE.com:USER_NAME/REPOSITORY_NAME.git
+
 # Push the local content to master branch of origin
 git push -u origin master
 ```
@@ -68,169 +78,173 @@ git push -u origin master
 
 ## Start using git (basics)
 
-### Change the current branch (to master):
+### Branches
+
+There can be many branches, the one above all is called master
 
 ```sh
-git checkout master
-```
-
-### Update the folders to current state:
-
-```sh
-git pull
-```
-
-### Create a new branch:
-
-```sh
-git branch YOUR_BRANCH_NAME
-```
-**Or**
-```sh
-git checkout -b YOUR_BRANCH_NAME
-```
-
-### Delete branch
-
-```sh
-git branch -d branch_name
-```
-
----
-
-## Showing 
-
-### Show current branch
-
-```sh
+# Show your current branch
 git branch
+
+# List branches
+git branch -a
+
+# Change the current branch to master
+git checkout master
+
+# Create branch
+git branch BRANCH_NAME
+
+# Change to a branch
+git checkout BRANCH_NAME
+
+# Crate and change to it in one step
+git checkout -b BRANCH_NAME
+
+# Delete branch
+git branch -d BRANCH_NAME
+
+# Rename branch
+git branch -m NEW_BRANCH_NAME
 ```
 
-### Show changes between last merge and last commit
+### Update the master branch
+
+If you have cloned the repository and others may have changed it, it is reasonable to update the content.
 
 ```sh
-git show
+# Fetch the most recent content from the git site and merge it with the old one 
+git pull origin
 ```
+
+### Commiting
+
+```sh
+# Add things for the next commit
+git add NAME_OF_FILE
+
+# Add everything to next commit
+git add -A #OR git add --all
+
+# Delete changes from index (not to be commited)
+git checkout -- FILENAME
+
+# Delete THING and remove it from being in the next commit
+git rm -r THING
+
+# Delete thing which has local modifications
+git rm --cached THING
+
+# OR
+git rm -rf --cached FOLDER_NAME/
+
+# Show status of git files, which where not added, which were deleted but added etc.
+git status
+
+# Commit added things
+git commit -m "Meaningful comment."
+```
+
+[source](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
+
+### Remotes
+
+The master branch is (should be) above all your branches, still they are all on your machine.
+
+When you want to collaborate with others, the code is passed to a remote repository.
+
+Remote repository is the one you have created on the git site.
+
+The main remote is named origin and it is the one where you cloned your project from.
+
+```sh
+# Show the remotes
+git remote -v
+
+## Add remote
+git remote add NAME URL
+
+## Add remote and fetch
+git remote add -f NAME URL
+
+## Delete remote
+git remote remove NAME URL
+```
+
+### Showing 
+
+```sh
+### Show changes between last merge and last commit
+git show
 
 ### Show all commits
-
-```sh
 git log
 ```
 ---
 
-## Add things for the next commit
-```sh
-git add -A
-```
-
-## Remove things from git and delete THEM
-```sh
-git rm -r THEM
-```
-
-## show remotes
-```sh
-git remote -v
-```
-
-## Add remote
-```sh
-git remote add NAME URL
-```
-
-## Add remote and fetch
-```sh
-git remote add -f NAME URL
-```
-
-## Delete remote
-```sh
-git remote remove NAME URL
-```
-
-## Delete changes
-
-### Delete changes (not added)
-```sh
-git checkout -- FILENAME
-```
-
-## Create a merge request
-
-### Add files for commit (or -all)
+### Create a merge request
 
 ```sh
-git add --all
-``` 
-**Or** 
+# Add the file for commit
+git add PATH_TO_FILE
 
-```sh
-git add -A
-```
+# Commit it
+git commit -m "Commit comment"
 
-### Show status of git files
-
-```sh
-git status
-```
-
-### Commit
-
-```sh
-git commit -m "Meaningful comment."
-```
-
-### Push merge request to the master
-
-```sh
+# Push the NAMO_OF_BRANCH to the origin (remote site)
 git push -u origin NAME_OF_BRANCH
-```
 
-### Test a new branch before the merge
+# Go to GIT_SITE and create merge request 
+``` 
 
-```sh
-git fetch origin
-git checkout -b BRANCH_NAME origin/BRANCH_NAME
-git merge master
-```
+### Merging
 
----
-
-
-## Merge the local content with BRANCH_NAME of REMOTE_NAME
-```sh
-git merge --allow-unrelated-histories REMOTE_NAME/BRANCH_NAME
-```
-
-## Merge the new branch 
+Merge the NEW_BRANCH to master at origin 
 
 ```sh
 git checkout master
-```
 
---no-ff means no fast-foreward [More information](https://nvie.com/posts/a-successful-git-branching-model/).
+git merge NEW_BRANCH
 
-```sh
-git merge --no-ff BRANCH_NAME
 git push origin master
 ```
 
----
-
-## Delete folder from git
-
-> If you added this path by mistake, you can remove it from the index with:
 ```sh
-git rm --cached FOLDER_NAME
-```
-**or**
-```sh
-git rm -rf --cached FOLDER_NAME/
-```
-[source](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
+# Merge the local content with BRANCH_NAME of REMOTE_NAME
+git merge --allow-unrelated-histories REMOTE_NAME/BRANCH_NAME
 
-## Create repository from existing git repository
+# No fast-foreward (--no-ff)
+git merge --no-ff BRANCH_NAME
+```
+[No fast-foreward](https://nvie.com/posts/a-successful-git-branching-model/).
+
+
+### Bit advanced
+
+### Stash
+
+Save the changes from the last commit on and clean them
+
+So the working directory is at the stage of last commit.
+
+```sh
+# Saves all differences from last commit away and clean them off
+git stash
+
+# List the stashes
+git stash list
+
+# See the most recent stash
+git stash show -p #OR git stash show -p stash@{0}
+
+# See older stash
+git stash show -p stash@{1}
+
+# Drop the stash
+git stash drop
+```
+
+### Create repository from existing git repository
 
 ```sh
 cd existing_git_repo
@@ -240,7 +254,27 @@ git push -u origin --all
 git push -u origin --tags
 ```
 
-## Add repository from other git
+---
+
+### Create the pull request
+
+[Create the pull request](#https://git-scm.com/docs/git-request-pull)
+
+### Test a new branch before the merge
+
+```sh
+# Fetch the file from origin (remote site)
+git fetch origin
+
+# Create the desired BRANCH_NAME from origin and change to it 
+git checkout -b BRANCH_NAME origin/BRANCH_NAME
+
+git merge master
+```
+
+---
+
+### Add repository from other git
 
 git clone --bare https://githost.org/OLD_REPOSITORY.git
 
@@ -252,7 +286,7 @@ git push --mirror https://github.com/NEW_REPOSITORY.git
 
 ---
 
-## Add submodule
+### Add submodule
 
 ```sh
 git submodule add https://github.com/NEW_REPOSITORY.git REPO_NAME
