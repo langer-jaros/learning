@@ -254,6 +254,30 @@ git push -u origin --all
 git push -u origin --tags
 ```
 
+### Remove changes after commit
+
+Reset current head to the specific state (commit)
+
+```sh
+# Reset the HEAD to the given commit, files are untouched but not marked for commit
+git reset HASH_OF_COMMIT #~ git reset --mixed HASH_OF_COMMIT
+
+# Reset the index and the working direcotry - leaves everything at the stage of the commit
+git reset --hard HASH_OF_COMMIT
+
+# Reset only the HEAD, but the working directory and index are the same
+git reset --soft HASH_OF_COMMIT
+```
+
+[more](#https://git-scm.com/docs/git-reset)
+
+### Remove changes after push
+
+```sh
+# 
+git revert
+```
+
 ---
 
 ### Create the pull request

@@ -186,9 +186,6 @@ If i would have a directory called "tutorial" in my user directory, the path wou
 # Go (move) to the specified dictionary
 cd ./path/to/the/dictionary
 
-# Show structure of all files and dictionaries from your dictionary 
-tree
-
 # Create new directory
 mkdir
 
@@ -211,6 +208,31 @@ rm file
 rm -r
 ```
 [Back to menu](#menu)
+
+## Information about files, directories
+
+### Commands: ls, tree, du, wc, stat
+
+```sh
+# Shows all files of given directory
+ls ./path/to/the/directory
+
+# Show structure of all files and dictionaries from your dictionary 
+tree
+
+# Shows counts of lines, words and bytes
+wc FILE_NAME
+# show number of lines (-l) words (-w) and bytes (-c)
+wc -l FILE_NAME
+
+# Recursively shows sizes (disk usage) of directories and files 
+du ./path/to/the/directory 
+# Show size of the DIRECTORY and its direct children (2 ~ levels down etc.) 
+du -d 1 ./path/to/the/DIRECTORY
+
+# show file statistics
+stat file1
+```
 
 ## Find anything
 
@@ -477,6 +499,11 @@ head -n 3 file
 
 # Output last 5 lines from file in reverse order
 tail file
+
+# Sort output
+
+# Example 
+sudo du -a | sort -n -r | head -n 20
 ```
 [Back to menu](#menu)
 
@@ -499,9 +526,9 @@ man -f command_name
 ### Show big files in a terminal
 
 ```sh
-# q to quit
+# Ouput stays into terminal after pressing q to quit
 more
-# :q to quit
+# File open in vim-like enviroment after pressing :q to quit the terminal is clean
 less
 ```
 [Back to menu](#menu)
@@ -513,24 +540,6 @@ less
 tput lines
 # show width
 tput cols
-```
-
-### Count lines, words and bytes
-
-Command wc (word count)
-
-```sh
-# show number of lines (-l) words (-w) and bytes (-c)
-wc FILE_NAME
-# show number of lines of a file
-wc -l FILE_NAME
-```
-
-
-### show file stats
-
-```sh
-stat file1
 ```
 
 ---
