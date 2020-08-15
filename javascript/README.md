@@ -75,16 +75,18 @@ item = myArray.pop();
 ## Conditions
 Switch
 ```
-switch(clicked%4) {
-    case 0:
-        break;
-    case 1:
-        clicked++;
-        break;
-    default:
-        clicked = 0;
+switch (clicked%4) {
+case 0:
+    break;
+case 1:
+    clicked++;
+    break;
+default:
+    clicked = 0;
 }
 ```
+[source](https://www.w3schools.com/js/js_switch.asp)
+
 ## Loops
 ```
 var i;
@@ -116,14 +118,36 @@ reference to DOM-object of element '<div id="odstavec">' from page
 ```
 var canvas = document.getElementById('canvas01');
 ```
+https://www.w3schools.com/jsref/dom_obj_body.asp
+
+
 Get root DOM object
 ```
 var outputElement = document.documentElement;
 ```
+
 vložení připraveného HTML-fragmentu do cílového místa
 ```
 outputElement.innerHTML = txt;
 ```
+
+### Append child
+
+https://www.w3schools.com/jsref/met_node_appendchild.asp
+
+## Create element specify class
+
+https://www.htmldog.com/guides/javascript/advanced/creatingelements/
+
+
+### Insert html string to element not replace
+
+```js
+element.insertAdjacentHTML(position, text);
+```
+
+[source](https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML)
+
 ---
 ## Handlers
 ### function handling action, gets event, which called it

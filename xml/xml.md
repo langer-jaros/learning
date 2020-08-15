@@ -1,5 +1,17 @@
 # XML
 
+## What is xml
+
+https://www.w3schools.com/xml/xml_whatis.asp
+
+## XML comment 
+
+https://www.tutorialspoint.com/xml/xml_comments.htm
+
+## XML schema
+
+https://www.w3schools.com/xml/schema_intro.asp
+
 ## Special characters
 
 obviously as every enviroment, xml has also some characters requiring special treat, after every ampersand an semicolon is necessary

@@ -27,6 +27,17 @@ Extracted information from youtube video course
 ## Not from the video
 + [](#)
 
+## USE LIVE SERVER
+
+perhaps from visual studio code
+
+## Minimal html site
+
+https://www.sitepoint.com/a-minimal-html-document-html5-edition/
+
+## Link css in html
+
+https://www.w3schools.com/tags/tag_link.asp
 
 ## Images colors background linear-gradient
 ### Images knowledge 
@@ -298,3 +309,18 @@ https://www.w3schools.com/html/html_images_background.asp
 ```css
 background-image: url("../pictures/industry-839254_1920.jpg");
 ```
+
+## Scripts
+
+The script can be placed either in the head, or in the body [link](https://www.w3schools.com/js/js_whereto.asp)
+
+Prefered way is to put it at the end of body, or in the head, if it si executed once the body is load. [link](https://faqs.skillcrush.com/article/176-where-should-js-script-tags-be-linked-in-html-documents)
+
+```html
+<script src='./path/script.js'></script>
+```
+
+## history
+
+The browser remembers the history and it is possible to travel forward and backward through it.
+[link](https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page)
