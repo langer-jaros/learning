@@ -58,7 +58,7 @@ import requests
 ```py
 data1 = pd.read_csv('./path/data1.csv')
 # Other separator? No problem.
-data2 = pd.read_csv('./path/data2.csv',sep=';')
+data2 = pd.read_csv('./path/data2.csv', sep=';', decimal=',')
 # Specify rows for header of the table
 data2 = pd.read_csv('./path/data2.csv',header=[0,1])
 # Use different headers - names
@@ -223,6 +223,8 @@ Filters
 ```py
 # Create filter -> df of True/False
 filter = data1['Age'] > 30
+# 
+filter = data1['Age'].isin([30,31,32])
 # Aplying filter, returns rows where the filter row is True 
 data1[filter]
 # Aplying array filters only True will be returned
@@ -295,6 +297,9 @@ cor_matrix = df.corr()
 
 # Sort rows or columns
 DataFrame.sort_values(by, axis=0, ascending=True, inplace=True, kind='quicksort')
+
+# Sort index
+df = df.sort_index(ascending=False, ignore_index=True)
 ```
 
 #### Group by
