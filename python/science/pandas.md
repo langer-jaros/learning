@@ -238,7 +238,11 @@ data1[~filter]
 # Filter1 and filter2
 data1[filter1 & filter2]
 # Filter1 or filter2
-data1[filter1 | filter2] 
+data1[filter1 | filter2]
+
+# iterate rows
+for index, row in df.iterrows():
+    print(row['c1'], row['c2'])
 ```
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
@@ -295,7 +299,7 @@ data.equals(dataIgnored) # True
 # Correlation matrix
 cor_matrix = df.corr()
 
-# Sort rows or columns
+# Sort rows or columns # only kind='mergesort' is stable
 DataFrame.sort_values(by, axis=0, ascending=True, inplace=True, kind='quicksort')
 
 # Sort index
@@ -344,7 +348,10 @@ df = df.reindex(sorted(df.columns), axis=1)
 df["a"] = pd.to_numeric(df["a"])
 
 # Change columns type to datetime
-df[df.columns[0]] = pd.to_datetime(df.columns[0])
+df[df.columns[0]] = pd.to_datetime(df.columns[0], format='%d.%m.%Y')
+```
+[python date time formats](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
+```
 # Days from datetime
 rfm[RECENCY] = rfm[RECENCY].astype('timedelta64[D]')
 ```
