@@ -2,7 +2,7 @@
 
 The art of using PC like a human being
 
-```2020/07/11, Jaroslav Langer, using linux mint 19```
+```2020/09/11, Jaroslav Langer, using linux mint 19```
 
 ## MENU
 
@@ -105,7 +105,18 @@ Than it shows you the all the possible completions.
 
 ---
 
-## Shell principle - commands structure
+## Shell principle 
+
+There are planty of things you can do in terminal. 
+However the more programming-like stuff will be usually enclosed to bash script.
+That means, the work with terminal (shell) will be mostly about using commands to do the job for you.
+
+### What happens when i type to terminal
+
+Shell has many words reserved it can be "echo" for printing, "exit" for leaving, or "if" for conditioning.
+Besides these, anything you write to the terminal shell expects to be a command.
+
+### Commands structure
 
 Next to the prompt there is a place for typing commands. 
 Shell is case-sensitive, so `exit` works, where `Exit` doesn't.
@@ -125,11 +136,21 @@ command [-o | --options] [arguments]
 ```
 [Back to menu](#menu)
 
+### Expansions
+
+Not everything you write shell interprets as you wrote it. 
+Many characters are expanded. Such as ~ is expanded as /home/your_username
+
+There are various [expansions](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html)
+for now is good to know, that double quotes suppres any expansions except the starting with dolar such as "$USER".
+
+The single quotes supress any expansions.
 ---
 
 ## Comments
 
-The hash symbol is used for a commenting, so the terminal ignores the whole line, which follows after this symbol #
+Comments are also more useful for writting bash scripts but it is important to know what the hesh means.
+The terminal ignores the whole line, which follows after this symbol #
 
 ```sh
 # here can be written anything and nothing happens
@@ -187,7 +208,7 @@ If i would have a directory called "tutorial" in my user directory, the path wou
 cd ./path/to/the/dictionary
 
 # Create new directory
-mkdir
+mkdir NEW_DIRECTORY
 
 # Copy file1 to file2
 cp file1 file2
@@ -920,23 +941,48 @@ file
 
 ### Knowledge from seminar 4
 
-```sh
-Expanse
-	* ? ' ' \ . .. $
-- space suppression " " - suppress all except $ notation
-					 \
-					 ' ' - suppress everything
-- paths 		
-- tilde			~
-- arithmetic	$(( )) + - * / % ** ++ -- $[ ] -depracated
-expr
-bc	scale=2				echo "(((11+45)/2)%3)" | bc -l
-						echo "scale=2; 3/2" | bc
-- brace 		{} 		mkdir ukol{a,b,c} mkdir ukol{01..06}
-- parameter 	$x ${x}
-env
-- command 		$() 	`which cp`
+
+### Expansions
+
+```sh 
+# wild cards * ? ' ' $
+mv old/* new/
+
+# paths \ . ..
+ls ..
+
+# brace expansion {}
+mkdir task_{a,b,c} # mkdir task_a task_b task_c
+mkdir task{01..04} # mkdir task01 task02 task03 task04
+
+# tilde expansion
+ls ~/Documents # ls /home/$USER/Documents
+
+# parameter and variable expansion
+variable=10
+echo ${variable} # echo 10
+
+# command substitution
+$(echo echo 2) # echo 2
+
+# arithmetic expansion + - * / % ** ++ --
+echo $((1238 % 17)) echo 14
+
+# word splitting
+# filename expansion
+# quote removal
 ```
+
+[Documentation](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html)
+
+### Supressions
+
+white space is suppresed.
+- "double quotes" - suppress all except $ notation
+- 'single quotes' - suppress everything
+
+### calculator bc
+echo "scale=2; 3/2" | bc
 
 ### Knowledge from seminar 5
 
@@ -1132,20 +1178,25 @@ script
         -s
         IFS = ':'
         X NEVER - echo "abc" | read
+```
 
+## Exit status
 
+Every command in bash returns a status, number between 0 and 255, 0 menas success.
 
-EXIT STATUS TEST
-	0 - 255
-	$?
+```sh
+# Read the last exit status
+echo $?
+```
 
-	Ls neexistujici
-	Echo $? = 2
-
-	Exit
-	Exit n
-	
-
+Bash script or terminal itself can return status code, command exit
+```sh
+# Success
+exit # exit 0
+# Failure
+exit 1 # exit 255
+```
+```sh
 	True; echo $? = 0
 	False: echo $? = 1
 
