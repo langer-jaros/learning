@@ -1,0 +1,38 @@
+                     /note="translated by -1 ribosomal frameshift"
+>ORIGIN      
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJjj        1 meslvpgfne kthvqlslpv lqvrdvlvrg fgdsveevls earqhlkdgt cglvevekgv
+       61 lpqleqpyvf ikrsdartap hghvmvelva elegiqygrs getlgvlvph vgeipvayrk
+      121 vllrkngnkg agghsygadl ksfdlgdelg tdpyedfqen wntkhssgvt relmrelngg
+
+?? ############## HOOOOOOOOOOOOOOOOOO >>>>>>>>>
+      781 tpvcinglml leikdtekyc alapnmmvtn ntftlkggap tkvtfgddtv ievqgyksvn
+      841 itfelderid kvlnekcsay tvelgtevne facvvadavi ktlqpvsell tplgidldew
+     1321 ptdnyittyp gqglngytve eaktvlkkck safyilpsii snekqeilgt vswnlremla
+     1381 haeetrklmp vcvetkaivs tiqrkykgik iqegvvdyga rfyfytsktt vaslintlnd
+     1441 lnetlvtmpl gyvthglnle eaarymrslk vpatvsvssp davtayngyl tsssktpeeh
+     1501 fietislags ykdwsysgqs tqlgieflkr gdksvyytsn pttfhldgev itfdnlktll
+> HELP me got
+> help me so much
+     1561 slrevrtikv fttvdninlh tqvvdmsmty gqqfgptyld gadvtkikph nshegktfyv
+     1621 lpnddtlrve afeyyhttdp sflgrymsal nhtkkwkypq vngltsikwa dnncylatal
+     1681 ltlqqielkf nppalqdayy rarageaanf calilaycnk tvgelgdvre tmsylfqhan
+     1741 ldsckrvlnv vcktcgqqqt tlkgveavmy mgtlsyeqfk kgvqipctcg kqatkylvqq
+     1801 espfvmmsap paqyelkhgt ftcaseytgn yqcghykhit sketlycidg alltksseyk
+     1861 gpitdvfyke nsytttikpv tykldgvvct eidpkldnyy kkdnsyfteq pidlvpnqpy
+     1921 pnasfdnfkf vcdnikfadd lnqltgykkp asrelkvtff pdlngdvvai dykhytpsfk
+     1981 kgakllhkpi vwhvnnatnk atykpntwci rclwstkpve tsnsfdvlks edaqgmdnla
+
+
+
+
+     2041 cedlkpvsee vvenptiqkd vlecnvktte vvgdiilkpa nnslkiteev ghtdlmaayv
+     2101 dnssltikkp nelsrvlglk tlathglaav nsvpwdtian yakpflnkvv stttnivtrc
+     2161 lnrvctnymp yfftlllqlc tftrstnsri kasmpttiak ntvksvgkfc leasfnylks
+     2221 pnfsklinii iwflllsvcl gsliystaal gvlmsnlgmp syctgyregy lnstnvtiat
+     2281 yctgsipcsv clsgldsldt ypsletiqit issfkwdlta fglvaewfla yilftrffyv
+     2341 lglaaimqlf fsyfavhfis nswlmwliin lvqmapisam vrmyiffasf yyvwksyvhv
+     2401 vdgcnsstcm mcykrnratr vecttivngv rrsfyvyang gkgfcklhnw ncvncdtfca
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJjj     2461 gstfisdeva rdlslqfkrp inptdqssyi vdsvtvkngs ihlyfdkagq ktyerhslsh
+     2521 fvnldnlran ntkgslpinv ivfdgkskce essaksasvy ysqlmcqpil lldqalvsdv
+     2581 gdsaevavkm fdayvntfss tfnvpmeklk tlvataeael aknvsldnvl stfisaarqg
+     2641 fvdsdvetkd vveclklshq sdievtgdsc nnymltynkv enmtprdlga cidcsarhin
