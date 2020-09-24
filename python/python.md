@@ -8,21 +8,57 @@
 
 ## MENU
 
-+ [First things first](#first-things-first)
-+ [Printing](#printing)
-+ [Variables](#variables)
-+ [Data types](#data-types)
-+ [Conditions](#conditions)
-+ [Loops](#loops)
-+ [Imports](#imports)
-+ [Input arguments](#input-arguments)
-+ [Files](#files)
-+ [Asserting](#asserting)
+- [Comments](#comments)
+- [First things first](#first-things-first)
+- [Printing](#printing)
+- [Variables](#variables)
+- [Data types](#data-types)
+- [Conditions](#conditions)
+- [Loops](#loops)
+- [Imports](#imports)
+- [Inputs, outputs](#inputs,-outputs)
+- [Asserting](#asserting)
 
 Advanced
-+ [Regex](#regex)
-+ [lambda](#lambda)
-+ [Python 2 differences](#python-2-differences)
+- [Regex](#regex)
+- [lambda](#lambda)
+- [Python 2 differences](#python-2-differences)
+
+## Comments
+
+```py
+# Oneline coment
+
+"""
+multiline comment
+"""
+
+'''
+multiline comment
+'''
+```
+
+### Docstrings
+
+Every file, class, function can have doc string (__doc__).
+Write docstrings, they are beatiful.
+
+```py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Name: my beautiful code name
+Author: my beautiful name, email
+Description:
+blaaaaaaaaaa
+"""
+
+def fu():
+    "function docstring"
+
+class cla:
+    "class docstring"
+```
 
 ## First things first
 
@@ -31,6 +67,7 @@ Advanced
 Python is and excelent language for writing scripts. Every script on linux should start with. Otherwise, there will be misunderstanding between python2 and 3 guys.
 ```py
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 ```
 For usage python files as scripts is highly recommend to use following
 ```py
@@ -84,7 +121,7 @@ Recognize type of a passed object
 type(a) == type({})
 ```
 
-### String
+## String
 
 There is four types how to quote a string
 ```py
@@ -104,7 +141,7 @@ Raw string
 r'in this string, the \n won\'nt be and newline'
 ```
 
-#### Format and f string
+### Format and f string
 ```py
 # Using stirng.format()
 pathToNewFile = '{folder}{file}.{fileType}'.format(
@@ -113,9 +150,39 @@ pathToNewFile = '{folder}{file}.{fileType}'.format(
 pathToNewFile = f'{download_folder}{xlsName}.{"xls"}'
 ```
 
+### String functions
+
+```py
+# slit
+"string string2".split()
+# join
+' '.join(['string', 'string2', 'string3'])
+# strip
+"          string                ".strip()
+# find
+"string about nothing".find('abo')
+# rfind
+".hiden_file_.txt".rfind('.')
+```
+
 ## Collections
 
 ### Lists
+
+```py
+l = ["a", "b"]
+ll = ["c", "d"]
+# Append
+l.append(ll)
+# Pop
+l.pop()
+# Extend
+ll.extend(l)
+# Insert
+ll.insert(index, item)
+# Convert string to list
+list("All the beautiful strings")
+```
 
 Generator notation
 ```py
@@ -161,7 +228,9 @@ for x in almostAnything:
 from xy import xyz as x
 ```
 
-## Input arguments
+## Inputs, outputs
+
+### Input arguments
 
 ```py
 import sys
@@ -175,9 +244,43 @@ number of arguments
 print ("Number of arguments: {}".format(len(sys.argv[0])))
 ```
 
-## Files
+### Standard input
 
-### Text files
+```py
+import sys
+
+for line in sys.stdin: # From standard input
+    print(line) # to standard output
+```
+
+### Files
+
+```py
+with open(PATH_TO_FILE, mode='r') as f:
+    line = f.readline()
+```
+multiple files
+```py
+with open("file_1.txt", mode="r") as f_in, open("file_2.txt", mode="w") as f_out:
+    f_out.write(f_in.readline())
+```
+#### Modes
+
+- r: 
+- rb: 
+- r+: 
+- w: 
+- wb: 
+- w+: 
+- wb+:
+- a: 
+- ab: 
+- a+: 
+- ab+:
+
+[source](https://stackabuse.com/file-handling-in-python/)
+
+#### Text files
 
 ```py
 # Write xls from response.text to file #
@@ -187,7 +290,8 @@ with open(pathToNewFile, mode='tx') as newFile:
     newFile.write(response.text)
 ```
 
-### Binary files
+#### Binary files
+
 ```py
 with open('obrazek.png', mode='rb') as f:
     data = f.read(NUMBER_OF_BYTES)
@@ -234,6 +338,17 @@ candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
 ```
 
 [More information](https://thispointer.com/python-how-to-use-if-else-elif-in-lambda-functions/)
+
+## argparse
+
+```py
+import argparse
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("-t", "--type", choices=[NA, AA], help="reformat nucleic acid or amino acid sequence")
+    args = parser.parse_args()
+```
 
 ## Python 2 differences
 

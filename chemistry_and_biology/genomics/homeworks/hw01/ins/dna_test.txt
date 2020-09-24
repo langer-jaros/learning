@@ -1,0 +1,23 @@
+        1 accctctttt cttatcgttg acatttaaac tctggggcag gtcctcgcgt agaacccggt
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx       61 tgtcagatct gctacttccc cccgagaagc ggctttgaga agtgtgggaa ccagcgccac
+      121 cagactcacc tgacacccca ccctcggctc acaggcagaa gactttaacc aagggcggtg
+      181 agcagatgtg tgagatcttc tattcta
+//
+> moje sekvence
+        1 accctctttt cttatcgttg acatttaaac tctggggcag gtcctcgcgt agaacccggt
+       61 tgtcagatct gctacttccc cccgagaagc ggctttgaga agtgtgggaa ccagcgccac
+      121 cagactcacc tgacacccca ccctcggctc acaggcagaa gactttaacc aagggcggtg
+      181 agcagatgtg tgagatcttc tattcta
+//
+        1 accctctttt cttatcgttg acatttaaac tctggggcag gtcctcgcgt agaacccggt
+       61 tgtcagatct gctacttccc cccgagaagc ggctttgaga agtgtgggaa ccagcgccac
+      121 cagactcacc tgacacccca ccctcggctc acaggcagaa gactttaacc aagggcggtg
+      181 agcagatgtg tgagatcttc tattcta
+//
+> moje sekvence 2
+>MOJESEKVENCE
+        1 accctctttt cttatcgttg acatttaaac tctggggcag gtcctcgcgt agaacccggt
+       61 tgtcagatct gctacttccc cccgagaagc ggctttgaga agtgtgggaa ccagcgccac
+      121 cagactcacc tgacacccca ccctcggctc acaggcagaa gactttaacc aagggcggtg
+      181 agcagatgtg tgagatcttc tattcta
+//
