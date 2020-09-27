@@ -7,8 +7,8 @@ Description:
     Script reads sequences at stdin and formates it at stdout.
 Lines starting with SEQ_NAME_SYMBOL are considered starts of new sequences.
 """
-from bio_tools import iterSequences, NA, writeSequence, getReverseComplement
+from bio_tools import iterSequences, DNA, writeSequence, getReverseComplement
 
 if __name__ == "__main__":
-    for name, sequence in iterSequences(NA):
-        writeSequence(name, getReverseComplement(sequence))
+    for name, sequence in iterSequences(DNA):
+        writeSequence(name, getReverseComplement(sequence, DNA))

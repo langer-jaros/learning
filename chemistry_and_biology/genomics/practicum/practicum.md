@@ -1,16 +1,7 @@
 # Praktikum z genomiky
 
-## 
+## Obsah
 
-## Odkzy
-
-- [metacentrum](https://dashboard.cloud.muni.cz/)
-- [setup github](https://github.com/bio-platform/bio-class/blob/master/doc/user/launch-in-personal-project.md)
-- [sources](http://bio.img.cas.cz/GAA2020/)
-
-```sh
-ssh langera@78.128.250.10
-```
 
 ## Formáty
 

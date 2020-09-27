@@ -1,5 +1,3 @@
-# základní statistika fasta filu (délka sekvence, ACGT složení, nejasné báze, kontrolní součet
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """

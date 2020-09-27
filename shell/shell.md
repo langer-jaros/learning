@@ -578,6 +578,13 @@ or
 ```sh
 diff -u file1 file2
 ```
+
+file_2 as stdin
+
+```sh
+some_command | diff file_1 -
+```
+
 [Back to menu](#menu) |
 [source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
 [source2](https://www.computerhope.com/unix/udiff.htm)
