@@ -38,9 +38,3 @@ alias translate="./bio.py tran dna"
 - [AMINO GROUPS](https://www.britannica.com/science/amino-acid/Standard-amino-acids)
 - [DNA CODON TABLE](https://en.wikipedia.org/wiki/DNA_codon_table)
 
-## TODO
-
-- add, extra hendling for rna, with dna sources
-- test rna
-- check aliases
-- move to vm

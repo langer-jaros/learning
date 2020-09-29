@@ -2,8 +2,9 @@
 
 ## Obsah
 
-- [Přednáška 1](přednáška-1)
-- [Přednáška 2](přednáška-2)
+- [Přednáška 1](#přednáška-1)
+- [Přednáška 2](#přednáška-2)
+- [Přednáška 3](#přednáška-3)
 
 ## Přednáška 1
 
@@ -113,7 +114,85 @@ Vytváření počítačových artefaktů
 
 ## Přednáška 2
 
+## Constrains satisfaction problem - CSP - Splňování omezení
+
+Tvorba pasivních artefaktů.
+
+(X, D, C)
+- X - konečná množina proměnných - vlastnosti rozhodující o řešení
+- D - konečná doména (možnosti)
+- C - množina podmínek nad X
+
+### Definice
+
+- Stav S' - částečné ohodnocení proměných
+- Konzistentní stav - všchny podmínky splněny
+- počáteční stav - prázdné ohodnocení proměných
+- akce - 
+- cílový stav - všechny proměnné ohodnoceny
+
+## Chronologický backtracking
+
+- DFS v kontextu CSP
+    + dopředný chod - přiřazují se proměnné
+    + zpětný chod - odpřiřadí se poslední proměnná a zkouší se znovu
+
+## Filtrace domén
+
+### Forward checking
+
+- při akci zkontroluji pro všechny dotčené podmínky dotčené proměnné a vyškrtneme z pracovní domény proměné (nesplňující ohodnocení)
+
+## Arc consistency - Hranová konzistence
+
+- Kontrolujeme hranu z X1 do X2
+(pro každou proměnou v pracovní doméně hledáme podporu, taková D2, že s D1 splňují podmínku)
+- dvě proměné jsou 
+- cíl celý problém má být hranově konzistentní
+
+### algoritmus AC3 
+
+- pro frontu hran, hledá podporu
+
+## Heuristiky
+
+### Výběr nejvíce omezené proměnné v algoritmu 
+
+- ohodnocujeme doménu, která má nejméně hodnot
+
+### Výběr klíčové proměnné
+
+### Hodnoty vybíráme tak, abychom co nejdříve narazili na řešení
+
+## Využítí struktury
+
+### Výběrem proměnných rozložit na komponenty
+
+## Složitost CSP
+
+NP úplný problém
+
+## Optimalizace CSP
+
+branch and bound nad celou arc consistency, ...
+
+## Spojité CSP
+
+CSP s rozvrhováním - výrobní linky atd
+
+## Programování s omezeními
+
+## CSP, A*, Simulované žíhání
+
+- Simulované žíhání - lokální, dobrý, na problémy co nejdou řešit systematicky
+- A* - vymyslet heuristiku pro NP problém je problematické
+- CSP - jak šité na barvení mapy
+
+## Přednáška 3
+
+
 ## TODO
 
 bi-zum
 bi-ag2 (a*)
+lineární programování

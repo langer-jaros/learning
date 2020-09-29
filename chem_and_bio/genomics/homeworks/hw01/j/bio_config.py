@@ -8,7 +8,7 @@ Description:
 """
 LINE_LENGTH = 100 # Newline character is not included i.e. for width 80 write 79
 SEQ_NAME_GENERIC = "Unknown sequence"
-SEQ_NAME_SYMBOL = '>'
+SEQ_NAME_START = '>'
 STOP = '*'
 CODON_LEN = 3
 
@@ -25,18 +25,17 @@ OTHER,    GAP,   NONPOLAR,   POLAR_UNCHARGED,   ACIDIC,   BASIC =\
 'other', 'gap', 'nonpolar', 'polar_uncharged', 'acidic', 'basic'
 
 COMPLEMENTS = {
-    DNA: {
-        A: T, C: G, G: C, T: A, A_G: C_T, C_T: A_G, G_T: A_C, A_C: G_T, C_G: C_G, A_T: A_T,
-        C_G_T: A_C_G, A_G_T: A_C_T, A_C_T: A_G_T, A_C_G: C_G_T, A_C_G_T: A_C_G_T, GAP_1: GAP_1, GAP_2: GAP_2,
-    },
-    RNA: {
-        A: U, C: G, G: C, U: A, A_G: C_T, C_T: A_G, G_T: A_C, A_C: G_T, C_G: C_G, A_T: A_T,
-        C_G_T: A_C_G, A_G_T: A_C_T, A_C_T: A_G_T, A_C_G: C_G_T, A_C_G_T: A_C_G_T, GAP_1: GAP_1, GAP_2: GAP_2,
-    },
+    A: T, C: G, G: C, T: A, A_G: C_T, C_T: A_G, G_T: A_C, A_C: G_T, C_G: C_G, A_T: A_T,
+    C_G_T: A_C_G, A_G_T: A_C_T, A_C_T: A_G_T, A_C_G: C_G_T, A_C_G_T: A_C_G_T, GAP_1: GAP_1, GAP_2: GAP_2,
 }
 GROUPS = {
     DNA: {
         ADENINE: [A], CYTOSINE: [C], GUANINE: [G], THYMINE: [T], 
+        OTHER: [A_G, C_T, C_G, A_T, G_T, A_C, C_G_T, A_G_T, A_C_T, A_C_G, A_C_G_T], 
+        GAP: [GAP_1, GAP_2],
+    },
+    RNA: {
+        ADENINE: [A], CYTOSINE: [C], GUANINE: [G], URACIL: [U], 
         OTHER: [A_G, C_T, C_G, A_T, G_T, A_C, C_G_T, A_G_T, A_C_T, A_C_G, A_C_G_T], 
         GAP: [GAP_1, GAP_2],
     },
@@ -68,7 +67,7 @@ CODONS = {
         C: {code: PRO for code in IUB_CODES[DNA]},  # proline
         A: {T: HIS, C: HIS, C_T: HIS,               # histidine
             A: GLN, G: GLN, A_G: GLN,},             # glutamine
-        G: {code: PRO for code in IUB_CODES[DNA]},  # proline
+        G: {code: ARG for code in IUB_CODES[DNA]},  # arginine
         },
     A: {
         T: {T: ILE, C: ILE, A: ILE, A_C: ILE, A_T: ILE, C_T: ILE, A_C_T: ILE, # isoleucine
