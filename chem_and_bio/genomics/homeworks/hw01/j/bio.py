@@ -12,22 +12,22 @@ import argparse
 from distutils.util import strtobool
 from bio_tools import *
 
-def reformat(input, seq_type, output, line_length, filter):
+def reformat(input, seq_type, output, line_length, filter, seq_start):
     # print(input, seq_type, output)
-    for name, sequence in iterSequences(input, seq_type, filter):
-        writeSequence(output, name, sequence, line_length)
+    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
+        writeSequence(output, name, sequence, line_length, seq_start)
 
-def reverse_complement(input, seq_type, output, line_length, filter):
-    for name, sequence in iterSequences(input, seq_type, filter):
-        writeSequence(output, name, getReverseComplement(sequence, seq_type), line_length)
+def reverse_complement(input, seq_type, output, line_length, filter, seq_start):
+    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
+        writeSequence(output, name, getReverseComplement(sequence, seq_type), line_length, seq_start)
 
-def statistic(input, seq_type, output, filter):
-    for name, sequence in iterSequences(input, seq_type, filter):
-        writeStatistics(output, name, sequence, seq_type)
+def statistic(input, seq_type, output, filter, seq_start):
+    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
+        writeStatistics(output, name, sequence, seq_type, seq_start)
 
-def get_region(input, seq_type, output, first, last, line_length, filter):
-    for name, sequence in iterSequences(input, seq_type, filter):
-        writeSequence(output, name, getRegion(sequence, first, last), line_length)
+def get_region(input, seq_type, output, first, last, line_length, filter, seq_start):
+    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
+        writeSequence(output, name, getRegion(sequence, first, last), line_length, seq_start)
 
 def handleFilterOption(args_dict):
     args_dict['filter'] = strtobool(args_dict['filter'])
@@ -35,9 +35,9 @@ def handleFilterOption(args_dict):
         raise AttributeError("When argument filter is set to true, seq_type is required")
     return args_dict
 
-def translate(input, seq_type, output, line_length, filter):
-    for name, sequence in iterSequences(input, seq_type, filter):
-        writeSequence(output, name, translateSequence(sequence, seq_type), line_length)
+def translate(input, seq_type, output, line_length, filter, seq_start):
+    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
+        writeSequence(output, name, translateSequence(sequence), line_length, seq_start)
 
 
 if __name__ == "__main__":
@@ -81,6 +81,8 @@ if __name__ == "__main__":
     for subparser in subparsers_list:
         subparser.add_argument("-f", "--filter", type=str.lower, help="Optional filtering, slower, safer",
             choices=['y', 'yes', 't', 'true', 'on', '1', 'n', 'no', 'f', 'false', 'off', '0'], default='false')
+        subparser.add_argument("-s", "--seq_start", metavar='str', type=str, default=SEQ_NAME_START,
+            help=f"Beginning of name of sequence, default: {SEQ_NAME_START}")
 
     # Specific arguments for command reformat
     parser_reformat.add_argument("seq_type", type=str.upper, choices=[DNA, RNA, AA],
@@ -94,8 +96,8 @@ if __name__ == "__main__":
     parser_reverse_complement.set_defaults(command=reverse_complement)
 
     # # Specific arguments for command translate
-    parser_translate.add_argument("seq_type", type=str.upper, choices=[DNA, RNA],
-        help="Type of sequence to be translated")
+    parser_translate.add_argument("-t", "--seq_type", type=str.upper, choices=[DNA, RNA],
+        help="Type of sequence to be translated, required only when filter is set true", default=None)
     parser_translate.set_defaults(command=translate)
 
     # Specific arguments for command statistic
