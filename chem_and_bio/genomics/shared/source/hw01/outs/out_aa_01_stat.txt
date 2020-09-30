@@ -1,0 +1,40 @@
+> NAME: Unknown sequence
+Length: 28
+Composition: nonpolar=35.7%, polar_uncharged=28.6%, acidic=7.14%, basic=17.9%, other=10.7%
+Checksum(crc32): 725536796
+
+> NAME: IUB CODES
+Length: 23
+Composition: nonpolar=39.1%, polar_uncharged=26.1%, acidic=8.7%, basic=13.0%, other=13.0%
+Checksum(crc32): 2300041964
+
+> NAME: JUST NAME NO SEQUENCE
+Length: 0
+Composition: nonpolar=0.0%, polar_uncharged=0.0%, acidic=0.0%, basic=0.0%, other=0.0%
+Checksum(crc32): 0
+
+> NAME: IUB codes with quotation marks newlines and other symbols
+Length: 77
+Composition: nonpolar=39.0%, polar_uncharged=26.0%, acidic=10.4%, basic=11.7%, other=13.0%
+Checksum(crc32): 2646668207
+
+> NAME: NON IUB JOU
+Length: 0
+Composition: nonpolar=0.0%, polar_uncharged=0.0%, acidic=0.0%, basic=0.0%, other=0.0%
+Checksum(crc32): 0
+
+> NAME: >> WIERD ABCDEFGHIKLMNPQRSTVWXYZ NAME ?? << LONGER THAN ANYTHING > NON IUB JOU ???????????????????? !@#$%#@^%^&*^&()&^$%@#!$!@
+Length: 0
+Composition: nonpolar=0.0%, polar_uncharged=0.0%, acidic=0.0%, basic=0.0%, other=0.0%
+Checksum(crc32): 0
+
+> NAME: NUMBERS AT THE BEGINNING, quotation, special symbols, end with many newlines
+Length: 23
+Composition: nonpolar=39.1%, polar_uncharged=26.1%, acidic=8.7%, basic=13.0%, other=13.0%
+Checksum(crc32): 2300041964
+
+> NAME: END SEQUENCE
+Length: 23
+Composition: nonpolar=39.1%, polar_uncharged=26.1%, acidic=8.7%, basic=13.0%, other=13.0%
+Checksum(crc32): 2300041964
+

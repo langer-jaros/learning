@@ -24,6 +24,7 @@ Advanced - [click](#advanced)
 - [Compare two files](#compare-two-files)
 - [Usefull commands - good to know](#usefull-commands---good-to-know)
 - [Practicals](#practicals)
+- [ssh](#ssh)
 - [Find process](#find-process)
 - [Enviroments and variables](#enviroments-and-variables)
 - [History](#history)
@@ -414,10 +415,26 @@ groups
 ### Add,delete  user | group
 
 ```sh
-adduser
-deluser
-groupadd
-goupdel
+adduser USERNAME
+deluser USERNAME
+groupadd GROUPNAME
+goupdel GROUPNAME
+```
+
+### Add user to group
+
+```sh
+usermod -a -G GROUP USER
+```
+
+### Group information
+
+Read file containing information about groups.
+Every line of the file has following structure:
+GROUP_NAME:PASSWORD:GROUP_ID:GROUP_USER_1, GROUP_USER_2, GROUP_USER_3
+
+```sh
+less /etc/group
 ```
 
 ### Change password
@@ -430,6 +447,13 @@ goupdel
 
 ```sh
 su USERNAME
+```
+
+Every su opens a new shell.
+
+```sh
+# Show number of open shells
+echo $SHLVL
 ```
 
 ### Superuser
@@ -651,18 +675,50 @@ cacaview image.jpg
 
 + hard link
 ```sh
-ln
-cp -l
+ln FILENAME LINKNAME
+cp -l FILENAME LINKNAME
 ```
 + soft link
 ```
-ln -s
-cp -s
+ln -s FILENAME LINKNAME
+cp -s FILENAME LINKNAME
 ```
 
 [Back to menu](#menu)
 
 ---
+
+## SSH
+
+```sh
+ssh USER@99.888.777.22
+```
+
+## SSHFS
+
+### Mount local direcotry to remote directory
+
+```sh
+sshfs $USER@remote.example.com:/home/$USER/code ~/remote_code
+```
+### If user on local is different than the one logging with ssh
+
+Uncomment user allow_other in /etc/fuse.conf
+
+```/etc/fuse.conf
+user_allow_other
+```
+
+```sh
+sudo sshfs -o allow_other user@myserver:/home/user/myprojects ~/mount/myprojects
+```
+
+### Unmount
+
+```sh
+fusermount -u ~/mount/myprojects
+```
+
 
 ## Find process
 

@@ -1,13 +1,12 @@
 # Homework 1
 
-`2020/09/27, Jaroslav Langer`
+`2020/09/30, Jaroslav Langer`
 
 ## Content
 
 - [Assignment](#assignment)
 - [Aliases](#aliases)
 - [Sources](#sources)
-- [TODO](#todo)
 
 ## Assignment
 
@@ -24,12 +23,14 @@ The "scripts" are created as three python files.
 for usage of the separate commands without calling `./bio.py format dna < in > out`
 
 ```sh
-alias reformat_DNA="./bio.py refo dna"
-alias reformat_AA="./bio.py reformat aa"
-alias reverse_complement="./bio.py rc"
-alias statistic_DNA="./bio.py stat dna"
-alias statistic_AA="./bio.py stat aa"
-alias translate="./bio.py tran dna"
+alias bio="./bio.py"
+alias reformat_DNA="bio reformat dna"
+alias reformat_AA="bio refo aa"
+alias reverse_complement="bio rc dna"
+alias statistic_DNA="bio statistic dna"
+alias statistic_AA="bio stat aa"
+alias get_region="bio gr"
+alias translate="bio tran"
 ```
 
 ## Sources
