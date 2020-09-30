@@ -1,45 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Name:   Bioinformatics
-Author: Jaroslav Langer (langera@vscht.cz)
-Description:
-    Script calls appropriate bio_tools function based on given arguments.
-"""
-
-import sys
-import argparse
-from distutils.util import strtobool
-from bio_tools import *
-
-def reformat(input, seq_type, output, line_length, filter, seq_start):
-    # print(input, seq_type, output)
-    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
-        writeSequence(output, name, sequence, line_length, seq_start)
-
-def reverse_complement(input, seq_type, output, line_length, filter, seq_start):
-    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
-        writeSequence(output, name, getReverseComplement(sequence, seq_type), line_length, seq_start)
-
-def statistic(input, seq_type, output, filter, seq_start):
-    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
-        writeStatistics(output, name, sequence, seq_type, seq_start)
-
-def get_region(input, seq_type, output, first, last, line_length, filter, seq_start):
-    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
-        writeSequence(output, name, getRegion(sequence, first, last), line_length, seq_start)
-
-def handleFilterOption(args_dict):
-    args_dict['filter'] = strtobool(args_dict['filter'])
-    if ('seq_type' not in args_dict):
-        raise AttributeError("When argument filter is set to true, seq_type is required")
-    return args_dict
-
-def translate(input, seq_type, output, line_length, filter, seq_start):
-    for name, sequence in iterSequences(input, seq_type, filter, seq_start):
-        writeSequence(output, name, translateSequence(sequence), line_length, seq_start)
-
-
 if __name__ == "__main__":
     # create the top-level parser
     parser = argparse.ArgumentParser(description=__doc__)
@@ -142,4 +100,11 @@ if __name__ == "__main__":
     # for name, sequence in reformatSequences(args.type):
     #     writeSequence(name, sequence)
 
-    
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('integers', type=int, nargs='2', help='range of letters both edges included, first letter has number 1')
+    args = parser.parse_args()
+    for name, sequence in iterSequences(NA, filter=True):
+        print("PL")
+        # print(sequence[args.integers[0] - 1 : args.integers[1]])
+
