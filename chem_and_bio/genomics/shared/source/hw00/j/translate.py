@@ -1,1 +1,0 @@
-# přeložit DNA do proteinu

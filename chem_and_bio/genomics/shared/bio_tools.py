@@ -72,7 +72,7 @@ def writeStatistics(file_out, name, seq, seq_type, seq_start=SEQ_NAME_START):
     file_out.write('Checksum(crc32): {}\n\n'.format(zlib.crc32(bytes(seq, "utf-8"))))
 
 def getRegion(sequence, first, last):
-    return sequence[first: last + 1]
+    return sequence[first - 1: last]
 
 def translateCodon(codon, codon_len=CODON_LEN):
     return CODONS.get(codon[0], {}).get(codon[1], {}).get(codon[2], XAA) if (len(codon) == codon_len) else XAA
