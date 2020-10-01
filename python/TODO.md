@@ -1,3 +1,7 @@
+# TODO
+
+- [Map, filter, reduce](https://book.pythontips.com/en/latest/map_filter.html)
+
 1) Sort dictionaries (homework from python)
 ```
 correlation = dict(zip(cor_matrix['survived'].index, abs(cor_matrix['survived'].values)))

@@ -710,7 +710,7 @@ user_allow_other
 ```
 
 ```sh
-sudo sshfs -o allow_other user@myserver:/home/user/myprojects ~/mount/myprojects
+sshfs -o allow_other user@myserver:/home/user/myprojects ~/mount/myprojects
 ```
 
 ### Unmount

@@ -1,8 +1,142 @@
-# TO DO
-Jaroslav Langer 
-13/10/2019
- 
-## Guessing the behaviour will be intuitive is the worst codding pracitice in history of all codding practices maybe ever!
+# TODO
+
+`2020/10/01 Jaroslav Langer`
+
+## Overview
+---
+**Knowledge engineering - must (FIT/CTU)**
+- [Μathematics for Ιnformatics](#mathematics-for-informatics)
+- [Computational Intelligence Methods](computational-intelligence-methods)
+- [Data Preprocessing](#data-preprocessing)
+- [Artificial Intelligence](#artificial-intelligence)
+---
+**Knowledge engineering - need (FIT/CTU)**
+- [Combinatorial Optimization](#combinatorial-optimization)
+- [Nonlinear Optimization and Numerical Methods](#nonlinear-optimization-and-numerical-methods)
+---
+**Bioinformatics - must (FCT/UCT)**
+- [efficient_pattern_matching]()
+- [Molecular Modelling](#molecular-modelling)
+- [Molecular Biology](#molecular-biology)
+- [Genetic Engineering](#genetic-engineering)
+- [Genomics](#genomics)
+---
+**Bioinformatics - need (FCT/UCT)**
+- [Statistical Data Analysis](#statistical-data-analysis)
+- [Genomics Practicum](#genomics-practicum)
+- [Structural Biology](#structural-biology)
+- [Biophysical Chemistry](#biophysical-chemistry)
+---
+**Learning**
+- [Python](#python)
+- [Git](#git)
+- [Shell](#shell)
+- [PHP](#php)
+- [JavaScript](#javascript)
+- [Writing](#writing)
+---
+
+## Μathematics for Ιnformatics
+
+- Marast (weekly)
+    + [Marast week 1](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 2](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 3](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 4](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 5](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 6](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 7](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 8](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 9](https://marast.fit.cvut.cz/)
+    + Coming: [Marast week 10](https://marast.fit.cvut.cz/)
+- Coming: Marast (big)
+    + Coming: [Marast big 1](https://marast.fit.cvut.cz/)
+    + Coming: [Marast big 2](https://marast.fit.cvut.cz/)
+- Coming: Assignment (form tutorial)
+
+## Computational Intelligence Methods
+
+- semestral work
+    + [Choose semsetral work](https://courses.fit.cvut.cz/NI-MVI/semestralka.html)
+        * [kaggle](https://www.kaggle.com/competitions)
+
+## Data Preprocessing
+
+- [homework 1](https://courses.fit.cvut.cz/NI-PDD/homeworks/index.html)
+- Coming: [homework 2](https://courses.fit.cvut.cz/NI-PDD/homeworks/index.html)
+- Coming: [homework 3](https://courses.fit.cvut.cz/NI-PDD/homeworks/index.html)
+
+## Artificial Intelligence
+
+- homework 1 - play tutorial, find assignment and do it
+
+## Combinatorial Optimization
+
+- [homework 1](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89693)
+- Coming: [homework 2]()
+- Coming: [homework 3]()
+- Coming: [homework 4]()
+
+## Nonlinear Optimization and Numerical Methods
+
+- [homework 1](http://mech.fsv.cvut.cz/~jk/ukol_minon1.pdf)
+- Coming: [homework 1]()
+- Coming: [homework 1]()
+
+## efficient_pattern_matching
+
+- tutorial test 1
+- tutorial test 2
+
+## Molecular Modelling
+
+- Homeworks ???
+
+## Molecular Biology
+
+- Only exam ??? check!
+
+## Genetic Engineering
+
+- Only exam ??? check!
+
+## Genomics
+
+- [homework 1](http://bio.img.cas.cz/GAA2020/E1/)
+- Coming: [Semestral work]()
+- Coming: [homework 2]()
+- Coming: [homework 3]()
+- Coming: [homework 4]()
+- Coming: [homework 5]()
+- Coming: [homework 6]()
+
+## Statistical Data Analysis
+
+- [homework 1](https://github.com/lich-uct/r_tutorial/tree/master/03/ukoly)
+- [semestral work](https://docs.google.com/spreadsheets/d/11PkHMRaTK-iHaEXgcyEsIgJgNclkCYINsDt6lB_LuVc/edit#gid=0)
+- Coming: [homework 2]()
+- Coming: [homework 3]()
+- Coming: [homework 4]()
+- Coming: [homework 5]()
+- Coming: [homework 6]()
+- Coming: [homework 7]()
+
+## Genomics Practicum
+
+- Coming: [homework 1](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/)
+- Coming: [homework 2]()
+- Coming: [homework 3]()
+- Coming: [homework 4]()
+- Coming: [homework 5]()
+- Coming: [homework 6]()
+
+## Structural Biology
+
+- Coming: optional homework 1 ???
+
+## Biophysical Chemistry
+
+
 
 ## Python
 
@@ -32,18 +166,16 @@ Jaroslav Langer
 - [how to parameters, optional, then positional, last not required, default...]
 - [nargs='?' '*'](https://stackoverflow.com/questions/4480075/argparse-optional-positional-arguments)
 - [parser print help, when nohing selected](https://stackoverflow.com/questions/3636967/python-argparse-how-can-i-display-help-automatically-on-error)
+- uzávěry
 
 
-## GIT
+## Git
+
 + delete branch to how_to_git
 > https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323
 
-## Markdown
-+ How to markdown VS code
-> https://code.visualstudio.com/docs/languages/markdown
-+ indentations
+## Shell
 
-## SHELL
 + EXPORT
 > https://www.tutorialspoint.com/unix_commands/export.htm
 
@@ -68,17 +200,23 @@ sudo apt-get install php-xml
 sudo apt-get install php-mbstring
 ```
 
-## Shortcuts
-
-[source](https://tahoeninjas.blog/2019/03/30/multi-cursor-editing-in-visual-studio-code/) ctrl+shift+l
-
-## Javascript
+## JavaScript
 Stačí napsat tohle, a pak to umí každé vytvořené pole.
 ```
 Array prototype valueIn = function()
 ```
 
+## Writing
 
-## uzávěry???
-----
-`2019/12/05, Jaroslav Langer`
+Guessing the behaviour will be intuitive is the worst codding pracitice in history of all codding practices maybe ever!
+
+### Markdown
+
++ How to markdown VS code
+> https://code.visualstudio.com/docs/languages/markdown
++ indentations
+
+
+### Shortcuts
+
+[source](https://tahoeninjas.blog/2019/03/30/multi-cursor-editing-in-visual-studio-code/) ctrl+shift+l
