@@ -39,7 +39,7 @@
 ## Μathematics for Ιnformatics
 
 - Marast (weekly)
-    + [Marast week 1](https://marast.fit.cvut.cz/)
+    + ~~[Marast week 1](https://marast.fit.cvut.cz/)~~
     + Coming: [Marast week 2](https://marast.fit.cvut.cz/)
     + Coming: [Marast week 3](https://marast.fit.cvut.cz/)
     + Coming: [Marast week 4](https://marast.fit.cvut.cz/)
@@ -56,7 +56,7 @@
 
 ## Computational Intelligence Methods
 
-- semestral work
+- Coming: semestral work
     + [Choose semsetral work](https://courses.fit.cvut.cz/NI-MVI/semestralka.html)
         * [kaggle](https://www.kaggle.com/competitions)
 
