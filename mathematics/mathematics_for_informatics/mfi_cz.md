@@ -2,7 +2,20 @@
 
 ## Marast quizes
 
-## Přednáška 3
+## P02 -
+
+grupoid - a,b náleží M, a b.r. b náleží M
+pologrupa - b.r. je asociativní
+monoid  - pologrupa + neutrální prvek
+grupa - monoid + inverzní prvek pro všechny prvky
+abelovská grupa - grupa, b.r. je komutativní 
+
+Cayleyho tabulka řádem m, sloupec n
+- pokud je grupa, pak je latinský čtverec
+
+Cayleyho orientovaný graf
+
+## P03 -
 
 aditivní modulární grupa modulo n
 multiplikativní modulární grupa mod n

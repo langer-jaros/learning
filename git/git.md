@@ -327,6 +327,12 @@ git stash show -p stash@{1}
 git stash drop
 ```
 
+## Remove unwanted staging of many files
+
+```sh
+git reset
+```
+
 ## Remove changes after commit
 
 Reset current head to the specific state (commit)

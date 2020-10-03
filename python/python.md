@@ -22,7 +22,13 @@
 Advanced
 - [Regex](#regex)
 - [lambda](#lambda)
+- [argparse](#argparse)
+- [ctypes](#ctypes)
 - [Python 2 differences](#python-2-differences)
+
+## Links
+
+[Tutorial place](https://realpython.com/)
 
 ## Comments
 
@@ -349,6 +355,13 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--type", choices=[NA, AA], help="reformat nucleic acid or amino acid sequence")
     args = parser.parse_args()
 ```
+
+## ctypes
+
+[top source](https://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/)
+[real pyhton c binding](https://realpython.com/python-bindings-overview/)
+[source 2](https://medium.com/@stephenscotttucker/interfacing-python-with-c-using-ctypes-classes-and-arrays-42534d562ce7)
+[source 3](https://solarianprogrammer.com/2019/07/18/python-using-c-cpp-libraries-ctypes/)
 
 ## Python 2 differences
 
