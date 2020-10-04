@@ -18,6 +18,7 @@
 - [Imports](#imports)
 - [Inputs, outputs](#inputs,-outputs)
 - [Asserting](#asserting)
+- [json](#json)
 
 Advanced
 - [Regex](#regex)
@@ -270,6 +271,9 @@ multiple files
 with open("file_1.txt", mode="r") as f_in, open("file_2.txt", mode="w") as f_out:
     f_out.write(f_in.readline())
 ```
+
+[source](https://www.w3schools.com/python/python_file_write.asp)
+
 #### Modes
 
 - r: 
@@ -312,6 +316,14 @@ with open('obrazek.png', mode='rb') as f:
 ## Asserting
 ```py
 assert(len(tables)==1), f"len(tables) = {len(tables)}"
+```
+
+## Json
+
+```py
+import json
+
+json_string = json.dumps({1: "yes", 2: "no", 3: "maybe"})
 ```
 
 ## Regex
@@ -360,8 +372,18 @@ if __name__ == "__main__":
 
 [top source](https://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/)
 [real pyhton c binding](https://realpython.com/python-bindings-overview/)
+[read docu for c/python types](https://docs.python.org/3.6/library/ctypes.html)
 [source 2](https://medium.com/@stephenscotttucker/interfacing-python-with-c-using-ctypes-classes-and-arrays-42534d562ce7)
 [source 3](https://solarianprogrammer.com/2019/07/18/python-using-c-cpp-libraries-ctypes/)
+
+```cpp
+void c_fun(const char * bytes);
+```
+
+```py
+c_fun("super unicode".encode())
+```
+[pass unicode as bytes](https://stackoverflow.com/questions/27285405/how-can-ctypes-be-used-to-parse-unicode-strings)
 
 ## Python 2 differences
 

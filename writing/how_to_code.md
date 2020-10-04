@@ -25,4 +25,10 @@ It will probably work if you don't but it will likely to work in other way than 
 
 ## Test driven development
 
+## Debugging
+
+Do not debug code with debugging prints. It is simle, it is straight forward and it is so bad.
+I was doing ti for much longer than i should have. Now I perform debugging inside of MS code.
+
+[link](https://code.visualstudio.com/docs/cpp/config-linux)
 
