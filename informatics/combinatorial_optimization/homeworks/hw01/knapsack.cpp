@@ -1,4 +1,8 @@
 #include <iostream>
+#include <fstream>
+#include <chrono>
+#include "knapsack.h"
+
 using namespace std;
 
 void showProblem(int n, int m, int b, int *wgts, int *vals)
@@ -11,14 +15,26 @@ void showProblem(int n, int m, int b, int *wgts, int *vals)
 
 void showDecision(bool decision, int n, int *wgts, int *vals, bool *solution)
 {
-    cout << "Decision: " << decision << " ";
+    cout << decision << "\t";
     int value = 0;
     int i;
     for (i = 0; i < n; i++)
         value += vals[i] * solution[i];
-    cout << value << " ";
+    cout << value << "\t";
     for (i = 0; i < n; i++)
         (i < n - 1)? cout << solution[i] << " ": cout << solution[i] << endl;
+}
+
+void writeDecision(ofstream *f_out, int id, bool decision, int n, int *wgts, int *vals, bool *solution)
+{
+    int value = 0;
+    int i;
+    for (i = 0; i < n; i++)
+        value += vals[i] * solution[i];
+    
+    *f_out << id << " " << decision << " " << value << " ";
+    for (i = 0; i < n; i++)
+        (i < n - 1)? *f_out << solution[i] << " ": *f_out << solution[i] << endl;
 }
 
 /**
@@ -34,7 +50,7 @@ void showDecision(bool decision, int n, int *wgts, int *vals, bool *solution)
  */
 bool decide(bool *sol, int wgt, int val, int idx, int n, int m, int b, int *wgts, int *vals)
 {
-    if (wgt >= m) {
+    if (wgt > m) {
         return false;
     } else if (val >= b) {
         return true;
@@ -53,24 +69,68 @@ bool decide(bool *sol, int wgt, int val, int idx, int n, int m, int b, int *wgts
     return false;
 }
 
-int main () {
-    // INPUT FORMAT: "ID n M B weight value weight value"
-    int id, n, m, b;
-    cin >> id >> n >> m >> b;
-    int *weights = new int [n];
-    int *values = new int [n];
-    int i = 0;
-    while (cin >> weights[i] >> values[i++])
-        ; // just reading the input
+double solve(const char *file_in, const char *file_out)
+{
+    auto start = std::chrono::steady_clock::now();
 
-    // showProblem(n, m, b, weights, values);
-    
-    bool *solution = new bool [n];
+    int id, n, m, b;
+    int *weights, *values;
+    int i;
+    bool *solution;
     bool decision;
 
-    decision = decide(solution, 0, 0, 0, n, m, b, weights, values);
+    ifstream f_in;
+    f_in.open(file_in);
+    ofstream f_out;
+    f_out.open(file_out);
+
+    while (f_in >> id >> n >> m >> b) {
+        weights = new int [n];
+        values = new int [n];
+        for (i = 0; i < n; i++) {
+            f_in >> weights[i] >> values[i];
+        }
+        // showProblem(n, m, b, weights, values);
+        solution = new bool[n]();
+        decision = decide(solution, 0, 0, 0, n, m, b, weights, values);
+        writeDecision(&f_out, id, decision, n, weights, values, solution);
+        delete weights;
+        delete values;
+        delete solution;
+    }
+    f_in.close();
+    f_out.close();
+    auto end = std::chrono::steady_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end-start;
+    return elapsed_seconds.count();
+}
+
+int main () {
+    double time;
+    // time = solve("./data/nr/NR4_inst.dat", "./data/jl/NR4.txt");
+    time = solve("./data/in", "./data/jl/NR4.txt"); //_10_1_10.txt
+
     
-    showDecision(decision, n, weights, values, solution);
-    
+    // INPUT FORMAT: "ID n M B weight value weight value"
+    // int id, n, m, b;
+    // int *weights, *values;
+    // int i;
+    // bool *solution;
+    // bool decision;
+
+    // while (cin >> id >> n >> m >> b) {
+    //     weights = new int [n];
+    //     values = new int [n];
+    //     for (i = 0; i < n; i++) {
+    //         cin >> weights[i] >> values[i];
+    //     }
+    //     // showProblem(n, m, b, weights, values);
+    //     solution = new bool[n]();
+    //     decision = decide(solution, 0, 0, 0, n, m, b, weights, values);
+    //     showDecision(decision, n, weights, values, solution);
+    //     delete weights;
+    //     delete values;
+    //     delete solution;
+    // }
     return 0;
 }

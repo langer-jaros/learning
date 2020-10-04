@@ -139,6 +139,14 @@ df = ldf[0]
 
 ---
 
+### Dataframe from json
+
+```py
+pd.read_json("./time_spent.json", orient="index")
+```
+
+[types of json structure](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html)
+
 ### First look at the Dataframe
 
 ```py
@@ -247,16 +255,22 @@ for index, row in df.iterrows():
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
 
-### Rows and cols - loc, iloc
+### loc - Specify rows, and cols at the same time
+
+Usage: dataFrame.loc[<ROWS RANGE> , <COLUMNS RANGE>]
 
 ```py
-# Specify rows, and cols at the same time
 # LOC takes 2:5 like [2,3,4,5]
 data1.loc[2:5, ['Name', 'Age']]
 # Same as (the 5 is there correctly, wierd)
 data1.loc[[2,3,4,5], ['Name', 'Age']]
+```
 
-# Accessing through indices
+### iloc - Accessing through indices
+
+Usage: dataFrame.iloc[<ROWS INDEX RANGE> , <COLUMNS INDEX RANGE>]
+
+```py
 # ILOC takes 2:5 like [2,3,4]
 data1.iloc[2:5, [3,5]]
 # Same as
@@ -265,6 +279,7 @@ data1.iloc[[2,3,4], [3,5]]
 # iloc with bools (take arrays)
 data1.iloc[(data1['Age'] < 30).values, [3,5]]
 ```
+[usages from here](https://thispointer.com/select-rows-columns-by-name-or-index-in-dataframe-using-loc-iloc-python-pandas/)
 [loc iloc source](https://www.pythonprogramming.in/what-is-difference-between-iloc-and-loc-in-pandas.html)
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
