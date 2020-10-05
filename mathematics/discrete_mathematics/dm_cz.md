@@ -34,7 +34,7 @@ r1 = b
 rn = rn-2 mod rn-1
 ```
 
-### EEA - rozšířený euklidův algoritmus
+### EEA - rozšířený euklidův algoritmus (REA)
 
 ```
 α = 254, β = 158

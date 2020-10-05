@@ -2,11 +2,12 @@
 
 ## Lectures
 
-- [Lecture 1](#lecture-1)
-- [Lecture 2](#lecture-2)
+- [L01 - Basic notions, border array](#l01---basic-notions,-border-array)
+- [L02 - Text full index: Suffix array, Suffix Sorting](#l02---text-full-index:-suffix-array,-suffix-sorting)
+- [L03 - Text full index: Suffix tree, LCP construction](#l03---text-full-index:-suffix-tree,-lcp-construction)
+- [](#)
 
-
-## Lecture 1
+## L01 - Basic notions, border array
 
 ## Alphabet
 
@@ -49,7 +50,41 @@
 
 ## Normal form
 
-## Lecture 2
+## L02 - Text full index: Suffix array, Suffix Sorting
+
+### Searching in list of strings
+
+Membership problem
+
+Interval problem
+
+### DEF LCP - Longest common prefix
+```
+Let u, v ∈ Σ∗. The longest common prefix lcp(u, v) is the longest prefix
+common to u and v.
+```
+
+### Algoritm: Simple-search-MP
+```
+Algorithm Simple-Search-MP
+Input: L, n, x, m
+Output: index i, Li = x, or indices d and f.
+1: d ← −1
+2: f ← n
+3: while d + 1 < f do
+4:      i ← ⌊(d + f)/2⌋
+5:      ℓ ← |lcp(x , Li)|
+6:      if ℓ = m and ℓ = |Li| then return i
+7:      else if (ℓ = |Li|) or (ℓ 6= m and Li[ℓ] < x[ℓ]) then
+8:          d ← i
+9:      else
+10:         f ← i
+11:     end if
+12: end while
+13: return (d, f)
+``` 
+
+## L03 - Text full index: Suffix tree, LCP construction
 
 ## Symbols
 
