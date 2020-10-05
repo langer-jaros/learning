@@ -28,18 +28,19 @@
 - [Biophysical Chemistry](#biophysical-chemistry)
 ---
 **Learning**
+- [Writing](#writing)
 - [Python](#python)
 - [Git](#git)
 - [Shell](#shell)
 - [PHP](#php)
 - [JavaScript](#javascript)
-- [Writing](#writing)
 ---
 
 ## Μathematics for Ιnformatics
 
 - Marast (weekly)
     + ~~[Marast week 1](https://marast.fit.cvut.cz/)~~
+    + Velká fermatova věta
     + Coming: [Marast week 2](https://marast.fit.cvut.cz/)
     + Coming: [Marast week 3](https://marast.fit.cvut.cz/)
     + Coming: [Marast week 4](https://marast.fit.cvut.cz/)
@@ -73,9 +74,12 @@
 ## Combinatorial Optimization
 
 - [homework 1](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89693)
+    + [plotly instead of pandas?](https://towardsdatascience.com/matplotlib-vs-seaborn-vs-plotly-f2b79f5bddb)
+    + [latex for report](#latex)
 - Coming: [homework 2]()
 - Coming: [homework 3]()
 - Coming: [homework 4]()
+
 
 ## Nonlinear Optimization and Numerical Methods
 
@@ -136,9 +140,30 @@
 
 ## Biophysical Chemistry
 
+## Writing
+
+### Latex
+
+
+### How to write code
+
+Guessing the behaviour will be intuitive is the worst codding pracitice in history of all codding practices maybe ever!
+
+### Markdown
+
++ How to markdown VS code
+> https://code.visualstudio.com/docs/languages/markdown
++ indentations
+
+
+### Shortcuts
+
+[source](https://tahoeninjas.blog/2019/03/30/multi-cursor-editing-in-visual-studio-code/) ctrl+shift+l
 
 
 ## Python
+
+- [pathlib Path](https://docs.python.org/3/library/pathlib.html)
 
 - [list comprehension, flattening list :oooooooooooo](https://stackoverflow.com/questions/952914/how-to-make-a-flat-list-out-of-list-of-lists)
 - [dict comprehension](https://www.datacamp.com/community/tutorials/python-dictionary-comprehension)
@@ -205,18 +230,3 @@ Stačí napsat tohle, a pak to umí každé vytvořené pole.
 ```
 Array prototype valueIn = function()
 ```
-
-## Writing
-
-Guessing the behaviour will be intuitive is the worst codding pracitice in history of all codding practices maybe ever!
-
-### Markdown
-
-+ How to markdown VS code
-> https://code.visualstudio.com/docs/languages/markdown
-+ indentations
-
-
-### Shortcuts
-
-[source](https://tahoeninjas.blog/2019/03/30/multi-cursor-editing-in-visual-studio-code/) ctrl+shift+l

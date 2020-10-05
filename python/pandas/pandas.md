@@ -53,6 +53,16 @@ import requests
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
 
+### Create dataframe form dictionary
+
+```py
+lists = [[1,2,3,4], [2,3,4], [5,2,4,7,8]]
+lengths = [len(sublist) for sublist in lists]
+
+df_dict = {"lengths": lengths, "lists": lists}
+df = pd.DataFrame(df_dict)
+```
+
 ### Get dataframe from csv
 
 ```py

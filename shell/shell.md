@@ -218,6 +218,7 @@ cp -r dir1 dir2
 
 # Move file to another place
 mv /old/path/to/file1 /new/path/to/file1
+
 # Rename file1 as file2 and check if not overwriting
 mv -i file1 file2
 
@@ -694,6 +695,34 @@ cp -s FILENAME LINKNAME
 ssh USER@99.888.777.22
 ```
 
+### Copy files over ssh
+
+scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
+
+```sh
+scp -r compute  USER@78.128.250.10:/home/USER/computing/
+```
+
+[scp link](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/)
+
+### Screen
+
+```sh
+# Creat screen 
+screen
+
+# Detach from screen
+screen -d
+
+# Reattach to screen
+screen -r
+
+# List all screens
+screen -ls
+```
+
+[screen link](https://linuxize.com/post/how-to-use-linux-screen/)
+
 ## SSHFS
 
 ### Mount local direcotry to remote directory
@@ -726,6 +755,18 @@ fusermount -u ~/mount/myprojects
 ps aux | grep cat
 ```
 [Back to menu](#menu)
+
+### Kill process
+
+```sh
+# kill one specific precess id
+kill -9 3827
+
+# kill family of proceses
+killall -9 chrome
+```
+
+[source](https://www.linux.com/training-tutorials/how-kill-process-command-line/)
 
 ---
 

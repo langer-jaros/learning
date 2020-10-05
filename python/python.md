@@ -23,6 +23,7 @@
 Advanced
 - [Regex](#regex)
 - [lambda](#lambda)
+- [datetime](#datetime)
 - [argparse](#argparse)
 - [ctypes](#ctypes)
 - [Python 2 differences](#python-2-differences)
@@ -276,14 +277,15 @@ with open("file_1.txt", mode="r") as f_in, open("file_2.txt", mode="w") as f_out
 
 #### Modes
 
+- x: create file, error if already exists
 - r: 
 - rb: 
 - r+: 
-- w: 
+- w: rewrite existing, create if does not exist
 - wb: 
 - w+: 
 - wb+:
-- a: 
+- a: append to existing, create if does not exist
 - ab: 
 - a+: 
 - ab+:
@@ -312,6 +314,15 @@ with open('obrazek.png', mode='rb') as f:
 ```
 
 [source](http://vyuka.ookami.cz/materialy/python/files/basics.xml)
+
+## os
+
+```py
+import os
+
+# Get full (absolute) path (maybe antipattern, dunno)
+os.path.abspath("./build/knapsack.so")
+```
 
 ## Asserting
 ```py
@@ -356,6 +367,19 @@ candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
 ```
 
 [More information](https://thispointer.com/python-how-to-use-if-else-elif-in-lambda-functions/)
+
+## Datetime
+
+```py
+from datetime import datetime
+
+now = datetime.now()
+
+current_time = now.strftime("%H:%M:%S")
+print("Current Time =", current_time)
+```
+
+[datetime link](https://www.programiz.com/python-programming/datetime/current-time)
 
 ## argparse
 

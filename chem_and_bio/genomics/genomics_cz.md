@@ -12,9 +12,12 @@
 - [sources](http://bio.img.cas.cz/GAA2020/)
 
 ```sh
+# Mount shared folders, to easily work localy
+sshfs -o allow_other langera@78.128.250.10:/home/langera/shared ~/Projects/learning/chem_and_bio/genomics/shared
+
+# log in via ssh
 ssh langera@78.128.250.10
 ```
-
 
 ## Přednáška 1
 

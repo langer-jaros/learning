@@ -1,0 +1,7 @@
+{
+    "python.dataScience.jupyterServerURI": "http://127.0.0.1:8888/?token=17a47d50f952dc26a94406b139a47ddc2fcb797c8c067cc6",
+    "files.associations": {
+        "iostream": "cpp",
+        "new": "cpp"
+    }
+}
