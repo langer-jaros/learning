@@ -9,8 +9,8 @@ clib.solve.restype = c_double
 
 NUMBERS = [4, 10, 15, 20, 22, 25, 27, 30, 32, 35, 37, 40] # [4, 10, 15, 20]
 
-INSTANCES = "../data/nr/NR{n}_inst.dat"
-RESULTS = "../data/nr/res/N{n}.csv"
+INSTANCES = "../data/zr/ZR{n}_inst.dat" # "../data/nr/NR{n}_inst.dat"
+RESULTS = "../data/zr/res/Z{n}.csv"
 
 
 for n in NUMBERS:

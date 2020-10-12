@@ -76,6 +76,7 @@
 - [homework 1](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89693)
     + [plotly instead of pandas?](https://towardsdatascience.com/matplotlib-vs-seaborn-vs-plotly-f2b79f5bddb)
     + [latex for report](#latex)
+    + basic combinatorics - discrete math?
 - Coming: [homework 2]()
 - Coming: [homework 3]()
 - Coming: [homework 4]()
@@ -127,10 +128,10 @@
 
 ## Genomics Practicum
 
-- Coming: [homework 1](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/)
-- Coming: [homework 2]()
-- Coming: [homework 3]()
-- Coming: [homework 4]()
+- Coming: [homework 1](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/dcvs-1.html)
+- Coming: [homework 2](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/dcvs-1.html)
+- Coming: [homework 3](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/dcvs-1.html)
+- Coming: [homework 4](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/dcvs-1.html)
 - Coming: [homework 5]()
 - Coming: [homework 6]()
 

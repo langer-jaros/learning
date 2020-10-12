@@ -1,0 +1,40 @@
+> NAME: Unknown sequence
+Length: 20
+Composition: adenine=10.0%, cytosine=5.0%, guanine=5.0%, thymine=10.0%, other=70.0%, gap=0.0%
+Checksum(crc32): 2750406824
+
+> NAME: IUB CODES
+Length: 15
+Composition: adenine=6.67%, cytosine=6.67%, guanine=6.67%, thymine=6.67%, other=73.3%, gap=0.0%
+Checksum(crc32): 3690676546
+
+> NAME: JUST NAME NO SEQUENCE
+Length: 0
+Composition: adenine=0.0%, cytosine=0.0%, guanine=0.0%, thymine=0.0%, other=0.0%, gap=0.0%
+Checksum(crc32): 0
+
+> NAME: IUB codes with quotation marks newlines and other symbols
+Length: 53
+Composition: adenine=7.55%, cytosine=7.55%, guanine=5.66%, thymine=5.66%, other=69.8%, gap=3.77%
+Checksum(crc32): 4111025013
+
+> NAME: NON IUB EFIJLOPQUXZ
+Length: 0
+Composition: adenine=0.0%, cytosine=0.0%, guanine=0.0%, thymine=0.0%, other=0.0%, gap=0.0%
+Checksum(crc32): 0
+
+> NAME: >> WIERD ACGTRYKMSWBDHVN NAME ?? << LONGER THAN ANYTHING > NON IUB EFIJLOPQUXZ ???????????????????? !@#$%#@^%^&*^&()&^$%@#!$!@
+Length: 0
+Composition: adenine=0.0%, cytosine=0.0%, guanine=0.0%, thymine=0.0%, other=0.0%, gap=0.0%
+Checksum(crc32): 0
+
+> NAME: NUMBERS AT THE BEGINNING, quotation, special symbols, end with many newlines
+Length: 15
+Composition: adenine=6.67%, cytosine=6.67%, guanine=6.67%, thymine=6.67%, other=73.3%, gap=0.0%
+Checksum(crc32): 3690676546
+
+> NAME: END SEQUENCE
+Length: 15
+Composition: adenine=6.67%, cytosine=6.67%, guanine=6.67%, thymine=6.67%, other=73.3%, gap=0.0%
+Checksum(crc32): 3690676546
+

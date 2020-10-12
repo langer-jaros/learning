@@ -73,13 +73,31 @@ bool decide(bool *sol, int &cmx, int wgt, int val, int idx, int n, int m, int b,
     return false;
 }
 
+bool decide_naive(bool *sol, bool *tmp, unsigned long long int &cmx, int wgt, int val, int idx,
+    int n, int m, int b, int *wgts, int *vals)
+{
+    if (idx > n - 1) {
+        cmx++;
+        return (wgt <= m && val >= b)? true: false;
+    }
+    bool keep;
+    bool *ptr;
+    keep = (decide_naive(sol, tmp, cmx, wgt + wgts[idx], val + vals[idx], idx+1, n, m, b, wgts, vals));
+    ptr = (keep)? tmp: sol;
+
+    if (decide_naive(ptr, tmp, cmx, wgt, val, idx+1, n, m, b, wgts, vals) || keep)
+        return true;
+    return false;
+}
+
+
 double solve(const char *file_in, const char *file_out)
 {
     int id, n, m, b;
     int *weights, *values;
     int i;
-    bool *solution;
-    int complexity;
+    bool *solution, *temporary;
+    unsigned long long int complexity;
     double seconds;
     bool decision;
 
@@ -99,8 +117,9 @@ double solve(const char *file_in, const char *file_out)
         }
         // showProblem(n, m, b, weights, values);
         solution = new bool[n]();
-        complexity = 1;
-        decision = decide(solution, complexity, 0, 0, 0, n, m, b, weights, values);
+        temporary = new bool[n];
+        complexity = 0;
+        decision = decide_naive(solution, temporary, complexity, 0, 0, 0, n, m, b, weights, values);
         
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double> elapsed_seconds = end-start;
@@ -119,7 +138,7 @@ int main () {
     double time;
     // time = solve("./data/nr/NR4_inst.dat", "./data/jl/NR4.txt");
     // time = solve("../data/nr/NR4_inst.dat", "../blbost"); //_10_1_10.txt
-    time = solve("./data/nr/NR15_inst.dat", "./test_here.txt"); //_10_1_10.txt
+    time = solve("../data/nr/NR15_inst.dat", "./test_here.txt"); //_10_1_10.txt
     cout << time << " seconds" << endl;
     
     // INPUT FORMAT: "ID n M B weight value weight value"
