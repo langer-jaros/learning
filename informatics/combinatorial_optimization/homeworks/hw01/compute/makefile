@@ -1,6 +1,3 @@
-compute : knapsack.so
-	python3 compute.py
-
 knapsack.so : knapsack.o
 	g++ -shared -Wl,-soname,build/knapsack.so -o build/knapsack.so build/knapsack.o
 

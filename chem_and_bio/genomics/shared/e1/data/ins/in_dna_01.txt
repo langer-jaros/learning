@@ -1,0 +1,27 @@
+      TRASH AcGTrYKmSWbDHvN XXX325>
+> IUB CODES
+ACGTRYKMSWBDHVN
+> JUST NAME NO SEQUENCE
+> IUB codes with quotation marks newlines and other symbols
+IUB_CODES = {
+    NA: ['A','C','G','T','R','Y','K','M','S','W','B','D','H','V','N'],
+}
+A1C!G2T@R3Y#K4M%S6W^B7D&H8V*N9
+(E0F)I-J_L=O+P[Q{U]X}Z;
+A:C'G"T\R|Y,K<M.S>W/B?D`H~VN
+> NON IUB EFIJLOPQUXZ
+EFIJLOPQUXZ
+>>> WIERD ACGTRYKMSWBDHVN NAME ?? << LONGER THAN ANYTHING > NON IUB EFIJLOPQUXZ ???????????????????? !@#$%#@^%^&*^&()&^$%@#!$!@
+> NUMBERS AT THE BEGINNING, quotation, special symbols, end with many newlines
+      1     'A','C','G','T'
+      5     'R','Y','K','M'
+      9     'S','W','B','D','H','V','N'],
+
+
+> END SEQUENCE
+ACGT
+RYKM
+SWBD
+HVN
+
+

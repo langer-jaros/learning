@@ -6,6 +6,10 @@
 - [Přednáška 2](#přednáška-2)
 - [Přednáška 3](#přednáška-3)
 
+Nahrát na gitlab, přidat cvičícího jako pozorovatele.
+(Můžu odevzdat klidně ještě vysavač)
+[results](https://users.fit.cvut.cz/surynpav/teaching/restricted_2020-2021-ZS/results.php)
+
 ## Přednáška 1
 
 ## Definice ai
@@ -121,7 +125,10 @@ Tvorba pasivních artefaktů.
 (X, D, C)
 - X - konečná množina proměnných - vlastnosti rozhodující o řešení
 - D - konečná doména (možnosti)
-- C - množina podmínek nad X
+- C - množina podmínek nad X 
+    + relací - podmnožina kartézského součinu domény
+
+Konjunkce všech podmínek
 
 ### Definice
 
@@ -136,12 +143,14 @@ Tvorba pasivních artefaktů.
 - DFS v kontextu CSP
     + dopředný chod - přiřazují se proměnné
     + zpětný chod - odpřiřadí se poslední proměnná a zkouší se znovu
+- složitost velikost domény na počet proměnných
 
 ## Filtrace domén
 
 ### Forward checking
 
 - při akci zkontroluji pro všechny dotčené podmínky dotčené proměnné a vyškrtneme z pracovní domény proměné (nesplňující ohodnocení)
+- kontrola podpory, kontrola jestli hodnota dotčené proměnné neztratila podporu
 
 ## Arc consistency - Hranová konzistence
 
@@ -149,6 +158,8 @@ Tvorba pasivních artefaktů.
 (pro každou proměnou v pracovní doméně hledáme podporu, taková D2, že s D1 splňují podmínku)
 - dvě proměné jsou 
 - cíl celý problém má být hranově konzistentní
+- všechny hrany musejí být oboustranně konzistentní (všchny hodnoty jedné proměnné mají podporu a opačně)
+    + kontrola zasažených hran
 
 ### algoritmus AC3 
 
@@ -190,6 +201,10 @@ CSP s rozvrhováním - výrobní linky atd
 
 ## Přednáška 3
 
+## Back jumping
+- spočítám konfliktní množinu
+- listové řešení
+- nelistové řešení
 
 ## TODO
 

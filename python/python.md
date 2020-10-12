@@ -2,10 +2,6 @@
 
 `2020/03/17, Jaroslav Langer`
 
-## TODO
-
-+ work with datetime [link](https://www.journaldev.com/23365/python-string-to-datetime-strptime) string to datetime
-
 ## MENU
 
 - [Comments](#comments)
@@ -25,6 +21,7 @@ Advanced
 - [lambda](#lambda)
 - [datetime](#datetime)
 - [argparse](#argparse)
+- [compress, decompress, checksum](#compress,-decompress,-checksum)
 - [ctypes](#ctypes)
 - [Python 2 differences](#python-2-differences)
 
@@ -171,7 +168,22 @@ pathToNewFile = f'{download_folder}{xlsName}.{"xls"}'
 "string about nothing".find('abo')
 # rfind
 ".hiden_file_.txt".rfind('.')
+
+# count
+question = "Hi mom, how much coins i need to buy coin keeper for my coin sessions?"
+question.count("coin") # 3
 ```
+
+## Bytes
+
+```py
+bytes_1 = b"Bytes form this string"
+bytes_2 = "Bytes form this string".encode()
+
+string_from_bytes = bytes_1.decode()
+```
+
+[link](https://www.tutorialspoint.com/python/string_decode.htm)
 
 ## Collections
 
@@ -370,6 +382,7 @@ candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
 
 ## Datetime
 
+
 ```py
 from datetime import datetime
 
@@ -381,6 +394,19 @@ print("Current Time =", current_time)
 
 [datetime link](https://www.programiz.com/python-programming/datetime/current-time)
 
+```
+from datetime import datetime
+
+datetime_str = '09/19/18 13:55:26'
+
+datetime_object = datetime.strptime(datetime_str, '%m/%d/%y %H:%M:%S')
+
+print(type(datetime_object))
+print(datetime_object)  # printed in default format
+```
+
+[work with datetime](https://www.journaldev.com/23365/python-string-to-datetime-strptime) string to datetime
+
 ## argparse
 
 ```py
@@ -391,6 +417,23 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--type", choices=[NA, AA], help="reformat nucleic acid or amino acid sequence")
     args = parser.parse_args()
 ```
+
+## Compress, decompress, checksum
+
+```py
+# Compute crc32 checksum
+import zlib 
+  
+string = 'I want this checksum'
+
+# using zlib.crc32() method 
+checksum = zlib.crc32(s.encode())
+checksum_1 = zlib.crc32(b"Also checksum of this.")
+
+print(checksum, checksum_1) 
+```
+[python zlib](https://docs.python.org/3/library/zlib.html)
+
 
 ## ctypes
 

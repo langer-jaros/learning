@@ -1,0 +1,5 @@
+> NAME: Unknown sequence
+Length: 3651
+Composition: adenine=29.6%, cytosine=22.0%, guanine=22.5%, thymine=25.9%, other=0.0%, gap=0.0%
+Checksum(crc32): 3344005577
+

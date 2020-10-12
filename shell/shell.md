@@ -719,9 +719,13 @@ screen -r
 
 # List all screens
 screen -ls
+
+# Kill screen
+screen -X -S SESSION_ID_FROM_LS kill
 ```
 
 [screen link](https://linuxize.com/post/how-to-use-linux-screen/)
+[kill screen](https://stackoverflow.com/questions/1509677/kill-detached-screen-session)
 
 ## SSHFS
 
