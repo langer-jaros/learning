@@ -1,6 +1,6 @@
 # Exact methods for the knapsack problem <!-- omit in toc -->
 
-2020/10/12
+2020/10/13
 
 Jaroslav Langer
 
@@ -16,6 +16,8 @@ Jaroslav Langer
   - [Brute force implementation](#brute-force-implementation)
   - [Branch and bound implementation](#branch-and-bound-implementation)
 - [Results](#results)
+  - [Histograms](#histograms)
+  - [Mean complexity per input size](#mean-complexity-per-input-size)
 - [Conclusions](#conclusions)
 
 ## Decision version of knapsack problem
@@ -63,9 +65,28 @@ Unlike the brute force implementation B&B call itself twice only if the first tr
 
 ## Results
 
+### Histograms
+
+![Complexity set nr](./figures/histogram_nr_complexity.png)
+
+![Complexity set zr](./figures/histogram_zr_complexity.png)
+
+![Time consumption set nr](./figures/histogram_nr_seconds.png)
+
+![Time consumption](./figures/histogram_zr_seconds.png)
+
+### Mean complexity per input size
+
+![Mean complexity per input size](./figures/linechart_zr_complexity.png)
+
+![Mean time consumption per input size](./figures/linechart_zr_seconds.png)
+
+
 naměřené výsledky v přehledné formě (nikoliv nepřehledná změť dat)
 
 ## Conclusions
 
-závěr: interpretace výsledků a zdůvodnění jejich kvality
+Histograms of Brute Force methods shows, that the complexity is input independent. Branch and bound method has much more interesting histograms, as most of the values are distributed at the tails of the value ranges. I assume this is because the fact, that most of the problems either have solution and then it is possible to find it quickly, or the solution does not exist and the weights are not high enough to stop the exploration.
+
+Talking about the complexity dependencies on the input size the results are quite clear. Mr. Evil made the ZR set hard to branch and bound, having said that it is stil better than brute force itself.
 
