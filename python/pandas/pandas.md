@@ -6,6 +6,7 @@ First things first
 + [Import pandas](#import-pandas)
 
 Get data into DataFrames
++ [Dataframe form dictionary](#dataframe-form-dictionary)
 + [Get dataframe from csv](#get-dataframe-from-csv)
 + [Write dataframe to csv](#write-dataframe-to-csv)
 + [DataFrame from XML](#dataframe-from-xml)
@@ -34,12 +35,8 @@ Advanced features
 
 ### TODO
 
-```py
-DF.set_index('columnName')
-```
 [Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
 [Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
-[index](https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html)
 
 data['embarked'] = data[['embarked']].astype('category').apply(lambda x: x.cat.codes)
 
@@ -53,7 +50,7 @@ import requests
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
 
-### Create dataframe form dictionary
+### Dataframe form dictionary
 
 ```py
 lists = [[1,2,3,4], [2,3,4], [5,2,4,7,8]]
@@ -62,6 +59,8 @@ lengths = [len(sublist) for sublist in lists]
 df_dict = {"lengths": lengths, "lists": lists}
 df = pd.DataFrame(df_dict)
 ```
+
+[df from dicts and lists](https://pbpython.com/pandas-list-dict.html)
 
 ### Get dataframe from csv
 
@@ -344,6 +343,12 @@ dataUJAK[dataUJAK['Rok'] > 2000].groupby(['Název práce']).size().sort_values(a
 ### Work with dataframe columns
 
 ```py
+# Set index from column
+DF.set_index('columnName')
+
+# Updating the index
+data.index = range(data.shape[0])
+
 # Drop columns
 data2_tmp = data2_tmp.drop(['FootSize',data2.columns[0]], axis=1)
 
@@ -412,8 +417,8 @@ data1['Age'][0:10] = 10
 # Change value of slice
 data1.loc[0:10, ['Age']] = 0
 
-# Updating the index
-data.index = range(data.shape[0])
+# Remove duplicated indices
+df3 = df3[~df3.index.duplicated(keep='first')]
 
 # Replace values with
 data = data.replace('?', np.nan)
@@ -424,6 +429,10 @@ data = data.replace('?', np.nan)
 [strip](https://www.geeksforgeeks.org/python-pandas-series-str-strip-lstrip-and-rstrip/)
 
 [apply](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html)
+
+[index](https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html)
+
+[remove duplicated indices](https://stackoverflow.com/questions/13035764/remove-rows-with-duplicate-indices-pandas-dataframe-and-timeseries)
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
 

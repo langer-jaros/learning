@@ -41,4 +41,7 @@ pip3 install BeautifulSoup4
 pip3 install xlrd
 pip3 install pywebcopy
 pip3 install pillow
+
+pip3 install plotly
+pip3 install -U kaleido
 ```

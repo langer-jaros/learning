@@ -31,4 +31,3 @@ Do not debug code with debugging prints. It is simle, it is straight forward and
 I was doing ti for much longer than i should have. Now I perform debugging inside of MS code.
 
 [link](https://code.visualstudio.com/docs/cpp/config-linux)
-
