@@ -3,4 +3,3 @@ knapsack.so : knapsack.o
 
 knapsack.o : knapsack.cpp build
 	g++ -c -fPIC knapsack.cpp -o build/knapsack.o
-	g++ knapsack.cpp -o build/a.out

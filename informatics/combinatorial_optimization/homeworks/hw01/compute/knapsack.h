@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-double solve(const char *file_in, const char *file_out);
+double solve(int method, const char *file_in, const char *file_out);
 
 #ifdef __cplusplus
 }
