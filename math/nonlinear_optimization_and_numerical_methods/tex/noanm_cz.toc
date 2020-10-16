@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}P\IeC {\v r}edn\IeC {\'a}\IeC {\v s}ka 1.}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Funkce, extr\IeC {\'e}my funkc\IeC {\'\i }}{1}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}Derivace funkce}{1}{subsubsection.1.1.1}
+\contentsline {subsubsection}{\numberline {1.1.2}Derivace n\IeC {\v e}kter\IeC {\'y}ch funkc\IeC {\'\i }}{2}{subsubsection.1.1.2}
+\contentsline {subsubsection}{\numberline {1.1.3}Konvexn\IeC {\'\i } a konk\IeC {\'a}vn\IeC {\'\i } funkce}{2}{subsubsection.1.1.3}
+\contentsline {subsection}{\numberline {1.2}Kvadratick\IeC {\'e} programov\IeC {\'a}n\IeC {\'\i }}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Kvadratick\IeC {\'a} funkce mnoha prom\IeC {\v e}nn\IeC {\'y}ch}{2}{subsection.1.3}

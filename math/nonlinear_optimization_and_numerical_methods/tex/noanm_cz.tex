@@ -1,0 +1,136 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=color,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\title{Nelineární optimalizace a numerické metody}
+\author{Jaroslav Langer \thanks{z přednášek NI-NON/FIT/ČVUT pana profesora Jaroslava Kruise}}
+\date{Říjen 2020}
+
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\begin{abstract}
+Definice, pojmy a znalosti z předmětu NI-NON. \href{http://mech.fsv.cvut.cz/~jk/minon2021.html}{Odkaz na prezentace}.
+\end{abstract}
+
+\section{Přednáška 1.}
+
+\subsection*{Úvod, motivace, funkce, derivace funkce, extrémy funkcí, kvadratické funkce n proměnných, metoda největšího spádu}
+
+\subsection{Funkce, extrémy funkcí}
+
+\subsubsection{Derivace funkce}
+
+\textbf{Definice}: Nechť je funkce f(x), limita
+
+\begin{math}
+    \frac{d f(x)}{d x} = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}
+\end{math}
+
+se nazývá derivace funkce f(x) v bodě x, někdy značeno $f'(x)$
+
+\subsubsection{Derivace některých funkcí}
+
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+    \hline
+    $f(x)$ & $f'(x)$ \\
+    \hline
+    $x^n$ & $nx^{(n-1)}$ \\
+    $\sin x$ & $\cos x$ \\
+    $\cos x$ & $- \sin x$ \\
+    $n^x$ & $n^x \cdot \ln n$ \\
+    $\log_{n} x$ & $ \frac{1}{x \ln n}$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+\textbf{Definice}: Bod $x \in D$ se nazývá stacionárním právě když $f'(x) = 0$
+
+\subsubsection{Konvexní a konkávní funkce}
+
+\textbf{Definice}: Funkce $f(x)$ se nazývá konvexní na množině $M \subset D$, když $\forall x_{1},x_{2} \in D, \alpha \in (0,1)$ platí
+\begin{math}
+    f(\alpha x_{1} + (1-\alpha)x_{2}) \le \alpha f(x_{1}) + (1-\alpha)f(x_{2})
+\end{math}
+
+\textbf{Věta}: jeli $f'(x) > 0$ funkce je v bodě x rostoucí.
+
+\textbf{Věta}: jeli $f'(x) < 0$ funkce je v bodě x klesající.
+
+\textbf{Věta}: jeli $f''(x) > 0$ funkce je v bodě k ryze konvexní.
+
+\textbf{Věta}: jeli $f''(x) < 0$ funkce je v bodě k ryze konkávní.
+
+\textbf{Věta}: jeli $f'(x) = 0 \wedge f''(x) > 0$ funkce má v bodě x lokální minimum.
+
+\textbf{Věta}: jeli $f'(x) = 0 \wedge f''(x) < 0$ funkce má v bodě x lokální maximum.
+
+\subsection{Kvadratické programování}
+
+\subsection{Kvadratická funkce mnoha proměnných}
+
+\begin{multline}
+    f(x) = \frac{1}{2} a_{1,1}x_{1}^{2} + \frac{1}{2} a_{1,2}x_{1}x_{2} + \dots + \frac{1}{2} a_{1,n}x_{1}x_{n} \\
+    + \frac{1}{2} a_{2,1}x_{2}x_{1} + \frac{1}{2} a_{2,2}x_{2}^{2} + \dots + \frac{1}{2} a_{2,n}x_{2}x_{n} \\
+    \dots \\
+    + \frac{1}{2} a_{n,1}x_{n}x_{1} + \frac{1}{2} a_{n,2}x_{n}x_{2} + \dots + \frac{1}{2} a_{n,n}x_{n}^{2} \\
+    + b_{1}x_{1} + b_{2}x_{2} + \dots + b_{n}x_{n} + c
+\end{multline}
+
+potom se dají proměnné $x_{1}, x_{2}, \dots x_{n} \textrm{napsat jako vektor} \quad \textbf{v}$
+
+a kvadratická rovnice n proměnných se dá maticově napsat jako
+
+\[
+    f(x) = x^{T}Ax + x^{T}b + c
+\]
+
+$c$ nemění vlastnosti extrému, pouze jeho absolutní hodnotu, proto se dále předpokládá, že $c = 0$
+
+\textbf{Definice}: Matice $A^{n,n}$ je pozitivně definitní, právě tehdy když pro libovolný nenulový vektor $x$ 
+\[
+    x \in R^{n}, x^TAx > 0
+\]
+
+\textbf{Poznámka}: Velmi mnoho inženýrských úloh se dá zkonstruovat tak, 
+že se hledá minimum kvadratické rovnice o n neznámýchjako s pozitivně definitní maticí.
+
+\textbf{Věta}: Matice $A^{n,n}$ je pozitivně definitní právě tehdy když jsou všechna její vlastní čísla kladná.
+
+\textbf{def}: Matice $A$ je symetrická právě tehdy když $A = A^T$
+
+
+
+% - inverzní matice se nikdy nepočítá, byla by plná, moc veklá (ostatní matice jsou řídké)
+
+% - determinant a kubická rovnice -> vlastní čísla
+% - tři rovnice -> valstní tři vektory
+
+% \section{Přednáška 2.}
+
+% \subsection*{přehled}
+
+% \section{TODO}
+
+% \begin{itemize}
+%     \item vlatní číslo 
+%     \item vlastní vektor
+%     \item fundamentální matice
+% \end{itemize}
+
+\end{document}
