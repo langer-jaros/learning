@@ -1,0 +1,108 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{hyperref}
+\usepackage{amsmath}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=color,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\title{Lineární algebra}
+\author{Jaroslav Langer \thanks{přednášky BI-LIN/FIT/ČVUT}}
+\date{Říjen 2020}
+
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\begin{abstract}
+Definice, pojmy a znalosti z předmětu BI-LIN. \href{https://courses.fit.cvut.cz/BI-LIN/}{Courses předmětu}.
+\end{abstract}
+
+\section{Kapitola 1.}
+\subsection{Gaussova Eliminační metoda (GEM)}
+
+\subsection{Horní stupňovitý tvar}
+
+\section{Kapitola 2.}
+\subsection*{Základní pojmy lineární algebry}
+
+\subsection{Lineární obal}
+\textbf{Definice}: Buď $(x_{1},x_{2},\dots, x_{3})$ soubor vektorů z $V$. 
+Množinu všech lineárních kombinací $(x_{1},x_{2},\dots, x_{3})$ nazveme \textbf{lineární obal souboru}.
+Značíme ji
+\[
+    \langle x_{1},x_{2},\dots, x_{3} \rangle
+\]
+Buď $\emptyset \neq M \subset V$ množinu všech lineárních kombinací všech souborů vektorů z M nazýváme
+\textbf{lineárním obalem množiny M} a značíme ji $\langle M \rangle$
+
+
+\section{Kapitola 3.}
+\subsection*{Hodnost matice a Frobeniova věta}
+
+\subsection{Hodnost matice}
+
+\textbf{Definice}: Hodností matice A nazýváme dimenzi lineárního obalu souboru řádků matice a značíme ji $h(A)$
+
+\subsection{Regulární matice a maticová inverze}
+
+\textbf{Definice}: \textbf{Kroneckerovo delta}
+
+\textbf{Definice}: \textbf{Jednotková matice}
+
+\textbf{Definice}: Buď $A \in T^{n,n}$. Existuje-li matice $B \in T^{n,n}$ taková, že
+\[
+    AB = BA = E
+\] matice $A$ je \textbf{regulární} a matici $B$ nazveme \textbf{inverzní maticí} k matici $A$.
+Značíme $B = A^{-1}$. Pokud matice $A$ není regulární, nazýváme ji \textbf{singulární.}.
+
+\textbf{Věta}: Je-li matice $A \in T^{n,n}$ regulární, pak je inverzní matice k $A$ určena jednoznačně.
+
+\textbf{Definice}: Nechť $V = T^n$ je libovolný.
+\begin{itemize}
+    \item Varietu o dimenzi 0 nazýváme bod.
+    \item Varietu o dimenzi 1 nazýváme přímka.
+    \item Varietu o dimenzi 2 nazýváme rovina.
+    \item Varietu o kodimenzi 1 nazýváme nadrovina.
+\end{itemize}
+
+\section{Kapitola 5.}
+\subsection{Hodnost, jádro a defekt zobrazení}
+\subsubsection{Injektivita a surjektivita zobrazení}
+
+\section{Kapitola 6.}
+\subsection*{Determinant matice}
+
+\subsection{Permutace}
+\subsubsection{Transpozice}
+
+Nyní zmíníme speciální jednoduchý druh permutací.
+Permutace, které odpovídají prohození právě dvou prvků v množině $\hat{n}$, budeme nazývat transpozice.
+
+\textbf{Definice}: Nechť $n \in N$ a $i, j \in \hat{n}, i \neq j$. Permutaci $\tau_{ij} \in S_{n}$, kde
+
+\begin{enumerate}
+    \item $\tau_{ij} (j) = i$,
+    \item $\tau_{ij} (i) = j$,
+    \item $\tau_{ij} (k) = k$, pro k 6= i, j,
+\end{enumerate}
+
+nazýváme transpozicí čísel $i$ a $j$.
+
+\subsection{Definice determinantu}
+
+\textbf{Věta}: Matice $A \in T^{n,n}$ je regulární právě tehdy když $detA ̈́\neq 0$
+
+
+\subsection{Vlastní čísla}
+
+\end{document}
