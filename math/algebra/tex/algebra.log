@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.10.14)  19 OCT 2020 23:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.10.14)  19 OCT 2020 23:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.tex
-(/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.tex
+**/home/langerjaros/Projects/learning/math/algebra/tex/algebra.tex
+(/home/langerjaros/Projects/learning/math/algebra/tex/algebra.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -501,8 +501,8 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 13.
- (/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.aux)
-\openout1 = `la_cz.aux'.
+ (/home/langerjaros/Projects/learning/math/algebra/tex/algebra.aux)
+\openout1 = `algebra.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
@@ -552,8 +552,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 21.
 LaTeX Info: Redefining \pageref on input line 21.
 LaTeX Info: Redefining \nameref on input line 21.
+ (/home/langerjaros/Projects/learning/math/algebra/tex/algebra.out) (/home/langerjaros/Projects/learning/math/algebra/tex/algebra.out)
 \@outlinefile=\write3
-\openout3 = `la_cz.out'.
+\openout3 = `algebra.out'.
 
 LaTeX Font Info:    Try loading font information for U+msa on input line 24.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -571,63 +572,290 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <7> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
-\tf@toc=\write4
-\openout4 = `la_cz.toc'.
+ (/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc
 
- [1
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:1: LaTeX Error: Undefined color `color'.
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
- [2]
-Overfull \hbox (20.9675pt too wide) in paragraph at lines 107--109
-\OT1/cmr/m/n/12 Nyn^^S^^P zm^^S^^Pn^^S^^Pme speci^^Saln^^S^^P jednoduch^^Sy druh per-mu-tac^^S^^P. Per-mu-tace, kter^^Se odpov^^S^^Pdaj^^S^^P
- []
-
-
-/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.tex:122: Package inputenc Error: Unicode char ̈́ (U+344)
-(inputenc)                not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
+See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.122 ... regulární právě tehdy když $detA ̈́
-                                                  \neq 0$
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+l.1 ...dn\IeC {\'a}\IeC {\v s}ka 1.}{1}{section.1}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:2: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 ...line {1.1}\IeC {\'U}vod}{1}{subsection.1.1}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:3: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 ...berline {1.2}Hierarchie}{1}{subsection.1.2}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:4: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 ...verzn\IeC {\'\i } prvky}{2}{subsection.1.3}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:5: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 ...\v e}n\IeC {\'\i } grup}{2}{subsection.1.4}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:6: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 ...dn\IeC {\'a}\IeC {\v s}ka 2.}{3}{section.2}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:7: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 ...umberline {2.1}Podgrupy}{3}{subsection.2.1}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:8: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 ...rangeova v\IeC {\v e}ta}{4}{subsection.2.2}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:9: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 ...gener\IeC {\'a}tor grup}{4}{subsection.2.3}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:10: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 ...yklick\IeC {\'e} grupy}{5}{subsection.2.4}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:11: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 ...rmatova v\IeC {\v e}ta}{5}{subsection.2.5}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:12: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 ...n\IeC {\'a}\IeC {\v s}ka 3.}{6}{section.3}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:13: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 ...morfismy a izomorfismy}{6}{subsection.3.1}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:14: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 ...ie grup v kryptografii}{6}{subsection.3.2}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:15: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 ...n\IeC {\'a}\IeC {\v s}ka 4.}{6}{section.4}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/math/algebra/tex/algebra.toc:16: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 ...n\IeC {\'a}\IeC {\v s}ka 5.}{6}{section.5}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
+\tf@toc=\write4
+\openout4 = `algebra.toc'.
+
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+r'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 31.
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
+
+Overfull \hbox (8.1109pt too wide) in paragraph at lines 51--52
+[]\OT1/cmr/bx/n/12 Grupa \OT1/cmr/m/n/12 je monoid $(\OML/cmm/m/it/12 M; \OMS/cmsy/m/n/12 ^^N\OT1/cmr/m/n/12 )$ a $\OML/cmm/m/it/12 e \OMS/cmsy/m/n/12 2 \OML/cmm/m/it/12 M$ \OT1/cmr/m/n/12 je neutr^^Saln^^S^^P prvek, kde $\OMS/cmsy/m/n/12 8\OML/cmm/m/it/12 a\OMS/cmsy/m/n/12 9\OML/cmm/m/it/12 a[];  e; a \OMS/cmsy/m/n/12 2
+ []
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 68.
+
+[2]
+
+Package hyperref Warning: Composite letter `\textasciicaron+r'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 86.
+
+
+Overfull \hbox (6.03108pt too wide) in paragraph at lines 88--88
+[][]\OT1/cmr/bx/n/14.4 dod^^Tel^^Savka Al-ge-bry I; Al-ge-bra II : pod-grupy; La-grangeova
+ []
+
 [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
- (/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 118.
 
 
-Package rerunfilecheck Warning: File `la_cz.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+Overfull \hbox (15.71945pt too wide) in paragraph at lines 120--123
+\OT1/cmr/m/n/12 prvk^^Wu $\OML/cmm/m/it/12 M$\OT1/cmr/m/n/12 , jeli po^^Tcet prvk^^Wu nekone^^Tcn^^Sy, i ^^Tr^^Sad je nekone^^Tcn^^Sy, po-dle ^^Tr^^Sad^^Wu rozd^^Telujeme
+ []
 
-Package rerunfilecheck Info: Checksums for `la_cz.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D9DFFB8E3BD7D7A3D2603337B73FAE58;959.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
+[4] [5]
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 193.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+r'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 203.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+r'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 223.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+r'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 225.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 227.
+[6] [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 227.
+ (/home/langerjaros/Projects/learning/math/algebra/tex/algebra.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 227.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 227.
+Package rerunfilecheck Info: File `algebra.out' has not changed.
+(rerunfilecheck)             Checksum: D9F8A01D6EDDD64BDBF936F334D0E105;1059.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 227.
  ) 
 Here is how much of TeX's memory you used:
- 5784 strings out of 494923
- 82210 string characters out of 6180741
- 162378 words of memory out of 5000000
- 9030 multiletter control sequences out of 15000+600000
- 13656 words of font info for 53 fonts, out of 8000000 for 9000
+ 5810 strings out of 494923
+ 82773 string characters out of 6180741
+ 165473 words of memory out of 5000000
+ 9051 multiletter control sequences out of 15000+600000
+ 14003 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 29i,11n,28p,286b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.pdf (3 pages, 125712 bytes).
+ 29i,13n,31p,277b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /home/langerjaros/Projects/learning/math/algebra/tex/algebra.pdf (7 pages, 180366 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
- 29 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 194 PDF objects out of 1000 (max. 8388607)
+ 167 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 500000)
+ 129 words of extra memory for PDF output out of 10000 (max. 10000000)
 

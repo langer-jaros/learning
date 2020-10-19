@@ -57,9 +57,11 @@
 
 ## Computational Intelligence Methods
 
-- Coming: semestral work
+
+- Coming: semestral work (chose until last october)
     + [Choose semsetral work](https://courses.fit.cvut.cz/NI-MVI/semestralka.html)
         * [kaggle](https://www.kaggle.com/competitions)
+- check Lectures BI-ZUM
 
 ## Data Preprocessing
 
@@ -71,13 +73,15 @@
 
 - homework 1 - play tutorial, find assignment and do it
 
+- look through lectures BI-ZUM, learn A*
+
 ## Combinatorial Optimization
 
-- [homework 1](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89693)
-    + [plotly instead of pandas?](https://towardsdatascience.com/matplotlib-vs-seaborn-vs-plotly-f2b79f5bddb)
-    + [latex for report](#latex)
-    + basic combinatorics - discrete math?
-- Coming: [homework 2]()
+- ~~[homework 1](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89693)~~
+- [homework 2 Until November 2nd](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89697)
+
+- basic combinatorics - discrete math?
+- 
 - Coming: [homework 3]()
 - Coming: [homework 4]()
 

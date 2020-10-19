@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.10.14)  19 OCT 2020 23:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.10.14)  18 OCT 2020 22:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.tex
-(/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.tex
+**/home/langerjaros/Projects/learning/writing/latex/tex/latex.tex
+(/home/langerjaros/Projects/learning/writing/latex/tex/latex.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -493,31 +493,25 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \mathdisplay@stack=\toks21
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
-) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 13.
- (/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.aux)
-\openout1 = `la_cz.aux'.
+Package hyperref Info: Option `colorlinks' set `true' on input line 12.
+ (/home/langerjaros/Projects/learning/writing/latex/tex/latex.aux)
+\openout1 = `latex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 \AtBeginShipoutBox=\box28
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
@@ -541,7 +535,7 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \makeMPintoPDFobject=\count114
 \everyMPtoPDFconversion=\toks23
 )))
-Package hyperref Info: Link coloring ON on input line 21.
+Package hyperref Info: Link coloring ON on input line 20.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -549,85 +543,88 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count115
 )
-LaTeX Info: Redefining \ref on input line 21.
-LaTeX Info: Redefining \pageref on input line 21.
-LaTeX Info: Redefining \nameref on input line 21.
+LaTeX Info: Redefining \ref on input line 20.
+LaTeX Info: Redefining \pageref on input line 20.
+LaTeX Info: Redefining \nameref on input line 20.
+ (/home/langerjaros/Projects/learning/writing/latex/tex/latex.out) (/home/langerjaros/Projects/learning/writing/latex/tex/latex.out)
 \@outlinefile=\write3
-\openout3 = `la_cz.out'.
+\openout3 = `latex.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 24.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 24.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 24.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 23.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <7> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 23.
+ (/home/langerjaros/Projects/learning/writing/latex/tex/latex.toc
+
+/home/langerjaros/Projects/learning/writing/latex/tex/latex.toc:1: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...{section}{\numberline {1}Sec}{1}{section.1}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/writing/latex/tex/latex.toc:2: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 ...berline {1.1}Subsection}{1}{subsection.1.1}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/langerjaros/Projects/learning/writing/latex/tex/latex.toc:3: LaTeX Error: Undefined color `color'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 ....1.1}Subsubsection}{1}{subsubsection.1.1.1}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
 \tf@toc=\write4
-\openout4 = `la_cz.toc'.
+\openout4 = `latex.toc'.
 
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 67.
  [2]
-Overfull \hbox (20.9675pt too wide) in paragraph at lines 107--109
-\OT1/cmr/m/n/12 Nyn^^S^^P zm^^S^^Pn^^S^^Pme speci^^Saln^^S^^P jednoduch^^Sy druh per-mu-tac^^S^^P. Per-mu-tace, kter^^Se odpov^^S^^Pdaj^^S^^P
- []
-
-
-/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.tex:122: Package inputenc Error: Unicode char ̈́ (U+344)
-(inputenc)                not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.122 ... regulární právě tehdy když $detA ̈́
-                                                  \neq 0$
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
-[3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
- (/home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
-
-
-Package rerunfilecheck Warning: File `la_cz.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `la_cz.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D9DFFB8E3BD7D7A3D2603337B73FAE58;959.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 67.
+ (/home/langerjaros/Projects/learning/writing/latex/tex/latex.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 67.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 67.
+Package rerunfilecheck Info: File `latex.out' has not changed.
+(rerunfilecheck)             Checksum: A31906651B3C1EE24264FF1ED36F0FC3;169.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 67.
  ) 
 Here is how much of TeX's memory you used:
- 5784 strings out of 494923
- 82210 string characters out of 6180741
- 162378 words of memory out of 5000000
- 9030 multiletter control sequences out of 15000+600000
- 13656 words of font info for 53 fonts, out of 8000000 for 9000
+ 5684 strings out of 494923
+ 81071 string characters out of 6180741
+ 161033 words of memory out of 5000000
+ 8961 multiletter control sequences out of 15000+600000
+ 10768 words of font info for 39 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 29i,11n,28p,286b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /home/langerjaros/Projects/learning/math/algebra/linear_algebra/la_cz.pdf (3 pages, 125712 bytes).
+ 29i,11n,28p,255b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on /home/langerjaros/Projects/learning/writing/latex/tex/latex.pdf (2 pages, 83749 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
- 29 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 

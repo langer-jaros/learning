@@ -1,0 +1,206 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=color,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\title{Computational Intelligence Methods}
+\author{Jaroslav Langer \thanks{notes form lectures MIE-MVI/FIT/CTU}}
+\date{Říjen 2020}
+
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\begin{abstract}
+Definitions, terms and knowledge from course NI-MVI. \href{https://courses.fit.cvut.cz/MIE-MVI/}{Course page}.
+\end{abstract}
+
+\section{Lecture 1. Introduction}
+
+\subsection*{}
+
+\subsection*{What is intelligence}
+
+\subsection*{Evolutionary}
+
+\subsubsection*{Genotype fenotype}
+
+\begin{itemize}
+    \item fitness function
+\end{itemize}
+
+\subsection*{Significant fields}
+
+\begin{itemize}
+    \item self-driving cars
+    \item intelligent assistents
+    \item general artifical inteligence (play game from visual input)
+\end{itemize}
+
+\subsection*{Research at Datalab}
+
+\subsection*{prg.ai}
+
+\subsection*{ethics}
+
+\section{Lecture 2. Machine Learning}
+
+\subsection*{}
+
+\subsection*{History}
+
+\begin{itemize}
+    \item 1940
+    \item 1950
+    \item 1960
+    \item 1970
+    \item 1980
+    \item 1990
+    \item 2000
+    \item 2010
+    \subitem GAN
+    \subitem Transformers (pros of conv + recu)
+    \item 2020+
+    \subitem AutoML in RL
+\end{itemize}
+
+\subsection*{Machine learning tasks}
+
+\begin{itemize}
+    \item regression / prediction
+    \item classification / recomendation
+    \item clustering / 
+    \item problem solving / planing / control 
+\end{itemize}
+
+\subsection{Types learning}
+
+\begin{itemize}
+    \item supervised
+    \item unsupervised
+    \item semisupervised
+    \item Active learning
+    \item transfer learning
+    \item few-shot learning
+    \item meta-learning / continual learning
+\end{itemize}
+
+\subsection*{}
+
+\subsection*{Examples by types}
+
+\subsection*{Measuring the performace}
+
+\subsection*{Learning systems}
+
+\subsection*{Defining learning task}
+
+\begin{itemize}
+    \item T - task ()
+    \item P - performance
+    \item E - expirience
+\end{itemize}
+
+\subsection*{Design learning system}
+
+\begin{itemize}
+    \item database, prepare data
+    \item choose what to be learnt - target function
+    \item choose representation of target function
+    \item choose learning algoritm
+    \item supply algorithm with performance metric
+\end{itemize}
+
+\subsection*{Checkers example}
+
+Building the database
+\begin{itemize}
+    \item Direct expirience
+    \subitem set of board with correct move
+    \item indirect expirience
+    \subitem sequences of game moves and final results
+\end{itemize}
+
+Choose target funciton
+\begin{itemize}
+    \item choseMove(board, legalMoves) -> bestMove
+    \item V(board) -> R (how favorible position) - can be applied for all legalMoves
+\end{itemize}
+
+Choose target funciton representation
+
+\subsection*{Machine learning methods}
+
+\subsection*{Ants AI challenge}
+
+\section{Lecture 3. Evolutionary Algos}
+
+\subsection*{}
+
+
+\section{Lecture 4. Neural Networks}
+
+\subsection*{Overview}
+\begin{itemize}
+    \item Introduction to artificial neural networks
+    \item Perceptron, gradient learning
+    \item MLP, Back-propagation of error
+    \item Unsupervized training - SOM
+\end{itemize}
+
+\subsection{Perceptron}
+
+\subsubsection{Perceptron training}
+
+\subsubsection{Perceptron gradient learning}
+
+\subsubsection{Deriving gradietn of error}
+
+\subsubsection{Cross entropy loss}
+
+
+\subsection{Backpropagation algorithm}
+
+\subsubsection{Multilayer perceptron – MLP}
+
+\subsubsection{Chain rule and backprop}
+
+\subsubsection{Training MLP}
+
+\subsubsection{Propagating the error through multiple layers}
+
+\subsubsection{Backprop summary}
+
+\subsection{Backpropagation algorithm variants}
+
+\subsubsection{Backprop variants}
+
+\subsubsection{Modified transfer functions}
+
+\subsubsection{Backprop with momentum}
+
+\subsubsection{Batch updates and variable learning rate}
+
+\subsubsection{Second order methods}
+
+\subsection{MLP as universal approximator}
+
+\subsection{Self-organizing Map}
+
+\section{Convolutional Networks}
+
+
+
+\end{document}

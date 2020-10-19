@@ -819,7 +819,18 @@ prints environment variables
     variables:  name=value [[:alnum:]]
                 unset ... (local)
                 declare [-i; -r] ...
+```
+### Open new bash
 
+```sh
+bash
+# See bash level
+echo $SHLVL
+# exit bash i.e. go to the previous enviroment
+exit
+```
+
+```sh
     bash    child[sub]   interactive / uninteractiv - | read   
                 exit
     startup
