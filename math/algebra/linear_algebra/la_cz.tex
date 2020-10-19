@@ -1,13 +1,14 @@
 \documentclass[12pt, letterpaper, twoside]{article}
 
 \usepackage[utf8]{inputenc}
-\usepackage[utf8]{hyperref}
+\usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 
 \hypersetup{
     colorlinks=true,
     linkcolor=color,
-    filecolor=magenta,      
+    filecolor=magenta,
     urlcolor=blue,
 }
 
@@ -28,9 +29,10 @@ Definice, pojmy a znalosti z předmětu BI-LIN. \href{https://courses.fit.cvut.c
 \end{abstract}
 
 \section{Kapitola 1.}
-\subsection{Gaussova Eliminační metoda (GEM)}
 
-\subsection{Horní stupňovitý tvar}
+\subsection*{Gaussova Eliminační metoda (GEM)}
+
+\subsection*{Horní stupňovitý tvar}
 
 \section{Kapitola 2.}
 \subsection*{Základní pojmy lineární algebry}
@@ -75,9 +77,26 @@ Značíme $B = A^{-1}$. Pokud matice $A$ není regulární, nazýváme ji \textb
     \item Varietu o kodimenzi 1 nazýváme nadrovina.
 \end{itemize}
 
+\section{Kapitola 4.}
+
 \section{Kapitola 5.}
+
+\subsection{Základní pojmy}
+
+Zobrazení $f: X \to Y$ je \textbf{injektivní (prosté)}, pokud
+\[\forall x,y \in X f(x) = f(y) \Rightarrow x = y\].
+
+Zobrazení $f: X \to Y$ je \textbf{surjektivní (na)}, pokud
+\[\forall y \in Y, \exists x \in X, f(x) = y\].
+
+Zobrazení $f: X \to Y$ je \textbf{bijektivní (vzájemně jednoznačné)}, pokud
+je současně injektivní i surjektivní.
+
+
 \subsection{Hodnost, jádro a defekt zobrazení}
 \subsubsection{Injektivita a surjektivita zobrazení}
+
+
 
 \section{Kapitola 6.}
 \subsection*{Determinant matice}
@@ -103,6 +122,6 @@ nazýváme transpozicí čísel $i$ a $j$.
 \textbf{Věta}: Matice $A \in T^{n,n}$ je regulární právě tehdy když $detA ̈́\neq 0$
 
 
-\subsection{Vlastní čísla}
+\subsection*{Vlastní čísla}
 
 \end{document}
