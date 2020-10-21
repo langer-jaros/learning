@@ -6,7 +6,7 @@
 ---
 **Knowledge engineering - must (FIT/CTU)**
 - [Μathematics for Ιnformatics](#mathematics-for-informatics)
-- [Computational Intelligence Methods](computational-intelligence-methods)
+- [Computational Intelligence Methods](#computational-intelligence-methods)
 - [Data Preprocessing](#data-preprocessing)
 - [Artificial Intelligence](#artificial-intelligence)
 ---
@@ -28,6 +28,7 @@
 - [Biophysical Chemistry](#biophysical-chemistry)
 ---
 **Learning**
+- [Math](#math)
 - [Writing](#writing)
 - [Python](#python)
 - [Git](#git)
@@ -36,7 +37,7 @@
 - [JavaScript](#javascript)
 ---
 
-## Μathematics for Ιnformatics
+## Mathematics for Informatics
 
 - Marast (weekly)
     + ~~[Marast week 1](https://marast.fit.cvut.cz/)~~
@@ -144,6 +145,12 @@
 - Coming: optional homework 1 ???
 
 ## Biophysical Chemistry
+
+## Math
+
+### Discrete Mathematics
+
+- Permutations, Variations, Combinations - BI-ZDM-05
 
 ## Writing
 

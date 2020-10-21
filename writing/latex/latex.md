@@ -35,3 +35,14 @@ pdflatex hello_tex.tex
 | memoir | For changing sensibly the output of the document. It is based on the book class, but you can create any kind of document with it [1] |
 | letter | For writing letters. |
 | beamer | For writing presentations (see LaTeX/Presentations). |
+
+## Other texs
+
+https://www.overleaf.com/learn/latex/Articles/The_TeX_family_tree:_LaTeX,_pdfTeX,_XeTeX,_LuaTeX_and_ConTeXt
+
+## XeLatex
+
+[font problems -> xetex](https://stackoverflow.com/questions/25969041/package-inputenc-error-unicode-char-u8%CE%B2-not-set-up-for-use-with-latex)
+[install xetex](https://tex.stackexchange.com/questions/179778/xelatex-under-ubuntu)
+[tex to pdf](https://tug.org/pipermail/xetex/2009-November/014991.html)
+[xetex in vs code](https://stackoverflow.com/questions/56109128/enable-xelatex-in-latex-workshops-for-visual-studio-code)
