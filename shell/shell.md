@@ -50,6 +50,9 @@ Theory from seminars - [click](#theory-from-seminars)
 top
 ```
 
+1) [math in bash scripts](http://faculty.salina.k-state.edu/tim/unix_sg/bash/math.html)
+
+
 ---
 
 ## Introduction
@@ -689,6 +692,22 @@ cp -s FILENAME LINKNAME
 
 ---
 
+## Scripts
+
+Commands are great, scripts are better.
+
+### Call scripts inside of a script
+
+```bash
+#!/bin/bash
+
+MY_SCRIPT=/path/to/script.sh
+
+$MY_SCRIPT input_1 input_2
+```
+
+[source](https://unix.stackexchange.com/questions/1496/why-doesnt-my-bash-script-recognize-aliases)
+
 ## SSH
 
 ```sh
@@ -863,7 +882,7 @@ echo $HISTFILE
 ```
 how to stop logging ls command in history
 ```sh
-echo 'export HISTIGNORE="ls:tree:cat:tail:head"' >> ~/.bashrc
+echo 'export HISTIGNORE="ls:tree:cat:tail:head:bash"' >> ~/.bashrc
 ```
 run 111st command
 ```sh
@@ -1082,7 +1101,7 @@ variable=10
 echo ${variable} # echo 10
 
 # command substitution
-$(echo echo 2) # echo 2
+echo Hello \"$(ls)\" folders!
 
 # arithmetic expansion + - * / % ** ++ --
 echo $((1238 % 17)) echo 14

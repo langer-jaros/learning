@@ -1,16 +1,20 @@
-\contentsline {section}{\numberline {1}P\IeC {\v r}edn\IeC {\'a}\IeC {\v s}ka 1.}{2}{section.1}
-\contentsline {subsection}{\numberline {1.1}\IeC {\'U}vod}{2}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Hierarchie}{2}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Neutr\IeC {\'a}ln\IeC {\'\i } a inverzn\IeC {\'\i } prvky}{2}{subsection.1.3}
-\contentsline {subsection}{\numberline {1.4}Zn\IeC {\'a}zorn\IeC {\v e}n\IeC {\'\i } grup}{3}{subsection.1.4}
-\contentsline {section}{\numberline {2}P\IeC {\v r}edn\IeC {\'a}\IeC {\v s}ka 2.}{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Podgrupy}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Lagrangeova v\IeC {\v e}ta}{4}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Generuj\IeC {\'\i }c\IeC {\'\i } mno\IeC {\v z}iny a gener\IeC {\'a}tor grup}{4}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Cyklick\IeC {\'e} grupy}{5}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}(Mal\IeC {\'a}) Fermatova v\IeC {\v e}ta}{6}{subsection.2.5}
-\contentsline {section}{\numberline {3}P\IeC {\v r}edn\IeC {\'a}\IeC {\v s}ka 3.}{6}{section.3}
-\contentsline {subsection}{\numberline {3.1}Homomorfismy a izomorfismy}{6}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Aplikace teorie grup v kryptografii}{7}{subsection.3.2}
-\contentsline {section}{\numberline {4}P\IeC {\v r}edn\IeC {\'a}\IeC {\v s}ka 4.}{7}{section.4}
-\contentsline {section}{\numberline {5}P\IeC {\v r}edn\IeC {\'a}\IeC {\v s}ka 5.}{7}{section.5}
+\contentsline {section}{\numberline {1}Přednáška 1.}{2}
+\contentsline {subsection}{\numberline {1.1}Úvod}{2}
+\contentsline {subsection}{\numberline {1.2}Hierarchie}{2}
+\contentsline {subsection}{\numberline {1.3}Neutrální a inverzní prvky}{3}
+\contentsline {subsection}{\numberline {1.4}Znázornění grup}{3}
+\contentsline {section}{\numberline {2}Přednáška 2.}{4}
+\contentsline {subsection}{\numberline {2.1}Podgrupy}{4}
+\contentsline {subsection}{\numberline {2.2}Lagrangeova věta}{5}
+\contentsline {subsection}{\numberline {2.3}Generující množiny a generátor grup}{6}
+\contentsline {subsection}{\numberline {2.4}Cyklické grupy}{7}
+\contentsline {subsection}{\numberline {2.5}(Malá) Fermatova věta}{8}
+\contentsline {section}{\numberline {3}Přednáška 3.}{9}
+\contentsline {subsection}{\numberline {3.1}Homomorfismy a izomorfismy}{9}
+\contentsline {subsection}{\numberline {3.2}Aplikace teorie grup v kryptografii}{11}
+\contentsline {section}{\numberline {4}Přednáška 4.}{13}
+\contentsline {subsection}{\numberline {4.1}Množiny se dvěma binárními operacemi}{13}
+\contentsline {subsection}{\numberline {4.2}Okruhy polynomů}{13}
+\contentsline {subsection}{\numberline {4.3}Konečná tělesa}{13}
+\contentsline {subsection}{\numberline {4.4}Aplikace konečných těles v kryptografii}{13}
+\contentsline {section}{\numberline {5}Přednáška 5.}{13}
