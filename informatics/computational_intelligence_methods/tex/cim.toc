@@ -1,25 +1,31 @@
-\contentsline {section}{\numberline {1}Lecture 1. Introduction}{2}{section.1}
-\contentsline {section}{\numberline {2}Lecture 2. Machine Learning}{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Types learning}{4}{subsection.2.1}
-\contentsline {section}{\numberline {3}Lecture 3. Evolutionary Algos}{5}{section.3}
-\contentsline {section}{\numberline {4}Lecture 4. Neural Networks}{5}{section.4}
-\contentsline {subsection}{\numberline {4.1}Perceptron}{6}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Perceptron training}{6}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Perceptron gradient learning}{6}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}Deriving gradietn of error}{6}{subsubsection.4.1.3}
-\contentsline {subsubsection}{\numberline {4.1.4}Cross entropy loss}{6}{subsubsection.4.1.4}
-\contentsline {subsection}{\numberline {4.2}Backpropagation algorithm}{6}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Multilayer perceptron \IeC {\textendash } MLP}{6}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Chain rule and backprop}{6}{subsubsection.4.2.2}
-\contentsline {subsubsection}{\numberline {4.2.3}Training MLP}{6}{subsubsection.4.2.3}
-\contentsline {subsubsection}{\numberline {4.2.4}Propagating the error through multiple layers}{6}{subsubsection.4.2.4}
-\contentsline {subsubsection}{\numberline {4.2.5}Backprop summary}{6}{subsubsection.4.2.5}
-\contentsline {subsection}{\numberline {4.3}Backpropagation algorithm variants}{6}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Backprop variants}{6}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Modified transfer functions}{6}{subsubsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.3}Backprop with momentum}{6}{subsubsection.4.3.3}
-\contentsline {subsubsection}{\numberline {4.3.4}Batch updates and variable learning rate}{6}{subsubsection.4.3.4}
-\contentsline {subsubsection}{\numberline {4.3.5}Second order methods}{6}{subsubsection.4.3.5}
-\contentsline {subsection}{\numberline {4.4}MLP as universal approximator}{6}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Self-organizing Map}{6}{subsection.4.5}
-\contentsline {section}{\numberline {5}Convolutional Networks}{6}{section.5}
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Machine Learning}{3}
+\contentsline {subsection}{\numberline {2.1}Types learning}{4}
+\contentsline {section}{\numberline {3}Evolutionary Algos}{6}
+\contentsline {section}{\numberline {4}Neural Networks}{6}
+\contentsline {subsection}{\numberline {4.1}Perceptron}{7}
+\contentsline {subsubsection}{\numberline {4.1.1}Perceptron training}{7}
+\contentsline {subsubsection}{\numberline {4.1.2}Perceptron gradient learning}{7}
+\contentsline {subsubsection}{\numberline {4.1.3}Deriving gradietn of error}{7}
+\contentsline {subsubsection}{\numberline {4.1.4}Cross entropy loss}{7}
+\contentsline {subsection}{\numberline {4.2}Backpropagation algorithm}{7}
+\contentsline {subsubsection}{\numberline {4.2.1}Multilayer perceptron – MLP}{7}
+\contentsline {subsubsection}{\numberline {4.2.2}Chain rule and backprop}{7}
+\contentsline {subsubsection}{\numberline {4.2.3}Training MLP}{7}
+\contentsline {subsubsection}{\numberline {4.2.4}Propagating the error through multiple layers}{7}
+\contentsline {subsubsection}{\numberline {4.2.5}Backprop summary}{7}
+\contentsline {subsection}{\numberline {4.3}Backpropagation algorithm variants}{7}
+\contentsline {subsubsection}{\numberline {4.3.1}Backprop variants}{7}
+\contentsline {subsubsection}{\numberline {4.3.2}Modified transfer functions}{7}
+\contentsline {subsubsection}{\numberline {4.3.3}Backprop with momentum}{7}
+\contentsline {subsubsection}{\numberline {4.3.4}Batch updates and variable learning rate}{7}
+\contentsline {subsubsection}{\numberline {4.3.5}Second order methods}{7}
+\contentsline {subsection}{\numberline {4.4}MLP as universal approximator}{7}
+\contentsline {subsection}{\numberline {4.5}Self-organizing Map}{7}
+\contentsline {section}{\numberline {5}Convolutional Networks}{7}
+\contentsline {section}{\numberline {6}Text and Graph Embeddings}{7}
+\contentsline {section}{\numberline {7}Autoencoders}{7}
+\contentsline {section}{\numberline {8}Neuroevolution}{7}
+\contentsline {section}{\numberline {9}Recurent Neural Nets}{7}
+\contentsline {section}{\numberline {10}Metalearning}{7}
+\contentsline {section}{\numberline {11}CMAES and Swarm Optimisation}{7}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.10.20)  21 OCT 2020 14:11
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.10.20)  22 OCT 2020 16:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -107,18 +107,23 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./algebra.toc)
+) (./algebra.toc [1
+
+])
 \tf@toc=\write3
 \openout3 = `algebra.toc'.
 
- [1
 
-]
 Overfull \hbox (8.9859pt too wide) in paragraph at lines 53--54
 []\TU/lmr/bx/n/12 Grupa \TU/lmr/m/n/12 je monoid $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 M; \OMS/cmsy/m/n/12 ^^N\OT1/cmr/m/n/12 )$ \TU/lmr/m/n/12 a $\OML/cmm/m/it/12 e \OMS/cmsy/m/n/12 2 \OML/cmm/m/it/12 M$ \TU/lmr/m/n/12 je neutrální prvek, kde $\OMS/cmsy/m/n/12 8\OML/cmm/m/it/12 a\OMS/cmsy/m/n/12 9\OML/cmm/m/it/12 a[];  e; a \OMS/cmsy/m/n/12 2
  []
 
-[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] (./algebra.aux) ) 
+[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
+Overfull \hbox (10.51285pt too wide) in paragraph at lines 426--428
+\TU/lmr/m/n/12 dělení a všechny operace z nich odvozené jako například mocnění, odmocňování,
+ []
+
+[14] [15] [16] [17] (./algebra.aux) ) 
 Here is how much of TeX's memory you used:
  968 strings out of 494988
  11774 string characters out of 6178637
@@ -128,4 +133,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  27i,13n,24p,277b,276s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on algebra.pdf (13 pages).
+Output written on algebra.pdf (17 pages).
