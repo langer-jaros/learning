@@ -1,116 +1,117 @@
 # TODO
 
-`2020/10/01 Jaroslav Langer`
+`2020/10/21 Jaroslav Langer`
 
-## Overview
----
-**Knowledge engineering - must (FIT/CTU)**
-- [Μathematics for Ιnformatics](#mathematics-for-informatics)
-- [Computational Intelligence Methods](#computational-intelligence-methods)
-- [Data Preprocessing](#data-preprocessing)
-- [Artificial Intelligence](#artificial-intelligence)
----
-**Knowledge engineering - need (FIT/CTU)**
-- [Combinatorial Optimization](#combinatorial-optimization)
-- [Nonlinear Optimization and Numerical Methods](#nonlinear-optimization-and-numerical-methods)
----
-**Bioinformatics - must (FCT/UCT)**
-- [efficient_pattern_matching]()
-- [Molecular Modelling](#molecular-modelling)
-- [Molecular Biology](#molecular-biology)
-- [Genetic Engineering](#genetic-engineering)
-- [Genomics](#genomics)
----
-**Bioinformatics - need (FCT/UCT)**
-- [Statistical Data Analysis](#statistical-data-analysis)
-- [Genomics Practicum](#genomics-practicum)
-- [Structural Biology](#structural-biology)
-- [Biophysical Chemistry](#biophysical-chemistry)
----
-**Learning**
-- [Math](#math)
-- [Writing](#writing)
-- [Python](#python)
-- [Git](#git)
-- [Shell](#shell)
-- [PHP](#php)
-- [JavaScript](#javascript)
----
+## Content <!-- omit in toc -->
+- [Knowledge engineering - must (FIT/CTU)](#knowledge-engineering---must-fitctu)
+  - [Mathematics for Informatics](#mathematics-for-informatics)
+  - [Computational Intelligence Methods](#computational-intelligence-methods)
+  - [Data Preprocessing](#data-preprocessing)
+  - [Artificial Intelligence](#artificial-intelligence)
+- [Knowledge engineering - need (FIT/CTU)](#knowledge-engineering---need-fitctu)
+  - [Combinatorial Optimization](#combinatorial-optimization)
+  - [Nonlinear Optimization and Numerical Methods](#nonlinear-optimization-and-numerical-methods)
+- [Bioinformatics - must (FCT/UCT)](#bioinformatics---must-fctuct)
+  - [Efficient Pattern Matching](#efficient-pattern-matching)
+  - [Molecular Modelling](#molecular-modelling)
+  - [Molecular Biology](#molecular-biology)
+  - [Genetic Engineering](#genetic-engineering)
+  - [Genomics](#genomics)
+- [Bioinformatics - need (FCT/UCT)](#bioinformatics---need-fctuct)
+  - [Statistical Data Analysis](#statistical-data-analysis)
+  - [Genomics Practicum](#genomics-practicum)
+  - [Structural Biology](#structural-biology)
+  - [Biophysical Chemistry](#biophysical-chemistry)
+- [Learning](#learning)
+  - [Math](#math)
+  - [Discrete Mathematics](#discrete-mathematics)
+  - [Writing](#writing)
+  - [Python](#python)
+  - [Git](#git)
+  - [Shell](#shell)
+  - [JavaScript](#javascript)
+  - [PHP](#php)
 
-## Mathematics for Informatics
+## Knowledge engineering - must (FIT/CTU)
+
+### Mathematics for Informatics
 
 - Marast (weekly)
-    + ~~[Marast week 1](https://marast.fit.cvut.cz/)~~
-    + Velká fermatova věta
-    + Coming: [Marast week 2](https://marast.fit.cvut.cz/)
-    + Coming: [Marast week 3](https://marast.fit.cvut.cz/)
-    + Coming: [Marast week 4](https://marast.fit.cvut.cz/)
-    + Coming: [Marast week 5](https://marast.fit.cvut.cz/)
-    + Coming: [Marast week 6](https://marast.fit.cvut.cz/)
-    + Coming: [Marast week 7](https://marast.fit.cvut.cz/)
-    + Coming: [Marast week 8](https://marast.fit.cvut.cz/)
-    + Coming: [Marast week 9](https://marast.fit.cvut.cz/)
-    + Coming: [Marast week 10](https://marast.fit.cvut.cz/)
-- Coming: Marast (big)
+  - ~~[Marast week 1](https://marast.fit.cvut.cz/)~~
+  - ~~[Marast week 2](https://marast.fit.cvut.cz/)~~
+  - ~~[Marast week 3](https://marast.fit.cvut.cz/)~~
+  - ~~[Marast week 4](https://marast.fit.cvut.cz/)~~
+  - Coming: [Marast week 5](https://marast.fit.cvut.cz/)
+  - Coming: [Marast week 6](https://marast.fit.cvut.cz/)
+  - Coming: [Marast week 7](https://marast.fit.cvut.cz/)
+  - Coming: [Marast week 8](https://marast.fit.cvut.cz/)
+  - Coming: [Marast week 9](https://marast.fit.cvut.cz/)
+  - Coming: [Marast week 10](https://marast.fit.cvut.cz/)
+  - Coming: Marast (big)
     + Coming: [Marast big 1](https://marast.fit.cvut.cz/)
     + Coming: [Marast big 2](https://marast.fit.cvut.cz/)
 - Coming: Assignment (form tutorial)
 
-## Computational Intelligence Methods
-
+### Computational Intelligence Methods
 
 - Coming: semestral work (chose until last october)
     + [Choose semsetral work](https://courses.fit.cvut.cz/NI-MVI/semestralka.html)
         * [kaggle](https://www.kaggle.com/competitions)
 - check Lectures BI-ZUM
 
-## Data Preprocessing
+### Data Preprocessing
 
 - [homework 1](https://courses.fit.cvut.cz/NI-PDD/homeworks/index.html)
 - Coming: [homework 2](https://courses.fit.cvut.cz/NI-PDD/homeworks/index.html)
 - Coming: [homework 3](https://courses.fit.cvut.cz/NI-PDD/homeworks/index.html)
 
-## Artificial Intelligence
+### Artificial Intelligence
+
+- sudoku solver CSP
 
 - homework 1 - play tutorial, find assignment and do it
 
 - look through lectures BI-ZUM, learn A*
 
-## Combinatorial Optimization
+## Knowledge engineering - need (FIT/CTU)
+
+### Combinatorial Optimization
 
 - ~~[homework 1](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89693)~~
 - [homework 2 Until November 2nd](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89697)
 
 - basic combinatorics - discrete math?
-- 
+
 - Coming: [homework 3]()
 - Coming: [homework 4]()
 
 
-## Nonlinear Optimization and Numerical Methods
+### Nonlinear Optimization and Numerical Methods
 
 - [homework 1](http://mech.fsv.cvut.cz/~jk/ukol_minon1.pdf)
 - Coming: [homework 1]()
 - Coming: [homework 1]()
 
-## efficient_pattern_matching
+## Bioinformatics - must (FCT/UCT)
+
+### Efficient Pattern Matching
 
 - tutorial test 1
 - tutorial test 2
 
-## Molecular Modelling
+### Molecular Modelling
 
 - Homeworks ???
 
-## Molecular Biology
+### Molecular Biology
 
 - Only exam ??? check!
 
-## Genetic Engineering
+### Genetic Engineering
 
 - Only exam ??? check!
 
-## Genomics
+### Genomics
 
 - [homework 1](http://bio.img.cas.cz/GAA2020/E1/)
 - Coming: [Semestral work]()
@@ -120,7 +121,9 @@
 - Coming: [homework 5]()
 - Coming: [homework 6]()
 
-## Statistical Data Analysis
+## Bioinformatics - need (FCT/UCT)
+
+### Statistical Data Analysis
 
 - [homework 1](https://github.com/lich-uct/r_tutorial/tree/master/03/ukoly)
 - [semestral work](https://docs.google.com/spreadsheets/d/11PkHMRaTK-iHaEXgcyEsIgJgNclkCYINsDt6lB_LuVc/edit#gid=0)
@@ -131,7 +134,7 @@
 - Coming: [homework 6]()
 - Coming: [homework 7]()
 
-## Genomics Practicum
+### Genomics Practicum
 
 - Coming: [homework 1](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/dcvs-1.html)
 - Coming: [homework 2](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/dcvs-1.html)
@@ -140,40 +143,45 @@
 - Coming: [homework 5]()
 - Coming: [homework 6]()
 
-## Structural Biology
+### Structural Biology
 
 - Coming: optional homework 1 ???
 
-## Biophysical Chemistry
+### Biophysical Chemistry
 
-## Math
+## Learning
+
+### Math
+
+- Velká fermatova věta
+  - $a^n + b^n = c^n$ neexistuje pro $a,b,c,n \in \mathbb{N}, n > 2$.
 
 ### Discrete Mathematics
 
 - Permutations, Variations, Combinations - BI-ZDM-05
 
-## Writing
+### Writing
 
-### Latex
+#### Latex
 
 
-### How to write code
+#### How to write code
 
 Guessing the behaviour will be intuitive is the worst codding pracitice in history of all codding practices maybe ever!
 
-### Markdown
+#### Markdown
 
 + How to markdown VS code
 > https://code.visualstudio.com/docs/languages/markdown
 + indentations
 
 
-### Shortcuts
+#### Shortcuts
 
 [source](https://tahoeninjas.blog/2019/03/30/multi-cursor-editing-in-visual-studio-code/) ctrl+shift+l
 
 
-## Python
+### Python
 
 - [pathlib Path](https://docs.python.org/3/library/pathlib.html)
 
@@ -206,12 +214,12 @@ Guessing the behaviour will be intuitive is the worst codding pracitice in histo
 - uzávěry
 
 
-## Git
+### Git
 
 + delete branch to how_to_git
 > https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323
 
-## Shell
+### Shell
 
 + EXPORT
 > https://www.tutorialspoint.com/unix_commands/export.htm
@@ -222,23 +230,24 @@ Guessing the behaviour will be intuitive is the worst codding pracitice in histo
 + delete user
 > https://www.cyberciti.biz/faq/linux-remove-user-command/
 
-## PHP
+### JavaScript
 
-### Composer
+Stačí napsat tohle, a pak to umí každé vytvořené pole.
+```
+Array prototype valueIn = function()
+```
+
+### PHP
+
+#### Composer
 OVER SEE HISTORY HOW TO InSTALL COMPOSER
 ```
 mv composer.phar /usr/local/bin/composer
 ```
 [source](https://getcomposer.org/doc/00-intro.md)
 
-### UNIT TEST
+#### UNIT TEST
 ```
 sudo apt-get install php-xml
 sudo apt-get install php-mbstring
-```
-
-## JavaScript
-Stačí napsat tohle, a pak to umí každé vytvořené pole.
-```
-Array prototype valueIn = function()
 ```

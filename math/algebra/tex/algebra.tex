@@ -29,7 +29,7 @@ Definice, věty a poznámky z předmětu NI-MPI.
 % \href{https://courses.fit.cvut.cz/NI-MPI/lectures/index.html}{Odkaz na courses}.
 \end{abstract}
 
-\section{Přednáška 1.}
+\section{Algebra 1.}
 
 \subsection{Úvod}
 
@@ -94,7 +94,7 @@ V každé grupě $(M, \circ)$ jde jednoznačně dělit.
 Grupu $(M, \circ)$ s konečným počtem prvků $M$ lze vizualizovat pomocí \textit{Cayleyho orientovaného grafu}.
 Cayleyho orientovaný graf \[(V,E), \quad V=M, \quad E=\{(a,b): b=a \circ c, \quad \forall a \in M, \forall c \in N \subset V\}\]
 
-\section{Přednáška 2.}
+\section{Algebra 2.}
 
 \subsection{Podgrupy}
 
@@ -235,7 +235,7 @@ Grupa $ \mathbb{Z}^{\times}_{p}$ je cyklická a řádu $p - 1$.
 Pro libovolné $p$ a libovolné $1 < a < p$
 \[a^{p-1} \equiv 1 (mod \quad p). \quad (a^n \equiv a (mod \quad p))\] 
 
-\section{Přednáška 3.}
+\section{Algebra 3.}
 
 \subsection{Homomorfismy a izomorfismy}
 
@@ -365,16 +365,171 @@ Vynásobit dvě velká prvočísla je snadný úkol. Rozložit velké číslo na
 \end{itemize}
 
 
-\section{Přednáška 4.}
+\section{Algebra 4.}
 
 \subsection{Množiny se dvěma binárními operacemi}
 
+\subsubsection*{Definice 13.1 Okruh (Ring)}
+Buď $M$ neprázdná množina a $+$ a $\cdot$ binární operace na $M$.
+Trojice $R = (M,+,\cdot)$ je \textbf{okruh}, pokud
+\begin{itemize}
+    \item $(M,+)$ je \textbf{abelovská grupa},
+    \item $(M,\cdot)$ je \textbf{monoid},
+    \item platí (levý a pravý) \textbf{distributivní zákon}
+    \[ (\forall a,b,c \in M) \left( a(b+c)= ab + ac \land (b+c)a = ba + ca \right) \]
+\end{itemize}
+
+\subsubsection*{Názvosloví}
+Buď $R = (M,+,\cdot)$ okruh
+\begin{itemize}
+    \item je-li $\cdot$ komutativní, nazýváme $R$ \textbf{komutativní okruh}
+    \item $(M,+)$ se nazývá \textbf{aditivní grupa} okruhu $R$,
+    \item $(M,\cdot)$ se nazývá \textbf{multiplikativní monoid} okruhu $R$,
+    \item neutrální prvek $M$ se nazývá \textbf{nulový prvek} a značí se $0$,
+    inverzní prvek $a^{-1}$ vůči operaci $+, a \in M$, značíme $-a$,
+    \item v okruhu můžeme definovat operaci odečítání $-$ předpisem
+    \[ a - b = a + (-b)\]
+    \item neutrálnímu prvku multiplikativního monoidu budeme zpravidla říkat \textbf{jednička} a značit jej $1$.
+\end{itemize}
+
+\subsubsection*{Základní vlastnost okruhů}
+\begin{itemize}
+    \item Násobení nulovým prvkem dává opět nulový prvek
+    \item Levý i pravý distributivní zákon pro odečítání
+\end{itemize}
+
+\subsubsection*{Definice 13.2 Obor integrity (Integral domain)}
+Nenulové prvky $a,b \in M$ z okruhu $(M,+,\cdot)$ nazýváme \textbf{dělitelé nuly} právě tehdy když,
+$a \cdot b = b \cdot a = 0$. \textbf{Obor integrity} je komutativní okruh ve kterém neexistují dělitelé nuly.
+
+\subsubsection*{Definice 13.3 Těleso (Field)}
+Okruh $T = (M,+,\cdot)$ se nazývá těleso, pokud $(M \setminus \{0\},\cdot)$ je abelovská grupa.
+Tuto grupu nazýváme multiplikativní grupou tělesa $T$.
+
+\subsubsection*{Poznámka}
+\begin{itemize}
+    \item Z množiny $M$ multiplikativní grupy tělesa $T$ musíme odebrat prvek $0$, protože
+    $a \cdot 0 = 0 \cdot a = 0$ a tedy k nule neexistuje inverzní prvek, tj. nelze dělit nulou.
+    \item všemi ostatnímy prvky dělit umíme.
+    \subitem dělení = násobení inverzním prvkem
+    \[ \frac{a}{b} = a \cdot b^{-1}, \quad \forall a,b \in M \setminus \{0\}\]
+\end{itemize}
+
+\subsubsection*{Příklady těles}
+\begin{itemize}
+    \item $(\mathbb{Z},+,\cdot)$ není těleso,
+    \item $(\mathbb{Q},+,\cdot)$ je nejmenší těleso s běžnými operacemi $+$ a $\cdot$,
+    \item nejmenší těleso je tzv. \textbf{triviální těleso} $$(\{0,1\},+_2,\cdot_2)$$
+\end{itemize}
+
+\subsubsection*{Některé vlastnosti těles}
+Každé těleso má definované aritmetické operace sčítání, odčítání, násobení, dělení
+a všechny operace z nich odvozené jako například mocnění, odmocňování, logaritmování.
+
+Triviální těleso má tyto operace definované nad jedním bitem. Lze je rozšířit na libovolný počet bitů.
+
+\subsubsection*{Věta 13.4}
+Mějme těleso $T$, pokud $ab = 0, a,b\in T$ pak $a = 0 \lor b = 0$.
+
+Každé těleso je tedy oborem integrity.
+
+\subsubsection*{Definice 13.5}
+Zobrazení $h$ z okruhu (resp. tělesa) R do okruhu (resp. tělesa) S, je \textbf{homomorfismem} z R na S,
+pokud je $h$ homomorfismem příslušných aditivních a multiplikativních grupoidů (resp. grup) a platí $h(1_R) = 1_S$.
+
+Je-li navíc zobrazneí $h$ bijekcí (prosté a na), jedná se o \textbf{izomorfismus} z $R$ na $S$.
+
+\subsubsection*{Definice 13.6}
+Tělesa $T$ a $K$ nazýváme \textbf{izomorfní}, právě tehdy když existuje izomorfismus z $R$ na $S$.
+V tom případě říkáme, že těleso $T$ \textbf{je izomorfní s} tělesem $K$.
+
+\subsubsection*{Poznámka}
+Relace "být izomorfní" na množině všech těles je relace ekvivalence.
+Podmínka $h(1_R) = 1_S$ u homomorfismů okruhů je nutná abychom měli korektně homomorfismus monoidů. U těles ji můžeme vypustit.
+
 \subsection{Okruhy polynomů}
+
+\subsubsection*{Definice 13.6}
+Mějme okruh $R$ a prvky $a_i \in R, i \in \{0,1,2,\dots,n\}$. Formální výraz tvaru
+\[
+    P(x) = \sum^n_{i=1}a_ix^i
+\]
+nazýváme \textbf{polynomem nad okruhem $R$}.
+
+\begin{itemize}
+    \item Prvky $a_i \in R, i \in \{0,1,2,\dots,n\}$ nazýváme \textbf{koeficienty} polynomu $P(x)$.
+    \item x nazýváme \textbf{formální proměnnou} polynomu $P(x)$.
+    \item Pokud pro polynom $P(x)$ existuje $k \in \{0,1,2,\dots,n\}, a_k \neq 0$,
+    pak nejvyšší z těchto k nazýváme \textbf{stupněm polynomu}.
+    \item Polynom $P(x) = 0$ nazýváme \textbf{nulovým polynomem} a jeho stupeň nedefinujeme.
+\end{itemize}
+
+\subsubsection*{Věta 14.2 Okruh polynomů (polynomial ring)}
+... tvoří \textbf{okruh polynomů nad okruhem $R$}. 
+
+Tento okruh zančíme $R[x]$.
+
+\subsubsection*{Lemma 14.3 (o dělení polynomů)}
+
+\subsubsection*{Věta 14.4 (Bézoutova věta pro polynomy)}
+
+\subsubsection*{Lemma 14.5 (o násobení polynomů)}
+
+\subsubsection*{Definice 14.6}
+... Řekneme, že $P(x)$ je \textbf{ireducibilní nad okruhem K}, jestliže
+
+\subsubsection*{Věta 14.7}
+...
+
+kde $\mu$ je Möbiova funkce
+
+a \textbf{monický} polynom je takový, který má u koeficient u nejvyšší mocniny jedničku.
 
 \subsection{Konečná tělesa}
 
+\subsubsection*{Definice 15.1 Konečné těleso (finite field)}
+Těleso, které má konečný počet prvků se nazývá \textbf{konečné}.
+
+\textbf{Řádem} tělesa se podobně jako u řádu grup nazývá počet prvků tělesa.
+Konečná tělesa mají i konečný řad.
+
+\subsubsection*{O tělese $(\mathbb{Z}, +, \cdot)$}
+
+\subsubsection*{Věta 15.3}
+Řádem konečného tělesa musí být mocnina prvočísla, neboli číslo zapsatelné jako $p^n$,
+kde $p$ je prvočíslo a $n$ je kladné celé číslo.
+Navíc platí, že všechna tělesa řádu $p^n$ jsou \textbf{navzájem izomorfní}.
+
+\subsubsection*{Definice 15.4}
+Těleso s řádem $p^n$ nazýváme \textbf{Galois field} a značíme ho $GF(p^n)$
+prvočíslo $p$ se nazývá \textbf{charakteristikou} tělesa $GF(p^n)$.
+
+\subsubsection*{$GF(p^n)$: aditivní grupa}
+
+\subsubsection*{$GF(p^n)$: multiplikativní grupa}
+
 \subsection{Aplikace konečných těles v kryptografii}
 
-\section{Přednáška 5.}
+\subsubsection*{Bloková šifra AES}
+
+\subsubsection*{Eliptická křivka}
+
+\subsubsection*{Definice 16.1}
+Pro dva body 
+
+\subsubsection*{Definice 16.2}
+Eliptickou křivkou rozumíme množinu bodů splňující rovnici
+
+\section{Algebra 5.}
+
+\subsection{Aritmetické operace v konečném tělese $GF(p^n)$}
+
+\subsubsection*{EEA: ukázka v $GF(3^3)$}
+
+
+\subsection{Hledání izomorfismů mezi dvěma konečnými tělesy}
+
+\subsection{Soustavy lineárních rovnic v $\mathbb{Z}^+_n$}
+
 
 \end{document}

@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1603282316 "/home/langerjaros/Projects/learning/math/algebra/tex/algebra.tex" "algebra.pdf" "algebra" 1603282316
+["pdflatex"] 1603375901 "/home/langerjaros/Projects/learning/math/algebra/tex/algebra.tex" "algebra.pdf" "algebra" 1603375901
   "/etc/texmf/web2c/texmf.cnf" 1602677071 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/langerjaros/Projects/learning/math/algebra/tex/algebra.tex" 1603282315 15525 1ffb95a06a81537afd5ceaeed21c6bf8 ""
+  "/home/langerjaros/Projects/learning/math/algebra/tex/algebra.tex" 1603375900 21977 bbe7bf77e24bce91cf3b0ce5233b610b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1480098698 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -33,11 +33,11 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1520210507 32485 c64754543d8ac501bea6e75e209ea521 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1520210507 32485 c64754543d8ac501bea6e75e209ea521 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1603223516 2420967 8c1b69f47e65d8cda948eb5a4407234a ""
-  "algebra.aux" 1603282316 1745 781d90df90665b3a4e6bf9831b9473f5 ""
-  "algebra.tex" 1603282315 15525 1ffb95a06a81537afd5ceaeed21c6bf8 ""
-  "algebra.toc" 1603282316 1377 b790ea8a63adcb074faaff15135fcdd5 ""
+  "algebra.aux" 1603375901 2078 19f985e095664ec846d56df2e5d9a600 ""
+  "algebra.tex" 1603375900 21977 bbe7bf77e24bce91cf3b0ce5233b610b ""
+  "algebra.toc" 1603375901 1655 c4b19ffd2bf09694665f370ff037c0cb ""
   (generated)
-  "algebra.aux"
-  "algebra.pdf"
   "algebra.log"
+  "algebra.pdf"
   "algebra.toc"
+  "algebra.aux"
