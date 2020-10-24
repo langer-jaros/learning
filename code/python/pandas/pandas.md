@@ -2,43 +2,38 @@
 
 *The alpha and omega of data in python.*
 
-First things first
-+ [Import pandas](#import-pandas)
+## Content <!-- omit in toc -->
+- [First things first](#first-things-first)
+  - [Import pandas](#import-pandas)
+- [Get data into DataFrames](#get-data-into-dataframes)
+  - [Get dataframe from csv](#get-dataframe-from-csv)
+  - [Write dataframe to csv](#write-dataframe-to-csv)
+  - [Dataframe form dictionary](#dataframe-form-dictionary)
+  - [DataFrame from XML](#dataframe-from-xml)
+  - [Srapping the HTML](#srapping-the-html)
+  - [Dataframe from json](#dataframe-from-json)
+- [Accessing the dataframes](#accessing-the-dataframes)
+  - [First look at the Dataframe](#first-look-at-the-dataframe)
+  - [Further information](#further-information)
+  - [Dataframe properties](#dataframe-properties)
+  - [Accessing columns](#accessing-columns)
+  - [Accessing rows](#accessing-rows)
+  - [loc - Specify rows, and cols at the same time](#loc---specify-rows-and-cols-at-the-same-time)
+  - [iloc - Accessing through indices](#iloc---accessing-through-indices)
+  - [More dataframes](#more-dataframes)
+- [Modifing the dataframes](#modifing-the-dataframes)
+  - [Work with the dataframes](#work-with-the-dataframes)
+  - [Work with dataframe columns](#work-with-dataframe-columns)
+  - [Works with dataframe rows](#works-with-dataframe-rows)
+- [Poltting the data](#poltting-the-data)
+  - [Plot the data](#plot-the-data)
+- [Advanced features](#advanced-features)
+  - [MultiIndex](#multiindex)
+  - [Pandas regex](#pandas-regex)
+- [TODO](#todo)
 
-Get data into DataFrames
-+ [Dataframe form dictionary](#dataframe-form-dictionary)
-+ [Get dataframe from csv](#get-dataframe-from-csv)
-+ [Write dataframe to csv](#write-dataframe-to-csv)
-+ [DataFrame from XML](#dataframe-from-xml)
-+ [Srapping the HTML](#srapping-the-html)
 
-Accessing the dataframes
-+ [First look at the Dataframe](#first-look-at-the-dataframe)
-+ [Dataframe properties](#dataframe-properties)
-+ [Accessing columns](#accessing-columns)
-+ [Accessing rows](#accessing-rows)
-+ [Rows and cols - loc, iloc](#rows-and-cols---loc,-iloc)
-+ [More dataframes](#More-dataframes)
-
-Modifing the dataframes
-+ [Work with the dataframes](#work-with-the-dataframes)
-+ [Work with dataframe columns](#work-with-dataframe-columns)
-+ [Works with dataframe rows](#works-with-dataframe-rows)
-
-Poltting the data
-+ [Plot the data](#Plot-the-data)
-+ [Configure the plot details, plot more graphs](#configure-the-plot-details,-plot-more-graphs)
-
-Advanced features
-+ [MultiIndex](#multiindex)
-+ [pandas regex](#pandas-regex)
-
-### TODO
-
-[Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
-[Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
-
-data['embarked'] = data[['embarked']].astype('category').apply(lambda x: x.cat.codes)
+## First things first
 
 ### Import pandas
 
@@ -48,19 +43,7 @@ import html5lib
 import requests
 ```
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
-
-### Dataframe form dictionary
-
-```py
-lists = [[1,2,3,4], [2,3,4], [5,2,4,7,8]]
-lengths = [len(sublist) for sublist in lists]
-
-df_dict = {"lengths": lengths, "lists": lists}
-df = pd.DataFrame(df_dict)
-```
-
-[df from dicts and lists](https://pbpython.com/pandas-list-dict.html)
+## Get data into DataFrames
 
 ### Get dataframe from csv
 
@@ -76,8 +59,6 @@ candidates = pd.read_csv('./candidates.csv', names=columnsNamesList)
 candidates = pd.read_csv('./candidates.csv', index=False)
 ```
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
-
 ### Write dataframe to csv
 
 ```py
@@ -86,7 +67,18 @@ df.to_csv('./path/data1_new.csv')
 # Write row names (index)
 candidates.to_csv('./candidates.csv', index=False)
 ```
-[Back to pandas](#pandas) | [Back to the top](#Science)
+
+### Dataframe form dictionary
+
+```py
+lists = [[1,2,3,4], [2,3,4], [5,2,4,7,8]]
+lengths = [len(sublist) for sublist in lists]
+
+df_dict = {"lengths": lengths, "lists": lists}
+df = pd.DataFrame(df_dict)
+```
+
+[df from dicts and lists](https://pbpython.com/pandas-list-dict.html)
 
 ### DataFrame from XML
 
@@ -102,9 +94,8 @@ for node in xroot:
 
 out_df = pd.DataFrame(rows, columns = df_cols)
 ```
-[source](https://medium.com/@robertopreste/from-xml-to-pandas-dataframes-9292980b1c1c)
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
+[source](https://medium.com/@robertopreste/from-xml-to-pandas-dataframes-9292980b1c1c)
 
 ### Srapping the HTML
 
@@ -144,10 +135,6 @@ ldf = pd.read_html(r.text,flavor='html5lib', header=0)
 df = ldf[0]
 ```
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
-
----
-
 ### Dataframe from json
 
 ```py
@@ -156,55 +143,57 @@ pd.read_json("./time_spent.json", orient="index")
 
 [types of json structure](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html)
 
+## Accessing the dataframes
+
 ### First look at the Dataframe
 
 ```py
-# First(/Last) 5 lines defaultly
+# Get first(/last) few lines (5 by default)
 df.head()
 df.tail()
 
-# Info about columns names, types, number of not null items..
+# Get info about column names, types, number of not null items..
 df.info()
 
 # Basic statistic info like mean, std, min, max...
 df.describe()
+```
 
+#### Show all columns (if not shown by default)
+
+```py
+pd.set_option("max_columns", None)
+display(df.head())
+pd.reset_option("max_columns")
+```
+
+[source](https://towardsdatascience.com/how-to-show-all-columns-rows-of-a-pandas-dataframe-c49d4507fcf)
+
+### Further information
+
+```py
 # Sum all the data in every column
 df.sum()
 
-# List of unique values
-df.name.unique()
-
-# Number of uniqe values (default ignores NaN)
+# Number of uniqe values in every column (by default ignores NaN)
 df.nunique()
 
-# Check if NaN, not NaN
+# Creates table of same size, every value is represented with boolean isnull NaN -> True
 df.isnull()
 df.notnull()
-
-# Handy
+# Handy usage of previous functions, see number of NaN (/not NaN) values per column
 df.isnull().sum()
 df.notnull().sum()
-
-# Bit statistics
-df[COL].mean()
-df[COL].median()
-df[COL].var()
 ```
-
-[Back to pandas](#pandas) | [Back to the top](#Science)
 
 ### Dataframe properties
 
 ```py
-# Number of dataframe rows and columns
+# Tuple of dataframe rows number and columns number
 df.shape
 
-# Array with names of columns
+# Array with column names
 df.columns
-
-# Accessing df column with its name
-df.Age
 
 # Array(/s) from Dataframe
 df.values
@@ -213,22 +202,30 @@ df.values
 df.index
 ```
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
-
 ### Accessing columns
 
 ```py
-# Access column or columns of an multi-column (multiindex)
+# Atribute access of df column by its name
+df.Age
+# Access column by its string name (or columns of an multi-column (multiindex))
 data1['Age']
 # Access Columns
-data2['Name', 'Age']
-# Resp. more correct is this, dunno why
-df1 = df[['a','b']]
+data2[['Name', 'Age']]
+# If column name is tuple ('Name', 'Age'), then 
+data2[('Name', 'Age')] # or data2['Name', 'Age']
 ```
 
-[correct columns access link](https://stackoverflow.com/questions/11285613/selecting-multiple-columns-in-a-pandas-dataframe)
+#### Column functions
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
+```py
+# List of unique values
+df.name.unique()
+
+# Statistical information
+df[COL].mean()
+df[COL].median()
+df[COL].var()
+```
 
 ### Accessing rows
 
@@ -262,8 +259,6 @@ for index, row in df.iterrows():
     print(row['c1'], row['c2'])
 ```
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
-
 ### loc - Specify rows, and cols at the same time
 
 Usage: dataFrame.loc[<ROWS RANGE> , <COLUMNS RANGE>]
@@ -291,15 +286,13 @@ data1.iloc[(data1['Age'] < 30).values, [3,5]]
 [usages from here](https://thispointer.com/select-rows-columns-by-name-or-index-in-dataframe-using-loc-iloc-python-pandas/)
 [loc iloc source](https://www.pythonprogramming.in/what-is-difference-between-iloc-and-loc-in-pandas.html)
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
-
 ### More dataframes
 
 ```py
 df1.equals(df2)
 ```
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
+## Modifing the dataframes
 
 ### Work with the dataframes
 
@@ -337,8 +330,6 @@ df = df.sort_index(ascending=False, ignore_index=True)
 dataUJAK[dataUJAK['Rok'] > 2000].groupby(['Název práce']).size().sort_values(ascending=False)
 ```
 [groupby](https://pandas.pydata.org/pandas-docs/stable/reference/groupby.html)
-
-[Back to pandas](#pandas) | [Back to the top](#Science)
 
 ### Work with dataframe columns
 
@@ -386,8 +377,6 @@ df[df.columns[0]] = pd.to_datetime(df.columns[0], format='%d.%m.%Y')
 rfm[RECENCY] = rfm[RECENCY].astype('timedelta64[D]')
 ```
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
-
 ### Works with dataframe rows
 
 ```py
@@ -434,7 +423,7 @@ data = data.replace('?', np.nan)
 
 [remove duplicated indices](https://stackoverflow.com/questions/13035764/remove-rows-with-duplicate-indices-pandas-dataframe-and-timeseries)
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
+## Poltting the data
 
 ### Plot the data
 
@@ -473,7 +462,7 @@ TODO COLORMAP
 [area link ](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html)
 [area plot](https://stackoverflow.com/questions/55214249/how-to-create-an-area-plot-in-seaborn)
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
+## Advanced features
 
 ### MultiIndex
 
@@ -497,31 +486,51 @@ columns1.to_flat_index()
 
 [Back to pandas](#pandas) | [Back to the top](#Science)
 
-### pandas regex
+### Pandas regex
+
+#### Match
 
 ```py
-# Match
 numeral_filter = df['ticket'].str.match(r'(\A[0-9]+\Z)', case=False)==True
 df['ticket'] = df['ticket'].apply(lambda x: np.nan if x == '' else x) 
 display(df[numeral_filter].shape[0])
 display(df[~numeral_filter])
 
-
 Series.str.match(pattern, case=True, flags=0, na=nan)
-
-# Extract
-
-# Replace
-
 ```
-[pandas replace](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.replace.html)
-
-[pandas extract](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.extract.html)
 
 [pandas match](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.match.html)
 
+#### Extract
+
+```py
+degreeNP = r'DiS|Dipl\.um.'
+degreeR = r'Bc|BBA'
+degreeT = r'Ing|Mgr|MUDr|PaedDr|JUDr|Dr|RNDr|MVDr|PhDr|RSDr|PhMr|MgA|MBA|Prim'
+degreeV = r'Ph\.?D|Doc|Prof'
+postNominalPattern = r'\s({NP}|{R}|{T}|{V})(\.|\s|\Z).*'.format(NP=degreeNP, R=degreeR, T=degreeT, V=degreeV)
+
+postDegreePattern = r'.*(?P<{columnName}>\s({NP}|{R}|{T}|{V})(\.|\s|\Z).*)'\
+    .format(columnName=DEGREE_TMP, NP=degreeNP, R=degreeR, T=degreeT, V=degreeV)
+
+columns = candidates[NAME_SURNAME].str.extract(postDegreePattern, flags=re.IGNORECASE)
+```
+
+[pandas extract](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.extract.html)
+
+#### Replace
+
+```
+candidates[NAME_SURNAME] = candidates[NAME_SURNAME].str.replace(postNominalPattern, '', flags=re.IGNORECASE)
+```
+
+[pandas replace](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.replace.html)
+
 [How to use Regex in Pandas](https://kanoki.org/2019/11/12/how-to-use-regex-in-pandas/)
 
-[Back to pandas](#pandas) | [Back to the top](#Science)
+## TODO
 
----
+[Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
+[Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
+
+data['embarked'] = data[['embarked']].astype('category').apply(lambda x: x.cat.codes)
