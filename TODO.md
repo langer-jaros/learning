@@ -1,38 +1,79 @@
 # TODO
 
-`2020/10/21 Jaroslav Langer`
+`2020/10/24 Jaroslav Langer`
 
 ## Content <!-- omit in toc -->
-- [Knowledge engineering - must (FIT/CTU)](#knowledge-engineering---must-fitctu)
+- [Study](#study)
+  - [Knowledge engineering (FIT/CTU)](#knowledge-engineering-fitctu)
+  - [Bioinformatics study (FCT/UCT)](#bioinformatics-study-fctuct)
+- [Math](#math)
   - [Mathematics for Informatics](#mathematics-for-informatics)
+  - [Statistical Data Analysis](#statistical-data-analysis)
+- [Informatics](#informatics)
   - [Computational Intelligence Methods](#computational-intelligence-methods)
   - [Data Preprocessing](#data-preprocessing)
   - [Artificial Intelligence](#artificial-intelligence)
-- [Knowledge engineering - need (FIT/CTU)](#knowledge-engineering---need-fitctu)
   - [Combinatorial Optimization](#combinatorial-optimization)
   - [Nonlinear Optimization and Numerical Methods](#nonlinear-optimization-and-numerical-methods)
-- [Bioinformatics - must (FCT/UCT)](#bioinformatics---must-fctuct)
   - [Efficient Pattern Matching](#efficient-pattern-matching)
+  - [Web](#web)
+- [Chem and bio](#chem-and-bio)
   - [Molecular Modelling](#molecular-modelling)
   - [Molecular Biology](#molecular-biology)
   - [Genetic Engineering](#genetic-engineering)
   - [Genomics](#genomics)
-- [Bioinformatics - need (FCT/UCT)](#bioinformatics---need-fctuct)
-  - [Statistical Data Analysis](#statistical-data-analysis)
   - [Genomics Practicum](#genomics-practicum)
   - [Structural Biology](#structural-biology)
   - [Biophysical Chemistry](#biophysical-chemistry)
-- [Learning](#learning)
-  - [Math](#math)
-  - [Discrete Mathematics](#discrete-mathematics)
-  - [Writing](#writing)
+- [Writing](#writing)
+  - [Latex](#latex)
+  - [How to write code](#how-to-write-code)
+  - [Markdown](#markdown)
+  - [Shortcuts](#shortcuts)
+- [Code](#code)
   - [Python](#python)
   - [Git](#git)
   - [Shell](#shell)
   - [JavaScript](#javascript)
   - [PHP](#php)
 
-## Knowledge engineering - must (FIT/CTU)
+## Study
+
+### Knowledge engineering (FIT/CTU)
+
+#### Must
+
+- [Mathematics for Informatics](#mathematics-for-informatics)
+- [Computational Intelligence Methods](#computational-intelligence-methods)
+- [Data Preprocessing](#data-preprocessing)
+- [Artificial Intelligence](#artificial-intelligence)
+
+#### Need
+
+- [Combinatorial Optimization](#combinatorial-optimization)
+- [Nonlinear Optimization and Numerical Methods](#nonlinear-optimization-and-numerical-methods)
+
+### Bioinformatics study (FCT/UCT)
+
+#### Must
+
+- [Efficient Pattern Matching](#efficient-pattern-matching)
+- [Molecular Modelling](#molecular-modelling)
+- [Molecular Biology](#molecular-biology)
+- [Genetic Engineering](#genetic-engineering)
+- [Genomics](#genomics)
+
+#### Need
+
+- [Statistical Data Analysis](#statistical-data-analysis)
+- [Genomics Practicum](#genomics-practicum)
+- [Structural Biology](#structural-biology)
+- [Biophysical Chemistry](#biophysical-chemistry)
+
+## Math
+
+- Velká fermatova věta
+  - $a^n + b^n = c^n$ neexistuje pro $a,b,c,n \in \mathbb{N}, n > 2$.
 
 ### Mathematics for Informatics
 
@@ -51,6 +92,24 @@
     + Coming: [Marast big 1](https://marast.fit.cvut.cz/)
     + Coming: [Marast big 2](https://marast.fit.cvut.cz/)
 - Coming: Assignment (form tutorial)
+
+
+#### Discrete Mathematics
+
+- Permutations, Variations, Combinations - BI-ZDM-05
+
+### Statistical Data Analysis
+
+- [homework 1](https://github.com/lich-uct/r_tutorial/tree/master/03/ukoly)
+- [semestral work](https://docs.google.com/spreadsheets/d/11PkHMRaTK-iHaEXgcyEsIgJgNclkCYINsDt6lB_LuVc/edit#gid=0)
+- Coming: [homework 2]()
+- Coming: [homework 3]()
+- Coming: [homework 4]()
+- Coming: [homework 5]()
+- Coming: [homework 6]()
+- Coming: [homework 7]()
+
+## Informatics
 
 ### Computational Intelligence Methods
 
@@ -73,8 +132,6 @@
 
 - look through lectures BI-ZUM, learn A*
 
-## Knowledge engineering - need (FIT/CTU)
-
 ### Combinatorial Optimization
 
 - ~~[homework 1](https://moodle-vyuka.cvut.cz/mod/assign/view.php?id=89693)~~
@@ -85,19 +142,24 @@
 - Coming: [homework 3]()
 - Coming: [homework 4]()
 
-
 ### Nonlinear Optimization and Numerical Methods
 
 - [homework 1](http://mech.fsv.cvut.cz/~jk/ukol_minon1.pdf)
 - Coming: [homework 1]()
 - Coming: [homework 1]()
 
-## Bioinformatics - must (FCT/UCT)
-
 ### Efficient Pattern Matching
 
 - tutorial test 1
 - tutorial test 2
+
+### Web
+
+Node JS, etc, (some youtube lost video to be found)
+
+[single page aplication js example](https://medium.com/better-programming/js-vanilla-script-spa-1b29b43ea475)
+
+## Chem and bio
 
 ### Molecular Modelling
 
@@ -121,19 +183,6 @@
 - Coming: [homework 5]()
 - Coming: [homework 6]()
 
-## Bioinformatics - need (FCT/UCT)
-
-### Statistical Data Analysis
-
-- [homework 1](https://github.com/lich-uct/r_tutorial/tree/master/03/ukoly)
-- [semestral work](https://docs.google.com/spreadsheets/d/11PkHMRaTK-iHaEXgcyEsIgJgNclkCYINsDt6lB_LuVc/edit#gid=0)
-- Coming: [homework 2]()
-- Coming: [homework 3]()
-- Coming: [homework 4]()
-- Coming: [homework 5]()
-- Coming: [homework 6]()
-- Coming: [homework 7]()
-
 ### Genomics Practicum
 
 - Coming: [homework 1](http://vyuka.ookami.cz/@VSCHT_2020+21_LP12/dcvs-1.html)
@@ -149,37 +198,27 @@
 
 ### Biophysical Chemistry
 
-## Learning
+## Writing
 
-### Math
-
-- Velká fermatova věta
-  - $a^n + b^n = c^n$ neexistuje pro $a,b,c,n \in \mathbb{N}, n > 2$.
-
-### Discrete Mathematics
-
-- Permutations, Variations, Combinations - BI-ZDM-05
-
-### Writing
-
-#### Latex
+### Latex
 
 
-#### How to write code
+### How to write code
 
 Guessing the behaviour will be intuitive is the worst codding pracitice in history of all codding practices maybe ever!
 
-#### Markdown
+### Markdown
 
 + How to markdown VS code
 > https://code.visualstudio.com/docs/languages/markdown
 + indentations
 
 
-#### Shortcuts
+### Shortcuts
 
 [source](https://tahoeninjas.blog/2019/03/30/multi-cursor-editing-in-visual-studio-code/) ctrl+shift+l
 
+## Code
 
 ### Python
 
