@@ -1,35 +1,80 @@
 # Python
 
-`2020/03/17, Jaroslav Langer`
+`2020/10/24, Jaroslav Langer`
 
-## MENU
+## Content <!-- omit in toc -->
+- [Tutorials](#tutorials)
+- [How to start](#how-to-start)
+  - [Installation](#installation)
+  - [Run python](#run-python)
+- [Basics](#basics)
+  - [First things first](#first-things-first)
+  - [Comments](#comments)
+  - [Printing](#printing)
+  - [Variables](#variables)
+  - [Handy methods](#handy-methods)
+  - [Data types](#data-types)
+  - [String](#string)
+  - [Bytes](#bytes)
+  - [Collections](#collections)
+  - [Conditions](#conditions)
+  - [Loops](#loops)
+  - [Imports](#imports)
+  - [Inputs, outputs](#inputs-outputs)
+  - [Files](#files)
+  - [os](#os)
+  - [Asserting](#asserting)
+  - [Json](#json)
+- [Advanced](#advanced)
+  - [Regex](#regex)
+  - [Lambda](#lambda)
+  - [Datetime](#datetime)
+  - [argparse](#argparse)
+  - [Compress, decompress, checksum](#compress-decompress-checksum)
+  - [ctypes](#ctypes)
+  - [Python 2 differences](#python-2-differences)
 
-- [Comments](#comments)
-- [First things first](#first-things-first)
-- [Printing](#printing)
-- [Variables](#variables)
-- [Data types](#data-types)
-- [Conditions](#conditions)
-- [Loops](#loops)
-- [Imports](#imports)
-- [Inputs, outputs](#inputs,-outputs)
-- [Asserting](#asserting)
-- [json](#json)
 
-Advanced
-- [Regex](#regex)
-- [lambda](#lambda)
-- [datetime](#datetime)
-- [argparse](#argparse)
-- [compress, decompress, checksum](#compress,-decompress,-checksum)
-- [ctypes](#ctypes)
-- [Python 2 differences](#python-2-differences)
-
-## Links
+## Tutorials
 
 [Tutorial place](https://realpython.com/)
 
-## Comments
+## How to start
+
+### Installation
+
+#### Venv
+
+### Run python
+
+#### Terminal
+
+#### Scripts
+
+Python is and excelent language for writing scripts. Every script on linux should start with. Otherwise, there will be misunderstanding between python2 and 3 guys.
+```py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+```
+For usage python files as scripts is highly recommend to use following
+```py
+if __name__ == "__main__":
+    #This code will be executed only, if the file was called as a script, not imported
+```
+
+## Basics
+
+### First things first
+
+Everything in a python is an **object**. String is an object, list is an object. 
+So almost anything has some methods already prepare for you. 
+With `dir` function you can see all the atributes and methods of the object.
+
+```py 
+dir(anything)
+```
+
+### Comments
 
 ```py
 # Oneline coment
@@ -43,7 +88,7 @@ multiline comment
 '''
 ```
 
-### Docstrings
+#### Docstrings
 
 Every file, class, function can have doc string (__doc__).
 Write docstrings, they are beatiful.
@@ -59,49 +104,27 @@ blaaaaaaaaaa
 """
 
 def fu():
-    "function docstring"
+    """function docstring"""
 
 class cla:
-    "class docstring"
+    """class docstring"""
 ```
 
-## First things first
-
-### Scripts
-
-Python is and excelent language for writing scripts. Every script on linux should start with. Otherwise, there will be misunderstanding between python2 and 3 guys.
-```py
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-```
-For usage python files as scripts is highly recommend to use following
-```py
-if __name__ == "__main__":
-    #This code will be executed only, if the file was called as a script, not imported
-```
-
-### Objects
-
-Nearly everything in a python is object. String is an object, list is an object. It's very handy to see all the atributes and methods any object.
-```py 
-dir(anything)
-```
-
-## Printing
+### Printing
 ```py
 >>> print('"len(myArr[3])": {}'.format(len(myArr[3]):))
 "len(myArr[3])": 7
 ```
 
-## Variables
+### Variables
 ?
 
-## Handy methods
+### Handy methods
 
-### len()
+#### len()
 priceless method, can be used for number of characters of a string as well as number of elements of an array
 
-### Slicing
+#### Slices
 
 Basicly anything, which can be iterated retrieve slice, after useing [:]
 ```py
@@ -117,16 +140,16 @@ Examples
 text = text[len('<!DOCTYPE html>\n'):]
 ```
 
-## Data types
+### Data types
 
-### type()
+#### type()
 
 Recognize type of a passed object
 ```
 type(a) == type({})
 ```
 
-## String
+### String
 
 There is four types how to quote a string
 ```py
@@ -146,7 +169,8 @@ Raw string
 r'in this string, the \n won\'nt be and newline'
 ```
 
-### Format and f string
+#### Format and f string
+
 ```py
 # Using stirng.format()
 pathToNewFile = '{folder}{file}.{fileType}'.format(
@@ -155,7 +179,7 @@ pathToNewFile = '{folder}{file}.{fileType}'.format(
 pathToNewFile = f'{download_folder}{xlsName}.{"xls"}'
 ```
 
-### String functions
+#### String functions
 
 ```py
 # slit
@@ -174,7 +198,7 @@ question = "Hi mom, how much coins i need to buy coin keeper for my coin session
 question.count("coin") # 3
 ```
 
-## Bytes
+### Bytes
 
 ```py
 bytes_1 = b"Bytes form this string"
@@ -185,9 +209,9 @@ string_from_bytes = bytes_1.decode()
 
 [link](https://www.tutorialspoint.com/python/string_decode.htm)
 
-## Collections
+### Collections
 
-### Lists
+#### Lists
 
 ```py
 l = ["a", "b"]
@@ -216,7 +240,7 @@ list2 = list1
 list2 = list1.copy()
 ```
 
-### Dictionary
+#### Dictionary
 
 ```py
 # For loop with dictionaries
@@ -228,14 +252,14 @@ for key, value in myDict.items():
     print(value)
 ```
 
-## Conditions
+### Conditions
 
 ternary assigning
 ```
 variable = value if (condition) else otherValue
 ```
 
-## Loops
+### Loops
 
 [top](#python)
 ```py
@@ -243,14 +267,14 @@ for x in almostAnything:
     print(x)
 ```
 
-## Imports
+### Imports
 ```py
 from xy import xyz as x
 ```
 
-## Inputs, outputs
+### Inputs, outputs
 
-### Input arguments
+#### Input arguments
 
 ```py
 import sys
@@ -264,7 +288,7 @@ number of arguments
 print ("Number of arguments: {}".format(len(sys.argv[0])))
 ```
 
-### Standard input
+#### Standard input
 
 ```py
 import sys
@@ -327,7 +351,7 @@ with open('obrazek.png', mode='rb') as f:
 
 [source](http://vyuka.ookami.cz/materialy/python/files/basics.xml)
 
-## os
+### os
 
 ```py
 import os
@@ -336,12 +360,12 @@ import os
 os.path.abspath("./build/knapsack.so")
 ```
 
-## Asserting
+### Asserting
 ```py
 assert(len(tables)==1), f"len(tables) = {len(tables)}"
 ```
 
-## Json
+### Json
 
 ```py
 import json
@@ -349,7 +373,9 @@ import json
 json_string = json.dumps({1: "yes", 2: "no", 3: "maybe"})
 ```
 
-## Regex
+## Advanced
+
+### Regex
 
 ```py
 import re
@@ -358,18 +384,34 @@ import re
 x = re.findall(r'CAT.+?END','Cat \n eND',flags=re.I | re.DOTALL)
 ```
 
-### Match 
+#### Match 
 
 Matches from the begining of the string
 
-### fullmatch
+#### fullmatch
 
 the whole pattern must match
 
 [Module re](https://docs.python.org/2/library/re.html)
 [Regular Expression HOWTO](https://docs.python.org/3/howto/regex.html)
 
-## Lambda
+#### The special characters
+
+| Pattern | Match group |
+| --- | --- |
+| `.` | in the default mode, this matches any character except a newline |
+| `*` | Causes the resulting RE to match 0 or more repetitions of the preceding character |
+| `+` | Causes the resulting RE to match 1 or more repetitions of the preceding character or RE |
+| `?` | Causes the resulting RE to match 0 or 1 repetitions of the preceding RE |
+| `|` | `A|B`, where A and B can be arbitrary REs, creates a regular expression that will match either A or B|
+| `[]` | matches set of character (examples: [ce] match {'c', 'e'}, [c-e], match {'c', 'd', 'e'} [ce+] match {'c', 'd', '+'}, [^c] match anything except 'c')
+| `\A` | matches only at the start of the string |
+| `\Z` | matches only at the end of the string |
+| `\d` | Matches any Unicode decimal digit |
+| `\s` | Matches Unicode whitespace characters |
+
+
+### Lambda
 
 ```py
 candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
@@ -380,7 +422,7 @@ candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
 
 [More information](https://thispointer.com/python-how-to-use-if-else-elif-in-lambda-functions/)
 
-## Datetime
+### Datetime
 
 
 ```py
@@ -407,7 +449,7 @@ print(datetime_object)  # printed in default format
 
 [work with datetime](https://www.journaldev.com/23365/python-string-to-datetime-strptime) string to datetime
 
-## argparse
+### argparse
 
 ```py
 import argparse
@@ -418,7 +460,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 ```
 
-## Compress, decompress, checksum
+### Compress, decompress, checksum
 
 ```py
 # Compute crc32 checksum
@@ -435,7 +477,7 @@ print(checksum, checksum_1)
 [python zlib](https://docs.python.org/3/library/zlib.html)
 
 
-## ctypes
+### ctypes
 
 [top source](https://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/)
 [real pyhton c binding](https://realpython.com/python-bindings-overview/)
@@ -452,9 +494,9 @@ c_fun("super unicode".encode())
 ```
 [pass unicode as bytes](https://stackoverflow.com/questions/27285405/how-can-ctypes-be-used-to-parse-unicode-strings)
 
-## Python 2 differences
+### Python 2 differences
 
-### Math in pyton2 doesn't work well
+#### Math in pyton2 doesn't work well
 ```
 >>> 4**2
 16
