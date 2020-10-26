@@ -1,9 +1,9 @@
 # Science
 
 Wierd name for great modules to work with data, namely:
-NumPy, matplotlib, seaborn, jupyter and scikit
+Matplotlib, seaborn, jupyter and scikit
 
-Jaroslav Langer, 2020/03/14
+`2020/10/26, Jaroslav Langer`
 
 The knowlegde is taken partly from our seminars at FIT (CTU, Prague), partly form internet.
 
@@ -13,33 +13,29 @@ The only goal is to overcome my (or others) potential troubles in future with tr
 
 [Statistics is fun](http://guessthecorrelation.com/)
 
-## MENU
-+ [NumPy](#numpy)
-+ [matplotlib](#matplotlib)
-+ [jupyter notebook](#jupyter-notebook)
-+ [seaborn](#seaborn)
-+ [scikit-learn (sklearn)](#scikit-learn-(sklearn))
-+ [python](#python)
+## Content <!-- omit in toc -->
 
-## NumPy
-
-Basically mathematical library.
-
-### Basics
-
-```py
-import numpy as np
-```
-
-
-```py
-# Create NaN
-NaN = np.nan
-
-# Round number
-np.round(theNumber, decimals=2)
-```
-[Round numpy](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.round_.html)
+- [matplotlib](#matplotlib)
+  - [Basics](#basics)
+  - [Configure the plot details, plot more graphs](#configure-the-plot-details-plot-more-graphs)
+  - [Move legend from graph](#move-legend-from-graph)
+  - [Labels](#labels)
+  - [TODO](#todo)
+- [jupyter notebook](#jupyter-notebook)
+  - [How to use it as a user](#how-to-use-it-as-a-user)
+  - [Basics](#basics-1)
+  - [how the install the thing](#how-the-install-the-thing)
+- [seaborn](#seaborn)
+  - [TODO](#todo-1)
+  - [lineplot](#lineplot)
+  - [barplot](#barplot)
+  - [heatmap](#heatmap)
+  - [Scatter](#scatter)
+  - [Plot pairwise relationships in dataset](#plot-pairwise-relationships-in-dataset)
+  - [distplot](#distplot)
+  - [Color palettes](#color-palettes)
+  - [Set style](#set-style)
+- [scikit-learn (sklearn)](#scikit-learn-sklearn)
 
 ## matplotlib
 
@@ -192,11 +188,4 @@ sns.set_style("dark")
 
 ```py
 import sklearn as skit
-```
-
-## Python
-
-### Floats NaN
-```py
-NaN = float("NaN")
 ```

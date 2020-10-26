@@ -3,6 +3,8 @@
 *The alpha and omega of data in python.*
 
 ## Content <!-- omit in toc -->
+
+- [Documentation](#documentation)
 - [First things first](#first-things-first)
   - [Import pandas](#import-pandas)
 - [Get data into DataFrames](#get-data-into-dataframes)
@@ -10,28 +12,37 @@
   - [Write dataframe to csv](#write-dataframe-to-csv)
   - [Dataframe form dictionary](#dataframe-form-dictionary)
   - [DataFrame from XML](#dataframe-from-xml)
-  - [Srapping the HTML](#srapping-the-html)
+  - [Srapping web (HTML)](#srapping-web-html)
   - [Dataframe from json](#dataframe-from-json)
 - [Accessing the dataframes](#accessing-the-dataframes)
   - [First look at the Dataframe](#first-look-at-the-dataframe)
-  - [Further information](#further-information)
   - [Dataframe properties](#dataframe-properties)
+  - [Dataframe functions](#dataframe-functions)
+- [Accessing data](#accessing-data)
   - [Accessing columns](#accessing-columns)
   - [Accessing rows](#accessing-rows)
   - [loc - Specify rows, and cols at the same time](#loc---specify-rows-and-cols-at-the-same-time)
   - [iloc - Accessing through indices](#iloc---accessing-through-indices)
-  - [More dataframes](#more-dataframes)
-- [Modifing the dataframes](#modifing-the-dataframes)
-  - [Work with the dataframes](#work-with-the-dataframes)
+  - [Filtering rows](#filtering-rows)
+  - [Column Functions](#column-functions)
+- [Modifing the dataframe](#modifing-the-dataframe)
+  - [Work with the dataframe](#work-with-the-dataframe)
+  - [Index stuff](#index-stuff)
   - [Work with dataframe columns](#work-with-dataframe-columns)
-  - [Works with dataframe rows](#works-with-dataframe-rows)
+  - [Columns datatypes](#columns-datatypes)
+  - [Modify values](#modify-values)
+  - [String methods](#string-methods)
+  - [Group by](#group-by)
 - [Poltting the data](#poltting-the-data)
   - [Plot the data](#plot-the-data)
 - [Advanced features](#advanced-features)
   - [MultiIndex](#multiindex)
-  - [Pandas regex](#pandas-regex)
 - [TODO](#todo)
+  - [Categories](#categories)
 
+## Documentation
+
+[Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/reference/)
 
 ## First things first
 
@@ -39,8 +50,6 @@
 
 ```py
 import pandas as pd
-import html5lib
-import requests
 ```
 
 ## Get data into DataFrames
@@ -97,7 +106,7 @@ out_df = pd.DataFrame(rows, columns = df_cols)
 
 [source](https://medium.com/@robertopreste/from-xml-to-pandas-dataframes-9292980b1c1c)
 
-### Srapping the HTML
+### Srapping web (HTML)
 
 ```py
 # Some url, example given
@@ -108,9 +117,19 @@ dfs = pd.read_html(url,flavor='html5lib')
 
 # display(len(dfs))
 display(dfs[1])
+```
 
-# Method with requests (not recommended for simple tasks)
+#### Using requests library
+
+Method with requests (not recommended for simple tasks)
+
+```py
+# Imports
 import requests
+import html5lib
+```
+
+```py
 r = requests.get(url)
 dfs = pd.read_html(r.text,flavor='html5lib')
 
@@ -169,23 +188,6 @@ pd.reset_option("max_columns")
 
 [source](https://towardsdatascience.com/how-to-show-all-columns-rows-of-a-pandas-dataframe-c49d4507fcf)
 
-### Further information
-
-```py
-# Sum all the data in every column
-df.sum()
-
-# Number of uniqe values in every column (by default ignores NaN)
-df.nunique()
-
-# Creates table of same size, every value is represented with boolean isnull NaN -> True
-df.isnull()
-df.notnull()
-# Handy usage of previous functions, see number of NaN (/not NaN) values per column
-df.isnull().sum()
-df.notnull().sum()
-```
-
 ### Dataframe properties
 
 ```py
@@ -195,12 +197,63 @@ df.shape
 # Array with column names
 df.columns
 
+# Range index of data
+df.index
+
 # Array(/s) from Dataframe
 df.values
 
-# Range index of data
-df.index
+# Types of columns
+df.dtypes
 ```
+
+### Dataframe functions
+
+```py
+# Number of uniqe values in every column (by default ignores NaN)
+df.nunique()
+
+# Sum all the data in every column
+df.sum()
+
+# Creates table of same size, every value is represented with boolean isnull NaN -> True
+df.isnull()
+df.notnull()
+# Handy usage of previous functions, see number of NaN (/not NaN) values per column
+df.isnull().sum()
+df.notnull().sum()
+
+# Get max(/min) value for every column
+df.max() # df.min()
+# Get indexes of max(/min) value for every column
+df.idxmax() # df.idxmin()
+
+# Correlation matrix
+cor_matrix = df.corr()
+
+# Compare if dataframes have same items (column types might be different)
+df1.equals(df2)
+
+# Get series where True means a row is duplicated
+df.duplicated()
+# By default, first occurance of a row is not duplicate, use False for every duplicated row be marked False 
+df.duplicated(False)
+
+# Return series where True means all values of specified axis are True (by default axis=0 ~ rows)
+df.all()
+# Return series where True means at least one value specified axis is True
+df.any()
+```
+
+## Accessing data
+
+Access throung brackets `[]` prioritized colomns over rows, so `df[0]` will try to find column `0`.
+In case, **one** column is specified, `df["column"][0]` return the row `0`
+and `df["column"][[1,23,4]]` return rows `1`, `23` and `4`.
+
+You can access rows straight-ahead by slices, `df[0:1]` will return row `0`.
+It does not matter the order of column slice specification,
+`df["column"][0:1]` and `df[0:1]["column"]` are the same.
 
 ### Accessing columns
 
@@ -213,46 +266,17 @@ data1['Age']
 data2[['Name', 'Age']]
 # If column name is tuple ('Name', 'Age'), then 
 data2[('Name', 'Age')] # or data2['Name', 'Age']
-```
-
-#### Column functions
-
-```py
-# List of unique values
-df.name.unique()
-
-# Statistical information
-df[COL].mean()
-df[COL].median()
-df[COL].var()
+# Access columns by type
+df.select_dtypes(include=['int64', 'float64'])
 ```
 
 ### Accessing rows
 
 ```py
+# Slices - row 100,101,102)
+df[100:103]
 # Slice - last 10 rows
 data1['Age'][-10:]
-```
-Filters
-```py
-# Create filter -> df of True/False
-filter = data1['Age'] > 30
-# 
-filter = data1['Age'].isin([30,31,32])
-# Aplying filter, returns rows where the filter row is True 
-data1[filter]
-# Aplying array filters only True will be returned
-data1['Age'][-3:][[True, False, True]]
-# Same as
-data1['Age'][filter.values]
-
-# Filter negation
-data1[~filter]
-# Combining more filters
-# Filter1 and filter2
-data1[filter1 & filter2]
-# Filter1 or filter2
-data1[filter1 | filter2]
 
 # iterate rows
 for index, row in df.iterrows():
@@ -268,6 +292,8 @@ Usage: dataFrame.loc[<ROWS RANGE> , <COLUMNS RANGE>]
 data1.loc[2:5, ['Name', 'Age']]
 # Same as (the 5 is there correctly, wierd)
 data1.loc[[2,3,4,5], ['Name', 'Age']]
+# Access row 235426
+df.loc[235426]
 ```
 
 ### iloc - Accessing through indices
@@ -286,70 +312,102 @@ data1.iloc[(data1['Age'] < 30).values, [3,5]]
 [usages from here](https://thispointer.com/select-rows-columns-by-name-or-index-in-dataframe-using-loc-iloc-python-pandas/)
 [loc iloc source](https://www.pythonprogramming.in/what-is-difference-between-iloc-and-loc-in-pandas.html)
 
-### More dataframes
+### Filtering rows
 
 ```py
-df1.equals(df2)
+# Create filter -> df of True/False
+filter = data1['Age'] > 30
+# Check if value is in list of values
+filter = data1['Age'].isin([30,31,32])
+# Aplying filter, returns rows where the filter row is True 
+data1[filter]
+# Aplying array filters only True will be returned
+data1['Age'][-3:][[True, False, True]]
+# Same as
+data1['Age'][filter.values]
+
+# Filter negation
+data1[~filter]
+# Combining more filters
+# Filter1 and filter2
+data1[filter1 & filter2]
+# Filter1 or filter2
+data1[filter1 | filter2]
 ```
 
-## Modifing the dataframes
+### Column Functions
 
-### Work with the dataframes
+```py
+# List of unique values (incluedes nan)
+df.name.unique()
+
+# Counts unique values (excluding nan)
+df.name.nunique()
+
+# So following equation holds True
+len(df[GN].unique()) == df[GN].nunique() + 1
+
+df.name.nsmallest(3)
+df.name.nlargest(3)
+
+# Statistical information
+df[COL].mean()
+df[COL].median()
+df[COL].var()
+```
+
+## Modifing the dataframe
+
+### Work with the dataframe
 
 ```py
 # First to deep copy the data (important)
-data1_tmp = data1.copy()
-
-# Create dataframe from dictionary
-df = pd.DataFrame({'A': [a], 'B': [b]})
-# or
-df = pd.DataFrame({'A': a, 'B': b}, index=[0])
+df = df_original.copy()
 
 # Contencat two DataFrames
-data = pd.concat([data1,data2_tmp])
+df = pd.concat([df_1,df_2])
 # Or Contencat two DataFrames with ignored index
-dataIgnored = pd.concat([data1,data2_tmp], ignore_index=True)
-
-# Test whether indexes equal
-data.equals(dataIgnored) # True
-
-# Correlation matrix
-cor_matrix = df.corr()
+df = pd.concat([df_1,df_2], ignore_index=True)
 
 # Sort rows or columns # only kind='mergesort' is stable
-DataFrame.sort_values(by, axis=0, ascending=True, inplace=True, kind='quicksort')
+df.sort_values(by, axis=0, ascending=True, inplace=True, kind='quicksort')
+
+# Replace values with
+df = df.replace('?', np.nan)
+```
+
+### Index stuff
+
+```py
+# Set index from column
+df.set_index('columnName')
+
+# Updating the index
+df.index = range(df.shape[0])
 
 # Sort index
 df = df.sort_index(ascending=False, ignore_index=True)
+
+# Remove duplicated indices
+df = df[~df3.index.duplicated(keep='first')]
 ```
 
-#### Group by
+[index](https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html)
 
-```py
-# Groupby data like sql groupby
-dataUJAK[dataUJAK['Rok'] > 2000].groupby(['Název práce']).size().sort_values(ascending=False)
-```
-[groupby](https://pandas.pydata.org/pandas-docs/stable/reference/groupby.html)
+[remove duplicated indices](https://stackoverflow.com/questions/13035764/remove-rows-with-duplicate-indices-pandas-dataframe-and-timeseries)
 
 ### Work with dataframe columns
 
 ```py
-# Set index from column
-DF.set_index('columnName')
-
-# Updating the index
-data.index = range(data.shape[0])
-
 # Drop columns
-data2_tmp = data2_tmp.drop(['FootSize',data2.columns[0]], axis=1)
+df_tmp = df_tmp.drop(['FootSize',df.columns[0]], axis=1)
 
 # Rename columns
 df.columns = [COLNAME1, COLNAME1, COLNAME1]
 # Rename specific columns
-data2_tmp = data2_tmp.rename(columns = {'BirthYear': 'Age'})
-
+df = df.rename(columns = {'BirthYear': 'Age'})
 # Rename colums with numbers from range
-data1_tmp.columns = range(12)
+df.columns = range(12)
 
 # Add column (colNumber, name(multiindex here), columnData, allowDuplicates)
 df.insert(2, ("Age","Age"), [21, 23, 24, 21], True) 
@@ -358,135 +416,78 @@ yearColumn = [year for x in range(candidates_tmp.shape[0])]
 candidates_tmp.insert(0, ("Rok","Rok"), yearColumn, False)
 
 # Reorder columns
-general_tmp = general_tmp[[3, 4, 0, 1, 2, 5, 6, 7, 8, 9]]
+df = df[[3, 4, 0, 1, 2, 5, 6, 7, 8, 9]]
 # Or
 df = df.reindex(columns=['mean',0,1,2,3,4])
 # Sort order of columns
 df = df.reindex(sorted(df.columns), axis=1)
+```
 
-# Convert data type
+### Columns datatypes
+
+```py
 # convert column "a" of a DataFrame to number type
 df["a"] = pd.to_numeric(df["a"])
 
 # Change columns type to datetime
 df[df.columns[0]] = pd.to_datetime(df.columns[0], format='%d.%m.%Y')
-```
-[python date time formats](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
-```
+
+# Astype
+df[NUM] = df[NUM].astype('float64')
 # Days from datetime
 rfm[RECENCY] = rfm[RECENCY].astype('timedelta64[D]')
 ```
 
-### Works with dataframe rows
+[python date time formats](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
+
+### Modify values
 
 ```py
+# Unlike arrays, with df doesnt't work changing values of slices
+df['Age'][0:10] = 10
+# Change value of slice
+df.loc[0:10, ['Age']] = 0
+
 # Change all data of one column
 data2_tmp['Age'] = 1912 - data2_tmp['Age']
-# More complicated change - apply
+
+# apply - for more complicated changes (works either for rows or columns)
 data['Sex'] = data['Sex'].apply(lambda x: 1 if x == 'female' else 0)
 
-# Even more complicated change apply
-# Default axis for DataFrame.apply is axis=0, goes through lines
+# Default axis for DataFrame.apply is axis=0 (goes through lines)
 # to acess columns use axis=1
 candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
     np.nan if (pd.isnull(x[0]) & pd.isnull(x[1])) else
         x[0] if pd.isnull(x[1]) else
             x[1] if pd.isnull(x[0]) else x[0]+x[1], axis=1)
 
-# Apply lambda with function
+# Apply with function called in lambda
 df['col_3'] = df.apply(lambda x: f(x.col_1, x.col_2), axis=1)
-
-# Strip all the words
-candidates[nameSurname] = candidates[nameSurname].apply(lambda x: x.strip())
-# Strip 
-candidates[nameSurname] = candidates[nameSurname].str.strip()
-
-# Unlike arrays, with df doesnt't work changing values of slices
-data1['Age'][0:10] = 10
-# Change value of slice
-data1.loc[0:10, ['Age']] = 0
-
-# Remove duplicated indices
-df3 = df3[~df3.index.duplicated(keep='first')]
-
-# Replace values with
-data = data.replace('?', np.nan)
 ```
 
 [link to lambda with function](https://stackoverflow.com/questions/13331698/how-to-apply-a-function-to-two-columns-of-pandas-dataframe)
 
-[strip](https://www.geeksforgeeks.org/python-pandas-series-str-strip-lstrip-and-rstrip/)
-
 [apply](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html)
 
-[index](https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html)
+### String methods
 
-[remove duplicated indices](https://stackoverflow.com/questions/13035764/remove-rows-with-duplicate-indices-pandas-dataframe-and-timeseries)
-
-## Poltting the data
-
-### Plot the data
+Values that are not transformable to string results in NaN, or raise an error.
 
 ```py
-# Basic plot
-data.plot()
+df["column"].str.len()
 
-# Specified type of the graph
-data.Age.plot(kind='bar')
-# Horizontal bar
-graph = numberOfCandidatesByPartyDF.plot(kind='barh', stacked=True, colormap=myColors, figsize=(18, 15),width=0.9)
+df["column"].str.lower()
 
-# figsize=(10,10) size of figure in inches
-data.plot(figsize=(10,10))
+# Strip 
+df["column"] = df["column"].str.strip()
 
-# Histogram (bins = number of piles)
-data.Age.plot(kind='hist', bins=50)
-# Same as
-data.Age.hist(color='green', bins=50)
+# String values transformable to numbers are True, nontransformable False, and not string result in Nan
+df["column"].str.isnumeric()
 
-# Scatter
-survived.plot.scatter(x='Age', y='Pclass', color='Green', label='Survived')
-
-# Plot one graph (graph2) on another (graph1)
-graph1 = not_survived.Age.hist()
-data2.Age.plot.hist(ax = graph1)
+df["column"].str.extract()
 ```
 
-width
-```py
-df.plot(kind='bar', stacked=True, width=1)
-```
-
-TODO COLORMAP
-
-[area link ](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html)
-[area plot](https://stackoverflow.com/questions/55214249/how-to-create-an-area-plot-in-seaborn)
-
-## Advanced features
-
-### MultiIndex
-
-Way how to better structure data in 2D
-
-```py
-# Create MultiIndex #
-columns2 = pd.MultiIndex.from_tuples([
-            (      'Kandidátní listina',                    'číslo'),
-            (                  'Mandát',                   'Mandát')],
-           )
-# Compare two MultiIndices #
-len(columns1.difference(columns2).values) > 0
-
-# Rename MultiIndex columns
-candidates_tmp = candidates_tmp.rename(columns = {'Kandidátnílistina': 'Kandidátní listina'}, level=1)
-
-# Flatten the MultiIndex into Index of tuples
-columns1.to_flat_index()
-```
-
-[Back to pandas](#pandas) | [Back to the top](#Science)
-
-### Pandas regex
+[strip](https://www.geeksforgeeks.org/python-pandas-series-str-strip-lstrip-and-rstrip/)
 
 #### Match
 
@@ -520,17 +521,85 @@ columns = candidates[NAME_SURNAME].str.extract(postDegreePattern, flags=re.IGNOR
 
 #### Replace
 
-```
-candidates[NAME_SURNAME] = candidates[NAME_SURNAME].str.replace(postNominalPattern, '', flags=re.IGNORECASE)
+```py
+# This example deletes anything (specified by `postNominalPattern` regex) after the name and surname
+df[NAME_SURNAME] = df[NAME_SURNAME].str.replace(postNominalPattern, '', flags=re.IGNORECASE)
 ```
 
 [pandas replace](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.replace.html)
 
 [How to use Regex in Pandas](https://kanoki.org/2019/11/12/how-to-use-regex-in-pandas/)
 
+### Group by
+
+```py
+# Groupby data like sql groupby
+dataUJAK[dataUJAK['Rok'] > 2000].groupby(['Název práce']).size().sort_values(ascending=False)
+```
+[groupby](https://pandas.pydata.org/pandas-docs/stable/reference/groupby.html)
+
+
+## Poltting the data
+
+### Plot the data
+
+```py
+# Basic plot
+data.plot()
+
+# figsize=(10,10) size of figure in inches
+data.plot(figsize=(10,10))
+
+# Specified type of the graph
+data.Age.plot(kind='bar')
+# Properties (stacked, line width, figsize)
+df.plot(kind='bar', stacked=True, figsize=(18, 15), width=1)
+# Horizontal bar with specified colormap
+candidates_by_party.plot(kind='barh', colormap=myColors)
+
+# Histogram (bins = number of piles)
+data.Age.plot(kind='hist', bins=50)
+# Same as
+data.Age.hist(color='green', bins=50)
+
+# Scatter
+survived.plot.scatter(x='Age', y='Pclass', color='Green', label='Survived')
+
+# Plot one graph (graph2) on another (graph1)
+graph1 = not_survived.Age.hist()
+data2.Age.plot.hist(ax = graph1)
+```
+
+[area link ](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html)
+[area plot](https://stackoverflow.com/questions/55214249/how-to-create-an-area-plot-in-seaborn)
+
+## Advanced features
+
+### MultiIndex
+
+Way how to better structure data in 2D
+
+```py
+# Create MultiIndex #
+columns2 = pd.MultiIndex.from_tuples([
+    ('Kandidátní listina',  'číslo'),
+    ('Mandát',              'Mandát')
+],)
+# Compare two MultiIndices #
+len(columns1.difference(columns2).values) > 0
+
+# Rename MultiIndex columns
+candidates_tmp = candidates_tmp.rename(columns = {'Kandidátnílistina': 'Kandidátní listina'}, level=1)
+
+# Flatten the MultiIndex into Index of tuples
+columns1.to_flat_index()
+```
+
 ## TODO
 
 [Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
 [Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
+
+### Categories
 
 data['embarked'] = data[['embarked']].astype('category').apply(lambda x: x.cat.codes)

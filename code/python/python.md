@@ -111,13 +111,55 @@ class cla:
 ```
 
 ### Printing
+
+Do not use variable printing for code debugging, use debugger instead!
+(However to use printing for local simple testing is absolutely great thing.)
+
 ```py
->>> print('"len(myArr[3])": {}'.format(len(myArr[3]):))
-"len(myArr[3])": 7
+variable = "var"
+var2 = "2"
+var3 = 3
+
+print(variable)
+print("---")
+
+# No newline at the end
+print(variable, end="")
+print("---")
+
+# More variables
+print(variable, var2, var3)
+print("---")
+
+# Different separator
+print(variable, var2, var3, sep=", ")
+print("---")
+
+# Personal recomendation for var printing (bit advanced, but good practise)
+four = 2*2
+my_array = [7,"6","five",four,[0,1,2]]
+print('"len(my_array[2])": {}'.format(len(my_array[2])))
+```
+
+Output
+
+```out
+var
+---
+var---
+var 2 3
+---
+var, 2, 3
+---
+"len(my_array[2])": 4
 ```
 
 ### Variables
-?
+
+```py
+# Float NaN
+NaN = float("NaN")
+```
 
 ### Handy methods
 
@@ -142,11 +184,17 @@ text = text[len('<!DOCTYPE html>\n'):]
 
 ### Data types
 
-#### type()
+#### type and isinstance
 
 Recognize type of a passed object
-```
-type(a) == type({})
+```py
+var = {1: "2"}
+
+# Check if types are equal
+type(var) == type({}) # True
+
+# However based on the PEP recommendation, types should never be compared like that, instead use
+isinstance(a, dict) # True
 ```
 
 ### String
@@ -177,6 +225,10 @@ pathToNewFile = '{folder}{file}.{fileType}'.format(
     folder=download_folder, file=xlsName, fileType='xls')
 # f string
 pathToNewFile = f'{download_folder}{xlsName}.{"xls"}'
+
+# Format float precision
+a = 1/3
+print("{:.2f}".format(a)) # 0.33
 ```
 
 #### String functions
@@ -226,9 +278,25 @@ ll.extend(l)
 ll.insert(index, item)
 # Convert string to list
 list("All the beautiful strings")
+
+# Sort
+l.sort()
+# Ascending/descending, preprocess keys by a function (-> sort names from longest)
+cars = ['Ford', 'Mitsubishi', 'BMW', 'VW']
+
+def cmp_len(x):
+    return len(x)
+
+cars.sort(reverse=True, key=cmp_len)
+
+# Or with lambda (bit advanced)
+cars.sort(reverse=True, key=lambda x: len(x))
 ```
 
-Generator notation
+[sort example](https://www.w3schools.com/python/ref_list_sort.asp)
+
+##### Generator notation
+
 ```py
 myList = [x for x in range(5)]
 ```
@@ -409,6 +477,8 @@ the whole pattern must match
 | `\Z` | matches only at the end of the string |
 | `\d` | Matches any Unicode decimal digit |
 | `\s` | Matches Unicode whitespace characters |
+| `\w` | Matches Unicode word characters; this includes most characters that can be part of a word in any language, as well as numbers and the underscore |
+| `\W` | Matches any character which is not a word character. This is the opposite of \w |
 
 
 ### Lambda
