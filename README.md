@@ -1,42 +1,78 @@
-# learning_point
+# learning
  
 Learning is way more efficient if there is a place where you can recover what you have learnt. This is the place for me.
 
+## Content <!-- omit in toc -->
+- [Goal](#goal)
+- [Motivation](#motivation)
+- [So what this is](#so-what-this-is)
+  - [Evolution of this project](#evolution-of-this-project)
+  - [Why not documentations and tutorials](#why-not-documentations-and-tutorials)
+- [How I realized I need to do this](#how-i-realized-i-need-to-do-this)
+
 ## Goal
 
-To make a structured pathway of beaten struggles as i went by.
+To remember how to overcome struggles that I once beaten.
 
 ## Motivation
 
-Every day happens to me, that I spend hours on google trying to solve issues solved by thousands before myself.
+Happens every day to me that I spend hours on google trying to solve issues that thousands before me must have overcome.
 
-Sometimes it's that bad, that I'm aiming to solve trouble i've already solved in past on my own.
+Sometimes it is even worse when I aim to solve a trouble that I have already solved on my own in past.
 
-It's very painful and I do not like suffering same as anybody else.
+Spending such an amount of time
+    (1) changing the "google phrase" to find what I want or
+    (2) reading pages where the answer simply is not present,
+makes me think the more solutions will people share the better for all of us.
 
-## The story
+## So what this is
 
-I study third year bioinformatics a bachelor program at FCT(UCT) combined with FIT(CTU).
+Coding journal, list of workarounds, tutorial? A little bit of each one.
 
-During the summer months I've started to work on my bachelor thesis. It's a nice thing but I (finally) realized I need to organize my things up. Naturally I started at least logging all my activities so I could get back to them later. (The form was Google Docs not surprisingly)
+### Evolution of this project
 
-It was fine for a while but soon it got pretty messy. By coincidence there was some offer for a lectures a had got interested in, so I started filling the form and there was a very unpleasant box. "Please fill links to your projects, sites or any prove-that-you-know-at-least-something". Obviously, I had nothing in my hands, so I let that box empty.
+I started this project as a random mixture of knowledge that I needed to acquire to complete my assignments.
+There were also a lot of things I did not needed for school, but I thought they were either useful or best practices.
+Once the files (mostly markdowns) grew in size, it caught my attention, they are really messy and incomprehensible.
+So I started to structure things and added some "tutorial stuff" that is easy to find, 
+but it puts the information and findings in some perspective.
 
-The hint supposed that any git link is greeted. That was it. We use Git at university for homeworks, but my code is peacefully lying down my untouched pc folders.
+### Why not documentations and tutorials
 
-It's an awful way to do that. I always think that once I understand something I can remember it forever. The reality is different by much like you can imagine.
+So far I think the best place to learn about some technology is the official **documentation**
+(python documentation, git documentation - great stuff). 
+However, it is usually too burdensome to simply complete a school assignment or personal goal that one wants to achieve.
 
-So let my brain adapt to something, and that let him to throw it slowly piece by piece away is very nasty approach.
+**Tutorials** are a great source of generally deep knowledge with some inherited structure to teach whole parts.
+Ideal if you want to learn the things the tutorial teaches.
 
-I don't want to do it anymore so that's why I'm going to do my best to refactor the temporary knowledge into sustainable knowledge.
+Having said that, most of the time I personally just want to get the basics quickly, ideally with the best practices mentioned,
+and then cherry pick the knowledge I just need to proceed with my project.
+So what is this? This project grow with my knowledges,
+    (1) writes down the necessary basic information needed to complete some bachelors and masters courses,
+    (2) keeps the struggles solutions,
+for anyone who would find this useful including myself.
 
-That's the story.
+## How I realized I need to do this
 
-#### Shortnames
-**FCT(UCT)** = Faculty of Chemical Technology (University of Chemical Technology)
+I studied third year of bioinformatics bachelor program.
+During the summer months before that I had started to work on my bachelor thesis.
+It was kind of nice, but I had realized (after some time) I had needed to organize my things up.
+Naturally I had at least started with logging all my activities 
+so I could have get back to them later (the log form was Google docs, as you would expect).
 
-**FIT(CTU)** = Faculty of Information Technology (Czech Technical University)
+It was fine for a while, but it soon got pretty messy. 
+By coincidence there was an offer for some selective lectures that interested me,
+so I started filling out the form and there was a very nasty text box.
+"Please fill links to your projects, sites or any prove-that-you-know-at-least-something".
+Obviously, I had nothing in my hands, so I let that box empty.
 
-[Bioinformatics stydy program (CZ lang.)](https://www.vscht.cz/studijni-system/obory/S/obory/obor/FCHT-CI/rok/2016/detaily?jazyk=cs)
+The text box hint assumed any git link is greeted. That was it. 
+We use Git in college for homeworks, but all my code is resting peacefully in my PC folders intact.
 
-``` 06/11/2019, Jaroslav Langer```
+Everything was wrong. I don't like to invent the wheel every once in a while,
+I don't want others to waste their time the same way I did, over things that are hard to figure them out 
+(although someone has already figured them out and just did not report the solutions anywhere), 
+and lastly, I want to have some evidence of my learning process.
+
+```2020/10/26, Jaroslav Langer```
