@@ -11,6 +11,7 @@
   - [Get dataframe from csv](#get-dataframe-from-csv)
   - [Write dataframe to csv](#write-dataframe-to-csv)
   - [Dataframe form dictionary](#dataframe-form-dictionary)
+  - [Dataframe from list of lists (list per row)](#dataframe-from-list-of-lists-list-per-row)
   - [DataFrame from XML](#dataframe-from-xml)
   - [Srapping web (HTML)](#srapping-web-html)
   - [Dataframe from json](#dataframe-from-json)
@@ -80,7 +81,7 @@ candidates.to_csv('./candidates.csv', index=False)
 ### Dataframe form dictionary
 
 ```py
-lists = [[1,2,3,4], [2,3,4], [5,2,4,7,8]]
+lists = [[1,2,3,4], [2,3,4], [5,2,4,7,8], [5,2]]
 lengths = [len(sublist) for sublist in lists]
 
 df_dict = {"lengths": lengths, "lists": lists}
@@ -88,6 +89,28 @@ df = pd.DataFrame(df_dict)
 ```
 
 [df from dicts and lists](https://pbpython.com/pandas-list-dict.html)
+
+### Dataframe from list of lists (list per row)
+
+```py
+from random import choice, randrange, uniform
+
+NAMES =             ['Jason', 'Molly', 'Tina', 'Jake', 'Amy']
+SURNAMES =          ['Miller', 'Jacobson', 'Ali', 'Milner', 'Cooze']
+LEN = 100
+
+COLUMNS = ['first_name', 'last_name', 'age', 'score']
+
+df_list = [[
+    choice(NAMES), 
+    choice(SURNAMES),
+    randrange(0, 101, 1),
+    round(uniform(0, 10), randrange(0, 4, 1)),
+    ])
+] for x in range(0,LEN)]
+
+df = pd.DataFrame(df_list, columns=COLUMNS)
+```
 
 ### DataFrame from XML
 
@@ -171,12 +194,18 @@ pd.read_json("./time_spent.json", orient="index")
 df.head()
 df.tail()
 
+# Get random row (/ n rows)
+df.sample()
+df.sample(n=5)
+
 # Get info about column names, types, number of not null items..
 df.info()
 
 # Basic statistic info like mean, std, min, max...
 df.describe()
 ```
+
+- [randomly select rows - GeeksforGeeks](https://www.geeksforgeeks.org/how-to-randomly-select-rows-from-pandas-dataframe/)
 
 #### Show all columns (if not shown by default)
 
@@ -294,6 +323,8 @@ data1.loc[2:5, ['Name', 'Age']]
 data1.loc[[2,3,4,5], ['Name', 'Age']]
 # Access row 235426
 df.loc[235426]
+# Access rows by list of row numbers
+df.loc[[1,13452,3452]]
 ```
 
 ### iloc - Accessing through indices
@@ -450,7 +481,11 @@ df.loc[0:10, ['Age']] = 0
 
 # Change all data of one column
 data2_tmp['Age'] = 1912 - data2_tmp['Age']
+```
 
+#### Apply
+
+```py
 # apply - for more complicated changes (works either for rows or columns)
 data['Sex'] = data['Sex'].apply(lambda x: 1 if x == 'female' else 0)
 
@@ -483,13 +518,11 @@ df["column"] = df["column"].str.strip()
 
 # String values transformable to numbers are True, nontransformable False, and not string result in Nan
 df["column"].str.isnumeric()
-
-df["column"].str.extract()
 ```
 
 [strip](https://www.geeksforgeeks.org/python-pandas-series-str-strip-lstrip-and-rstrip/)
 
-#### Match
+#### Match (regex)
 
 ```py
 numeral_filter = df['ticket'].str.match(r'(\A[0-9]+\Z)', case=False)==True
@@ -502,7 +535,22 @@ Series.str.match(pattern, case=True, flags=0, na=nan)
 
 [pandas match](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.match.html)
 
-#### Extract
+#### Extract (regex)
+
+```py
+s.str.extract(r'(?P<letter>[ab])(?P<digit>\d)')
+```
+
+Output:
+
+```out
+  letter digit
+0      a     1
+1      b     2
+2    NaN   NaN
+```
+
+[pandas extract](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.extract.html)
 
 ```py
 degreeNP = r'DiS|Dipl\.um.'
@@ -517,9 +565,7 @@ postDegreePattern = r'.*(?P<{columnName}>\s({NP}|{R}|{T}|{V})(\.|\s|\Z).*)'\
 columns = candidates[NAME_SURNAME].str.extract(postDegreePattern, flags=re.IGNORECASE)
 ```
 
-[pandas extract](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.extract.html)
-
-#### Replace
+#### Replace (regex)
 
 ```py
 # This example deletes anything (specified by `postNominalPattern` regex) after the name and surname
@@ -529,6 +575,15 @@ df[NAME_SURNAME] = df[NAME_SURNAME].str.replace(postNominalPattern, '', flags=re
 [pandas replace](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.replace.html)
 
 [How to use Regex in Pandas](https://kanoki.org/2019/11/12/how-to-use-regex-in-pandas/)
+
+#### Contains (regex)
+
+```py
+# Number of strings that contains regex r'X\.\d+' e.g. "x.723"
+df[feature].str.contains(r"X\.\d+", case=False).sum()
+```
+
+[contains (pandas documentation)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.contains.html)
 
 ### Group by
 

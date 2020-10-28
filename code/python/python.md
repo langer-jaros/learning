@@ -19,6 +19,8 @@
   - [Collections](#collections)
   - [Conditions](#conditions)
   - [Loops](#loops)
+  - [Math](#math)
+  - [Random](#random)
   - [Imports](#imports)
   - [Inputs, outputs](#inputs-outputs)
   - [Files](#files)
@@ -335,6 +337,31 @@ for x in almostAnything:
     print(x)
 ```
 
+### Math
+
+```py
+# Round(float, precision)
+round(1.242345, 3)
+```
+
+[Round function (w3school)](https://www.w3schools.com/python/ref_func_round.asp)
+
+### Random
+
+```py
+# Random float from range (0,10)
+f = uniform(0, 10)
+
+# Random integer from range
+i = randrange(0, 101, 1)
+
+# Random item of list
+NAMES = ["Alice", "Bob", "Chuck"]
+item = choice(NAMES)
+```
+
+[Random library (python documentation)](https://docs.python.org/3/library/random.html)
+
 ### Imports
 ```py
 from xy import xyz as x
@@ -476,10 +503,15 @@ the whole pattern must match
 | `\A` | matches only at the start of the string |
 | `\Z` | matches only at the end of the string |
 | `\d` | Matches any Unicode decimal digit |
+| `\D` | matches any non-digit character; this is equivalent to the class [^0-9] |
 | `\s` | Matches Unicode whitespace characters |
+| `\S` | Matches any character which is not a whitespace character |
 | `\w` | Matches Unicode word characters; this includes most characters that can be part of a word in any language, as well as numbers and the underscore |
 | `\W` | Matches any character which is not a word character. This is the opposite of \w |
-
+| `(?=...)` | Matches if ... matches next, but doesn’t consume any of the string |
+| `(?!...)` | Matches if ... doesn’t match next |
+| `(?<=...)` | Matches if the current position in the string is preceded by a match for ... that ends at the current position |
+| `(?<!...)` | Matches if the current position in the string is not preceded by a match for .... |
 
 ### Lambda
 
