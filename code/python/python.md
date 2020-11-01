@@ -16,9 +16,9 @@
   - [Data types](#data-types)
   - [String](#string)
   - [Bytes](#bytes)
-  - [Collections](#collections)
   - [Conditions](#conditions)
   - [Loops](#loops)
+  - [Collections](#collections)
   - [Methods for loops](#methods-for-loops)
   - [Math](#math)
   - [Random](#random)
@@ -49,6 +49,24 @@
 ### Installation
 
 #### Venv
+
+```sh
+# activate enviroment
+source .env_name/source/activate
+# deactivate
+deactivate
+```
+
+#### pip
+
+```sh
+# Insall package
+pip3 install package_name
+# Show package info
+pip3 show package_name
+# Update package
+pip3 install --upgrade package_name
+```
 
 ### Run python
 
@@ -286,6 +304,21 @@ string_from_bytes = bytes_1.decode()
 
 [link](https://www.tutorialspoint.com/python/string_decode.htm)
 
+### Conditions
+
+ternary assigning
+```
+variable = value if (condition) else otherValue
+```
+
+### Loops
+
+[top](#python)
+```py
+for x in almostAnything:
+    print(x)
+```
+
 ### Collections
 
 #### Lists
@@ -332,6 +365,15 @@ list2 = list1.copy()
 #### Dictionary
 
 ```py
+my_dict = {"Key": "value", "k": 1, "list": [1,2,3]}
+dict_tmp = dict([("another", "key"), ("and_many", "more")])
+# Add key-value pair
+my_dict["new_key"] = "anything"
+# Add all key-values from another dictionary
+my_dict.update(dict_tmp)
+```
+
+```py
 # For loop with dictionaries
 for key in myDict:
     print(myDict[key])
@@ -339,21 +381,6 @@ for key in myDict:
 for key, value in myDict.items():
     print(key)
     print(value)
-```
-
-### Conditions
-
-ternary assigning
-```
-variable = value if (condition) else otherValue
-```
-
-### Loops
-
-[top](#python)
-```py
-for x in almostAnything:
-    print(x)
 ```
 
 #### Comprehensions
