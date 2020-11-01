@@ -1,6 +1,6 @@
 # NumPy
 
-`2020/10/26, Jaroslav Langer`
+`2020/10/31, Jaroslav Langer`
 
 Basically a mathematical library.
 
@@ -12,7 +12,7 @@ Basically a mathematical library.
 - [Import](#import)
 - [Variable types](#variable-types)
 - [Math functions](#math-functions)
-- [Numpy array](#numpy-array)
+- [NumPy (N-dimensional) array (ndarray)](#numpy-n-dimensional-array-ndarray)
   - [Sort](#sort)
 - [array dtypes (Array-protocol type strings)](#array-dtypes-array-protocol-type-strings)
 
@@ -54,7 +54,7 @@ np.round(theNumber, decimals=2)
 
 [Round numpy](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.round_.html)
 
-## Numpy array
+## NumPy (N-dimensional) array (ndarray)
 
 ```py
 a = np.array([[1,4],[3,1]])
@@ -93,7 +93,7 @@ array([[1, 4],
 
 ```py
 # Examples
-dt = np.dtype('i4')   # 32-bit signed integer
+dt = np.dtype('i4')   # 32-bit signed integer ~ dtype('int32')
 dt = np.dtype('f8')   # 64-bit floating-point number
 dt = np.dtype('c16')  # 128-bit complex floating-point number
 ```

@@ -1,5 +1,20 @@
 # TODO
 
+## Clear this TODO
+
+## Maybe change pandas.md to pandas.ipynb
+
+## maxsize
+
+```py
+import sys 
+sys.maxsize
+```
+
+[maxsize](https://stackoverflow.com/questions/38314118/overflowerror-python-int-too-large-to-convert-to-c-long-on-windows-but-not-ma)
+
+## Map, filter, reduce
+
 - [Map, filter, reduce](https://book.pythontips.com/en/latest/map_filter.html)
 
 1) Sort dictionaries (homework from python)
@@ -10,8 +25,7 @@ correlation = sorted(correlation.items(), key = lambda kv:(kv[1]), reverse=True)
 https://www.geeksforgeeks.org/python-sort-python-dictionaries-by-key-or-value/
 https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value
 
-Pickle
-
+## Pickle
 
 https://docs.python.org/3/library/xml.etree.elementtree.html
 

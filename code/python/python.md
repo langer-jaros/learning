@@ -19,6 +19,7 @@
   - [Collections](#collections)
   - [Conditions](#conditions)
   - [Loops](#loops)
+  - [Methods for loops](#methods-for-loops)
   - [Math](#math)
   - [Random](#random)
   - [Imports](#imports)
@@ -27,12 +28,14 @@
   - [os](#os)
   - [Asserting](#asserting)
   - [Json](#json)
+  - [Exceptions](#exceptions)
 - [Advanced](#advanced)
   - [Regex](#regex)
   - [Lambda](#lambda)
   - [Datetime](#datetime)
   - [argparse](#argparse)
   - [Compress, decompress, checksum](#compress-decompress-checksum)
+  - [underscored names in python](#underscored-names-in-python)
   - [ctypes](#ctypes)
   - [Python 2 differences](#python-2-differences)
 
@@ -225,6 +228,12 @@ r'in this string, the \n won\'nt be and newline'
 # Using stirng.format()
 pathToNewFile = '{folder}{file}.{fileType}'.format(
     folder=download_folder, file=xlsName, fileType='xls')
+
+# Curly braces to remain
+string = "{{double clurly braces will be formated as one".format()
+# escaping does not work
+string = "\{ this will raise an ValueError".format()
+
 # f string
 pathToNewFile = f'{download_folder}{xlsName}.{"xls"}'
 
@@ -236,12 +245,20 @@ print("{:.2f}".format(a)) # 0.33
 #### String functions
 
 ```py
+# lower
+"sTrInG StRiNg".lower() # "string"
+# upper
+"sTrInG StRiNg".upper() # "STRING STRING"
+# capitalize
+"sTrInG StRiNg".capitalize() # "String string"
+
 # slit
 "string string2".split()
 # join
 ' '.join(['string', 'string2', 'string3'])
 # strip
 "          string                ".strip()
+
 # find
 "string about nothing".find('abo')
 # rfind
@@ -250,7 +267,13 @@ print("{:.2f}".format(a)) # 0.33
 # count
 question = "Hi mom, how much coins i need to buy coin keeper for my coin sessions?"
 question.count("coin") # 3
+
+# isnumeric - check if every character is unicode numeric
+"1234".isnumeric() # True
+"1234.2".isnumeric() # False
 ```
+
+[is numeric (tutorials point)](https://www.tutorialspoint.com/python/string_isnumeric.htm)
 
 ### Bytes
 
@@ -297,12 +320,8 @@ cars.sort(reverse=True, key=lambda x: len(x))
 
 [sort example](https://www.w3schools.com/python/ref_list_sort.asp)
 
-##### Generator notation
+##### Copy vs. deep copy
 
-```py
-myList = [x for x in range(5)]
-```
-Copy vs. deep copy
 ```py
 # Shallow copy, changes in list2 affects list1
 list2 = list1
@@ -337,14 +356,53 @@ for x in almostAnything:
     print(x)
 ```
 
+#### Comprehensions
+
+```py
+crazy_big = 34526
+crazy_fifth = round(crazy_num/5)
+
+# list comprehension
+my_list = [x for x in range(crazy_fifth, crazy_big, crazy_fifth)]
+
+# dict comprehension
+my_dict = {str(item): item%2354 for item in my_list}
+
+# set comprehension
+my_set = {val for val in my_dict.values()}
+```
+
+[set comprehension](https://python-reference.readthedocs.io/en/latest/docs/comprehensions/set_comprehension.html)
+
+### Methods for loops
+
+```py
+# zip
+ids = ["34925705", "09548622", "24641309"]
+names = ["John","Peter", "Anthony"]
+nicnames = ["Joeeyyy", "Pete", "Toeney"]
+
+transformed = [[id, na, ni] for id, na, ni in zip(ids, names, nicnames)]
+[['34925705', 'John', 'Joeeyyy'], ['09548622', 'Peter', 'Pete'], ['24641309', 'Anthony', 'Toeney']]
+
+# enumerate
+galleries_without_number = ["Great Gallery", "Magnificent Gallery", "The Gallery"]
+id_galery_dict = {-n: v for n,v in enumerate(galleries_without_number, start=1)}
+```
+
 ### Math
 
 ```py
 # Round(float, precision)
 round(1.242345, 3)
+
+# Multiple comparisons one line
+20 > 13 > 10 # True
+(20 > 13) > 10 # False
 ```
 
 [Round function (w3school)](https://www.w3schools.com/python/ref_func_round.asp)
+[Multiple comparism (python 2.3 doc, still valid)](https://docs.python.org/2.3/ref/comparisons.html)
 
 ### Random
 
@@ -468,6 +526,31 @@ import json
 json_string = json.dumps({1: "yes", 2: "no", 3: "maybe"})
 ```
 
+### Exceptions
+
+```py
+import json
+
+json_string = "my json string"
+
+# This is dangerous, if the string is not loadable, it will raise error
+json_dict = json.loads(json_string)
+```
+
+Way to handle these is by try-except structures
+
+```py
+import json
+
+json_string = "my json string"
+
+try:
+    json_dict = json.loads(json_string)
+except json.decoder.JSONDecodeError as e:
+    print(f'It was not posible to load "json_string" as a dictionary.',
+        f'Error: "{e}", json_string: "{json_string}".')
+```
+
 ## Advanced
 
 ### Regex
@@ -578,6 +661,32 @@ print(checksum, checksum_1)
 ```
 [python zlib](https://docs.python.org/3/library/zlib.html)
 
+### underscored names in python
+
+
+- `_single_leading_underscore`: weak "internal use" indicator. E.g. `from M import *` does not import objects whose names start with an underscore.
+- `single_trailing_underscore_`: used by convention to avoid conflicts with Python keyword, e.g.
+```py
+tkinter.Toplevel(master, class_='ClassName')
+```
+- `__double_leading_underscore`: when naming a class attribute, invokes name mangling (inside `class FooBar`, `__boo` becomes `_FooBar__boo`; see below).
+
+- `__double_leading_and_trailing_underscore__`: "magic" objects or attributes that live in user-controlled namespaces. E.g. `__init__`, `__import__` or `__file__`. Never invent such names; only use them as documented.
+
+#### Dunders (double underscores)
+
+```py
+def getStuff(): return [1, "1", None, 4.5, {}];
+
+def uniqueTypes():
+    object_list = getStuff()
+    return {type(x) for x in object_list}
+
+# How to know if None was in object_list if we do not have it
+types = uniqueTypes()
+if None.__class__ in types:
+    print("Function getStuff is corrupted, returns None while it should not")
+```
 
 ### ctypes
 

@@ -122,9 +122,10 @@ for s in STRINGS:
     findings = re.match(extract_pattern, s, flags=re.IGNORECASE)
     if findings is not None:
         b, m, a = findings.groupdict()[BEF], findings.groupdict()[AYE], findings.groupdict()[AFT]
-        print(f"{s}\nb: {b}\nm: {m}\na: {a}\n")
+        # print(f"{s}\nb: {b}\nm: {m}\na: {a}\n")
     else:
-        print(f"{s}\n{findings}\n")
+        # print(f"{s}\n{findings}\n")
+        pass
 
 # print(findings)
 # print(findings.group())
@@ -133,3 +134,49 @@ for s in STRINGS:
 
 # for k,v in findings.groupdict().items():
 #     print(k, v)
+
+
+# ----------------------------------------------------------------------------------
+
+STRINGS = [
+    "1979.486.1",
+    "2011.604.2.1141",
+    "11.151.89",
+    "63.350.329.701-16.38",
+    "83.18.147",
+    "45.24.41a–c",
+    "Inst.1979.486.1",
+    "I.67.1.2",
+    "C.I.43.40.98a–c",
+    "x.596",
+    "x.451.2a–f",
+    "PN2620 .S6 v.1 1763",
+    "DC137.1 .B45 1909",
+    "TR.124.2020",
+    "Ref.MadridMap",
+    "C.I.60.11.3",
+    "Z270.F8 O4 v.1"
+]
+
+
+# extract_pattern = fr"(?P<{BEF}>(\D*|(\d(?!\.\d)))*)(?P<{AYE}>(?<!X\.|.[\w]|[^t]\.)\d+|X(?=\.\d))(?P<{AFT}>.*)\Z"
+extract_pattern = fr"(?P<{BEF}>(\D*|(\d(?!\.\d)))*)(?P<{AYE}>(?<!X\.|.[\w]|[^t]\.)\d+|X(?=\.\d))(?P<{AFT}>.*)\Z"
+extract_pattern = fr"(?P<{BEF}>.*)(?P<{AYE}>(?<!.[\w-]|[^ti]\.)(\d{{2}}){{1,2}}(?=\.|\Z|\s)|X)(?P<{AFT}>.*)"
+# extract_pattern = fr"(?P<{BEF}>.*)(?P<{AYE}>[\d]{{2,4}})(?P<{AFT}>.*)"
+
+extract_pattern = fr"(?P<{BEF}>.*)(?P<{AYE}>(?<!.[\w-]|[^ti]\.)(\d{{2}}){{1,2}}(?=\.|\Z|\s)|X)(?P<{AFT}>.*)"
+
+extract_pattern = fr"(?P<{BEF}>\D*(t\.|i\.|\s|\A))(?P<{AYE}>(\d{{1,4}}|X)(?=\.))(?P<{AFT}>.*)"
+
+# (?<!.[\w-]|[^ti]\.)
+
+# extract_pattern = fr".*([\.\s]\d+)"
+
+for s in STRINGS:
+    findings = re.match(extract_pattern, s, flags=re.IGNORECASE)
+    if findings is not None:
+        b, m, a = findings.groupdict()[BEF], findings.groupdict()[AYE], findings.groupdict()[AFT]
+        print(f"{s}\nb: {b}\nm: {m}\na: {a}\n")
+    else:
+        print(f"{s}\n{findings}\n")
+
