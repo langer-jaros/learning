@@ -9,7 +9,8 @@ When plotting with matplotlib may be exhausting, the seaborn is super nice.
 - [heatmap](#heatmap)
 - [Scatter](#scatter)
   - [Plot pairwise relationships in dataset](#plot-pairwise-relationships-in-dataset)
-- [distplot](#distplot)
+- [Histogram](#histogram)
+- [Set title](#set-title)
 - [Color palettes](#color-palettes)
 - [Set style](#set-style)
 
@@ -62,11 +63,22 @@ sns.scatterplot()
 sns.pairplot(data, hue='Survived', palette=['red', 'green']) #, diag_kind='hist'
 ```
 
-## distplot
+## Histogram
+
+distplot - [DPERACATED](https://seaborn.pydata.org/generated/seaborn.distplot.html)
 
 ```py
+sns.distplot(df["age"], kde=False)
 ```
+
 https://seaborn.pydata.org/tutorial/distributions.html
+
+
+## Set title
+
+```py
+sns.distplot(df["age"], kde=False).set_title("Age distribution")
+```
 
 ## Color palettes
 

@@ -61,6 +61,15 @@ import pandas as pd
 
 One-dimensional ndarray with axis labels (including time series).
 
+```py
+# Crate series
+ser = pd.Series([1,2,3,4], index=["Car", "Bus", "Train", "Plane"])
+# Series item
+ser[0]
+# Series item index
+ser.index[0]
+```
+
 [Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
 
 ### DataFrame
@@ -390,17 +399,21 @@ df.name.unique()
 
 # Counts unique values (excluding nan)
 df.name.nunique()
+# Include NaN as a value
+df[GN].nunique(False) == (df[GN].nunique() + 1) = len(df[GN].unique()) # True
 
-# So following equation holds True
-len(df[GN].unique()) == df[GN].nunique() + 1
+# Count values
+df[col].value_counts()
 
 df.name.nsmallest(3)
 df.name.nlargest(3)
 
 # Statistical information
-df[COL].mean()
-df[COL].median()
-df[COL].var()
+df["score"].mean()
+df["score"].median()
+df["score"].mode()
+df["score"].var()
+df["score"].quantile(0.25)
 ```
 
 ## Modifing the dataframe

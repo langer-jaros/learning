@@ -2,6 +2,14 @@
 
 virtual enviroment
 
+## Contents <!-- omit in toc -->
+
+- [Create virtual enviroment](#create-virtual-enviroment)
+- [Activate the enviroment](#activate-the-enviroment)
+- [Deactivation](#deactivation)
+- [Modules requiring instalation outside of the enviroment](#modules-requiring-instalation-outside-of-the-enviroment)
+- [Modules suitable for instalation inside of the venv](#modules-suitable-for-instalation-inside-of-the-venv)
+
 ## Create virtual enviroment
 
 ```sh
