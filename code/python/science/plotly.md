@@ -2,6 +2,18 @@
 
 ## Content
 
+- [Content](#content)
+- [Line](#line)
+  - [Line style - color, width, dash](#line-style---color-width-dash)
+- [Histogram](#histogram)
+  - [Number of bins](#number-of-bins)
+  - [Range of x axis](#range-of-x-axis)
+- [Subplots](#subplots)
+- [X axis tics](#x-axis-tics)
+- [Show grid](#show-grid)
+- [Two Y axis](#two-y-axis)
+- [Save plot as image](#save-plot-as-image)
+
 ## Line
 
 ```py
@@ -176,3 +188,16 @@ fig.update_yaxes(title_text="<b>secondary</b> yaxis title", secondary_y=True)
 fig.show()
 ```
 [multiple axis](https://plotly.com/python/multiple-axes/)
+
+## Save plot as image
+
+```py
+import os
+
+if not os.path.exists("images"):
+    os.mkdir("images")
+
+fig.write_image("images/fig1.png")
+```
+
+[static image export](https://plotly.com/python/static-image-export/)

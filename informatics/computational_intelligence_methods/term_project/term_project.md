@@ -1,5 +1,7 @@
 # Term project
 
+## Assingments
+
 1) Pervasive Attention: 2D Convolutional Neural Networks for Sequence-to-Sequence Prediction
 2) Text clustering
 3) Generate Weighted and Labeled Graphs
@@ -36,3 +38,16 @@ Financial reward available through SSP, given the outcome is useful.
 18) Competition: find meta-learning approaches effective in the few-shot learning setting for image classification tasks
 https://competitions.codalab.org/competitions/26638
 ```
+
+## Approaches
+
+- [LightGBM](https://lightgbm.readthedocs.io/en/latest/)
+  - [notebook link](https://www.kaggle.com/dwit392/expanding-on-simple-lgbm#Modeling)
+- [XGBoost](https://xgboost.readthedocs.io/en/latest/)
+  - [notebook link](https://www.kaggle.com/andradaolteanu/answer-correctness-rapids-crazy-fast)
+- [FTRL](https://datatable.readthedocs.io/en/v0.10.1/ftrl.html)
+  - [notebook link](https://www.kaggle.com/rohanrao/riiid-ftrl-ftw)
+- [NN](https://pytorch.org/docs/stable/nn.html)
+  - [notebook](https://www.kaggle.com/maunish/riiid-super-cool-eda-and-pytorch-baseline#Pytorch-Baseline-Model-%F0%9F%94%A5)
+- Logistic regression
+  - [notebook](https://www.kaggle.com/mikel1/mike-simple-predictor)

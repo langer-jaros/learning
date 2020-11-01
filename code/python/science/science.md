@@ -1,9 +1,9 @@
 # Science
 
 Wierd name for great modules to work with data, namely:
-NumPy, matplotlib, seaborn, jupyter and scikit
+Matplotlib, seaborn, jupyter and scikit
 
-Jaroslav Langer, 2020/03/14
+`2020/10/26, Jaroslav Langer`
 
 The knowlegde is taken partly from our seminars at FIT (CTU, Prague), partly form internet.
 
@@ -13,33 +13,19 @@ The only goal is to overcome my (or others) potential troubles in future with tr
 
 [Statistics is fun](http://guessthecorrelation.com/)
 
-## MENU
-+ [NumPy](#numpy)
-+ [matplotlib](#matplotlib)
-+ [jupyter notebook](#jupyter-notebook)
-+ [seaborn](#seaborn)
-+ [scikit-learn (sklearn)](#scikit-learn-(sklearn))
-+ [python](#python)
+## Content <!-- omit in toc -->
 
-## NumPy
-
-Basically mathematical library.
-
-### Basics
-
-```py
-import numpy as np
-```
-
-
-```py
-# Create NaN
-NaN = np.nan
-
-# Round number
-np.round(theNumber, decimals=2)
-```
-[Round numpy](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.round_.html)
+- [matplotlib](#matplotlib)
+  - [Basics](#basics)
+  - [Configure the plot details, plot more graphs](#configure-the-plot-details-plot-more-graphs)
+  - [Move legend from graph](#move-legend-from-graph)
+  - [Labels](#labels)
+  - [TODO](#todo)
+- [jupyter notebook](#jupyter-notebook)
+  - [How to use it as a user](#how-to-use-it-as-a-user)
+  - [Basics](#basics-1)
+  - [how the install the thing](#how-the-install-the-thing)
+- [scikit-learn (sklearn)](#scikit-learn-sklearn)
 
 ## matplotlib
 
@@ -115,88 +101,10 @@ data.plot?
 
 [install jupyter](https://jupyter.org/install)
 
-## seaborn
-
-When plotting with matplotlib may be exhausting, the seaborn is super nice.
-
-### TODO
-
-```py
-hue=
-```
-[palettes](https://seaborn.pydata.org/tutorial/color_palettes.html)
-
-```py
-import seaborn as sns
-```
-
-### lineplot
-
-```py
-g = sns.relplot(x="time", y="value", kind="line", data=df)
-
-g2 = sns.lineplot(    sort=False)
-```
-[source](https://seaborn.pydata.org/generated/seaborn.relplot.html)
-
-### barplot
-```py
-```
-[link](https://seaborn.pydata.org/generated/seaborn.barplot.html)
-[link2](https://stackoverflow.com/questions/14270391/python-matplotlib-multiple-bars)
-
-### heatmap
-```py
-# heatmap from correlation matrix
-sns.heatmap(cor_matrix, annot=True)
-```
-
-### Scatter
-```py
-sns.stripplot(x="Pclass", y="Age", hue="Survived", data=data, palette= ['black','green']) #, jitter=False) 
-sns.swarmplot(x='Rok', hue='Kandidátní listina - název', y='Věk', data=candidates)
-
-sns.scatterplot()
-```
-
-### Plot pairwise relationships in dataset
-```py
-sns.pairplot(data, hue='Survived', palette=['red', 'green']) #, diag_kind='hist'
-```
-
-### distplot
-```py
-```
-https://seaborn.pydata.org/tutorial/distributions.html
-
-### Color palettes
-
-```py
-# Create the palette
-pall = sns.color_palette("hls", 8)
-# See the palette
-sns.palplot(pall)
-```
-
-### Set style
-
-```py
-sns.set_style("dark")
-```
-
-[Seaborn aesthetics](https://seaborn.pydata.org/tutorial/aesthetics.html)
-
 ---
 
 ## scikit-learn (sklearn)
 
 ```py
 import sklearn as skit
-```
-
-## Python
-
-### Floats NaN
-```py
-NaN = float("NaN")
 ```
