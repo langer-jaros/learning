@@ -7,6 +7,9 @@
 - [Documentation](#documentation)
 - [First things first](#first-things-first)
   - [Import pandas](#import-pandas)
+- [DataFrame and Series](#dataframe-and-series)
+  - [Series](#series)
+  - [DataFrame](#dataframe)
 - [Get data into DataFrames](#get-data-into-dataframes)
   - [Get dataframe from csv](#get-dataframe-from-csv)
   - [Write dataframe to csv](#write-dataframe-to-csv)
@@ -30,6 +33,7 @@
   - [Work with the dataframe](#work-with-the-dataframe)
   - [Index stuff](#index-stuff)
   - [Work with dataframe columns](#work-with-dataframe-columns)
+  - [Missing values](#missing-values)
   - [Columns datatypes](#columns-datatypes)
   - [Modify values](#modify-values)
   - [String methods](#string-methods)
@@ -38,8 +42,6 @@
   - [Plot the data](#plot-the-data)
 - [Advanced features](#advanced-features)
   - [MultiIndex](#multiindex)
-- [TODO](#todo)
-  - [Categories](#categories)
 
 ## Documentation
 
@@ -52,6 +54,20 @@
 ```py
 import pandas as pd
 ```
+
+## DataFrame and Series
+
+### Series
+
+One-dimensional ndarray with axis labels (including time series).
+
+[Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
+
+### DataFrame
+
+Two-dimensional, size-mutable, potentially heterogeneous tabular data.
+
+[DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html)
 
 ## Get data into DataFrames
 
@@ -246,7 +262,7 @@ df.nunique()
 df.sum()
 
 # Creates table of same size, every value is represented with boolean isnull NaN -> True
-df.isnull()
+df.isnull() # synonym to `df.isna()`
 df.notnull()
 # Handy usage of previous functions, see number of NaN (/not NaN) values per column
 df.isnull().sum()
@@ -440,6 +456,8 @@ df = df.rename(columns = {'BirthYear': 'Age'})
 # Rename colums with numbers from range
 df.columns = range(12)
 
+# Add multiple columns
+df[['nans', 'zeros']] = pd.DataFrame([[np.nan, 0]], index=df.index)
 # Add column (colNumber, name(multiindex here), columnData, allowDuplicates)
 df.insert(2, ("Age","Age"), [21, 23, 24, 21], True) 
 # Better exemple
@@ -452,6 +470,57 @@ df = df[[3, 4, 0, 1, 2, 5, 6, 7, 8, 9]]
 df = df.reindex(columns=['mean',0,1,2,3,4])
 # Sort order of columns
 df = df.reindex(sorted(df.columns), axis=1)
+
+# Add multiple columns (all columns from another dataframe)
+extracted_columns = df[feature].str.extract(extract_pattern)
+df = df.join(extracted_columns)
+```
+
+[Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
+
+[add multiple columns 8 ways (stackoverflow)](https://stackoverflow.com/questions/39050539/how-to-add-multiple-columns-to-pandas-dataframe-in-one-assignment)
+
+### Missing values
+
+There are multiple ways the missing values may be represented. Now do not consider values that are missing by the values logic (e.g. string "?") let's talk only values that are missing by its type.
+
+```py
+# None
+missing = None
+type(missing) # <class 'NoneType'>
+# float("nan")
+missing = float("nan")
+type(missing) # <class 'float'>
+# np.nan
+missing = np.nan
+type(missing) # <class 'float'>
+# pd.NA
+missing = pd.NA
+type(missing) # <class 'pandas._libs.missing.NAType'>
+```
+
+#### Example
+
+```py
+df_list = [
+    ["value", 20],
+    [None, np.nan],
+    ["?", 123.412],
+    [np.nan, None],
+    ["", pd.NA]
+]
+df = pd.DataFrame(df_list)
+
+print(df)
+
+df[0].apply(type).unique()
+df[1].apply(type).unique()
+
+df = df.fillna(np.nan)
+print(df)
+
+df[0].apply(type).unique()
+df[1].apply(type).unique()
 ```
 
 ### Columns datatypes
@@ -463,8 +532,16 @@ df["a"] = pd.to_numeric(df["a"])
 # Change columns type to datetime
 df[df.columns[0]] = pd.to_datetime(df.columns[0], format='%d.%m.%Y')
 
+# Using apply (conversion to string)
+df["column"] = df["column"].apply(str)
+
 # Astype
 df[NUM] = df[NUM].astype('float64')
+# Categories
+data['embarked'] = data[['embarked']].astype('category').apply(lambda x: x.cat.codes)
+# Change to categories and replace values with category codes
+df[feature] = df[feature].astype('category').cat.codes
+df[feature] = df[feature].cat.codes
 # Days from datetime
 rfm[RECENCY] = rfm[RECENCY].astype('timedelta64[D]')
 ```
@@ -485,8 +562,10 @@ data2_tmp['Age'] = 1912 - data2_tmp['Age']
 
 #### Apply
 
+For more complicated changes (works either for rows or columns).
+Called with dataframe default `axis=0` i.e. iterates over columns `axis=1` iterates over rows.
+
 ```py
-# apply - for more complicated changes (works either for rows or columns)
 data['Sex'] = data['Sex'].apply(lambda x: 1 if x == 'female' else 0)
 
 # Default axis for DataFrame.apply is axis=0 (goes through lines)
@@ -590,6 +669,14 @@ df[feature].str.contains(r"X\.\d+", case=False).sum()
 ```py
 # Groupby data like sql groupby
 dataUJAK[dataUJAK['Rok'] > 2000].groupby(['Název práce']).size().sort_values(ascending=False)
+
+# Mode
+mostCommonMediumForEveryDepartment = {}
+for dep, group in df[[DEP, MED]].groupby(DEP):
+    sizes = group.groupby("Medium").size()
+    mostCommonMediumForEveryDepartment[dep] = sizes[sizes == sizes.max()].index.values[0]
+
+mediumModes = df.groupby(DEP)[MED].apply(lambda x: x.mode())
 ```
 [groupby](https://pandas.pydata.org/pandas-docs/stable/reference/groupby.html)
 
@@ -649,12 +736,3 @@ candidates_tmp = candidates_tmp.rename(columns = {'Kandidátnílistina': 'Kandid
 # Flatten the MultiIndex into Index of tuples
 columns1.to_flat_index()
 ```
-
-## TODO
-
-[Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
-[Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
-
-### Categories
-
-data['embarked'] = data[['embarked']].astype('category').apply(lambda x: x.cat.codes)
