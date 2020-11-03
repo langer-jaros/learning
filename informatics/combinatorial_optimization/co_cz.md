@@ -2,19 +2,16 @@
 
 [Moodle]([Moodle](https://moodle-vyuka.cvut.cz/course/view.php?id=3930))
 
-hamiltonova kružnice
+- hamiltonova kružnice
+- Problém batohu
 
+## Charakterizace problému 
 
-
-
-Problém batohu
-
-## 
-- vstupní proměnná
-- konfigurační proměnná
-- výstupní proměnná
-
-konfigurace
+- vstupní proměnné
+- konfigurační proměnné (konfigurace)
+- výstupní proměnné
+- omezení
+- optimalizační kritérium, pokud je třeba
 
 ## Typy problémů
 
