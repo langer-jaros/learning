@@ -5,7 +5,8 @@ project_path=~/Projects/learning/informatics/combinatorial_optimization/homework
 dir_in=${project_path}/compute/tests/ins
 dir_out=${project_path}/compute/tests/tmp
 
-execute=${project_path}/compute/source/build/read_problem
+# execute=${project_path}/compute/source/build/read_problem
+execute=${project_path}/compute/source/build/dynamic_programming
 
 dataset=(nk zkc zkw)
 ns=(4 10) # ns=(4 10 15 20 22 25 27 30 32 35 37 40)

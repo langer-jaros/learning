@@ -55,6 +55,7 @@ struct RESULT {
 
 void brute_force(PROBLEM &prob, STATE &stat, RESULT &resu)
 {
+    vector<bool> solution;
     // INIT
 
     // REC
@@ -70,7 +71,22 @@ void branch_and_bound(PROBLEM &prob, STATE &stat, RESULT &resu)
 
 void dynamic_programming(PROBLEM &prob, STATE &stat, RESULT &resu)
 {
-
+    int i, j;
+    vector<vector<int>> dp(prob.n+1, vector<int>(prob.W+1));
+    vector<int> choices;
+    for (i = prob.n; i >= 0; i--) {
+        for (j = 0; i <= prob.W; j++) {
+            if (i = prob.n) {
+                dp[i][j] = 0;
+            }
+            choices = vector<int>();
+            choices.push_back(dp[i+1][j]);
+            if (j >= prob.items[i].w) {
+                choices.push_back(dp[i+1][j-prob.items[i].w]+prob.items[i].v);
+            }
+            dp[i][j] = max(choices[0], choices[1]);
+        }
+    }
 }
 
 void greedy_heuristic(PROBLEM &prob, STATE &stat, RESULT &resu)
