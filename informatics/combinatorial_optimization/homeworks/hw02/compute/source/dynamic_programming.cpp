@@ -45,7 +45,7 @@ void dynamic_programming(PROBLEM &prob, RESULT &resu)
     vector<vector<int>> dp(prob.n+1, vector<int>(prob.W+1));
     vector<int> choices;
     for (i = prob.n; i >= 0; i--) {
-        for (j = 0; i <= prob.W; j++) {
+        for (j = 0; j <= prob.W; j++) {
             if (i == prob.n) {
                 dp[i][j] = 0;
             } else {
@@ -54,7 +54,7 @@ void dynamic_programming(PROBLEM &prob, RESULT &resu)
                 if (j >= prob.items[i].w) {
                     choices.push_back(dp[i+1][j-prob.items[i].w]+prob.items[i].v);
                 }
-                dp[i][j] = max(choices[0], choices[1]);
+                dp[i][j] = (choices.size() == 2)? max(choices[0], choices[1]): choices[0];
             }
         }
     }
@@ -101,6 +101,5 @@ int main()
 
         write_result(problem, result);
     }
-
     return 0;
 }

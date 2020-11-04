@@ -28,6 +28,8 @@ The art of using PC like a human being
   - [Text transformation](#text-transformation)
   - [Expansions](#expansions)
   - [Regular Expressions](#regular-expressions)
+  - [BRE ERE](#bre-ere)
+  - [Grep](#grep)
   - [split](#split)
   - [cat](#cat)
   - [cut](#cut)
@@ -41,10 +43,12 @@ The art of using PC like a human being
   - [Comments](#comments)
   - [Variables](#variables)
   - [Printf](#printf)
-  - [Exit status and tests](#exit-status-and-tests)
+  - [Exit status](#exit-status)
+  - [Bracket tests](#bracket-tests)
   - [Conditions](#conditions)
   - [Loops](#loops)
   - [Functions](#functions)
+  - [Arguments](#arguments)
 - [Linux](#linux)
   - [Copy and past in terminal](#copy-and-past-in-terminal)
   - [Linux directory structure](#linux-directory-structure)
@@ -210,21 +214,17 @@ There is already a [directory structure](#linux-directory-structure) by default.
 Important is that there is one root directory, where every other directories are either in the root directory or nested into its subdirectories. Also every user has its own user directory.
 At every point in a terminal you are in some directory.
 
+Directory separator `/`.
+
 ```sh
-# Path to the root dicionary
-/
-
-# Path to the current dictionary
-.
-
-# Path to your home dicionary
-~
-
-# Dictionary separator
-/
-
-# Show path to the current dictionary
+# Show path to the current directory
 pwd
+# Go (move) to the specified directory
+cd /home/username/path/to/the/directory
+
+cd / # go to the root directory
+cd . # go to the current directory
+cd ~ # go to your home directory
 ```
 
 If i would have a directory called "tutorial" in my user directory, the path would be
@@ -243,23 +243,18 @@ If i would have a directory called "tutorial" in my user directory, the path wou
 #### Manipulation with files and directories
 
 ```sh
-# Go (move) to the specified dictionary
-cd ./path/to/the/dictionary
-
 # Create new directory
 mkdir NEW_DIRECTORY
+mkdir -p ./path/to/end/dir # create every dir that does not exist on the path
 
-# Copy file1 to file2
-cp file1 file2
-# Copy all from dir1 to dir2
-cp -r dir1 dir2
+# Copy files and directories
+cp file1 file2  # Copy file1 to file2
+cp -r dir1 dir2 # Copy all from dir1 to dir2
 
 # Move file to another place
 mv /old/path/to/file1 /new/path/to/file1
-
 # Rename file1 as file2 and check if not overwriting
 mv -i file1 file2
-
 # Create new directory and put everything in
 mv ./!(dir1) ./dir1/
 
@@ -268,10 +263,9 @@ for var in 0{1,2,3}; do mv tutorial_$var t_$var; done
 # Replace space with underscore
 for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
 
-# Remove file
-rm file
-# Remove directory (recursively with all files)
-rm -r
+# Delte files and directories
+rm file # Remove file
+rm -r   # Remove directory (recursively with all files)
 ```
 
 - [replace spaces link](https://vitux.com/how-to-replace-spaces-in-filenames-with-underscores-on-the-linux-shell/)
@@ -801,40 +795,35 @@ scp -r compute  USER@78.128.250.10:/home/USER/computing/
 #### Screen
 
 ```sh
-# Creat screen 
-screen
-
-# Detach from screen
-screen -d
-
-# Reattach to screen
-screen -r
-
-# List all screens
-screen -ls
+# How to use screen from terminal
+screen      # Create screen 
+screen -d   # Detach from screen
+screen -r   # Reattach to screen
+screen -ls  # List all screens
 
 # Kill screen
 screen -X -S SESSION_ID_FROM_LS kill
 ```
 
-[screen link](https://linuxize.com/post/how-to-use-linux-screen/)
-[kill screen](https://stackoverflow.com/questions/1509677/kill-detached-screen-session)
+- [screen link](https://linuxize.com/post/how-to-use-linux-screen/)
+- [kill screen](https://stackoverflow.com/questions/1509677/kill-detached-screen-session)
 
-##### From seminar
+**How to work inside of a screen**
 
-```
-screen
-    ^a 
-        c    #new bash window
-        "    "#shows open windows 
-        S   #devide horizontaly
-        |   #devide verticaly
-        TAB #change region
-        A   #rename region
-        k   #kill actual screen
-        X   #close region
-        Q   #close regions
-```
+Press `Ctrl+a+OPTION`
+
+| OPTION | Action             |
+| --- | ---                   |
+| c   | create new bash       |
+| "   | show open bash        |
+| S   | devide horizontaly    |
+| |   | devide verticaly      |
+| tab | change region         |
+| A   | rename region         |
+| k   | kill actual screen    |
+| X   | close region          |
+| Q   | close regions         |
+| esc | relase cursor up/down |
 
 #### SSHFS
 
@@ -906,6 +895,9 @@ echo ${...}
 
 outputs only names of all shell variables, exported or not.
 
+- [compgen](https://askubuntu.com/questions/953579/what-is-the-difference-between-env-declare-and-compgen-v)
+
+
 #### GLOBAL: env, printenv ...
 
 ##### export
@@ -922,18 +914,22 @@ prints environment variables
 
 #### LOCAL
 
-    set | grep ''
-    vara=123a
-
-[source](https://askubuntu.com/questions/953579/what-is-the-difference-between-env-declare-and-compgen-v)
+```
+set | grep ''
+var_a=123a
+```
 
 ```sh
-    CONSTS: $USER; $PATH; $SHLVL; $SHELL;
+# CONSTANTS
+$USER; $PATH; $SHLVL; $SHELL;
 
-    variables:  name=value [[:alnum:]]
-                unset ... (local)
-                declare [-i; -r] ...
+# variables
+name=value [[:alnum:]]
+
+unset ... (local)
+declare [-i; -r] ...
 ```
+
 #### Open new bash
 
 ```sh
@@ -944,17 +940,20 @@ echo $SHLVL
 exit
 ```
 
-```sh
-    bash    child[sub]   interactive / uninteractiv - | read   
-                exit
-    startup
-        login shell            
-            /etc/profile
-            $HOME/ [.profile; .bash_profile; .bash_login]
-        non-login shell
-            /etc/.bashrc
-            $HOME/.bashrc
-            source
+```bash
+bash    child[sub]   interactive / uninteractiv - | read   
+            exit
+startup
+```
+
+```bash
+login shell            
+    /etc/profile
+    $HOME/ [.profile; .bash_profile; .bash_login]
+non-login shell
+    /etc/.bashrc
+    $HOME/.bashrc
+    source
 ```
 
 ---
@@ -1072,41 +1071,86 @@ echo $((1238 % 17)) echo 14
 ### Regular Expressions
 
 `“REGEX” or “REGEXP”?  ->  /REGEXP?/`
-```sh
-	. * [^- ] ^ $ 		- BRE
-	+ ? { } ( ) | \		- ERE
-BRE: 	grep - BRE
-ERE: 	egrep 	grep -E 	grep \ERE 
 
-grep -options 'RE' where
-	[abc]
-options: -n -c -i -v
-	[: :]
-		[:alpha:] 	[a-zA-Z]
-		[:digit:] 	[0-9]
-		[:lower:]	
-		[:upper:]
-		[:alnum:]
-		[:word:]	[a-zA-Z_]
-		[:blank:]	[mezera\t]
-		[:xdigit]	[a-fA-F0-9]
-	kvantifikatory:
-		* + ? {}
-		{min, max}
-		? nemusi a kdyz tak pouze jednou
-		+ musi minimalne jednou
-		*
+### BRE ERE
 
-	Specialni znaky
-		\b \< \> \w \W \s 	skoro_i \d
-	RE1|RE2
-	'<(h[1-6])>.*</\1>'
-fgrep
-rgrep
-USAGE:
-	less /
-	locate --regexp [bre] --regex [ere]
-    [Find anything](#find-anything)
+- BRE = Basic Regular Expressions
+  - `. * [^- ] ^ $`
+- ERE = Extended Regular Expressions
+  - `+ ? { } ( ) | \`
+
+#### Classes
+
+- Enumerated classes: `[abc987]`
+- Range-based classes: `[a-e5-8]`
+- POSIX classes `[: :]`
+
+| POSIX       | Classes       |
+| ---         | ---           |
+| `[:alpha:]` | `[a-zA-Z]`    |
+| `[:digit:]` | `[0-9]`       |
+| `[:lower:]` |               |
+| `[:upper:]` |               |
+| `[:alnum:]` |               |
+| `[:word:]`  | `[a-zA-Z_]`   |
+| `[:blank:]` | `[\ \t]`      |
+| `[:xdigit]` | `[a-fA-F0-9]` |
+
+#### Quantifiers
+
+| Quantifier   | Description                              |
+| ---          | ---                                      |
+| `*`          | Any quantity                             |
+| `+`          | At least once                            |
+| `?`          | Once at maximum                          |
+| `{min, max}` | within min, max range includeing min max |
+
+#### Special characters
+
+| s.c. | Desc. |
+| ---  | ---   |
+| \b   |       | 
+| \<   |       | 
+| \>   |       | 
+| \w   |       | 
+| \W   |       | 
+| \s   |       | skoro_i
+| \d   |       |
+
+#### Alternations
+
+`RE1|RE2`
+
+#### Groups
+
+`'<(h[1-6])>.*</\1>'`
+
+Commands
+
+```bash
+# BRE
+grep - BRE
+
+# ERE
+egrep
+grep -E
+grep \ERE 
+```
+
+### Grep
+
+Usage: `grep -options 'RE' where`
+
+options: `-n -c -i -v`
+
+- fgrep
+- rgrep
+
+Examples
+
+```bash
+less /
+locate --regexp [bre] --regex [ere]
 ```
 
 ---
@@ -1124,7 +1168,7 @@ USAGE:
 
 ### split
 
-- rozdeleni obsahu
+- Split content
 
 ```bash
 # (rozdeli soubor podle definovaneho poctu radku)
@@ -1141,7 +1185,7 @@ split -n 3 filename prefix
 
 ### cat
 
-- spojeni obsahu
+- Concatenate content
 
 ```bash
 cat file_0* > merge
@@ -1149,52 +1193,54 @@ cat file_0* > merge
 
 ### cut
 
- - extrakce textu z radky
+- Extract sections from each line of files
 
 ```bash
-cut -f 3 filename (implicitni oddelovac je TAB)
-cut -f 1,3 filename (vybrane sloupce)
-cut -f 2-3 filename (rozsah sloupcu)
+# Get the Nth column (numbered from 1), implicit separator is `tab`
+cut -f 3 filename   # get third column
+cut -f 1,3 filename # enumerated columns
+cut -f 2-3 filename # range of columns
 
-cut -d ':' -f 1 /etc/password | head (explicitni definice oddelovace)
+cut -d ':' -f 1 /etc/password | head # define separator
 
-cut -c 2-10 (extrakce znaku na urcenych pozicich, jednotlive i rozsah)
+cut -c 2-10 # extract characters (one character one column)
 ```
 
 ### paste
 
-- spojeni sloupcu/radku
+- merge columns/rows
 
 ```bash
-paste file1 file2 file3 (implicitni oddelovac je TAB)
-paste -d ':' file1 file2 file3 (explicitni definice oddelovace)
-paste -s file1 file2 file3 (spoji obsahy jednotlivych souboru za sebou po radcich)
+paste file1 file2 file3         #(implicitni oddelovac je TAB)
+paste -d ':' file1 file2 file3  #(explicitni definice oddelovace)
+paste -s file1 file2 file3      #(spoji obsahy jednotlivych souboru za sebou po radcich)
 ```
 
 ### sort
 
-- razeni
-
 ```bash
-# (serazeni a slouceni vice souboru)
+# Sort and merge multiple files
 sort file1 file2 file3 > file
 cut -d ':' -f 1 /etc/passwd | sort
 
-# (reverzni razeni)
-sort -r file
-#  (numericke razeni misto abecedniho)
-sort -n file
+sort -r file # sort in reverse order
+
+sort -n file # Numeric sort not lexicographic
+
 cut -d ':' -f 3 /etc/passwd | sort
 cut -d ':' -f 3 /etc/passwd | sort -n
 
-# (razeni podle k-teho sloupce ve vypisu, implicitni oddelovac je mezera a TAB)
-sort -k file
+sort -k file # sort by k-th columns (separator is `tab` by default)
+
 # (seradi numericky podle klice = od 5. sloupce v tabulce)
 ls -l | sort -nr -k 5
+
 # (razeni podle vice klicu)
 sort --key=1,1 --key=2n filename
+
 # (offset v ramci sloupce)
 sort -k 3.7nbr -k 3.1nbr -k 3.4nbr filename
+
 # (explicitni definice oddelovace)
 sort -t ':' -k 7 /etc/passwd
 ```
@@ -1210,70 +1256,89 @@ shuf -n N input > output
 
 - stream editor pro filtrovani a transformaci textu
 
+
+Usage: `sed options 'script' file`
+
+
+#### options
+
 ```
-    format: sed options 'script' file
-    options - volby
-        -n  potlaci autoprint radku
-        -i  potlaci presmerovani na obrazovku a zmeny zapise do souboru
-    addresses - adresy
-        n           cislo radky
-        addr1,addr2 rozsah radku
-        first~step  prvni a kazdy dalsi po definovanem kroku
-        $           posledni radka
-        addr1,+n    zacatek a n nasledujicich radku
-        addr!       vsechny ostatni radky krome definovanych (definovane mohou byt vsemi uvedenymi zpusoby)
-        /regexp/    radka, ktera splnuje definovany BRE vyraz (delimiter je delimiter / nebo \cregexpc kde c je libovolny znak)
-    commands - prikazy (singleline - jednoradkove)
-        p   tisk vybraneho radku
-            sed 'p' filename
-            sed -n 'p' filename
-        i   vlozi text pred aktualni radek
-            sed 'i text' filename
-        a   vlozi text za aktualni radek
-            sed 'a text' filename
-        d   vymaze aktualni radek
-            sed 'd' filename
-            sed '2~2d' filename
-        =   zobrazi cislo aktualniho radku
-            sed '=' filename
-            sed '2,5=' filename
-        c   zmeni text aktualniho radku
-            sed '2c text' filename
-            sed '2,5c text' filename
-        r   cteni radku ze souboru
-            sed 'r input1' input2
-            sed '2,3r input1' input2
-        w   zapis radku do souboru
-            sed 'w input' output    (alternativa k cp)
-            sed '2,3w input' output
-        s/regexp/replacement/   substituce
-             echo "pes" | sed 's/pes/kocka/'
-            sed s/pes/kocka/ filename > newfilename            
-            replacement
-                muze obsahovat znak &, ktery vlozi text definovany regularnim vyrazem
-                muze obsahovat back references \1 - \9
-            flags
-                prikazu s mohou nasledovat ruzne priznaky
-                    echo "aaabbbccc" | sed 's/b/1/'   (nahradi pouze prvni vyskyt)
-                    echo "aaabbbccc" | sed 's/b/1/g'  (nahradi globalne v celem radku)
-                    echo "aaabBbccc" | sed 's/b/1/Ig' (nahradi globalne v celem radku a ignoruje velikost pismen)
-        y/set1/set2/   transliterace
-            echo "aaabbbccc" | sed 'y/abc/123/'
-                 na rozdil od prikazu tr vyzaduje stejnou delku znakovych sad
-                 nepodporuje rozsah (-) ani POSIX znakove tridy => vycet znaku musi byt presne definovan
+-n  potlaci autoprint radku
+-i  potlaci presmerovani na obrazovku a zmeny zapise do souboru
+```
 
-ostatni
-    vice prikazu najednou (oddeluji se strednikem ve slozenych zavorkach s option -e)
-        sed -e '{s/pes/slon/; s/oves/zito/}' filename
-        sed -e 's/pes/slon/; s/oves/zito/' filename
-        sed 's/pes/slon/; s/oves/zito/' filename
+#### addresses
 
-    aplikace transformaci ulozenych v souboru (kazdy prikaz na samostatnem radku)
-        sed -f script.sed filename
-            script.sed
-                s/pes/slon/
-                s/oves/zito/
+```
+n           cislo radky
+addr1,addr2 rozsah radku
+first~step  prvni a kazdy dalsi po definovanem kroku
+$           posledni radka
+addr1,+n    zacatek a n nasledujicich radku
+addr!       vsechny ostatni radky krome definovanych (definovane mohou byt vsemi uvedenymi zpusoby)
+/regexp/    radka, ktera splnuje definovany BRE vyraz (delimiter je delimiter / nebo \cregexpc kde c je libovolny znak)
+```
 
+#### commands (singleline)
+
+```
+p   tisk vybraneho radku
+    sed 'p' filename
+    sed -n 'p' filename
+i   vlozi text pred aktualni radek
+    sed 'i text' filename
+a   vlozi text za aktualni radek
+    sed 'a text' filename
+d   vymaze aktualni radek
+    sed 'd' filename
+    sed '2~2d' filename
+=   zobrazi cislo aktualniho radku
+    sed '=' filename
+    sed '2,5=' filename
+c   zmeni text aktualniho radku
+    sed '2c text' filename
+    sed '2,5c text' filename
+r   cteni radku ze souboru
+    sed 'r input1' input2
+    sed '2,3r input1' input2
+w   zapis radku do souboru
+    sed 'w input' output    (alternativa k cp)
+    sed '2,3w input' output
+s/regexp/replacement/   substituce
+     echo "pes" | sed 's/pes/kocka/'
+    sed s/pes/kocka/ filename > newfilename            
+    replacement
+        muze obsahovat znak &, ktery vlozi text definovany regularnim vyrazem
+        muze obsahovat back references \1 - \9
+    flags
+        prikazu s mohou nasledovat ruzne priznaky
+            echo "aaabbbccc" | sed 's/b/1/'   (nahradi pouze prvni vyskyt)
+            echo "aaabbbccc" | sed 's/b/1/g'  (nahradi globalne v celem radku)
+            echo "aaabBbccc" | sed 's/b/1/Ig' (nahradi globalne v celem radku a ignoruje velikost pismen)
+y/set1/set2/   transliterace
+    echo "aaabbbccc" | sed 'y/abc/123/'
+         na rozdil od prikazu tr vyzaduje stejnou delku znakovych sad
+         nepodporuje rozsah (-) ani POSIX znakove tridy => vycet znaku musi byt presne definovan
+```
+
+#### Other
+
+```bash
+# vice prikazu najednou (oddeluji se strednikem ve slozenych zavorkach s option -e)
+sed -e '{s/pes/slon/; s/oves/zito/}' filename
+sed -e 's/pes/slon/; s/oves/zito/' filename
+sed 's/pes/slon/; s/oves/zito/' filename
+```
+
+```bash
+# aplikace transformaci ulozenych v souboru (kazdy prikaz na samostatnem radku)
+sed -f script.sed filename
+    script.sed
+        s/pes/slon/
+        s/oves/zito/
+```
+
+```bash
 sed i a =   p d n
             P D N
 #   sed '/prvni/{N; s/\n/ /}' radky2
@@ -1378,6 +1443,32 @@ True '    '
 
 ### Variables
 
+Define variables
+
+```bash
+# var=value - spaces must be escaped
+number=1       # number
+string=hello # strings
+
+# Arrays
+array=(1 2 nn pp gg)    # space separated array
+arr[3]=there            # define with index
+```
+
+Access variables
+
+```bash
+echo ${var}
+
+# Access array
+echo ${arr} # first item
+echo ${arr[0]} # first item
+echo ${arr[1]} # second item
+
+echo ${arr[@]} # full array
+echo ${arr[*]} # array as a string
+```
+
 ```bash
 var=
 # :-value -> pokud v proměnné není nic, vypíše se value, ale nepřiřadí se
@@ -1447,81 +1538,140 @@ echo $((2#10)) # 10
 printf "{%s: %s}\n" "$m_key" "$m_name"
 ```
 
-### Exit status and tests
+### Exit status
 
 Every command in bash returns a status, number between 0 and 255, 0 menas success.
 
 ```sh
 # Read the last exit status
 echo $?
+# See exit status of my_script
+my_script -opt file_name; echo $?
 ```
 
 Bash script or terminal itself can return status code, command exit
+
 ```sh
 # Success
 exit # exit 0
 # Failure
 exit 1 # exit 255
+
+# Commands true and false
+true # ignore any input and exit 0
+false # ignore any input and exit 1
 ```
 
-```sh
-	True; echo $? = 0
-	False: echo $? = 1
+### Bracket tests
 
-	Testt -e soubor; echo $?
-	[_ _] -f
-		-d    #directory
-		-L    #link symbolic
-		-r    #readable by test
-		-w    #permision to write
-		-x    #executable
-		-s    #not empty
-		[ -s pokus]; echo $?
-		[ f1 -nt f2 ]; echo $?
-		-ot
-		strings:
-			-n
-			-z
-			==
-			!=
-			<
-			>
-	
-		cisla:
-			-eq
-			-ne
-			-lt
-			-le
-			-gt
-			-ge
-	[[_ _]]
-		1)	x1
-		2)	x1 == x2(d)
-		3)	x1 =~ ERE
-	((_ _))
-		1)	$x1 .... x1 i pro stringy
-		2)	== funguje pro cisla
-		prirazeni:
-			+=
-			-=
-			/=
-			%=
-			*=:
-			++
-			--
-		ternary op conditional:
-			(( a<1? (a=+2) : (a-=3) ))
-	logicke operace
+#### Square bracket test
+
+Example usage: `[ unary_op argument ]`
+
+**The space after the first and before the second bracket are required** 
+
+Unary test operators
+
+| unary_op | description             |
+| ---      | ---                     |
+| -f       | is file                 |
+| -d       | is directory            |
+| -L       | is symbolic link        |
+| -r       | is readable by test     |
+| -w       | has permision to write  |
+| -x       | is executable           |
+| -s       | is not empty            |
+
+Example
+
+```bash
+[ -s experiment]; echo $?
+```
+
+Three arguments usage: `[ arg1 binary_op arg2 ]`
+
+Example
+```bash
+# is file1 olther than file2
+[ file1 -ot file2 ]; echo $?
+```
+
+Test strings
+
+| binary_op | description |
+| ---       | ---         |
+| -n        |             |
+| -z        |             |
+| ==        |             |
+| !=        |             |
+| <         |             |
+| >         |             |
+
+Test numbers
+
+| binary_op | description |
+| ---       | ---         |
+| -eq       |             |
+| -ne       |             |
+| -lt       |             |
+| -le       |             |
+| -gt       |             |
+| -ge       |             |
+
+Example:
+
+```bash
+[ f1 -nt f2 ]; echo $?
+```
+
+#### Double square bracket test
+
+Usage `[[_arg1 op arg2_]]`
+
+1) Numbers can be compared straight `x1` (not $x1)
+2) `x1 == x2(d)`
+3) `x1 =~ ERE`
+
+
+#### Double bracket test
+
+Usage `((_arg1 op arg2_))`
+
+1) `$x1 .... x1` i pro stringy
+2) `==` funguje pro cisla
+
+Assign value
+
+| binary_op | description |
+| ---       | ---         |
+| +=        |             |
+| -=        |             |
+| /=        |             |
+| %=        |             |
+| *=:       |             |
+| ++        |             |
+| --        |             |
+
+Ternary operator (conditional)
+
+- `(( arg1? arg2 : arg3 ))`
+
+```
+(( a<1? (a=+2) : (a-=3) ))
+```
+
+Logic operators
+
+```
 AND     -a 		&&
 OR      -o 		!!
 NOT     !		!
 ```
 
-
 ### Conditions
 
 ```sh
-if commands; then commands
+if commands; then commands; fi
 
 if [[ condition ]]; then
 	commands
@@ -1530,23 +1680,37 @@ elif [[ condition ]]; then
 else
 	commands
 fi
+```
 
+```
 && 
 	- druhy proved pouze, pokud prvni exitstatus=0
 ||
 	- pokud je prvni chybovy proved druhy
 ;
 	- proved oba
+```
 
+```bash
 case variable in
-    pattern)   commands;
-        ;;
+pattern)
+    commands;
+;;
+pattern2) commands;
+;;
 esac
-    PATERN: letter)
-            *)
-            ?)  e.g.    ???.txt)
-            [abc])  OR  [3-9])  OR  [[:digit:]])
+```
 
+PATERN:
+
+```
+letter)
+*)
+?)  e.g.    ???.txt)
+[abc])  OR  [3-9])  OR  [[:digit:]])
+```
+
+```bash
 select variable in[list] do
     commands;
 done
@@ -1614,6 +1778,24 @@ return # if not, then exit status of function is the es of last function
 to return string:
         last line echo var
 exec:   x=$(fu)
+```
+
+### Arguments
+
+```sh
+# Echo arguments (get argument by number)
+echo $0 # Argument 0 - how the script was called
+echo $1 # First argument
+echo $2 # second argument
+
+echo $# # Number of arguments
+
+echo $* # All arguments as one string
+echo $@ # Array of all arguments
+
+# shift the arguents number
+shift   # shift it by one
+shift 4 # shift it by 4
 ```
 
 ---
@@ -1684,16 +1866,6 @@ U+FEFF
 
 ```sh
 date -r s1
-```
-
-```sh
-stat
-```
-
-```sh
-$# -> počet argmentů
-$* -> přehled věšech argumentu
-shift [n]
 ```
 
 ```bash
