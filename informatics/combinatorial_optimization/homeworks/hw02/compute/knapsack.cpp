@@ -40,6 +40,7 @@ struct STATE {
 };
 
 struct RESULT {
+    int max_value;
     vector<bool> solution;              // boolean choice of every item
     vector<bool> sol_tmp;               // temporary vector of boolean solution
     unsigned long long int complexity;  // number of called recursion tails
@@ -69,24 +70,26 @@ void branch_and_bound(PROBLEM &prob, STATE &stat, RESULT &resu)
 }
 
 
-void dynamic_programming(PROBLEM &prob, STATE &stat, RESULT &resu)
+void dynamic_programming(PROBLEM &prob, RESULT &resu)
 {
     int i, j;
     vector<vector<int>> dp(prob.n+1, vector<int>(prob.W+1));
     vector<int> choices;
     for (i = prob.n; i >= 0; i--) {
-        for (j = 0; i <= prob.W; j++) {
-            if (i = prob.n) {
+        for (j = 0; j <= prob.W; j++) {
+            if (i == prob.n) {
                 dp[i][j] = 0;
+            } else {
+                choices = vector<int>();
+                choices.push_back(dp[i+1][j]);
+                if (j >= prob.items[i].w) {
+                    choices.push_back(dp[i+1][j-prob.items[i].w]+prob.items[i].v);
+                }
+                dp[i][j] = (choices.size() == 2)? max(choices[0], choices[1]): choices[0];
             }
-            choices = vector<int>();
-            choices.push_back(dp[i+1][j]);
-            if (j >= prob.items[i].w) {
-                choices.push_back(dp[i+1][j-prob.items[i].w]+prob.items[i].v);
-            }
-            dp[i][j] = max(choices[0], choices[1]);
         }
     }
+    resu.max_value = dp[0][prob.W];
 }
 
 void greedy_heuristic(PROBLEM &prob, STATE &stat, RESULT &resu)
@@ -118,9 +121,12 @@ bool read_problem(PROBLEM &p)
     return true;
 }
 
-void write_result(RESULT result)
+void write_result(PROBLEM &p, RESULT &r)
 {
-
+    cout << p.id << " " << p.n << " " << r.max_value;
+    for (int i : r.solution)
+        cout << " " << i;
+    cout << endl;
 }
 
 int main(int argc, char **argv)
@@ -138,7 +144,7 @@ int main(int argc, char **argv)
         switch (approach) {
             case BF: brute_force(problem, state, result); break;
             case BAB: branch_and_bound(problem, state, result); break;
-            case DP: dynamic_programming(problem, state, result); break;
+            case DP: dynamic_programming(problem, result); break;
             case GH: greedy_heuristic(problem, state, result); break;
             case REDUX: redux(problem, state, result); break;
             case FPTAS: fptas(problem, state, result); break;
@@ -146,7 +152,7 @@ int main(int argc, char **argv)
         auto end = std::chrono::steady_clock::now();
         result.seconds = (end-start).count();
 
-        write_result(result);
+        write_result(problem, result);
     }
     return 0;
 }

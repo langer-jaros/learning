@@ -5,6 +5,7 @@ knapsack : ../knapsack.cpp build knap_mock read_problem dynamic_programming
 
 dynamic_programming : dynamic_programming.cpp build
 	$(CC) -Wall -Wextra -Werror dynamic_programming.cpp -o build/dynamic_programming
+	g++ -g dynamic_programming.cpp
 
 read_problem : read_problem.cpp build
 	$(CC) -Wall -Wextra -Werror read_problem.cpp -o build/read_problem
