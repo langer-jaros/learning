@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <chrono>
+#include <algorithm>
 
 using namespace std;
 
@@ -25,9 +26,10 @@ struct PROBLEM {
 };
 
 struct STATE {
-    int index;  // index of the state item
-    int weight; // total weight of the state
-    int value;  // total value of the state
+    int i; // index of the state item
+    int w; // total weight of the state
+    int v; // total value of the state
+    int p; // previous weight or value
 };
 
 struct RESULT {
@@ -38,27 +40,46 @@ struct RESULT {
     double seconds;                     // number of computation seconds
 };
 
+void trace_back(PROBLEM &prob, RESULT &resu, vector<vector<STATE>> &dp)
+{
+    int w = prob.W;
+    int i;
+    for (i = 0; i < prob.n; i++) {
+        if (dp[i][w].w == dp[i+1][w].w) {
+            resu.solution.push_back(false);
+            w = dp[i][w].w;
+        } else {
+            resu.solution.push_back(true);
+            w = dp[i][w].w - prob.items[i].w;
+        }
+    }
+}
+
 // void dynamic_programming(PROBLEM &prob, STATE &stat, RESULT &resu)
 void dynamic_programming(PROBLEM &prob, RESULT &resu)
 {
     int i, j;
-    vector<vector<int>> dp(prob.n+1, vector<int>(prob.W+1));
-    vector<int> choices;
+    vector<vector<STATE>> dp(prob.n+1, vector<STATE>(prob.W+1));
+    vector<STATE> choices;
     for (i = prob.n; i >= 0; i--) {
         for (j = 0; j <= prob.W; j++) {
             if (i == prob.n) {
-                dp[i][j] = 0;
+                dp[i][j] = STATE({i, 0, 0, 0}); // = 0;
             } else {
-                choices = vector<int>();
-                choices.push_back(dp[i+1][j]);
+                choices = vector<STATE>();
+                choices.push_back({i, dp[i+1][j].w, dp[i+1][j].v, dp[i+1][j].w}); // dp[i+1][j]
                 if (j >= prob.items[i].w) {
-                    choices.push_back(dp[i+1][j-prob.items[i].w]+prob.items[i].v);
+                    choices.push_back({i, dp[i+1][j-prob.items[i].w].w+prob.items[i].w,
+                        dp[i+1][j-prob.items[i].w].v+prob.items[i].v, dp[i+1][j-prob.items[i].w].w});
                 }
-                dp[i][j] = (choices.size() == 2)? max(choices[0], choices[1]): choices[0];
+                auto max_st = max_element(choices.begin(), choices.end(),
+                    [] (const STATE &ls, const STATE &rs) {return ls.v < rs.v;});
+                dp[i][j] = *max_st;
             }
         }
     }
-    resu.max_value = dp[0][prob.W];
+    trace_back(prob, resu, dp);
+    resu.max_value = dp[0][prob.W].v;
 }
 
 bool read_problem(PROBLEM &p)
@@ -77,9 +98,9 @@ bool read_problem(PROBLEM &p)
 
 void write_result(PROBLEM &p, RESULT &r)
 {
-    cout << p.id << " " << p.n << " " << r.max_value;
+    cout << p.id << " " << p.n << " " << r.max_value << " ";
     for (int i : r.solution)
-        cout << " " << i;
+        cout << i << " ";
     cout << endl;
 }
 
