@@ -21,6 +21,7 @@ The art of using PC like a human being
   - [Files - advanced](#files---advanced)
   - [Useful commands](#useful-commands)
   - [Scripts](#scripts)
+  - [Call a script](#call-a-script)
   - [SSH](#ssh)
   - [Processes](#processes)
   - [Enviroments and variables](#enviroments-and-variables)
@@ -761,6 +762,24 @@ cacaview image.jpg
 ### Scripts
 
 Commands are great, scripts are better.
+
+### Call a script
+
+`. (source or dot operator)`
+
+```bash
+# .
+. path/to/file.sh
+# source
+source path/to/file.sh
+
+# Add executable right and use the file as command
+chmod +x ./path/to/file.sh
+# execute
+./path/to/file.sh
+```
+
+- [. (source or dot operator)](https://ss64.com/bash/source.html#:~:text=source%20is%20a%20synonym%20for,maximum%20compatibility%20use%20the%20period.&text=When%20a%20script%20is%20run%20using%20'source'%20it%20runs%20within,available%20after%20the%20script%20completes.)
 
 #### Call scripts inside of a script
 

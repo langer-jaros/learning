@@ -2,19 +2,7 @@
 
 if (($# < 1)); then echo "First argument is required, was not given."; exit 1; fi
 
-project_path=~/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02
-
-ins_path=${project_path}/compute/tests/ins
-outs_path=${project_path}/compute/tests/outs
-tmp_path=${project_path}/compute/tests/tmp
-data_path=${project_path}/data
-
-rp_cmd=${project_path}/compute/source/build/read_problem
-dp_cmd=${project_path}/compute/source/build/dynamic_programming
-
-dataset=(nk zkc zkw)
-ns=(4) # 10) # ns=(4 10 15 20 22 25 27 30 32 35 37 40)
-methods=("1:bf" "2:bab" "3:dp" "4:gh" "5:redux" "6:fptas")
+source ~/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/compute/scripts/config.bash
 
 for ds in ${dataset[@]}; do
     for n in ${ns[@]}; do
@@ -25,9 +13,11 @@ for ds in ${dataset[@]}; do
             out_file=${outs_path}/${ds}/${ds^^}${n}_sol.dat
             tmp_file=${tmp_path}/${ds}/${ds^^}_${m#*:}_${n}.csv
             case $1 in
-            samples) 
-                # diff $file_in $file_out
-                echo NOT IMPLEMENTED
+            samples)
+                diff <(cut -d ' ' -f 1,2 ${in_file}) <(cut -d ' ' -f 1,2 ${out_file})
+            ;;
+            knapsack)
+                    diff $out_file $tmp_file
             ;;
             rp)
                 diff $in_file $tmp_file # diff -y --suppress-common-lines $file_in $file_out | wc -l

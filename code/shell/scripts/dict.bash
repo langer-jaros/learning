@@ -1,3 +1,5 @@
+#!/bin/bash
+
 methods=(
     "1:bf"
     "2:bab"

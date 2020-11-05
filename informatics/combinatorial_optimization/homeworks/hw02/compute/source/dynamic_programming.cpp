@@ -45,17 +45,16 @@ void trace_back(PROBLEM &prob, RESULT &resu, vector<vector<STATE>> &dp)
     int w = prob.W;
     int i;
     for (i = 0; i < prob.n; i++) {
-        if (dp[i][w].w == dp[i+1][w].w) {
+        if (dp[i][w].w == dp[i][w].p) {
             resu.solution.push_back(false);
-            w = dp[i][w].w;
+            // w = dp[i][w].w;
         } else {
             resu.solution.push_back(true);
-            w = dp[i][w].w - prob.items[i].w;
+            w = dp[i][w].p; // dp[i][w].w - prob.items[i].w;
         }
     }
 }
 
-// void dynamic_programming(PROBLEM &prob, STATE &stat, RESULT &resu)
 void dynamic_programming(PROBLEM &prob, RESULT &resu)
 {
     int i, j;

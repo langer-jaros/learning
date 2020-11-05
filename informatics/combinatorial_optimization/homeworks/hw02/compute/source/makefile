@@ -12,3 +12,7 @@ read_problem : read_problem.cpp build
 
 knap_mock : knap_mock.cpp build
 	$(CC) knap_mock.cpp -o build/knap_mock
+
+clean:
+	rm a.out
+	rm build/*

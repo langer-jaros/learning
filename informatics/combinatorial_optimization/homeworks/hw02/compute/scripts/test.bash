@@ -2,19 +2,7 @@
 
 if (($# < 1)); then echo "First argument is required, was not given."; exit 1; fi
 
-project_path=~/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02
-
-ins_path=${project_path}/compute/tests/ins
-outs_path=${project_path}/compute/tests/outs
-tmp_path=${project_path}/compute/tests/tmp
-data_path=${project_path}/data
-
-rp_cmd=${project_path}/compute/source/build/read_problem
-dp_cmd=${project_path}/compute/source/build/dynamic_programming
-
-dataset=(nk zkc zkw)
-ns=(4) # 10) # ns=(4 10 15 20 22 25 27 30 32 35 37 40)
-methods=("1:bf" "2:bab" "3:dp" "4:gh" "5:redux" "6:fptas")
+source ~/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/compute/scripts/config.bash
 
 for ds in ${dataset[@]}; do
     for n in ${ns[@]}; do
@@ -29,6 +17,9 @@ for ds in ${dataset[@]}; do
                 shuf -n 5 ${inst_file} | sort -t ' ' -n > ${in_file}
                 id_patt=$(cut -d ' ' -f 1 ${in_file} | tr '\n' '|')
                 egrep "^(${id_patt:0:-1}) " ${sol_file} > ${out_file}
+            ;;
+            knapsack)
+                $knapsack_dmd ${m%%:*} < $in_file > $tmp_file
             ;;
             rp)
                 $rp_cmd ${m%%:*} < $in_file > $tmp_file
