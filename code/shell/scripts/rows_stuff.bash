@@ -3,6 +3,9 @@
 file_in=dirs/zkc4_inst_5.dat
 file_sol=dirs/zkc4_sol.dat
 
+# CREATE SAMPLES
+shuf -n 5 ${file_inst} | sort > ${file_in}
+
 # cut -d ' ' -f 1 dirs/nk4_inst_5.dat
 
 # cut -d ' ' -f 1 dirs/nk4_inst_5.dat | tr '\n' '|'
