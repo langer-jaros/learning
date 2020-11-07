@@ -7,15 +7,6 @@
 
 using namespace std;
 
-enum APPROACH {
-    BF=1,       // Brute Force
-    BAB=2,      // Branch and Bound
-    DP=3,       // Dynamic Programming
-    GH=4,       // Greedy Heuristic
-    REDUX=5,    // REDUX
-    FPTAS=6     // FPTAS
-};
-
 struct Item {
     int i; // original index
     int w; // weight
@@ -51,31 +42,16 @@ struct Result {
     double seconds;                     // number of computation seconds
 };
 
-void brute_force(Problem &prob, Result &resu)
-{
-    vector<bool> solution;
-    // INIT
-
-    // REC
-
-    // DESTRUCT
-}
-
-void branch_and_bound(Problem &prob, Result &resu)
-{
-
-}
-
 void trace_back(Problem &prob, Result &resu, vector<vector<State>> &dp)
 {
     int w = prob.W;
     int i;
     for (i = 0; i < prob.n; i++) {
         if (dp[i][w].w == dp[i][w].p) {
-            resu.solution[i] = false;
+            resu.solution.push_back(false);
             // w = dp[i][w].w;
         } else {
-            resu.solution[i] = true;
+            resu.solution.push_back(true);
             w = dp[i][w].p; // dp[i][w].w - prob.items[i].w;
         }
     }
@@ -114,10 +90,13 @@ bool cmp_value_per_weight(Item i1, Item i2)
 
 void greedy_heuristic(Problem &prob, Result &resu)
 {
+
     sort(prob.items.begin(), prob.items.end(), cmp_value_per_weight);
     int i;
     State st = {0, 0, 0, 0};
     for (i = 0; i < prob.n; i++) {
+        // cout << "v/w: " << ((float) prob.items[i].v / prob.items[i].w);
+        // cout << " (value/weight: " << prob.items[i].v << "/" << prob.items[i].w << ")" << endl;
         if (st.w + prob.items[i].w <= prob.W) {
             st.w += prob.items[i].w;
             st.v += prob.items[i].v;
@@ -138,19 +117,19 @@ void redux(Problem &prob, Result &resu)
         back_inserter(problem.items),
         [prob] (Item i) { return i.w <= prob.W; });
 
+    // for (auto item: problem.items)
+    //     cout << "Item: weight = " << item.w << ", value = " << item.v << endl;
+
     auto max_item = max_element(problem.items.begin(), problem.items.end(),
          [] (const Item &i1, const Item &i2) {return i1.v < i2.v;});
+
+    // cout << "Max Item: weight = " << max_item[0].w << " , value = " << max_item[0].v << endl;
 
     if (max_item[0].v > resu.max_value) {
         resu.max_value = max_item[0].v;
         resu.solution = vector<bool>(prob.n);
         resu.solution[max_item[0].i] = true;
     }
-}
-
-void fptas(Problem &prob, Result &resu)
-{
-
 }
 
 bool read_problem(Problem &p)
@@ -175,26 +154,21 @@ void write_result(Problem &p, Result &r)
     cout << endl;
 }
 
-int main(int argc, char **argv)
+int main()
 {
-    APPROACH approach = (APPROACH)stoi(argv[1]);
     Problem problem;
     Result result;
 
     while (read_problem(problem)) {
         result = Result({0, vector<bool>(problem.n), vector<bool>(problem.n), 0, 0});
         
-        auto start = std::chrono::steady_clock::now();
-        switch (approach) {
-            case BF:    brute_force(problem, result);           break;
-            case BAB:   branch_and_bound(problem, result);      break;
-            case DP:    dynamic_programming(problem, result);   break;
-            case GH:    greedy_heuristic(problem, result);      break;
-            case REDUX: redux(problem, result);                 break;
-            case FPTAS: fptas(problem, result);                 break;
-        }
-        auto end = std::chrono::steady_clock::now();
-        result.seconds = (end-start).count();
+        // auto start = std::chrono::steady_clock::now();
+        // dynamic_programming(problem, state, result);
+        // dynamic_programming(problem, result);
+        greedy_heuristic(problem, result);
+        // redux(problem, result);
+        // auto end = std::chrono::steady_clock::now();
+        // result.seconds = (end-start).count();
 
         write_result(problem, result);
     }
