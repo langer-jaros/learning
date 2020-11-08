@@ -3,7 +3,7 @@
 When plotting with matplotlib may be exhausting, the seaborn is super nice.
 
 ## Contents <!-- omit in toc -->
-- [TODO](#todo)
+- [Import](#import)
 - [lineplot](#lineplot)
 - [barplot](#barplot)
 - [heatmap](#heatmap)
@@ -14,12 +14,7 @@ When plotting with matplotlib may be exhausting, the seaborn is super nice.
 - [Color palettes](#color-palettes)
 - [Set style](#set-style)
 
-## TODO
-
-```py
-hue=
-```
-[palettes](https://seaborn.pydata.org/tutorial/color_palettes.html)
+## Import
 
 ```py
 import seaborn as sns
@@ -32,14 +27,16 @@ g = sns.relplot(x="time", y="value", kind="line", data=df)
 
 g2 = sns.lineplot(    sort=False)
 ```
-[source](https://seaborn.pydata.org/generated/seaborn.relplot.html)
+
+- [relplot](https://seaborn.pydata.org/generated/seaborn.relplot.html)
 
 ## barplot
 
 ```py
 ```
-[link](https://seaborn.pydata.org/generated/seaborn.barplot.html)
-[link2](https://stackoverflow.com/questions/14270391/python-matplotlib-multiple-bars)
+
+- [barplot](https://seaborn.pydata.org/generated/seaborn.barplot.html)
+- [multiple bars](https://stackoverflow.com/questions/14270391/python-matplotlib-multiple-bars)
 
 ## heatmap
 
@@ -51,6 +48,7 @@ sns.heatmap(cor_matrix, annot=True)
 ## Scatter
 
 ```py
+# Hue - group by Survived
 sns.stripplot(x="Pclass", y="Age", hue="Survived", data=data, palette= ['black','green']) #, jitter=False) 
 sns.swarmplot(x='Rok', hue='Kandidátní listina - název', y='Věk', data=candidates)
 
@@ -65,13 +63,13 @@ sns.pairplot(data, hue='Survived', palette=['red', 'green']) #, diag_kind='hist'
 
 ## Histogram
 
-distplot - [DPERACATED](https://seaborn.pydata.org/generated/seaborn.distplot.html)
+- [distplot - DPERACATED](https://seaborn.pydata.org/generated/seaborn.distplot.html)
 
 ```py
 sns.distplot(df["age"], kde=False)
 ```
 
-https://seaborn.pydata.org/tutorial/distributions.html
+- https://seaborn.pydata.org/tutorial/distributions.html
 
 
 ## Set title
@@ -88,6 +86,8 @@ pall = sns.color_palette("hls", 8)
 # See the palette
 sns.palplot(pall)
 ```
+
+- [palettes](https://seaborn.pydata.org/tutorial/color_palettes.html)
 
 ## Set style
 

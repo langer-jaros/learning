@@ -63,17 +63,29 @@ FPTAS algoritmem, tj. s použitím modifikovaného dynamického programování s
 
 ### NK
 
+<!-- ![Time Complexity Set NK](./figures/complexity_nk.png) -->
+
 ### ZKC
 
+<!-- ![Time Complexity Set ZKC](./figures/complexity_zkc.png) -->
+
 ### ZKW
+
+<!-- ![Time Complexity Set ZKW](./figures/complexity_zkw.png) -->
 
 ## Relative Error Comparison
 
 ### NK
 
+![Relative Errors Set NK](./figures/errors_nk.png)
+
 ### ZKC
 
+![Relative Errors Set ZKC](./figures/errors_zkc.png)
+
 ### ZKW
+
+![Relative Errors Set ZKW](./figures/errors_zkw.png)
 
 ## Complexity and Error Dependencies on Precision
 
