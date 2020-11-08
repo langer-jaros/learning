@@ -1,15 +1,33 @@
 # Jupyter notebook
 
+Nice tool, enabling to work with code surounded by text smoothly.
+
 ## Content <!-- omit in toc -->
 - [Installation](#installation)
-- [Display](#display)
+- [Basics](#basics)
+  - [Quick help](#quick-help)
+  - [Display anything](#display-anything)
 - [Shortcuts](#shortcuts)
   - [Command Mode (press Esc to enable)](#command-mode-press-esc-to-enable)
   - [Edit Mode (press Enter to enable)](#edit-mode-press-enter-to-enable)
+- [IPython](#ipython)
+  - [Magic functions](#magic-functions)
+  - [Measure cell time](#measure-cell-time)
 
 ## Installation
 
-## Display
+- [install jupyter](https://jupyter.org/install)
+
+## Basics
+
+### Quick help
+
+```py
+# Quick documentation about any functionality '?'
+data.plot?
+```
+
+### Display anything
 
 ```ipynb
 display(anything)
@@ -86,3 +104,17 @@ display(anything)
 | Ctrl-/ | toggle comment on current or selected lines |
 
 [shortcuts source](https://cheatography.com/weidadeyue/cheat-sheets/jupyter-notebook/)
+
+## IPython
+
+### Magic functions
+
+- Line magic functions
+- Cell magic functions starts with `%%`, gets the rest of the cell as an argument.
+
+### Measure cell time
+
+```ipynb
+%%time
+
+```

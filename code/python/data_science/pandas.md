@@ -424,9 +424,9 @@ df["score"].quantile(0.25)
 # First to deep copy the data (important)
 df = df_original.copy()
 
-# Contencat two DataFrames
+# Contencat two DataFrames rows
 df = pd.concat([df_1,df_2])
-# Or Contencat two DataFrames with ignored index
+# Ignore current indices
 df = pd.concat([df_1,df_2], ignore_index=True)
 
 # Sort rows or columns # only kind='mergesort' is stable
@@ -440,7 +440,9 @@ df = df.replace('?', np.nan)
 
 ```py
 # Set index from column
-df.set_index('columnName')
+df.set_index('column_name')
+# Check if indices are unique
+df.set_index('column_name', verify_integrity=True)
 
 # Updating the index
 df.index = range(df.shape[0])
@@ -452,9 +454,8 @@ df = df.sort_index(ascending=False, ignore_index=True)
 df = df[~df3.index.duplicated(keep='first')]
 ```
 
-[index](https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html)
-
-[remove duplicated indices](https://stackoverflow.com/questions/13035764/remove-rows-with-duplicate-indices-pandas-dataframe-and-timeseries)
+- [index](https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html)
+- [remove duplicated indices](https://stackoverflow.com/questions/13035764/remove-rows-with-duplicate-indices-pandas-dataframe-and-timeseries)
 
 ### Work with dataframe columns
 

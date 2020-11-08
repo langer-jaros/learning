@@ -426,10 +426,13 @@ round(1.242345, 3)
 # Multiple comparisons one line
 20 > 13 > 10 # True
 (20 > 13) > 10 # False
+
+# Maximum
+max(1, 34, 15, 32, 54, 23)
 ```
 
-[Round function (w3school)](https://www.w3schools.com/python/ref_func_round.asp)
-[Multiple comparism (python 2.3 doc, still valid)](https://docs.python.org/2.3/ref/comparisons.html)
+- [Round function (w3school)](https://www.w3schools.com/python/ref_func_round.asp)
+- [Multiple comparism (python 2.3 doc, still valid)](https://docs.python.org/2.3/ref/comparisons.html)
 
 ### Random
 

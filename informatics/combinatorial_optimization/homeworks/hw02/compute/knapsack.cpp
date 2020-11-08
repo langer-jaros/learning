@@ -51,20 +51,15 @@ struct Result {
     double seconds;                     // number of computation seconds
 };
 
-void brute_force(Problem &prob, Result &resu)
-{
-    vector<bool> solution;
-    // INIT
+// void brute_force(Problem &prob, Result &resu)
+// {
+//     vector<bool> solution;
+// }
 
-    // REC
+// void branch_and_bound(Problem &prob, Result &resu)
+// {
 
-    // DESTRUCT
-}
-
-void branch_and_bound(Problem &prob, Result &resu)
-{
-
-}
+// }
 
 void trace_back(Problem &prob, Result &resu, vector<vector<State>> &dp)
 {
@@ -127,6 +122,7 @@ void greedy_heuristic(Problem &prob, Result &resu)
         }
     }
     resu.max_value = st.v;
+    return;
 }
 
 void redux(Problem &prob, Result &resu)
@@ -134,24 +130,26 @@ void redux(Problem &prob, Result &resu)
     greedy_heuristic(prob, resu);
     
     Problem problem;
-    copy_if(prob.items.begin(), prob.items.end(),
-        back_inserter(problem.items),
+    copy_if(prob.items.begin(), prob.items.end(), back_inserter(problem.items),
         [prob] (Item i) { return i.w <= prob.W; });
+
+    if (problem.items.empty()) return;
 
     auto max_item = max_element(problem.items.begin(), problem.items.end(),
          [] (const Item &i1, const Item &i2) {return i1.v < i2.v;});
 
-    if (max_item[0].v > resu.max_value) {
-        resu.max_value = max_item[0].v;
-        resu.solution = vector<bool>(prob.n);
-        resu.solution[max_item[0].i] = true;
-    }
+    if (max_item[0].v <= resu.max_value) return;
+
+    resu.max_value = max_item[0].v;
+    resu.solution = vector<bool>(prob.n);
+    resu.solution[max_item[0].i] = true;
+    return;
 }
 
-void fptas(Problem &prob, Result &resu)
-{
+// void fptas(Problem &prob, Result &resu)
+// {
 
-}
+// }
 
 bool read_problem(Problem &p)
 {
@@ -177,6 +175,8 @@ void write_result(Problem &p, Result &r)
 
 int main(int argc, char **argv)
 {
+    if (argc != 2) return 1; // Approach is expected as a number 1-6
+
     APPROACH approach = (APPROACH)stoi(argv[1]);
     Problem problem;
     Result result;
@@ -186,12 +186,18 @@ int main(int argc, char **argv)
         
         auto start = std::chrono::steady_clock::now();
         switch (approach) {
-            case BF:    brute_force(problem, result);           break;
-            case BAB:   branch_and_bound(problem, result);      break;
+            case BF:
+                // brute_force(problem, result);
+                break;
+            case BAB:
+                // branch_and_bound(problem, result);
+                break;
             case DP:    dynamic_programming(problem, result);   break;
             case GH:    greedy_heuristic(problem, result);      break;
             case REDUX: redux(problem, result);                 break;
-            case FPTAS: fptas(problem, result);                 break;
+            case FPTAS:
+                // fptas(problem, result);
+                break;
         }
         auto end = std::chrono::steady_clock::now();
         result.seconds = (end-start).count();
