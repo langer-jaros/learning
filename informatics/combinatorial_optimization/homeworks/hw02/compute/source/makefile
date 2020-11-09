@@ -1,7 +1,10 @@
 CC = g++
 
-knapsack : ../knapsack.cpp build greedy_heuristic dynamic_programming read_problem knap_mock
+knapsack : ../knapsack.cpp build fptas greedy_heuristic dynamic_programming read_problem knap_mock
 	$(CC) -Wall -Wextra -pedantic ../knapsack.cpp -g -o build/knapsack
+
+fptas : fptas.cpp build
+	$(CC) -Wall -Wextra -pedantic fptas.cpp -g -o build/fptas
 
 greedy_heuristic : greedy_heuristic.cpp build
 	$(CC) -Wall -pedantic -Wextra -Werror greedy_heuristic.cpp -o build/greedy_heuristic
