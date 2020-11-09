@@ -26,6 +26,8 @@
   - [Pseudopolynomiální algoritmy](#pseudopolynomiální-algoritmy)
   - [Aproximativní algoritmy, aproximativní problémy a jejich třídy](#aproximativní-algoritmy-aproximativní-problémy-a-jejich-třídy)
   - [Relativní kvalita relativní chyba](#relativní-kvalita-relativní-chyba)
+  - [PTAS (Polynomial Time Approximation Scheme)](#ptas-polynomial-time-approximation-scheme)
+  - [FPTAS (Fully Polynomial Time Approximation Scheme)](#fptas-fully-polynomial-time-approximation-scheme)
 - [TODO](#todo)
   - [Paretooptimální](#paretooptimální)
   - [Multimodální optimalizace](#multimodální-optimalizace)
@@ -162,6 +164,47 @@ R \geq_{\forall I}\max\left\{
 \right\}
 $$
 
+#### Vztah R a $\varepsilon$
+
+$$ \varepsilon = 1 - \frac{1}{R} $$
+
+#### Algorithm A+
+
+Problém uzlového pokrytí: dán graf G=(V,E);
+sestrojit V’⊆V takovou, že
+|V’| = min a ∀(u,v)∈E, u∈V’ nebo v∈V’.
+
+```
+1.  V’ = ∅
+2.  dokud E != ∅
+3.    zvol hranu (u,v) ∈ E
+4.    V’ = V’∪{u,v}
+5.    odstraň z E hrany incidentní s u nebo v
+```
+
+#### Algorithm A++
+
+```
+1.  V’ = ∅
+2.  dokud E ≠ ∅
+3.    zvol hranu (u,v) ∈ E tak, že deg(u) + deg(v) = max.
+4.    V’ = V’∪{u,v}
+5.    odstraň z E hrany incidentní s u nebo v
+```
+
+#### Algoritmus B+
+
+```
+1.  V’ = ∅
+2.  dokud E ≠ ∅
+3.    zvol uzel v ∈ V- V’, tak, že deg(v) = max.
+4.    V’ = V’∪{v}
+5.    odstraň z E hrany incidentní s v
+```
+
+### PTAS (Polynomial Time Approximation Scheme)
+
+### FPTAS (Fully Polynomial Time Approximation Scheme)
 
 ## TODO
 
