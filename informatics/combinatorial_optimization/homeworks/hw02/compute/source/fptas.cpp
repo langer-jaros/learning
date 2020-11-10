@@ -37,7 +37,7 @@ struct State {
 };
 
 struct Result {
-    int max_value;
+    int max_value;                      // value of items
     vector<bool> solution;              // boolean choice of every item
     vector<bool> sol_tmp;               // temporary vector of boolean solution
     unsigned long long int complexity;  // number of called recursion tails
@@ -110,7 +110,7 @@ void greedy_heuristic(Problem &prob, Result &resu)
     resu.max_value = st.v;
 }
 
-void getMostValuableItem(Problem & prob, Item & item)
+void get_most_valuable_item(Problem & prob, Item & item)
 {
     auto max_item = max_element(prob.items.begin(), prob.items.end(),
          [] (const Item &i1, const Item &i2) {return i1.v < i2.v;});
@@ -141,55 +141,66 @@ void redux(Problem &prob, Result &resu)
     }
 }
 
-// void filter_items(Problem &prob)
-// {
-
-// }
-
-void trace_back_value(Result &resu, vector<vector<State>> &dp)
+int filter_items(Problem &prob)
 {
-    int value = resu.max_value;
+    // Remove items heavier than prob.W
+    prob.items.erase(
+        remove_if(prob.items.begin(), prob.items.end(),
+            [prob] (Item i) { return i.w > prob.W; }), prob.items.end()
+    );
+    return prob.items.size();
+}
+
+int sum_item_values(Problem &prob)
+{
+    // Get total value, of items that passed the fillter
+    return accumulate(prob.items.begin(), prob.items.end(), 0,
+        [prob] (int sum, const Item &item) { return sum + item.v; }
+    );
+}
+
+double calculate_k(Problem & prob, int & n, double epsilon)
+{
+    Item max_item;
+    get_most_valuable_item(prob, max_item);
+    return ((epsilon*max_item.v) > n)? (epsilon*max_item.v)/n: 1;
+}
+
+void get_most_valuable_state(vector<vector<State>> & dp, Result & resu)
+{
+    auto max_st = max_element(dp[0].begin(), dp[0].end(),
+        [] (const State &ls, const State &rs) {return ls.v < rs.v;});
+    resu.max_value = max_st[0].v;
+}
+
+void trace_back_solution_by_value(Problem & prob, Result & resu, vector<vector<State>> & dp, double & K)
+{
+    int value = resu.max_value/K;
     unsigned int i;
-    for (i = 0; i < resu.solution.size(); i++) {
+    for (i = 0; i < prob.items.size(); i++) {
         if (dp[i][value].v == dp[i][value].p) {
-            resu.solution[dp[i][value].i] = false;
-            // w = dp[i][w].w;
+            resu.solution[prob.items[i].i] = false; // w = dp[i][w].w;
         } else {
-            resu.solution[dp[i][value].i] = true;
-            value = dp[i][value].p; // dp[i][w].w - prob.items[i].w;
+            resu.solution[prob.items[i].i] = true; // resu.solution[dp[i][value].i] = true;
+            value = dp[i][value].p/K; // dp[i][w].w - prob.items[i].w;
         }
     }
 }
 
-
 void fptas(Problem &prob, Result &resu, double epsilon)
 {
-    resu.solution = vector<bool>(prob.n, false);
+    int n = filter_items(prob);
+    if (! (n > 0)) return; // Return if all the items are heavier than knapsack capacity
 
-    // Remove items heavier than prob.W
-    prob.items.erase(
-        remove_if(prob.items.begin(), prob.items.end(), [prob] (Item i) { return i.w > prob.W; }), prob.items.end()
-    );
-    // Get total value, of items that passed the fillter
-    int value_sum = accumulate(prob.items.begin(), prob.items.end(), 0,
-        [prob] (int sum, const Item &item) { return sum + item.v; }
-    );
-
-    Item max_item;
-    getMostValuableItem(prob, max_item);
-    double K = (epsilon*max_item.v)/resu.solution.size();
-
+    int value_sum = sum_item_values(prob);
+    double K = calculate_k(prob, n, epsilon);
     value_sum = value_sum/K;
-    assert(("Summation of values divided by K were zero.", value_sum > 0));
 
-
-    int i, j;
-    int n = prob.items.size();
     vector<vector<State>> dp(n+1, vector<State>(value_sum+1, State({0,0,0,0})));
-    vector<State> choices;
     vector<int> curr_indices = {0}, next_indices;
     vector<int> * next = & curr_indices, * curr = & next_indices;
-    int weight, value;
+
+    int i, j, weight, value;
     for (i = n; i >= 0; i--) {
         swap(curr, next);
 
@@ -201,7 +212,9 @@ void fptas(Problem &prob, Result &resu, double epsilon)
             if (i == n) {
                 dp[i][j] = State({0,0,0,0}); // = 0;
             } else {
-                dp[i][j] = State({i, dp[i+1][j].w, dp[i+1][j].v, dp[i+1][j].v});
+                if (dp[i][j].w > dp[i+1][j].w || dp[i][j].w == 0) {
+                    dp[i][j] = State({i, dp[i+1][j].w, dp[i+1][j].v, dp[i+1][j].v});
+                }
                 weight = dp[i+1][j].w + prob.items[i].w;
                 value = (dp[i+1][j].v + prob.items[i].v)/K;
                 if (weight <= prob.W && value <= value_sum) {
@@ -213,10 +226,8 @@ void fptas(Problem &prob, Result &resu, double epsilon)
             }
         }
     }
-    auto max_st = max_element(dp[0].begin(), dp[0].end(),
-        [] (const State &ls, const State &rs) {return ls.v < rs.v;});
-    resu.max_value = max_st[0].v;
-    trace_back_value(resu, dp);
+    get_most_valuable_state(dp, resu);
+    trace_back_solution_by_value(prob, resu, dp, K);
 }
 
 bool read_problem(Problem &p)
@@ -247,14 +258,14 @@ int main()
     Result result;
 
     while (read_problem(problem)) {
-        result = Result({0, vector<bool>(problem.n), vector<bool>(problem.n), 0, 0});
+        result = Result({0, vector<bool>(problem.n, false), vector<bool>(problem.n), 0, 0});
         
         // auto start = std::chrono::steady_clock::now();
         // dynamic_programming(problem, state, result);
         // dynamic_programming(problem, result);
         // greedy_heuristic(problem, result);
         // redux(problem, result);
-        fptas(problem, result, 0.2);
+        fptas(problem, result, 0);
         // auto end = std::chrono::steady_clock::now();
         // result.seconds = (end-start).count();
 
