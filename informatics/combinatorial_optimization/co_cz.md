@@ -157,7 +157,7 @@ $$
 Algorimus APR má relativní chybu $\varepsilon$ jesliže
 
 $$
-R \geq_{\forall I}\max\left\{ 
+\varepsilon \geq_{\forall I}\max\left\{ 
     \frac
         {|C(APR(I))-C(OPT(I))|}
         {\max\{C(OPT(I)),C(APR(I))\}}

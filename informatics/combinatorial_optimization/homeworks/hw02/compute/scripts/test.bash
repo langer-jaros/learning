@@ -30,6 +30,9 @@ for ds in ${dataset[@]}; do
             gh)
                 $gh_cmd < $in_file > $tmp_file
             ;;
+            fptas)
+                $fptas_cmd < $in_file > $tmp_file
+            ;;
             show)
                 echo ${dir_data}/${ds}/${ds^^}_${n}
             ;;
