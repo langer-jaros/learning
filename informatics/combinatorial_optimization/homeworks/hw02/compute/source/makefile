@@ -1,6 +1,6 @@
 CC = g++
 
-knapsack : ../knapsack.cpp build fptas greedy_heuristic dynamic_programming read_problem knap_mock
+knapsack : ../knapsack.cpp build fptas greedy_heuristic dynamic_programming brute_force read_problem knap_mock
 	$(CC) -Wall -Wextra -pedantic ../knapsack.cpp -g -o build/knapsack
 
 fptas : fptas.cpp build
@@ -11,6 +11,9 @@ greedy_heuristic : greedy_heuristic.cpp build
 
 dynamic_programming : dynamic_programming.cpp build
 	$(CC) -Wall -Wextra -Werror dynamic_programming.cpp -o build/dynamic_programming
+
+brute_force : brute_force.cpp build
+	$(CC) -Wall -Wextra -pedantic brute_force.cpp -g -o build/brute_force
 
 read_problem : read_problem.cpp build
 	$(CC) -Wall -Wextra -Werror read_problem.cpp -o build/read_problem
