@@ -8,13 +8,15 @@ tmp_path=${project_path}/compute/tests/tmp
 data_path=${project_path}/data
 
 rp_cmd=${project_path}/compute/source/build/read_problem
+bf_cmd=${project_path}/compute/source/build/brute_force
 dp_cmd=${project_path}/compute/source/build/dynamic_programming
 gh_cmd=${project_path}/compute/source/build/greedy_heuristic
 fptas_cmd=${project_path}/compute/source/build/fptas
-knapsack_dmd=${project_path}/compute/source/build/knapsack
+knapsack_cmd=${project_path}/compute/source/build/knapsack
 
 dataset=(nk zkc zkw)
-ns=(4 10 15) # (4 10 15 20 22 25 27 30 32 35 37 40)
-methods=("3:dp") # ("1:bf" "2:bab" "3:dp" "4:gh" "5:redux" "6:fptas")
+ns=(4 10 15 20 22) # (4 10 15 20 22 25 27 30 32 35 37 40)
+methods=("1:bf" "3:dp" "4:gh" "5:redux" "6:fptas") # ("1:bf" "2:bab" "3:dp" "4:gh" "5:redux" "6:fptas")
+epsilons=(0.1 0.35 0.5)
 
-samples_num=100
+samples_num=20

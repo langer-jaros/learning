@@ -11,13 +11,14 @@ for ds in ${dataset[@]}; do
             sol_file=${data_path}/${ds}/${ds^^}${n}_sol.dat
             in_file=${ins_path}/${ds}/${ds^^}${n}_inst.dat
             out_file=${outs_path}/${ds}/${ds^^}${n}_sol.dat
-            tmp_file=${tmp_path}/${ds}/${ds^^}_${m#*:}_${n}.csv
+            tmp_file=${tmp_path}/${ds}/${ds}_${m#*:}_${n}.csv
             case $1 in
             samples)
                 diff <(cut -d ' ' -f 1,2 ${in_file}) <(cut -d ' ' -f 1,2 ${out_file})
             ;;
             knapsack)
-                    diff $out_file $tmp_file
+                    diff <(cut -d ' ' -f 1-$((3+$n)) ${out_file}) <(cut -d ' ' -f 1-$((3+$n)) ${tmp_file})
+                    # diff $out_file <(cut -d ' ' -f 1-$((3+$n)) ${$tmp_file})
             ;;
             rp)
                 diff $in_file $tmp_file # diff -y --suppress-common-lines $file_in $file_out | wc -l

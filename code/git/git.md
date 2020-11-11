@@ -6,22 +6,33 @@ How to git successfully even with low background knowledge.
 
 ## MENU
 
+- [MENU](#menu)
 - [Basic information](#basic-information)
 - [Create git account](#create-git-account)
 - [Git installation and setup](#git-installation-and-setup)
 - [Create a project](#create-a-project)
+  - [Create repository from scratch](#create-repository-from-scratch)
+  - [Create repository from existing folder](#create-repository-from-existing-folder)
+  - [Start to work on someones repository (fork)](#start-to-work-on-someones-repository-fork)
 - [Contribute to a project](#contribute-to-a-project)
+  - [Contribute to someones repository (with push rights)](#contribute-to-someones-repository-with-push-rights)
+  - [Contribute without the rights to push - fork](#contribute-without-the-rights-to-push---fork)
 - [Branching](#branching)
 - [Commiting](#commiting)
 - [Showing](#showing)
 - [Merging](#merging)
+  - [Test a new branch before the merge](#test-a-new-branch-before-the-merge)
 - [Remote repositories - remotes](#remote-repositories---remotes)
+- [Push and Pull](#push-and-pull)
 - [Stash](#stash)
+- [Remove unwanted staging of many files](#remove-unwanted-staging-of-many-files)
 - [Remove changes after commit](#remove-changes-after-commit)
 - [Remove changes after push](#remove-changes-after-push)
 - [Create the pull request](#create-the-pull-request)
-- [Add repository from other git](#add-repository-from-other-git)
+- [Move repository form one GITSITE_OLD to another GITSITE_NEW](#move-repository-form-one-gitsite_old-to-another-gitsite_new)
+- [Duplicate a repository](#duplicate-a-repository)
 - [Add submodule](#add-submodule)
+- [In case of any troubles](#in-case-of-any-troubles)
 
 
 ## Basic information
@@ -202,20 +213,19 @@ git branch -m NEW_BRANCH_NAME
 ## Commiting
 
 ```sh
-# Add things for the next commit
+# Add file contents to the index (file will be commited)
 git add NAME_OF_FILE
-
-# Add everything to next commit
+# Add everything to the index (everything will be commited)
 git add -A # git add --all
 
-# Delete changes from index (not to be commited)
+# Discard changes in working directory
 git checkout -- FILENAME
 
-# Delete THING and remove it from being in the next commit
-git rm -r THING
-
-# Delete thing which has local modifications
-git rm --cached THING # git rm -rf --cached FOLDER_NAME/
+# Remove files from the working tree and from the index (File is deleted and will not be commited)
+git rm FILE
+git rm -r DIR # Recursive (directory) option
+git rm --cached FILE # Remove FILE only from index (will not be commited) dont delete it locally.
+git rm -f FILE # Force the removal - remove file from index and directory even when it has local modifications
 
 # Show status of git files, which where not added, which were deleted but added etc.
 git status
@@ -279,14 +289,17 @@ Thanks to that you can push your code to origin (the remote repository) or to pu
 # Show the remotes
 git remote -v
 
-## Add remote
+# Add remote
 git remote add NAME URL
 
-## Add remote and fetch
+# Add remote and fetch
 git remote add -f NAME URL
 
-## Delete remote
+# Delete remote
 git remote remove NAME URL
+
+# Set remote url
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
 
 ## Push and Pull

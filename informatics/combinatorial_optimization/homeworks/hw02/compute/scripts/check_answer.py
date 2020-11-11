@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-task = "410 15 1225 243 2434 65 835 124 1359 1 259 187 1932 197 2016 89 1050 225 2275 35 563 191 1963 82 983 170 1774 62 806 191 1963 93 1084"
+task = "369 10 805 48 677 33 544 218 2208 184 1899 201 2054 73 903 6 297 228 2299 213 2167 74 910"
 
-answer_sol = "410 15 13736 1 1 0 1 1 1 1 0 1 0 1 1 1 0 1 " # SOLUTION
-answer_tmp = "410 15 13736 0 0 1 1 1 0 1 0 1 1 1 1 1 1 1 " # MY_RESULT
+answer_sol = "369 10 8948 1 1 0 0 1 0 1 1 1 1 " # SOLUTION
+answer_tmp = "369 10 8948 1 0 1 1 1 1 1 0 0 1 " # MY_RESULT
 
 def getTask(task):
     task = task.split()[3:]
@@ -52,7 +52,9 @@ ans_sum, answer_tmp = getAnswer(answer_tmp)
 
 printItems(task, answer_sol)
 
+print(" Solution ".center(79, "-"))
 sum_weight_sol, sum_value_sol = sumWeightsAndValues(task, answer_sol)
+print(" Temporary ".center(79, "-"))
 sum_weight_tmp, sum_value_tmp = sumWeightsAndValues(task, answer_tmp)
 
 print("Weights: Solution ({}) == Temporary ({})? {}".format(

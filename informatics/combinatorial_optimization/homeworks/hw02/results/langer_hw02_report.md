@@ -63,35 +63,58 @@ FPTAS algoritmem, tj. s použitím modifikovaného dynamického programování s
 
 ### NK
 
-<!-- ![Time Complexity Set NK](./figures/complexity_nk.png) -->
+![Time Complexity Set NK](./figures/time_nk_method.png)
 
 ### ZKC
 
-<!-- ![Time Complexity Set ZKC](./figures/complexity_zkc.png) -->
+![Time Complexity Set ZKC](./figures/time_zkc_method.png)
 
 ### ZKW
 
-<!-- ![Time Complexity Set ZKW](./figures/complexity_zkw.png) -->
+![Time Complexity Set ZKW](./figures/time_zkw_method.png)
 
 ## Relative Error Comparison
 
 ### NK
 
-![Relative Errors Set NK](./figures/errors_nk.png)
+![Relative Errors Set NK](./figures/error_nk_method.png)
 
 ### ZKC
 
-![Relative Errors Set ZKC](./figures/errors_zkc.png)
+![Relative Errors Set ZKC](./figures/error_zkc_method.png)
 
 ### ZKW
 
-![Relative Errors Set ZKW](./figures/errors_zkw.png)
+![Relative Errors Set ZKW](./figures/error_zkw_method.png)
 
 ## Complexity and Error Dependencies on Precision
 
 ### NK
 
+#### Time Complexity Comparison
+
+![Fptas Time Complexity By Epsilon [NK]](./figures/time_nk_epsilon.png)
+
+#### Relative Error Comparison
+
+![Fptas Relative Errors By Epsilon [NK]](./figures/error_nk_epsilon.png)
+
 ### ZKC
+
+#### Time Complexity Comparison
+
+![Fptas Time Complexity By Epsilon [ZKC]](./figures/time_zkc_epsilon.png)
+
+#### Relative Error Comparison
+
+![Fptas Relative Errors By Epsilon [ZKC]](./figures/error_zkc_epsilon.png)
 
 ### ZKW
 
+#### Time Complexity Comparison
+
+![Fptas Time Complexity By Epsilon [ZKW]](./figures/time_zkw_epsilon.png)
+
+#### Relative Error Comparison
+
+![Fptas Relative Errors By Epsilon [ZKW]](./figures/error_zkw_epsilon.png)
