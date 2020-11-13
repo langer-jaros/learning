@@ -153,7 +153,7 @@ Instead of modifing master, and pushing to the origin/master.
 Create a development branch and make the changes there. Don't merge the branch with master.
 Push the development branch to remote and let the owner know about it, i.e. let him merge it himself.
 
-```
+```bash
 # Create your development branch
 git branch BRANCH_NAME
 

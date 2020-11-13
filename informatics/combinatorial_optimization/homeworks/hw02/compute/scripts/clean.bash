@@ -6,6 +6,7 @@ if (($# < 1)); then
     for ds in ${dataset[@]}; do rm ${outs_path}/${ds}/*; done
     for ds in ${dataset[@]}; do rm ${ins_path}/${ds}/*; done
     for ds in ${dataset[@]}; do rm ${tmp_path}/${ds}/*; done
+    for ds in ${dataset[@]}; do rm ${data_path}/computed/${ds}/*; done
 else
     case $1 in
     outs)
@@ -16,6 +17,9 @@ else
     ;;
     tmp)
         for ds in ${dataset[@]}; do rm ${tmp_path}/${ds}/*; done
+    ;;
+    data)
+        for ds in ${dataset[@]}; do rm ${data_path}/computed/${ds}/*; done
     ;;
     *)
         echo "Desired action \"$1\" was not found."

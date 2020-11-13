@@ -39,6 +39,9 @@ Financial reward available through SSP, given the outcome is useful.
 https://competitions.codalab.org/competitions/26638
 ```
 
+
+- [Time Series Forecasting with Deep Learning and Attention Mechanism](https://towardsdatascience.com/time-series-forecasting-with-deep-learning-and-attention-mechanism-2d001fc871fc)
+
 ## Approaches
 
 - [LightGBM](https://lightgbm.readthedocs.io/en/latest/)

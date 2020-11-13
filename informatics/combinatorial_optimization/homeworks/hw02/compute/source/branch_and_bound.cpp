@@ -1,14 +1,3 @@
-/*
- * Name:    Knapsack
- * Author:  Jaroslav Langer (langeja5@fit.cvut.cz)
- * Date:    2020 November 12
- *
- * Description: Reads knapsack problem from stdin, writes solution to stdout.
- * There are six methods out of which you can choose, see enum APPROACH.
- *
- * Details: This code is poorly (if even) commented.
- * In case of interest don't hesitate to contact me.
- */
 #include <vector>
 #include <string>
 #include <iostream>
@@ -58,7 +47,8 @@ struct State {
 struct Result {
     int max_value;                      // value of items
     vector<bool> solution;              // boolean choice of every item
-    // unsigned long long int complexity;  // number of called recursion tails
+    vector<bool> sol_tmp;               // temporary vector of boolean solution
+    unsigned long long int complexity;  // number of called recursion tails
     double seconds;                     // number of computation seconds
 };
 
@@ -120,7 +110,7 @@ void branch_and_bound(Problem &prob, Result &resu)
 
     int * next_states = new int[max_state_num+1];
     int next_idx = 0, last_idx = 0;
-    next_states[++last_idx] = 1;
+    next_states[++last_idx] = 1;   // for (int i = 1; i <= max_state_num; i++) next_states[++last_idx] = i;
 
     int i, lvl, idx;
     while (++next_idx <= last_idx) {
@@ -155,9 +145,10 @@ void trace_back(Problem &prob, Result &resu, vector<vector<State>> &dp)
     for (i = 0; i < prob.n; i++) {
         if (dp[i][w].w == dp[i][w].p) {
             resu.solution[i] = false;
+            // w = dp[i][w].w;
         } else {
             resu.solution[i] = true;
-            w = dp[i][w].p;
+            w = dp[i][w].p; // dp[i][w].w - prob.items[i].w;
         }
     }
 }
@@ -237,9 +228,9 @@ void redux(Problem &prob, Result &resu)
     resu.solution[max_item[0].i] = true;
 }
 
-// Remove items heavier than prob.W
 int filter_items(Problem &prob)
 {
+    // Remove items heavier than prob.W
     prob.items.erase(
         remove_if(prob.items.begin(), prob.items.end(),
             [prob] (Item i) { return i.w > prob.W; }), prob.items.end()
@@ -247,9 +238,9 @@ int filter_items(Problem &prob)
     return prob.items.size();
 }
 
-// Get total value, of items that passed the fillter
 int sum_item_values(Problem &prob)
 {
+    // Get total value, of items that passed the fillter
     return accumulate(prob.items.begin(), prob.items.end(), 0,
         [prob] (int sum, const Item &item) { return sum + item.v; }
     );
@@ -293,14 +284,22 @@ void fptas(Problem &prob, Result &resu, double epsilon)
     value_sum = value_sum/K;
 
     vector<vector<State>> dp(n+1, vector<State>(value_sum+1, State({0,0,0,0})));
+    vector<int> curr_indices = {0}, next_indices;
+    vector<int> * next = & curr_indices, * curr = & next_indices;
 
     int i, j, weight, value;
     for (i = n; i >= 0; i--) {
-        for (j = 0; j <= value_sum; j++) {
+        swap(curr, next);
+
+        while(! curr->empty()) {
+            j = curr->back();
+            next->push_back(j);
+            curr->pop_back();
+
             if (i == n) {
                 dp[i][j] = State({0,0,0,0}); // = 0;
             } else {
-                if ((dp[i][j].w >= dp[i+1][j].w || dp[i][j].w == 0) && (dp[i][j].v <= dp[i+1][j].v)) {
+                if (dp[i][j].w > dp[i+1][j].w || dp[i][j].w == 0) {
                     dp[i][j] = State({i, dp[i+1][j].w, dp[i+1][j].v, dp[i+1][j].v});
                 }
                 weight = dp[i+1][j].w + prob.items[i].w;
@@ -309,6 +308,7 @@ void fptas(Problem &prob, Result &resu, double epsilon)
                     if (dp[i][value].w > weight || dp[i][value].w == 0) {
                         dp[i][value] = State({i, weight, (dp[i+1][j].v + prob.items[i].v), dp[i+1][j].v});
                     }
+                    next->push_back(value);
                 }
             }
         }
@@ -342,15 +342,16 @@ void write_result(Problem &p, Result &r)
 int main(int argc, char **argv)
 {
     // Approach is expected as a number 1-6, epsilon in case of fptas method
-    if (argc < 2) { cout << "Error: Approach was not specified." << endl; return 1; }
-    APPROACH approach = (APPROACH)stoi(argv[1]);
+    // if (argc < 2) { cout << "Error: Approach was not specified." << endl; return 1; }
+    // APPROACH approach = (APPROACH)stoi(argv[1]);
+    APPROACH approach = BAB;
     double epsilon = (argc == 3)? stod(argv[2]): 0;
 
     Problem problem;
     Result result;
 
     while (read_problem(problem)) {
-        result = Result({0, vector<bool>(problem.n, false), 0});
+        result = Result({0, vector<bool>(problem.n, false), vector<bool>(problem.n), 0, 0});
 
         auto start = std::chrono::steady_clock::now();
         switch (approach) {
