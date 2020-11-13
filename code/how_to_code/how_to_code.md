@@ -10,6 +10,7 @@ without falling into deep depresion
   - [Use keyboard as much as possible](#use-keyboard-as-much-as-possible)
   - [Do not invent the wheel](#do-not-invent-the-wheel)
   - [Adding funtionality from elsewhere](#adding-funtionality-from-elsewhere)
+  - [How to work on an assingment](#how-to-work-on-an-assingment)
 - [Tools that saves time (and scripts)](#tools-that-saves-time-and-scripts)
 - [Naming](#naming)
   - [Date and time formats](#date-and-time-formats)
@@ -36,6 +37,12 @@ Don't conquer the code, write it.
 
 Always try it before adding to your code!
 It will probably work if you don't but it will likely to work in other way than you've expected.
+
+### How to work on an assingment
+
+- Do not spend too much time with details right from the beginning.
+  - i.e. do the most of the fluent work from the start,
+  - the problems will be visible afterwards, and also it will be clear how much time is left.
 
 ## Tools that saves time (and scripts)
 

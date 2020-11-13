@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Exact and Heuristic Approaches for the Constructive Optimization Knapsack Problem</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="exact-and-heuristic-approaches-for-the-constructive-optimization-knapsack-problem">Exact and Heuristic Approaches for the Constructive Optimization Knapsack Problem</h1>
+<p>2020/11/12</p>
+<p>Jaroslav Langer</p>
+<h2 id="contents-">Contents <!-- omit in toc --></h2>
+<ul>
+<li><a href="#recap-of-optimization-knapsack-problem">Recap of Optimization Knapsack Problem</a></li>
+<li><a href="#description-of-approaches">Description of Approaches</a>
+<ul>
+<li><a href="#1-brute-force">1) Brute Force</a></li>
+<li><a href="#2-branch-and-bound">2) Branch and Bound</a></li>
+<li><a href="#3-dynamic-programming">3) Dynamic Programming</a></li>
+<li><a href="#4-greedy-heuristic">4) Greedy Heuristic</a></li>
+<li><a href="#5-redux">5) REDUX</a></li>
+<li><a href="#6-fptas">6) FPTAS</a></li>
+</ul>
+</li>
+<li><a href="#general-information">General Information</a></li>
+<li><a href="#time-complexity-comparison">Time Complexity Comparison</a>
+<ul>
+<li><a href="#nk">NK</a></li>
+<li><a href="#zkc">ZKC</a></li>
+<li><a href="#zkw">ZKW</a></li>
+</ul>
+</li>
+<li><a href="#relative-error-comparison">Relative Error Comparison</a>
+<ul>
+<li><a href="#nk-1">NK</a></li>
+<li><a href="#zkc-1">ZKC</a></li>
+<li><a href="#zkw-1">ZKW</a></li>
+</ul>
+</li>
+<li><a href="#fptas-complexity-and-error-dependencies-on-precision">FPTAS Complexity and Error Dependencies on Precision</a>
+<ul>
+<li><a href="#nk-2">NK</a></li>
+<li><a href="#zkc-2">ZKC</a></li>
+<li><a href="#zkw-2">ZKW</a></li>
+</ul>
+</li>
+<li><a href="#end-notes">End Notes</a></li>
+</ul>
+<h2 id="recap-of-optimization-knapsack-problem">Recap of Optimization Knapsack Problem</h2>
+<p>Given a maximum weight capacity <em><strong>W</strong></em> and set of <em>n</em> items numbered from 1 up to <em>n</em>, each with a weight <em>w<sub>i</sub></em> and a value <em>v<sub>i</sub></em>. Find subset S ⊆ {1, 2, ..., n} that satisfies</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>max</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>S</mi></mrow></munder><msub><mi>v</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow><mo>∧</mo><mrow><mo fence="true">(</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>S</mi></mrow></munder><msub><mi>w</mi><mi>i</mi></msub><mo>≤</mo><mi>W</mi><mo fence="true">)</mo></mrow><mtext>.</mtext></mrow><annotation encoding="application/x-tex">\max\left( \sum_{i \in S} v_i\right)
+\land 
+\left( \sum_{i \in S} w_i \le W \right) \textrm{.}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.071706em;vertical-align:-1.321706em;"></span><span class="mop">max</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">(</span></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8556639999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">∈</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.321706em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:3.071706em;vertical-align:-1.321706em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">(</span></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8556639999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">∈</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.321706em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">)</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord textrm">.</span></span></span></span></span></span></p>
+<h2 id="description-of-approaches">Description of Approaches</h2>
+<h3 id="1-brute-force">1) Brute Force</h3>
+<p>Idea</p>
+<ul>
+<li>Traversal every possible state, find the one with maximum value that satisfies the weight condition.</li>
+<li>The states are explored backwards i.e. first solve emtpy subset, then <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>∈</mo><mo stretchy="false">{</mo><mi>n</mi><mo stretchy="false">}</mo><mo separator="true">,</mo><mi>S</mi><mo>∈</mo><mo stretchy="false">{</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">}</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi>S</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S \in \{n\}, S \in \{n-1, n\} ... S \in \{0, 1, ..., n\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">n</span><span class="mclose">}</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">}</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">}</span></span></span></span>.</li>
+</ul>
+<p>Implementation</p>
+<ul>
+<li>The states are implemented as vector of states.</li>
+<li>Traversal is done with for loop.
+<ul>
+<li>Example: the traversal is left to right top to bottom</li>
+</ul>
+</li>
+</ul>
+<pre><code><code><div># Items are added from the last one, X means empty subset
+              X
+       0               1
+   00     10      01       11
+000 100 010 110 001 101 011 100
+</div></code></code></pre>
+<ul>
+<li><code>max_item</code> is remembered during the last row of the tree (adding/ommiting the item with 0 index).</li>
+<li>The ceritificate (1/0 for every item) is obtained as the binary representation of the <code>max_item</code> index in the binary tree array.</li>
+</ul>
+<h3 id="2-branch-and-bound">2) Branch and Bound</h3>
+<p>Idea</p>
+<ul>
+<li>The main priciple is the same as brute force method.</li>
+<li>Childer of a state are not explored in case:
+<ul>
+<li>the weight of the state is higher than the max capacity,</li>
+<li>the sum of <code>yet_not_explored_items</code> plus the value of this <code>state</code> is lesser than some already found state.</li>
+</ul>
+</li>
+</ul>
+<p>Implementation</p>
+<ul>
+<li>Besides the <code>vector_of_states</code>, there is an array of <code>states_to_be_visited</code>.
+<ul>
+<li><code>states_to_be_visited</code> holds the indices to the <code>vector_of_states</code>.</li>
+</ul>
+</li>
+<li>While loop iterates the <code>states_to_be_visited</code> until it is not at the end.</li>
+<li>As previously explained if state does not satisfy the branch and bound conditions its children indices are not added to the <code>states_to_be_visited</code> array.</li>
+<li>The maximum item and the certificate are obtained the same way as in the brute force method.</li>
+</ul>
+<h3 id="3-dynamic-programming">3) Dynamic Programming</h3>
+<p>Weight decomposition</p>
+<p>Idea</p>
+<ul>
+<li>For certain weight and certain subset of items there can be only one maximal state (<code>max_state</code>).</li>
+<li>The algoritm iterates over subsets of items, starts with empty subset and ends with adding the item with index 0.</li>
+<li>In every <code>max_state</code> the maximal value camed by:
+<ul>
+<li>not adding the new item i.e. value is copied form previous <code>max_state</code> with the same weight,</li>
+<li>adding the item to the <strong>previous <code>max_state</code> with weight lowered by the item weight</strong>.</li>
+</ul>
+</li>
+</ul>
+<p>Implementation</p>
+<ul>
+<li>Vector of states of size <code>(number_of_items+1)*(max_weight+1)</code>.</li>
+<li>Two nested for loops:
+<ul>
+<li>outer iterates over subsets of items (n -&gt; 0),
+<ul>
+<li>n means empty subset, so all <code>max_state</code>s are set to &quot;0&quot; states,</li>
+</ul>
+</li>
+<li>inner iterates over the weights.</li>
+</ul>
+</li>
+<li><code>max_state</code> remembers its previous <code>max_weight</code>.
+<ul>
+<li>The 1/0 items certificate is obtained by simple comparison <code>if max_weight == prevous_max_weight</code> then the item with the index <strong>was not added</strong> (false), otherwise it was added (true).
+<ul>
+<li><strong>(This counts on the fact there can not be item with weight 0)</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-greedy-heuristic">4) Greedy Heuristic</h3>
+<p>Idea</p>
+<ul>
+<li>Items are sorted be the value/weight ratio.</li>
+<li>They are added to the knapsack one by one, once the next item does not fit into the knapsack all the other items are not added automatically.</li>
+</ul>
+<p>Implementation</p>
+<ul>
+<li>The solution vector (1/0 for every item) is set to false for every one.</li>
+<li>The items remembers its original index.</li>
+<li>Items are sorted by value/weight ratio.</li>
+<li>Every time an item is added, the solution vector with the item's index is set to true.</li>
+</ul>
+<h3 id="5-redux">5) REDUX</h3>
+<p>Idea</p>
+<ul>
+<li>The result of greedy heuristic is compared to the solution of single most valuable item that fits into the knapsack.</li>
+</ul>
+<p>Implementation</p>
+<ul>
+<li>Firstly the greedy heruristic is called.</li>
+<li>The items that are not heavier than knapsack kapacity are copied.</li>
+<li>The <code>most_valuable_item</code> from filtered items is found.</li>
+<li><code>max_value</code> of the greedy heuristic is compared to the <code>most_valuable_item</code>,
+<ul>
+<li>if the greedy heruristic solution is bigger it is returned,</li>
+<li>on the other hand <code>max_value</code> is set to the value of <code>most_valuable_item</code> and the 1/0 certificate is true only for the index of <code>most_valuable_item</code>, else false.</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-fptas">6) FPTAS</h3>
+<p>Idea</p>
+<ul>
+<li>Perform the value decomposition.
+<ul>
+<li>The <code>max_possible_value</code> is calculated as a sum of all the items that <strong>are not heavier than the capacity</strong>.</li>
+</ul>
+</li>
+<li>For every item subset and certain value there can be only one minimal weight.</li>
+<li>The state with highest value and weight lower than or equal to the capacity is the state with <code>max_value</code>,
+<ul>
+<li>the 1/0 certificate is back traced from it.</li>
+</ul>
+</li>
+<li>The number of the possible values can be reduced by specifying max_relative_error - <code>epsilon</code>
+<ul>
+<li><code>max_possible_value</code> and item values are divided by denominator <code>K = (epsilon*max_valued_item) / (n)</code></li>
+<li><code>max_valued_item</code> - is the item with highest value that fits into the kanpsack</li>
+</ul>
+</li>
+</ul>
+<p>Implementation</p>
+<ul>
+<li><code>vector_of_states</code> of size <code>(number_of_items+1)*(max_possible_value+1)</code>
+<ul>
+<li>The <code>epsilon</code> (and <code>K</code>) affects the number of iterations, not the size of the <code>vector_of_states</code>.</li>
+</ul>
+</li>
+<li>There are two nested for loops.
+<ul>
+<li>Outer loop for the subset of items.
+<ul>
+<li>Starts with empty subset and ends with adding the item with index 0,</li>
+</ul>
+</li>
+<li>Inner loop is for the value iteration.
+<ul>
+<li>If item is not added the <code>max_state</code> is copied from the <strong>previous subset with the same value</strong>.</li>
+<li>If the item is added, than it is added to the <strong>value row</strong> of <code>previous_item_max_value + this_item_value</code>.</li>
+<li>In both cases it is handled that new state does not overide <code>max_state</code> with better properties. <strong>States heavier than capacity are not added</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The <code>max_value_item</code> is found in the <code>states[0]</code> i.e. max_state from all the items considered.</li>
+<li>Every state remembers previous value, the solution 1/0 certificate is obtained with <code>trace_back_solution_by_value</code> fucntion that compares if the <code>current_value == previous_value</code> if so, item was not added (false), when the values differ, the item was added (true).</li>
+</ul>
+<h2 id="general-information">General Information</h2>
+<ul>
+<li>Fptas without <code>_number</code> is plain value decomposition. (~ fptas with epsilon = 0).</li>
+</ul>
+<h2 id="time-complexity-comparison">Time Complexity Comparison</h2>
+<ul>
+<li>I chose n = 22, to see the leap between the fastest and slowest approach, and also to still be able to see the differences between the others.</li>
+</ul>
+<h3 id="nk">NK</h3>
+<ul>
+<li>It is visible, that for the smaller problems, the more advanced methods lose it even though they have lower complexity.</li>
+<li>It is visible that on average the weight decomposition is faster than value decomposition (<code>dp</code> vs <code>fptas</code>)</li>
+<li>fptas with with max_relative_error 35% looks linearly at this resolution.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/time_nk_method.png" alt="Time Complexity Set NK"></p>
+<h3 id="zkc">ZKC</h3>
+<ul>
+<li>One interesting thing here is the lost of <code>branch_and_bound</code> performance (<code>bab</code>). It suggests, the ZKC set was designed not to be easily branch and bound by value and weight.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/time_zkc_method.png" alt="Time Complexity Set ZKC"></p>
+<h3 id="zkw">ZKW</h3>
+<ul>
+<li>In this dataset the performace difference between value and weight decomposition is visible even more (<code>dp</code> vs <code>fptas</code>). It suggests, the values of the items were in higher orders magnitude to the weights.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/time_zkw_method.png" alt="Time Complexity Set ZKW"></p>
+<h2 id="relative-error-comparison">Relative Error Comparison</h2>
+<h3 id="nk-1">NK</h3>
+<p>Mean Relative Error</p>
+<ul>
+<li>The mean relative error of redux method is lesser to the greedy_heuristic approach (<code>redux</code> vs <code>gh</code>). Mean relative error of both approaches is gradually smaller with the increasing problem size.</li>
+<li>The mean relative error of fptas is gradually bigger with increasing problem size. However the epsilon 0.35 ~ 35% is way above the real results of 0.002 to 0.015 ~ (0.2%-1.5%).</li>
+</ul>
+<p>Maximum Relative Error</p>
+<ul>
+<li>The difference between <code>redux</code> and <code>gh</code> is even bigger in terms of maximum relative error.</li>
+<li>Eventhough the mean relative error of fptas_035 is growing with problem size the maximum relative error does not have clear trend or if it has, then it would be decreasing. The maximum error once reached the set 35% but it never went higher.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/error_nk_method.png" alt="Relative Errors Set NK"></p>
+<h3 id="zkc-1">ZKC</h3>
+<ul>
+<li>This dataset is somehow nice to aproximative aproaches once the problem size is high enough.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/error_zkc_method.png" alt="Relative Errors Set ZKC"></p>
+<h3 id="zkw-1">ZKW</h3>
+<ul>
+<li>The gigantic leap between greedy_heuristic and all the other methods suggests, this dataset was desinged to be hard on this method.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/error_zkw_method.png" alt="Relative Errors Set ZKW"></p>
+<h2 id="fptas-complexity-and-error-dependencies-on-precision">FPTAS Complexity and Error Dependencies on Precision</h2>
+<h3 id="nk-2">NK</h3>
+<h4 id="time-complexity-comparison-1">Time Complexity Comparison</h4>
+<ul>
+<li>Following figures shows the significant performance boost if we go along with 95% precision (or less).</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/time_nk_epsilon.png" alt="Fptas Time Complexity By Epsilon [NK]"></p>
+<h4 id="relative-error-comparison-1">Relative Error Comparison</h4>
+<ul>
+<li>The average cases are always way lower to the set upper bound.</li>
+<li>The maximum relative error discovered some flaw (?).
+<ul>
+<li>The fptas epsilon 0.05 ~ 5% had maximum relative error up to 15%.</li>
+<li>It is the same algorithm for all the epsilons.</li>
+<li>The mean realtive error looks good.</li>
+<li>In comparison to exact solution, the aproximative are hard to test the correctness (the fptas with epsilon 0 works flawlessly).</li>
+</ul>
+</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/error_nk_epsilon.png" alt="Fptas Relative Errors By Epsilon [NK]"></p>
+<h3 id="zkc-2">ZKC</h3>
+<h4 id="time-complexity-comparison-2">Time Complexity Comparison</h4>
+<ul>
+<li>Nothing to comment here.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/time_zkc_epsilon.png" alt="Fptas Time Complexity By Epsilon [ZKC]"></p>
+<h4 id="relative-error-comparison-2">Relative Error Comparison</h4>
+<ul>
+<li>Here is interesting that while for the smaller epsilons, the mean relative error grows with problem size, for the relative error of 35% it decreases with problem size.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/error_zkc_epsilon.png" alt="Fptas Relative Errors By Epsilon [ZKC]"></p>
+<h3 id="zkw-2">ZKW</h3>
+<h4 id="time-complexity-comparison-3">Time Complexity Comparison</h4>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/time_zkw_epsilon.png" alt="Fptas Time Complexity By Epsilon [ZKW]"></p>
+<h4 id="relative-error-comparison-3">Relative Error Comparison</h4>
+<ul>
+<li>The same problem of max_relative_error for fptas 0.05</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/error_zkw_epsilon.png" alt="Fptas Relative Errors By Epsilon [ZKW]"></p>
+<h2 id="end-notes">End Notes</h2>
+<ul>
+<li>I tried to implement the fptas with two stacks <code>curr_states</code> <code>next_states</code>.
+<ul>
+<li>It did not need to iterate over all the values every time, only over the values that are actually present.</li>
+<li>For every subset empty to full (items: n -&gt; 0) there was <code>while(! curr.empty())</code>.</li>
+<li>This efficient solution was slower than the brute force method. So I reimplemented it.</li>
+</ul>
+</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw02/results/figures/time_zkc_method_historical.png" alt="Efficient fptas in a real life"></p>
+
+    </body>
+    </html>

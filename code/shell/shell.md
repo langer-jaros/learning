@@ -56,7 +56,6 @@ The art of using PC like a human being
   - [Type special characters](#type-special-characters)
 - [Computers](#computers)
   - [BOM](#bom)
-- [Todo](#todo)
 
 ---
 
@@ -79,6 +78,15 @@ The knowledge is based on the PVS course at VSCHT, Prague.
 ## Basics
 
 ### First of all
+
+Difference between shell, terminal, bash, command line and prompt
+
+- ctrl+alt+t opens terminal emulator (the window is the terminal emulator).
+- The terminal runs the shell programming language (bash, dash, zsh or other shell language).
+- The line where you can write commands is called the command line.
+- First letters of the command line that are static (does not change by typing) are called the prompt.
+
+- [If not clear see this video](https://www.youtube.com/watch?v=hMSByvFHOro)
 
 #### Open terminal
 
@@ -263,8 +271,10 @@ mv ./!(dir1) ./dir1/
 for var in 0{1,2,3}; do mv tutorial_$var t_$var; done
 # Replace space with underscore
 for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
+# Add word before extension (file_whatever.png -> file_whatever_historical.png)
+for file in *; do mv "$file" $(echo ${file%%.*}_historical.png); done
 
-# Delte files and directories
+# Delete files and directories
 rm file # Remove file
 rm -r   # Remove directory (recursively with all files)
 ```
@@ -291,6 +301,7 @@ wc -l FILE_NAME
 du ./path/to/the/directory 
 # Show size of the DIRECTORY and its direct children (2 ~ levels down etc.) 
 du -d 1 ./path/to/the/DIRECTORY
+du -hs FILE_NAME # Display info in human readable form (-h) only for the top folder (-s)
 
 # show file statistics
 stat file1
@@ -360,22 +371,17 @@ cp -s FILENAME LINKNAME
 
 ---
 
-
 ### Wildcards - symbols with special meaning
 
 Especially useful when we don't know the name exactly or we perpahps want to use more than one exact name.
 
 ```sh
-# Anything
-*
+* # Anything
 
-# One character
-?
+? # One character
 
 # Not containig anything from bracket
-[! ]
-# Equivalent in RegEx
-[^ ]
+[! ] # [^ ] # Equivalent in RegEx
 
 # Ranges
 [a-dsu]
@@ -443,7 +449,8 @@ sudo dpkg -i package_name.deb
 ```sh
 sudo apt-get install -f
 ```
-[source](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt)
+
+- [source](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt)
 
 #### Search for package
 
@@ -466,8 +473,8 @@ dpkg-query -l 'someth*'
 
 ```bash
 0<      1> >>   2>       
-1> kamChci     2>&1
-&> kamChci
+1> where_to     2>&1
+&> where_to
 ```
 
 ### PIPE
@@ -480,6 +487,16 @@ tail -f
 tee
 file
 ```
+
+Named pipes (Advanced)
+
+```sh
+mkfifo pipe2
+ls > pipe2
+cat < pipe2
+```
+
+- [mkfifo (how to forge)](https://www.howtoforge.com/linux-mkfifo-command/)
 
 ### User management and priviledges
 
@@ -751,6 +768,14 @@ echo "scale=2; 3/2" | bc
 echo "obase=10; ibase=2; 1101" | bc
 ```
 
+#### Get Date
+
+```sh
+date            # Get current date
+date -r FILE    # Get last modification date of a file
+date +%T.%N     # Specify the datetime format (start with + for datetime format use %)
+```
+
 #### See images in asciiart
 
 ```sh
@@ -919,9 +944,12 @@ outputs only names of all shell variables, exported or not.
 
 #### GLOBAL: env, printenv ...
 
-##### export
-
-can be used to export variables or functions. With the -p option, it prints exported variables and functions
+```sh
+# Export can be used to export variables or functions.
+export
+# With the -p option, it prints exported variables and functions
+export -p
+```
 
 ##### env
 
@@ -949,23 +977,30 @@ unset ... (local)
 declare [-i; -r] ...
 ```
 
-#### Open new bash
+#### Open new shell
 
 ```sh
-bash
-# See bash level
+# Open (some) shell
+bash # open bash
+dash # open dash
+sh   # open shell
+
+# Tell current shell language
+echo $0
+# See shell level
 echo $SHLVL
-# exit bash i.e. go to the previous enviroment
+# exit shell i.e. go to the previous enviroment
 exit
 ```
 
-```bash
+```sh
 bash    child[sub]   interactive / uninteractiv - | read   
-            exit
+```
+```sh
 startup
 ```
 
-```bash
+```sh
 login shell            
     /etc/profile
     $HOME/ [.profile; .bash_profile; .bash_login]
@@ -1535,15 +1570,21 @@ echo ${aaa:4:6}
 echo ${aaa -6:3}
 ```
 
-Numbers
+#### Numbers (arithmetic expansion)
 
 ```bash
+# Operators + - * / % ** ++ --
 echo $((10)) # 10
+# Octal base
 echo $((010)) # 8
+# Hexadecimal base
 echo $((0x10)) # 16
-# n#num -> n
-echo $((2#10)) # 10
+# Base#Number
+echo $((7#13)) # 10
 ```
+
+- [math in bash scripts](http://faculty.salina.k-state.edu/tim/unix_sg/bash/math.html)
+
 
 #### Variable Scope
 
@@ -1701,14 +1742,19 @@ else
 fi
 ```
 
+Usually the `if` statement is not needed.
+
 ```
-&& 
-	- druhy proved pouze, pokud prvni exitstatus=0
-||
-	- pokud je prvni chybovy proved druhy
-;
-	- proved oba
+# Usage
+command1 OPERATOR command2
 ```
+
+| OPERATOR  | Action |
+| ---       | ---    |
+| `;`       | Executes both commands (it is the same as type the enter)             |
+| `&&`      | Executes the command2 if the command1 exit code was 0 (AND)           |
+| `||`      | Executes the command2 only if the command1 exit code was not 0 (OR)   |
+| `&`       | Executes the command2 right after the command1 no matter what         |
 
 ```bash
 case variable in
@@ -1874,19 +1920,3 @@ U+FEFF
 ```
 
 [Source](https://en.wikipedia.org/wiki/Byte_order_mark)
-
----
-
-## Todo
-
-1) difference between bash, shell, terminal etc
-
-2) [math in bash scripts](http://faculty.salina.k-state.edu/tim/unix_sg/bash/math.html)
-
-```sh
-date -r s1
-```
-
-```bash
-mkfifo
-```

@@ -34,6 +34,7 @@
   - [Python](#python)
   - [Git](#git)
   - [Shell](#shell)
+  - [Make](#make)
   - [JavaScript](#javascript)
   - [PHP](#php)
 
@@ -255,19 +256,16 @@ Guessing the behaviour will be intuitive is the worst codding pracitice in histo
 
 ### Git
 
-+ delete branch to how_to_git
-> https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323
+- how to git submodules
+  - make from all the c_and_cpp java etc learning submodules
 
 ### Shell
 
-+ EXPORT
-> https://www.tutorialspoint.com/unix_commands/export.htm
+- [Displey cursore under the prompt](https://unix.stackexchange.com/questions/275684/how-do-i-automate-to-display-cursor-under-the-prompt-on-shell)
 
-+ xclip 
-> https://www.google.cz/search?q=create+alias&oq=create+alias&aqs=chrome..69i57j0l5.3917j1j4&client=ubuntu&sourceid=chrome&ie=UTF-8
+### Make
 
-+ delete user
-> https://www.cyberciti.biz/faq/linux-remove-user-command/
+- Learn make - create its own folder
 
 ### JavaScript
 

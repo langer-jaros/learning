@@ -12,6 +12,7 @@ When plotting with matplotlib may be exhausting, the seaborn is super nice.
 - [Histogram](#histogram)
 - [Set title](#set-title)
 - [Color palettes](#color-palettes)
+  - [Dash styles](#dash-styles)
 - [Set style](#set-style)
 
 ## Import
@@ -24,8 +25,8 @@ import seaborn as sns
 
 ```py
 g = sns.relplot(x="time", y="value", kind="line", data=df)
-
-g2 = sns.lineplot(    sort=False)
+# Legend full to see present values in legend, not approximative
+g2 = sns.lineplot(hue="something", legend="full" sort=False)
 ```
 
 - [relplot](https://seaborn.pydata.org/generated/seaborn.relplot.html)
@@ -88,6 +89,26 @@ sns.palplot(pall)
 ```
 
 - [palettes](https://seaborn.pydata.org/tutorial/color_palettes.html)
+
+### Dash styles
+
+It is not possible to plot more than 6 values with different style.
+
+In case it needed, the styles can be defined.
+
+```py
+dash_styles = ["",
+               (4, 1.5),
+               (1, 1),
+               (3, 1, 1.5, 1),
+               (5, 1, 1, 1),
+               (5, 1, 2, 1, 2, 1),
+               (2, 2, 3, 1.5),
+               (1, 2.5, 3, 1.2)]
+sns.relplot(...,  dashes=dash_styles,...)
+```
+
+- [dash_styles](https://github.com/mwaskom/seaborn/issues/1513)
 
 ## Set style
 
