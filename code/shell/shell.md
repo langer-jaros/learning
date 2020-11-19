@@ -1,8 +1,6 @@
 # Shell 
 
-The art of using PC like a human being
-
-```2020/10/29, Jaroslav Langer, using linux mint 19```
+`2020 Nov. 18th, Jaroslav Langer`
 
 ## Content <!-- omit in toc -->
 
@@ -50,12 +48,6 @@ The art of using PC like a human being
   - [Loops](#loops)
   - [Functions](#functions)
   - [Arguments](#arguments)
-- [Linux](#linux)
-  - [Copy and past in terminal](#copy-and-past-in-terminal)
-  - [Linux directory structure](#linux-directory-structure)
-  - [Type special characters](#type-special-characters)
-- [Computers](#computers)
-  - [BOM](#bom)
 
 ---
 
@@ -452,6 +444,12 @@ sudo apt-get install -f
 
 - [source](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt)
 
+#### Version of installed software
+
+```sh
+anything --version
+```
+
 #### Search for package
 
 ```sh
@@ -695,13 +693,13 @@ cmp file1 file2
 #### Get basic info about command
 
 ```sh
-# Where is the command from
-which command_name
+# Path to the executable file i.e. command COMMAND
+which COMMAND
 
 # One line information
-whatis command_name
+whatis COMMAND
 # Equivalent to
-man -f command_name
+man -f COMMAND
 ```
 
 #### Show big files in a terminal
@@ -713,6 +711,28 @@ more
 less
 ```
 
+#### Open anything in terminal
+
+Works like double-click
+```sh
+xdg-open ANY_NAME.ANYTHING
+```
+
+#### Browser folders like a pro
+
+Ranger
+
+```sh
+sudo apt-get instal ranger # install ranger
+ranger # start ranger
+```
+
+| key | action                                  |
+| --- | ---                                     |
+| s   | write whatever like in normal terminal  |
+| zh  | see hidden files and directories        |
+| /   | search                                  |
+
 #### show terminal heigth and width
 
 ```sh
@@ -720,13 +740,6 @@ less
 tput lines
 # show width
 tput cols
-```
-
-#### Open anything in terminal
-
-Works like double-click
-```sh
-xdg-open ANY_NAME.ANYTHING
 ```
 
 #### Push process the backround
@@ -1242,8 +1255,12 @@ split -n 3 filename prefix
 - Concatenate content
 
 ```bash
-cat file_0* > merge
+cat file_0* > merge                              # merges all the files named file_01 file_02 etc.
+echo "First line" | cat - second_file            # minus make the first file_stream from stdin
+echo "first" | cat - lines > tmp && mv tmp lines # prepend "first" to lines file.
 ```
+
+- [prepend text to file](https://www.cyberciti.biz/faq/bash-prepend-text-lines-to-file/)
 
 ### cut
 
@@ -1551,13 +1568,13 @@ echo ${var^^} # ${var,,}
 echo ${var/pattern/value}
 # Change all pattern matches with value
 echo ${var//pattern/value}
-# #pattern -> vrátí podle vzoru 
+# #pattern -> trim pattern form left
 ${var#pattern}
-# ##pattern ->požadavek na co nejdelší usek vrácení
+# ##pattern -> trim longest pattern form left
 ${var##pattern}
-# %pattern    -> řeže to co vrátí patter
+# %pattern    -> trim pattern from right
 ${var%pattern}
-# %%pattern   -> řeže to enjdelší
+# %%pattern   -> trim the longest pattern form right
 ${var%%pattern}
 ```
 
@@ -1862,61 +1879,3 @@ echo $@ # Array of all arguments
 shift   # shift it by one
 shift 4 # shift it by 4
 ```
-
----
-
-## Linux
-
-### Copy and past in terminal
-
-#### Copy from terminal
-
-Highlight the text and press Ctrl+Shift+C
-
-#### Past to terminal
-
-Press Ctrl+Shift+V
-
-### Linux directory structure
-
-+ /bin - executables
-+ /home/* | /root - *users | roots personal data
-+ /opt – Optional software (thigs you can't instal with package manager)
-+ /etc - configuration files
-+ /lib – Shared libraries
-
-[More information](https://linuxhandbook.com/linux-directory-structure/)
-
----
-
-### Type special characters
-
-Perhaps to write a dash, in linux there is a way to write unicode symbols.
-
-1) press Ctrl+Shift+U
-1) type the unicode code, perhaps 2014
-1) press Space
-
-voila —
-
----
-
-## Computers
-
-### BOM
-
-    byte order mark (BOM) is a particular usageof the special Unicode character, U+FEFF`
-
-#### UTF-8 bom
-
-```sh
-0xEF,0xBB,0xBF
-```
-
-#### UTF-16 BOM
-
-```sh
-U+FEFF
-```
-
-[Source](https://en.wikipedia.org/wiki/Byte_order_mark)

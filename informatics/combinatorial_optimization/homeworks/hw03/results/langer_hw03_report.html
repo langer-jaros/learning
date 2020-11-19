@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Experimental Measurements of Algorithms Quality</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="experimental-measurements-of-algorithms-quality">Experimental Measurements of Algorithms Quality</h1>
+<h2 id="contents-">Contents <!-- omit in toc --></h2>
+<ul>
+<li><a href="#algorithms-description">Algorithms Description</a>
+<ul>
+<li><a href="#brute-force">Brute Force</a></li>
+<li><a href="#branch-and-bound">Branch and Bound</a></li>
+<li><a href="#dynamic-progarmming">Dynamic Progarmming</a></li>
+<li><a href="#greedy-heuristic">Greedy Heuristic</a></li>
+</ul>
+</li>
+<li><a href="#robustness-meassurements">Robustness Meassurements</a></li>
+<li><a href="#default-other-parameters">Default other parameters</a></li>
+<li><a href="#capacity--total-items-value">Capacity / Total Items Value</a>
+<ul>
+<li><a href="#time-complexity">Time Complexity</a></li>
+<li><a href="#relative-error">Relative Error</a></li>
+</ul>
+</li>
+<li><a href="#valueweight-correlation">Value/Weight Correlation</a>
+<ul>
+<li><a href="#time-complexity-1">Time Complexity</a></li>
+<li><a href="#relative-error-1">Relative Error</a></li>
+</ul>
+</li>
+<li><a href="#weight-distribution">Weight distribution</a>
+<ul>
+<li><a href="#time-complexity-2">Time Complexity</a></li>
+<li><a href="#relative-error-2">Relative Error</a></li>
+</ul>
+</li>
+<li><a href="#granularity">Granularity</a>
+<ul>
+<li><a href="#time-complexity-3">Time Complexity</a></li>
+<li><a href="#relative-error-3">Relative Error</a></li>
+</ul>
+</li>
+<li><a href="#number-of-items">number of items</a></li>
+<li><a href="#max-weight-of-an-item">max weight of an item</a></li>
+<li><a href="#max-value-of-an-item">max value of an item</a></li>
+</ul>
+<h2 id="algorithms-description">Algorithms Description</h2>
+<ul>
+<li>Follows description of four methods that were put under analysis.</li>
+</ul>
+<h3 id="brute-force">Brute Force</h3>
+<ul>
+<li>hrubá síla (pokud z implementace není evidentní úplná necitlivost na vlastnosti instancí)</li>
+</ul>
+<h3 id="branch-and-bound">Branch and Bound</h3>
+<ul>
+<li>metoda větví a hranic, případně ve více variantách</li>
+</ul>
+<h3 id="dynamic-progarmming">Dynamic Progarmming</h3>
+<ul>
+<li>dynamické programování (dekompozice podle ceny a/nebo hmotnosti). FPTAS algoritmus není nutné testovat, pouze pokud by bylo podezření na jiné chování, než DP</li>
+</ul>
+<h3 id="greedy-heuristic">Greedy Heuristic</h3>
+<ul>
+<li>heuristika - poměr cena/váha</li>
+</ul>
+<h2 id="robustness-meassurements">Robustness Meassurements</h2>
+<ul>
+<li>The meassurements were done for 7 instance parameters. Each was done separately.</li>
+<li>For every non-categorical value, there were batches of 10 values.</li>
+<li>In case of categorical parameters all posibilites were explored.</li>
+<li>For every method the relative error and time complexity were meassured.</li>
+</ul>
+<h2 id="default-other-parameters">Default other parameters</h2>
+<table>
+<thead>
+<tr>
+<th>var</th>
+<th>value</th>
+<th>describtion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td>16</td>
+<td>number of items</td>
+</tr>
+<tr>
+<td>N</td>
+<td>50</td>
+<td>number of instances</td>
+</tr>
+<tr>
+<td>m</td>
+<td>0.8</td>
+<td>ratio of capacity/total_weight</td>
+</tr>
+<tr>
+<td>W</td>
+<td>5000</td>
+<td>max weight of an item</td>
+</tr>
+<tr>
+<td>w</td>
+<td>bal</td>
+<td>preferable weight of an item (light, heavy or balanced)</td>
+</tr>
+<tr>
+<td>C</td>
+<td>5000</td>
+<td>max value of an item</td>
+</tr>
+<tr>
+<td>c</td>
+<td>uni</td>
+<td>weith,value correlation (uni, corr or strong)</td>
+</tr>
+<tr>
+<td>k</td>
+<td>1</td>
+<td>granularity exponent</td>
+</tr>
+</tbody>
+</table>
+<h2 id="capacity--total-items-value">Capacity / Total Items Value</h2>
+<p>Values are from range 0.1 to 1.</p>
+<p>Brute force</p>
+<ul>
+<li>The mean complexity is slowly rising
+<ul>
+<li>probably because, the heavier states are possible the more <code>max_items</code> are created.</li>
+</ul>
+</li>
+<li>The poor performance of ratio 0.1 is probably caused by creating</li>
+</ul>
+<p>Branch and bound</p>
+<ul>
+<li>Complexity rises with growing relative capacity of the knapsack
+<ul>
+<li>The mean and worst cases both saturates at ratio about 0.5</li>
+<li>The robustness is worse with higher ratio, the complexity depends on the specific values</li>
+</ul>
+</li>
+</ul>
+<p>Dynamic programming</p>
+<ul>
+<li>The DP implementated as weight decomposition, so higher ratio means bigger capacitity i.e. more iterations.</li>
+<li>The decreasing rubustness is probably caused by creation of more possible states (that fit into knapsack).</li>
+</ul>
+<p>Greedy heuristic and REDUX</p>
+<ul>
+<li>These methods does not show any significant dependencies on the capacity/total_value ratio.</li>
+<li>What they do show is the small robustness i.e. the big gap between mean and worst case.</li>
+</ul>
+<h3 id="time-complexity">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/m_time.png" alt="Time Complexity of capacity/total_value"></p>
+<h3 id="relative-error">Relative Error</h3>
+<p>Greedy Heuristic and REDUX</p>
+<ul>
+<li>Both shows the same trend that the mean relative error is slowly decreasing with increasing ratio</li>
+<li>The worst case relative error decrease rapidly with increasing ratio.
+<ul>
+<li>It is probably because the fact that with increasing capacity more items can fit, so the potential error is lesser.</li>
+</ul>
+</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/m_error.png" alt="capacity/total_value"></p>
+<h2 id="valueweight-correlation">Value/Weight Correlation</h2>
+<h3 id="time-complexity-1">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/c_time.png" alt="Time Complexity dependencies on items value/weight correlation"></p>
+<h3 id="relative-error-1">Relative Error</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/c_error.png" alt="Relative error dependencies on items value/weight correlation"></p>
+<h2 id="weight-distribution">Weight distribution</h2>
+<h3 id="time-complexity-2">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/w_time.png" alt="Time Complexity dependencies on weight distribution"></p>
+<h3 id="relative-error-2">Relative Error</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/w_error.png" alt="Relative error dependencies on weight distribution"></p>
+<h2 id="granularity">Granularity</h2>
+<h3 id="time-complexity-3">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/k_time.png" alt="Time Complexity dependencies on items granularity"></p>
+<h3 id="relative-error-3">Relative Error</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/k_error.png" alt="Relative error dependencies on items granularity"></p>
+<h2 id="number-of-items">number of items</h2>
+<h2 id="max-weight-of-an-item">max weight of an item</h2>
+<h2 id="max-value-of-an-item">max value of an item</h2>
+
+    </body>
+    </html>
