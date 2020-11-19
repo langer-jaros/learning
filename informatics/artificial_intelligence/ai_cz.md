@@ -50,6 +50,30 @@
   - [Vynucující klauzule](#vynucující-klauzule)
   - [Unikátní implikační bod UIP](#unikátní-implikační-bod-uip)
   - [Volíme konfliktní klauzuli](#volíme-konfliktní-klauzuli)
+- [Přednáška 6 - Plánování](#přednáška-6---plánování)
+  - [Plánování](#plánování)
+  - [Akce](#akce)
+  - [Plánovací doména](#plánovací-doména)
+  - [Dopředné plánování](#dopředné-plánování)
+  - [Zpětné plánování](#zpětné-plánování)
+  - [Liftování - s proměnnými](#liftování---s-proměnnými)
+  - [Plánování v prostoru plánů](#plánování-v-prostoru-plánů)
+  - [Složitost](#složitost)
+- [Přednáška 7. - Plánovací algoritmy](#přednáška-7---plánovací-algoritmy)
+  - [Strom dosažitelných stavů](#strom-dosažitelných-stavů)
+  - [Plánovací graf](#plánovací-graf)
+  - [Vzájemné vyloučení MUTEX](#vzájemné-vyloučení-mutex)
+  - [Graphplan](#graphplan)
+  - [Expanze plánovacího grafu](#expanze-plánovacího-grafu)
+  - [Graphplan - kompletní](#graphplan---kompletní)
+  - [Plánování jako SAT](#plánování-jako-sat)
+  - [Satplan](#satplan)
+  - [Plánování jako CSP](#plánování-jako-csp)
+  - [Hierarchické plánování HTN](#hierarchické-plánování-htn)
+- [Přednáška 8. - Automatické uvažování (v logice)](#přednáška-8---automatické-uvažování-v-logice)
+  - [Nerozhodnutelnost](#nerozhodnutelnost)
+  - [Logika prvního řádu (FOL)](#logika-prvního-řádu-fol)
+  - [Formule prvního řádu](#formule-prvního-řádu)
 - [TODO](#todo)
 
 Nahrát na gitlab, přidat cvičícího jako pozorovatele.
@@ -457,7 +481,96 @@ conflict-driven clause learning
 
 ### Volíme konfliktní klauzuli
 
+## Přednáška 6 - Plánování
+
+- [Přednáška video](https://web.microsoftstream.com/video/bf8065a9-29c4-4bca-b68f-f64f91fcac43)
+
+### Plánování
+
+### Akce
+
+### Plánovací doména
+
+### Dopředné plánování
+
+### Zpětné plánování
+
+### Liftování - s proměnnými
+
+### Plánování v prostoru plánů
+
+### Složitost
+
+## Přednáška 7. - Plánovací algoritmy
+
+- [Přednáška video](https://web.microsoftstream.com/video/490dbb58-706b-4c28-8349-c4507e481095?list=user&userId=2b6729ad-4995-49d0-b672-dc013e5e8485)
+
+### Strom dosažitelných stavů
+
+### Plánovací graf
+
+### Vzájemné vyloučení MUTEX
+
+### Graphplan
+
+### Expanze plánovacího grafu
+
+### Graphplan - kompletní
+
+### Plánování jako SAT
+
+### Satplan
+
+### Plánování jako CSP
+
+### Hierarchické plánování HTN
+
+## Přednáška 8. - Automatické uvažování (v logice)
+
+- ATP
+- APC
+
+### Nerozhodnutelnost
+
+### Logika prvního řádu (FOL)
+
+- Jazyk
+  - Proměnné pro individua
+    - x,y,z jsou prvky nosné množiny (univerza).
+  - Spojky
+    - unární, binární, ...
+      - negace
+      - konjunkce, disjunkce, implikace...
+  - Kvantifikátory
+    - Všeobecný, existenční
+  - Pomocné symboly
+    - Závorky, tečka.
+- Signatura
+  - Symboly pro funkce (transformace individuí)
+    - f,g,h,+,*
+  - Symboly pro predikáty (vlastnosti individuí)
+    - R,S <,=
+
+### Formule prvního řádu
+
+- Termy
+  - Proměnná je term
+  - jestliže f je funkční symbol arity n a t1,t2,...,tn jsou termy, potom
+    - pak f(t1, t2, ..., tn) je taky term.
+- Atomy
+  - jestliže p je predikátový symbol arity n a t1,t2,...,tn jsou termy, potom
+    - p(t1, t2, ..., tn) je atomická formule (atom).
+- Formule je slovo (konečná posloupnost symbolů).
+  1) atomická formule je formule
+  2) jestliže p a q jsou formule, potom
+    - $\lnot p, (p \land q), (p \lor q), (p \Leftrightarrow q), (p \Rightarrow q)$
+  3) jestliže p je formule a x je proměnná
+    - $\forall x (p(x))$ a $\exist x (p(x))$ jsou formule.
+  - všechny formule vzniknou konečným počtem aplikací pravidel 1-3.
+
 ## TODO
-bi-zum (a*)
-bi-ag2 
-lineární programování
+
+- bi-zum (a*)
+- bi-ag2
+- lineární programování
+
