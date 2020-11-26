@@ -5,7 +5,8 @@
         <title>Experimental Measurements of Algorithms Quality</title>
         <style>
 </style>
-        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -19,85 +20,149 @@
 .task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
 </style>
         
-        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
         
     </head>
     <body class="vscode-body vscode-light">
         <h1 id="experimental-measurements-of-algorithms-quality">Experimental Measurements of Algorithms Quality</h1>
+<p>2020, November 26th</p>
+<p>Jaroslav Langer</p>
 <h2 id="contents-">Contents <!-- omit in toc --></h2>
 <ul>
 <li><a href="#algorithms-description">Algorithms Description</a>
 <ul>
 <li><a href="#brute-force">Brute Force</a></li>
 <li><a href="#branch-and-bound">Branch and Bound</a></li>
-<li><a href="#dynamic-progarmming">Dynamic Progarmming</a></li>
+<li><a href="#dynamic-programming">Dynamic Programming</a></li>
 <li><a href="#greedy-heuristic">Greedy Heuristic</a></li>
+<li><a href="#redux">REDUX</a></li>
 </ul>
 </li>
-<li><a href="#robustness-meassurements">Robustness Meassurements</a></li>
-<li><a href="#default-other-parameters">Default other parameters</a></li>
-<li><a href="#capacity--total-items-value">Capacity / Total Items Value</a>
+<li><a href="#quality-and-robustness-measurements">Quality and Robustness Measurements</a></li>
+<li><a href="#parameters-description-and-default-values">Parameters Description and Default Values</a></li>
+<li><a href="#number-of-items">Number of Items</a>
 <ul>
 <li><a href="#time-complexity">Time Complexity</a></li>
 <li><a href="#relative-error">Relative Error</a></li>
 </ul>
 </li>
-<li><a href="#valueweight-correlation">Value/Weight Correlation</a>
+<li><a href="#capacity--total-items-weight">Capacity / Total Items Weight</a>
 <ul>
 <li><a href="#time-complexity-1">Time Complexity</a></li>
 <li><a href="#relative-error-1">Relative Error</a></li>
 </ul>
 </li>
-<li><a href="#weight-distribution">Weight distribution</a>
+<li><a href="#valueweight-correlation">Value/Weight Correlation</a>
 <ul>
 <li><a href="#time-complexity-2">Time Complexity</a></li>
 <li><a href="#relative-error-2">Relative Error</a></li>
 </ul>
 </li>
-<li><a href="#granularity">Granularity</a>
+<li><a href="#weight-distribution">Weight Distribution</a>
 <ul>
 <li><a href="#time-complexity-3">Time Complexity</a></li>
 <li><a href="#relative-error-3">Relative Error</a></li>
 </ul>
 </li>
-<li><a href="#number-of-items">number of items</a></li>
-<li><a href="#max-weight-of-an-item">max weight of an item</a></li>
-<li><a href="#max-value-of-an-item">max value of an item</a></li>
+<li><a href="#granularity">Granularity</a>
+<ul>
+<li><a href="#time-complexity-4">Time Complexity</a></li>
+<li><a href="#relative-error-4">Relative Error</a></li>
+</ul>
+</li>
+<li><a href="#items-order-robustness">Items Order Robustness</a>
+<ul>
+<li><a href="#time-complexity-5">Time Complexity</a></li>
+<li><a href="#relative-error-5">Relative Error</a></li>
+</ul>
+</li>
+<li><a href="#maximum-item-weight">Maximum Item Weight</a>
+<ul>
+<li><a href="#time-complexity-6">Time Complexity</a></li>
+<li><a href="#relative-error-6">Relative Error</a></li>
+</ul>
+</li>
+<li><a href="#maximum-item-value">Maximum Item Value</a>
+<ul>
+<li><a href="#time-complexity-7">Time Complexity</a></li>
+<li><a href="#relative-error-7">Relative Error</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="algorithms-description">Algorithms Description</h2>
 <ul>
-<li>Follows description of four methods that were put under analysis.</li>
+<li>Follows description of five methods that were put under analysis.</li>
 </ul>
 <h3 id="brute-force">Brute Force</h3>
 <ul>
-<li>hrubá síla (pokud z implementace není evidentní úplná necitlivost na vlastnosti instancí)</li>
+<li>Brute Force method explores every possible combination of filling the knapsack.</li>
+<li>The combinations are tried starting with empty knapsack, adding the items from the last to the first one.</li>
+<li>State is stored as <code>max_state</code> every time as it has smaller or equal weight and bigger or equal value than the current <code>max_state</code>.</li>
 </ul>
 <h3 id="branch-and-bound">Branch and Bound</h3>
 <ul>
-<li>metoda větví a hranic, případně ve více variantách</li>
-</ul>
-<h3 id="dynamic-progarmming">Dynamic Progarmming</h3>
+<li>The Branch and Bound method is similar to the Brute Force method. The difference is, that it does not explore succeeding states once it stopped to make sense.</li>
+<li>Reasons not to explore succeeding states:
 <ul>
-<li>dynamické programování (dekompozice podle ceny a/nebo hmotnosti). FPTAS algoritmus není nutné testovat, pouze pokud by bylo podezření na jiné chování, než DP</li>
+<li>The current state is heavier than the capacity.</li>
+<li>The sum of undecided items plus the value of the current state is lesser than the current <code>max_state</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="dynamic-programming">Dynamic Programming</h3>
+<ul>
+<li>Dynamic Programming implemented as decomposition by weight.
+<ul>
+<li>It starts with empty knapsack and empty subset of items to be added.</li>
+<li>It adds the last item to the <code>items subset to be added</code> and finds the best solution for every possible maximum weight from 0 to <code>max_weight</code>.</li>
+<li>It adds items to the <code>items subset to be added</code> one by one and every time it finds the best items (best value) for every weight up to <code>max_weight</code>.</li>
+<li>The states are stored in a 2D array, every states stores the information of what was the previous state, so the final items composition is then back traced.</li>
+<li>One thing that makes this implementation very slow is that for every field of the 2D states vector it creates a choice vector, pushes there the possible states for the field, than finds the max element of the choice vector and copy this element to the 2D states vector (next time i would have implement it very differently).</li>
+</ul>
+</li>
 </ul>
 <h3 id="greedy-heuristic">Greedy Heuristic</h3>
 <ul>
-<li>heuristika - poměr cena/váha</li>
+<li>Greedy Heuristic sorts all the items in descending order by value/weight ratio.</li>
+<li>Items are added to the knapsack until the next item plus the current items weight is bigger than the capacity.</li>
 </ul>
-<h2 id="robustness-meassurements">Robustness Meassurements</h2>
+<h3 id="redux">REDUX</h3>
 <ul>
-<li>The meassurements were done for 7 instance parameters. Each was done separately.</li>
-<li>For every non-categorical value, there were batches of 10 values.</li>
-<li>In case of categorical parameters all posibilites were explored.</li>
-<li>For every method the relative error and time complexity were meassured.</li>
+<li>The REDUX computes the Greedy Heuristic solution and then it finds the most valuable item that fits into the knapsack.
+<ul>
+<li>If the one single most valuable item is better solution than the Greedy Heuristic, then it is used instead.</li>
 </ul>
-<h2 id="default-other-parameters">Default other parameters</h2>
+</li>
+<li>Finding of the most valuable item is done by copying the items that are not heavier than capacity and then finding the most valuable one in this subset.</li>
+</ul>
+<h2 id="quality-and-robustness-measurements">Quality and Robustness Measurements</h2>
+<ul>
+<li>The measurements were done for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span> instance parameters. Each was done separately.</li>
+<li>For every non-categorical value, there were batches of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span> values.</li>
+<li>In case of categorical parameters all possibilities were explored.</li>
+<li>For every method the relative error and time complexity were measured.
+<ul>
+<li>The relative error is counted based on the <code>Brute Force</code> values that are trusted to be correct.</li>
+</ul>
+</li>
+<li>There are two main approaches how the results were visualized.
+<ul>
+<li>Barplot with two bars one in front of the other. Blue bar shows the mean time(/error) and red bar shows the maximum time(/error).</li>
+<li>Boxplot (classical boxplot) where the mean value is marked as a white circle (for some cases it improves the readability).</li>
+</ul>
+</li>
+<li>The <code>bf</code> and <code>bab</code> are not always in the same order in the figures. Sometimes <code>bf</code> is first, sometimes <code>bab</code> is first. I am sorry for this.</li>
+</ul>
+<h2 id="parameters-description-and-default-values">Parameters Description and Default Values</h2>
+<ul>
+<li>Values of the parameters that were not under investigation at the moment.</li>
+</ul>
 <table>
 <thead>
 <tr>
-<th>var</th>
-<th>value</th>
-<th>describtion</th>
+<th>Param</th>
+<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -108,7 +173,7 @@
 </tr>
 <tr>
 <td>N</td>
-<td>50</td>
+<td>100</td>
 <td>number of instances</td>
 </tr>
 <tr>
@@ -134,7 +199,7 @@
 <tr>
 <td>c</td>
 <td>uni</td>
-<td>weith,value correlation (uni, corr or strong)</td>
+<td>weight,value correlation (uni, corr or strong)</td>
 </tr>
 <tr>
 <td>k</td>
@@ -143,67 +208,240 @@
 </tr>
 </tbody>
 </table>
-<h2 id="capacity--total-items-value">Capacity / Total Items Value</h2>
-<p>Values are from range 0.1 to 1.</p>
-<p>Brute force</p>
+<h2 id="number-of-items">Number of Items</h2>
 <ul>
-<li>The mean complexity is slowly rising
-<ul>
-<li>probably because, the heavier states are possible the more <code>max_items</code> are created.</li>
-</ul>
-</li>
-<li>The poor performance of ratio 0.1 is probably caused by creating</li>
-</ul>
-<p>Branch and bound</p>
-<ul>
-<li>Complexity rises with growing relative capacity of the knapsack
-<ul>
-<li>The mean and worst cases both saturates at ratio about 0.5</li>
-<li>The robustness is worse with higher ratio, the complexity depends on the specific values</li>
-</ul>
-</li>
-</ul>
-<p>Dynamic programming</p>
-<ul>
-<li>The DP implementated as weight decomposition, so higher ratio means bigger capacitity i.e. more iterations.</li>
-<li>The decreasing rubustness is probably caused by creation of more possible states (that fit into knapsack).</li>
-</ul>
-<p>Greedy heuristic and REDUX</p>
-<ul>
-<li>These methods does not show any significant dependencies on the capacity/total_value ratio.</li>
-<li>What they do show is the small robustness i.e. the big gap between mean and worst case.</li>
+<li>Parameter number of items (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>) was tested for values in range of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>28</mn></mrow><annotation encoding="application/x-tex">28</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">8</span></span></span></span>.</li>
 </ul>
 <h3 id="time-complexity">Time Complexity</h3>
-<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/m_time.png" alt="Time Complexity of capacity/total_value"></p>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/n_time.png" alt="Dependency of Time Complexity on Number of Items"></p>
+<ul>
+<li><strong>Brute Force</strong> and <strong>Branch and Bound</strong>
+<ul>
+<li>Both mean and worst cases grows exponentially with the number of items.</li>
+</ul>
+</li>
+<li><strong>Dynamic programming</strong>
+<ul>
+<li>Both mean and worst cases grows polynomially with the number of items.</li>
+</ul>
+</li>
+<li><strong>Greedy heuristic</strong> and <strong>REDUX</strong>
+<ul>
+<li>The mean case grows linearly.</li>
+<li>The worst case of <strong>REDUX</strong> grows less than linearly.</li>
+</ul>
+</li>
+</ul>
 <h3 id="relative-error">Relative Error</h3>
-<p>Greedy Heuristic and REDUX</p>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/n_error.png" alt="Relative Error Dependency on Number of Items"></p>
+<ul>
+<li><strong>Greedy Heuristic</strong> and <strong>REDUX</strong>
+<ul>
+<li>The relative error decreases significantly (probably exponentially) with increasing number of items.</li>
+</ul>
+</li>
+</ul>
+<h2 id="capacity--total-items-weight">Capacity / Total Items Weight</h2>
+<ul>
+<li>Parameter <code>Capacity/Total Items Weight</code> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>) was tested for values in range of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.1</mn></mrow><annotation encoding="application/x-tex">0.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">1</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>.</li>
+</ul>
+<h3 id="time-complexity-1">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/m_time.png" alt="Time Complexity of capacity/total_value"></p>
+<ul>
+<li>(<code>bf</code> and <code>bab</code> have swapped positions, sorry)</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/boxplot_m_time.png" alt="Time Complexity of capacity/total_value boxplot"></p>
+<p><strong>Brute force</strong></p>
+<ul>
+<li>The mean complexity is slowly rising.
+<ul>
+<li>Probably it is because the fact that heavier states are possible (as the capacity is rising) so more <code>max_items</code> are created.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Branch and bound</strong></p>
+<ul>
+<li>Complexity steeply rises with growing capacity, peaks at ratio about 0.5 and then slowly declines.
+<ul>
+<li>This can be explained that with small ratio the capacity is small hence the heavy states are cut away.</li>
+<li>With big ratios the most of the items could be added so the states with a little items are cut because of small value left.</li>
+<li>The stability is worse with higher ratio, because the value cut depends on the items order (if the valuable are at the end the performance is worse).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Dynamic Programming</strong></p>
+<ul>
+<li>The DP implemented as weight decomposition, so higher ratio means bigger capacity i.e. more iterations.</li>
+<li>The decreasing stability is probably caused by creation of more possible states (that fits into the knapsack).</li>
+</ul>
+<p><strong>Greedy Heuristic</strong> and <strong>REDUX</strong></p>
+<ul>
+<li>These methods does not show any significant dependencies on the capacity/total_value ratio.</li>
+<li>What they do show is the small stability i.e. the big gap between mean and worst case.
+<ul>
+<li>This is probably caused by the different performance of integer-float conversions, sorting and copying of different instances.</li>
+</ul>
+</li>
+<li>The <code>REDUX</code> method has a small performance gap between the ratio <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.4</mn></mrow><annotation encoding="application/x-tex">0.4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.5</mn></mrow><annotation encoding="application/x-tex">0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span>.
+<ul>
+<li>However as it is visible on <code>Number of items in the solution</code> figure it is not connected to the <code>REDUX</code> feature so it must be caused by the copying of the items, or finding the most valuable.</li>
+</ul>
+</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/m_number_of_items_in_solution_redux.png" alt="Number of items in the solution (redux)"></p>
+<h3 id="relative-error-1">Relative Error</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/m_error.png" alt="Relative Error dependency on capacity/total_items_weight"></p>
+<p><strong>Greedy Heuristic</strong> and <strong>REDUX</strong></p>
 <ul>
 <li>Both shows the same trend that the mean relative error is slowly decreasing with increasing ratio</li>
-<li>The worst case relative error decrease rapidly with increasing ratio.
+<li>The worst case of the relative error decrease rapidly with increasing ratio.
 <ul>
 <li>It is probably because the fact that with increasing capacity more items can fit, so the potential error is lesser.</li>
 </ul>
 </li>
 </ul>
-<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/m_error.png" alt="capacity/total_value"></p>
 <h2 id="valueweight-correlation">Value/Weight Correlation</h2>
-<h3 id="time-complexity-1">Time Complexity</h3>
-<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/c_time.png" alt="Time Complexity dependencies on items value/weight correlation"></p>
-<h3 id="relative-error-1">Relative Error</h3>
-<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/c_error.png" alt="Relative error dependencies on items value/weight correlation"></p>
-<h2 id="weight-distribution">Weight distribution</h2>
+<ul>
+<li>Three parameter values were explored. The values and weights were either <code>uni</code>formly distributed, <code>corr</code>elated or <code>strong</code>ly correlated.</li>
+</ul>
 <h3 id="time-complexity-2">Time Complexity</h3>
-<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/w_time.png" alt="Time Complexity dependencies on weight distribution"></p>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/c_time.png" alt="Time Complexity dependencies on items value/weight correlation"></p>
+<ul>
+<li>The only found dependency was in the case of <code>Greedy Heuristic</code>, where the uniform distribution of weights and values causes higher complexity than the correlated ones.
+<ul>
+<li>The poorer performance is however not caused by smaller number of items, because the <code>strong</code> parameter provided solution with bigger number of items with lower time complexity.</li>
+<li>It means the poorer performance must be caused by the sorting part.</li>
+</ul>
+</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/c_number_of_items_in_solution_gh.png" alt="Number of items in the solution (gh)"></p>
 <h3 id="relative-error-2">Relative Error</h3>
-<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/w_error.png" alt="Relative error dependencies on weight distribution"></p>
-<h2 id="granularity">Granularity</h2>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/c_error.png" alt="Relative error dependencies on items value/weight correlation"></p>
+<ul>
+<li>Both <code>Greedy Heuristic</code> and <code>REDUX</code> are show relative error dependency on the value/weight correlation.
+<ul>
+<li>The algorithms takes first the items with the best ratios, once the weights and values are correlated the ratios start to be similar and the potential space for the error rises.</li>
+</ul>
+</li>
+</ul>
+<h2 id="weight-distribution">Weight Distribution</h2>
+<ul>
+<li>The generated items were preferably either <code>bal</code>anced, <code>light</code> or <code>heavy</code>.</li>
+</ul>
+<p><strong>Histogram of weight distributions</strong></p>
+<ul>
+<li>x axis display weight intervals.</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/weight_distributions.png" alt="Weight distribution example"></p>
 <h3 id="time-complexity-3">Time Complexity</h3>
-<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/k_time.png" alt="Time Complexity dependencies on items granularity"></p>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/w_time.png" alt="Time Complexity dependencies on weight distribution"></p>
+<ul>
+<li><strong>Brute Force</strong> and <strong>Branch and Bound</strong>
+<ul>
+<li>The <code>heavy</code> parameter value causes poorer performance than the <code>bal</code> and <code>light</code>.
+<ul>
+<li>The capacity grows with the weight of the items so it does not affect the weight cuts in <code>bab</code> method.</li>
+</ul>
+</li>
+<li>The only logical explanation could be that working with bigger numbers is slower than working with smaller ones, but I am not convinced by this without further performance tests.</li>
+</ul>
+</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/w_distributions_capacity_total_weight_ratio.png" alt="Distributions of capacity and items mean weight and mean value"></p>
+<ul>
+<li><strong>Dynamic Programming</strong>
+<ul>
+<li>The complexity increases with heavier items.</li>
+<li>Reasonably as the ratio of <code>capacity/total_weight</code> is fixed (0.8), if the items are generally lighter the capacity will be smaller and the weight decomposition implementation will be faster.</li>
+</ul>
+</li>
+</ul>
 <h3 id="relative-error-3">Relative Error</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/w_error.png" alt="Relative error dependencies on weight distribution"></p>
+<ul>
+<li>As was shown on Moodle the light items have better value/weight ratio than the heavy ones, however it does not means the solution will be close to the optimal one.</li>
+<li>The REDUX helps if the best solution is the solution with only one most valuable item, but does not help when the best solution are perhaps two &quot;heavy&quot; items.</li>
+<li>That is why both <code>Greedy Heuristic</code> and <code>REDUX</code> works best for heavy items and both work worse for light items.</li>
+</ul>
+<h2 id="granularity">Granularity</h2>
+<ul>
+<li>The weight distribution can be parameterizable more than just to <code>bal</code>anced, <code>light</code> and <code>heavy</code>.</li>
+<li>The <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> parameter was in range from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.1</mn></mrow><annotation encoding="application/x-tex">0.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">1</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.0</mn></mrow><annotation encoding="application/x-tex">1.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span></span></span></span>.</li>
+<li>For the heavy items the probability density function (PDF) is given by formula <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>w</mi><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">f(w)=w^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span>.</li>
+<li>The PDF for light items is given by formula  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><msup><mi>w</mi><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">f(w)=1-w^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span>.</li>
+<li>For both heavy and light items the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> is the most unbalanced and the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>0.1</mn></mrow><annotation encoding="application/x-tex">k=0.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">1</span></span></span></span> is the most balanced settings.
+<img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/weight_distributions_with_k.png" alt="Heavy items weight distribution by k parameter"></li>
+</ul>
+<h3 id="time-complexity-4">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/k_time.png" alt="Time Complexity dependencies on items granularity"></p>
+<ul>
+<li><strong>Dynamic Programming</strong>
+<ul>
+<li>The trend from simple weight distribution observations are still valid.
+<ul>
+<li>The lighter the items are with fixed <code>capacity/total_value</code> the smaller capacity gets and the faster weight decomposition will be.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Greedy Heuristic</strong>
+<ul>
+<li>There is a small trend that heavier items cause poorer performance.</li>
+<li>Because the number of items in the solution is smaller with heavier items (bigger k), this phenomena must be caused by either the sorting of the items (integer to float conversion) or in the writing the Item objects (less likely).</li>
+</ul>
+</li>
+</ul>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/k_number_of_items_in_solution_gh.png" alt="Number of items in the solution (gh)"></p>
+<h3 id="relative-error-4">Relative Error</h3>
 <p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/k_error.png" alt="Relative error dependencies on items granularity"></p>
-<h2 id="number-of-items">number of items</h2>
-<h2 id="max-weight-of-an-item">max weight of an item</h2>
-<h2 id="max-value-of-an-item">max value of an item</h2>
+<ul>
+<li>The results are not very stable, but it does not show any trend.</li>
+</ul>
+<h2 id="items-order-robustness">Items Order Robustness</h2>
+<p>To measure whether the methods are robust to the various order of items, 10 random instances with default parameters were permuted i.e. the items were given in different order.</p>
+<h3 id="time-complexity-5">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/boxplot_p_time.png" alt="Time Complexity dependencies on items granularity"></p>
+<ul>
+<li><strong>Branch and Bound</strong>
+<ul>
+<li>As we could have expected it, the time complexity depends on the order of the items.</li>
+<li>If either the heavy or the most valuable items comes first the cutting by either weight or value is used.</li>
+</ul>
+</li>
+</ul>
+<h3 id="relative-error-5">Relative Error</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/p_error.png" alt="Relative error dependencies on items granularity"></p>
+<ul>
+<li>The order of items does not affect the relative error. This observation is compliant with what we would expect.</li>
+</ul>
+<h2 id="maximum-item-weight">Maximum Item Weight</h2>
+<ul>
+<li>The maximum item weight parameter (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>) was tested with values from range <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000</mn></mrow><annotation encoding="application/x-tex">10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>.</li>
+</ul>
+<h3 id="time-complexity-6">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/W_time.png" alt="Time complexity dependencies on maximum item weight"></p>
+<ul>
+<li>The only visible trend is the growing complexity of <code>Dynamic Programming</code> caused by the implementation approach to be the weight decomposition.</li>
+</ul>
+<h3 id="relative-error-6">Relative Error</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/W_error.png" alt="Relative error dependencies on maximum item weight"></p>
+<ul>
+<li>The different maximum item weights does not affect the relative error of either <code>Greedy Heuristic</code> or <code>REDUX</code> method.</li>
+</ul>
+<h2 id="maximum-item-value">Maximum Item Value</h2>
+<ul>
+<li>The maximum item value parameter (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>) was tested with values from range <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000</mn></mrow><annotation encoding="application/x-tex">10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span>.</li>
+</ul>
+<h3 id="time-complexity-7">Time Complexity</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/boxplot_C_time.png" alt="Time complexity dependencies on maximum item value"></p>
+<ul>
+<li>No significant dependency was discovered here.</li>
+</ul>
+<h3 id="relative-error-7">Relative Error</h3>
+<p><img src="file:////home/langerjaros/Projects/learning/informatics/combinatorial_optimization/homeworks/hw03/results/figures/C_error.png" alt="Relative error dependencies on maximum item value"></p>
+<ul>
+<li>Relative error of both <code>Greedy Heuristic</code> and <code>REDUX</code> methods were not dependent on the maximum item value.</li>
+</ul>
 
     </body>
     </html>
