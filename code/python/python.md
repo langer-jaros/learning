@@ -1,6 +1,6 @@
 # Python
 
-`2020/10/24, Jaroslav Langer`
+`2020 Dec. 9th, Jaroslav Langer`
 
 ## Content <!-- omit in toc -->
 - [Tutorials](#tutorials)
@@ -12,13 +12,14 @@
   - [Comments](#comments)
   - [Printing](#printing)
   - [Variables](#variables)
-  - [Handy methods](#handy-methods)
-  - [Data types](#data-types)
   - [String](#string)
+  - [Accessing Different data](#accessing-different-data)
   - [Bytes](#bytes)
   - [Conditions](#conditions)
   - [Loops](#loops)
   - [Collections](#collections)
+  - [Functions](#functions)
+  - [Classes and Objects](#classes-and-objects)
   - [Methods for loops](#methods-for-loops)
   - [Math](#math)
   - [Random](#random)
@@ -33,6 +34,7 @@
   - [Regex](#regex)
   - [Lambda](#lambda)
   - [Datetime](#datetime)
+  - [pickle](#pickle)
   - [argparse](#argparse)
   - [Compress, decompress, checksum](#compress-decompress-checksum)
   - [underscored names in python](#underscored-names-in-python)
@@ -42,7 +44,9 @@
 
 ## Tutorials
 
-[Tutorial place](https://realpython.com/)
+- [Tutorial place](https://realpython.com/)
+- Consider [the Little Book of Python Anti-Patterns](https://docs.quantifiedcode.com/python-anti-patterns/)
+- [Tutorials in Czech language (by Jiří Znamenáček)](http://vyuka.ookami.cz/index.python.html)
 
 ## How to start
 
@@ -51,7 +55,7 @@
 #### Venv
 
 ```sh
-# activate enviroment
+# Activate environment
 source .env_name/source/activate
 # deactivate
 deactivate
@@ -60,7 +64,7 @@ deactivate
 #### pip
 
 ```sh
-# Insall package
+# Install package
 pip3 install package_name
 # Show package info
 pip3 show package_name
@@ -74,12 +78,17 @@ pip3 install --upgrade package_name
 
 #### Scripts
 
-Python is and excelent language for writing scripts. Every script on linux should start with. Otherwise, there will be misunderstanding between python2 and 3 guys.
+Python is and excellent language for writing scripts.
+- Every linux script should start with shebang.
+  - Otherwise, there will be misunderstanding between python 2 and python 3.
+
 ```py
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 ```
-For usage python files as scripts is highly recommend to use following
+
+Following construct is highly recommend for scripts.
+
 ```py
 if __name__ == "__main__":
     #This code will be executed only, if the file was called as a script, not imported
@@ -91,7 +100,7 @@ if __name__ == "__main__":
 
 Everything in a python is an **object**. String is an object, list is an object. 
 So almost anything has some methods already prepare for you. 
-With `dir` function you can see all the atributes and methods of the object.
+With `dir` function you can see all the attributes and methods of the object.
 
 ```py 
 dir(anything)
@@ -100,7 +109,7 @@ dir(anything)
 ### Comments
 
 ```py
-# Oneline coment
+# One-line comment
 
 """
 multiline comment
@@ -114,7 +123,7 @@ multiline comment
 #### Docstrings
 
 Every file, class, function can have doc string (__doc__).
-Write docstrings, they are beatiful.
+Write docstrings, they are beautiful.
 
 ```py
 #!/usr/bin/env python3
@@ -158,7 +167,7 @@ print("---")
 print(variable, var2, var3, sep=", ")
 print("---")
 
-# Personal recomendation for var printing (bit advanced, but good practise)
+# Personal recommendation for var printing (bit advanced, but good practice)
 four = 2*2
 my_array = [7,"6","five",four,[0,1,2]]
 print('"len(my_array[2])": {}'.format(len(my_array[2])))
@@ -180,32 +189,113 @@ var, 2, 3
 ### Variables
 
 ```py
-# Float NaN
-NaN = float("NaN")
+# Integers
+integer = 10
+million = 1_000_000 # It is possible to visually separate big numbers with underscores.
+# Floats
+decimal = 10.0
+NaN = float("NaN")  # Special float for not-a-number.
+# Strings
+string = "my beautiful string"
+# Booleans
+boolean = True
+false = False
+# Empty value
+no_value = None
+
+# Unassign variables (not often used)
+del integer, million, decimal, Nan, string, boolean, false, no_value
 ```
 
-### Handy methods
+### String
 
-#### len()
-priceless method, can be used for number of characters of a string as well as number of elements of an array
-
-#### Slices
-
-Basicly anything, which can be iterated retrieve slice, after useing [:]
+There is four types how to quote a string
 ```py
-string[firstLetter:LetterNotToBeSeen]
-array[firstItem:] #To the end
-array[firstItem:-1] #To the end
-array[firstItem:-5] #To the fifth last
+# Two equivalents how write single-line string
+'string'
+"another string"
+# Two equivalents how write multi-line string
+'''
+multiline string
+'''
+"""
+another multiline string
+"""
 ```
 
-Examples
+#### Raw string
+
 ```py
-# Slice DOCTYPE out of html #
-text = text[len('<!DOCTYPE html>\n'):]
+r'In this string, the \n character will stay as \n. It will not be expanded as newline'
 ```
 
-### Data types
+#### Format and f string
+
+```py
+# Using string.format()
+pathToNewFile = '{folder}{file}.{fileType}'.format(
+    folder=download_folder, file=xlsName, fileType='xls')
+
+# Curly braces to remain
+string = "{{double curly braces will be formatted as one".format()
+# escaping does not work
+string = "\{ this will raise an ValueError".format()
+
+# f string
+pathToNewFile = f'{download_folder}{xlsName}.{"xls"}'
+
+# Format float precision
+a = 1/3
+print("{:.2f}".format(a)) # 0.33
+
+# Fill with whitespace
+a, b, c = 55555, 1, 7777777
+print(f"# a: {a: <8} b: {b: <8} c: {c}")
+# a: 55555    b: 1        c: 7777777
+```
+
+- [Python string format cookbook](https://mkaz.blog/code/python-string-format-cookbook/)
+
+#### String functions
+
+```py
+# Check whether string contains substring
+"sub" in "substring" # True
+# lower - Make string lowercase
+"sTrInG StRiNg".lower() # "string"
+# upper - Make string uppercase
+"sTrInG StRiNg".upper() # "STRING STRING"
+# capitalize - First letter uppercase, rest lowercase
+"sTrInG StRiNg".capitalize() # "String string"
+
+# slit
+"string string2".split()
+# join
+' '.join(['string', 'string2', 'string3'])
+# strip
+"          string                ".strip()
+
+# startswith
+"string about nothing".startswith('str')    # True
+# endswith
+"string about nothing".endswith('ing.')   # False
+# find
+"string about nothing".find('abo')
+# rfind
+".hidden_file_.txt".rfind('.')
+
+# count
+question = "Hi mom, how much coins i need to buy coin keeper for my coin sessions?"
+question.count("coin") # 3
+
+# isnumeric - check if every character is unicode numeric
+"1234".isnumeric() # True
+"1234.2".isnumeric() # False
+```
+
+- [is numeric (tutorials point)](https://www.tutorialspoint.com/python/string_isnumeric.htm)
+
+### Accessing Different data
 
 #### type and isinstance
 
@@ -220,78 +310,42 @@ type(var) == type({}) # True
 isinstance(a, dict) # True
 ```
 
-### String
-
-There is four types how to quote a string
-```py
-# Two equivalens how write single-line string
-'string'
-"another string"
-# Two equivalens how write multi-line string
-'''
-multiline string
-'''
-"""
-another multiline string
-"""
-```
-Raw string
-```py
-r'in this string, the \n won\'nt be and newline'
-```
-
-#### Format and f string
+#### Equality, Identity and ID
 
 ```py
-# Using stirng.format()
-pathToNewFile = '{folder}{file}.{fileType}'.format(
-    folder=download_folder, file=xlsName, fileType='xls')
+a = [1,2]
+b = [1,2]
 
-# Curly braces to remain
-string = "{{double clurly braces will be formated as one".format()
-# escaping does not work
-string = "\{ this will raise an ValueError".format()
+a == b  # True
+a is b  # False
+id(a)   # 140242993380096
 
-# f string
-pathToNewFile = f'{download_folder}{xlsName}.{"xls"}'
-
-# Format float precision
-a = 1/3
-print("{:.2f}".format(a)) # 0.33
+True == 1   # True
+True is 1   # False
+id(True)    # 10299104
 ```
 
-#### String functions
+#### len()
+
+priceless method, can be used for number of characters of a string as well as number of elements of an array
+
+#### Slices
+
+Basically anything that can be iterated retrieves a slice when applying operator `[ : ]`
 
 ```py
-# lower
-"sTrInG StRiNg".lower() # "string"
-# upper
-"sTrInG StRiNg".upper() # "STRING STRING"
-# capitalize
-"sTrInG StRiNg".capitalize() # "String string"
-
-# slit
-"string string2".split()
-# join
-' '.join(['string', 'string2', 'string3'])
-# strip
-"          string                ".strip()
-
-# find
-"string about nothing".find('abo')
-# rfind
-".hiden_file_.txt".rfind('.')
-
-# count
-question = "Hi mom, how much coins i need to buy coin keeper for my coin sessions?"
-question.count("coin") # 3
-
-# isnumeric - check if every character is unicode numeric
-"1234".isnumeric() # True
-"1234.2".isnumeric() # False
+string[first_letter : letter_not_to_be_seen]
+array[ : n_th_item]     # Items from index 0 up to n_th_item (not including n_th_item).
+array[first_item : ]    # Items from first_item (including it) to the end.
+array[first_item : -1]  # All items except the last one.
+array[first_item : -5]  # All items from the first_item up to the -5th (not including it).
 ```
 
-[is numeric (tutorials point)](https://www.tutorialspoint.com/python/string_isnumeric.htm)
+Examples
+```py
+# Slice DOCTYPE out of html #
+text = text[len('<!DOCTYPE html>\n'):]
+```
 
 ### Bytes
 
@@ -302,7 +356,7 @@ bytes_2 = "Bytes form this string".encode()
 string_from_bytes = bytes_1.decode()
 ```
 
-[link](https://www.tutorialspoint.com/python/string_decode.htm)
+- [link](https://www.tutorialspoint.com/python/string_decode.htm)
 
 ### Conditions
 
@@ -313,7 +367,6 @@ variable = value if (condition) else otherValue
 
 ### Loops
 
-[top](#python)
 ```py
 for x in almostAnything:
     print(x)
@@ -401,20 +454,65 @@ my_set = {val for val in my_dict.values()}
 
 [set comprehension](https://python-reference.readthedocs.io/en/latest/docs/comprehensions/set_comprehension.html)
 
+### Functions
+
+```py
+def fu(arg1, arg2=".", *args, **kwargs):
+    print(arg1, arg2, *args, **kwargs)
+
+fu("Hello", "world", "!", sep=" ", end="\n")
+```
+
+- [Python does not have function overloading](https://www.codementor.io/@arpitbhayani/overload-functions-in-python-13e32ahzqt)
+- [*args and **kwargs](https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3)
+
+### Classes and Objects
+
+Because everything in python is an object, it is essential to know, how to create your own objects.
+
+- [OOP (tutorialspoint)](https://www.tutorialspoint.com/python/python_classes_objects.htm)
+
+```py
+class Data():
+    """Simple Data class for illustration how classes are created in python"""
+
+
+    def __init__(self, attribute):
+        self.attribute = attribute
+
+
+    def set_name_from_dict(self, dictionary):
+        """Set attribute to the current object that is read from given dictionary."""
+        self.attribute = dictionary.get("attribute")
+
+
+    @classmethod
+    def from_dict(cls, dictionary):
+        """Creates Data object with attribute read from dictionary."""
+        return cls(dictionary.get("attribute"))
+
+
+    def __repr__(self):
+        return f"<Data: attribute={attribute}>"
+```
+
+- [multiple constructors (stackoverflow)](https://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python)
+- [repr (programiz)](https://www.programiz.com/python-programming/methods/built-in/repr)
+
 ### Methods for loops
 
 ```py
 # zip
 ids = ["34925705", "09548622", "24641309"]
 names = ["John","Peter", "Anthony"]
-nicnames = ["Joeeyyy", "Pete", "Toeney"]
+nicknames = ["Joeeyyy", "Pete", "Toeney"]
 
-transformed = [[id, na, ni] for id, na, ni in zip(ids, names, nicnames)]
+transformed = [[id, na, ni] for id, na, ni in zip(ids, names, nicknames)]
 [['34925705', 'John', 'Joeeyyy'], ['09548622', 'Peter', 'Pete'], ['24641309', 'Anthony', 'Toeney']]
 
 # enumerate
 galleries_without_number = ["Great Gallery", "Magnificent Gallery", "The Gallery"]
-id_galery_dict = {-n: v for n,v in enumerate(galleries_without_number, start=1)}
+id_gallery_dict = {-n: v for n,v in enumerate(galleries_without_number, start=1)}
 ```
 
 ### Math
@@ -428,15 +526,33 @@ round(1.242345, 3)
 (20 > 13) > 10 # False
 
 # Maximum
-max(1, 34, 15, 32, 54, 23)
+max(1, 34, 15, 32, 54, 23)      # 34
+# Minimum
+min([1, 34, 15, 32, 54, 23])    # 1
+
+from math import ceil, floor
+ceil(2.1) == floor(3.9) # True
 ```
 
 - [Round function (w3school)](https://www.w3schools.com/python/ref_func_round.asp)
-- [Multiple comparism (python 2.3 doc, still valid)](https://docs.python.org/2.3/ref/comparisons.html)
+- [Multiple comparison python 2.3 doc, still valid)](https://docs.python.org/2.3/ref/comparisons.html)
+
+#### Statistics
+
+```py
+from statistics import mean, median, mode
+values = [1, 34, 4, 32, 54, 23, 34]
+
+mean(values)    # 26
+median(values)  # 32
+mode(values)    # 34
+```
 
 ### Random
 
 ```py
+from random import uniform, randrange, choice, sample
+
 # Random float from range (0,10)
 f = uniform(0, 10)
 
@@ -444,11 +560,13 @@ f = uniform(0, 10)
 i = randrange(0, 101, 1)
 
 # Random item of list
-NAMES = ["Alice", "Bob", "Chuck"]
-item = choice(NAMES)
+item = choice(["Alice", "Bob", "Chuck"])
+
+# List sample of k elements
+samples = sample(["Alice", "Bob", "Chuck"], 2)
 ```
 
-[Random library (python documentation)](https://docs.python.org/3/library/random.html)
+- [Random library (python documentation)](https://docs.python.org/3/library/random.html)
 
 ### Imports
 ```py
@@ -524,7 +642,7 @@ with open(pathToNewFile, mode='tx') as newFile:
 #### Binary files
 
 ```py
-with open('obrazek.png', mode='rb') as f:
+with open('image.png', mode='rb') as f:
     data = f.read(NUMBER_OF_BYTES)
     f.tell()                # tells position
     #Doesn't move the reading head
@@ -539,7 +657,7 @@ with open('obrazek.png', mode='rb') as f:
 ```py
 import os
 
-# Get full (absolute) path (maybe antipattern, dunno)
+# Get full (absolute) path (maybe anti-pattern, dunno)
 os.path.abspath("./build/knapsack.so")
 ```
 
@@ -577,7 +695,7 @@ json_string = "my json string"
 try:
     json_dict = json.loads(json_string)
 except json.decoder.JSONDecodeError as e:
-    print(f'It was not posible to load "json_string" as a dictionary.',
+    print(f'It was not possible to load "json_string" as a dictionary.',
         f'Error: "{e}", json_string: "{json_string}".')
 ```
 
@@ -594,7 +712,7 @@ x = re.findall(r'CAT.+?END','Cat \n eND',flags=re.I | re.DOTALL)
 
 #### Match 
 
-Matches from the begining of the string
+Matches from the beginning of the string.
 
 #### fullmatch
 
@@ -664,6 +782,23 @@ print(datetime_object)  # printed in default format
 
 [work with datetime](https://www.journaldev.com/23365/python-string-to-datetime-strptime) string to datetime
 
+### pickle
+
+Serialize objects to files and load objects from files.
+
+```py
+import pickle
+
+# Have some object
+MODELS = (dtc_model, gnb_model, lr_model, svc_model, mlp_model, knn_model)
+
+# Save the object to a file
+pickle.dump(MODELS, open(f"models/models_20_5.pkl", "wb"))
+
+# At other time load it from the file
+models = pickle.load(open("models/models_20_5.pkl", "rb" ))
+```
+
 ### argparse
 
 ```py
@@ -720,11 +855,11 @@ if None.__class__ in types:
 
 ### ctypes
 
-[top source](https://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/)
-[real pyhton c binding](https://realpython.com/python-bindings-overview/)
-[read docu for c/python types](https://docs.python.org/3.6/library/ctypes.html)
-[source 2](https://medium.com/@stephenscotttucker/interfacing-python-with-c-using-ctypes-classes-and-arrays-42534d562ce7)
-[source 3](https://solarianprogrammer.com/2019/07/18/python-using-c-cpp-libraries-ctypes/)
+- [top source](https://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/)
+- [real python c binding](https://realpython.com/python-bindings-overview/)
+- [documentation for c/python types](https://docs.python.org/3.6/library/ctypes.html)
+- [source 2](https://medium.com/@stephenscotttucker/interfacing-python-with-c-using-ctypes-classes-and-arrays-42534d562ce7)
+- [source 3](https://solarianprogrammer.com/2019/07/18/python-using-c-cpp-libraries-ctypes/)
 
 ```cpp
 void c_fun(const char * bytes);
@@ -737,7 +872,8 @@ c_fun("super unicode".encode())
 
 ### Python 2 differences
 
-#### Math in pyton2 doesn't work well
+#### Math in python 2 doesn't work well
+
 ```
 >>> 4**2
 16

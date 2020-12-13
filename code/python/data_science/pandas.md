@@ -18,7 +18,7 @@
   - [DataFrame from XML](#dataframe-from-xml)
   - [Srapping web (HTML)](#srapping-web-html)
   - [Dataframe from json](#dataframe-from-json)
-- [Accessing the dataframes](#accessing-the-dataframes)
+- [Accessing the Dataframe](#accessing-the-dataframe)
   - [First look at the Dataframe](#first-look-at-the-dataframe)
   - [Dataframe properties](#dataframe-properties)
   - [Dataframe functions](#dataframe-functions)
@@ -29,7 +29,7 @@
   - [iloc - Accessing through indices](#iloc---accessing-through-indices)
   - [Filtering rows](#filtering-rows)
   - [Column Functions](#column-functions)
-- [Modifing the dataframe](#modifing-the-dataframe)
+- [Modifying the dataframe](#modifying-the-dataframe)
   - [Work with the dataframe](#work-with-the-dataframe)
   - [Index stuff](#index-stuff)
   - [Work with dataframe columns](#work-with-dataframe-columns)
@@ -37,6 +37,7 @@
   - [Columns datatypes](#columns-datatypes)
   - [Modify values](#modify-values)
   - [String methods](#string-methods)
+  - [Discretize Column Values](#discretize-column-values)
   - [Group by](#group-by)
 - [Poltting the data](#poltting-the-data)
   - [Plot the data](#plot-the-data)
@@ -45,7 +46,7 @@
 
 ## Documentation
 
-[Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/reference/)
+- [Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/reference/)
 
 ## First things first
 
@@ -70,13 +71,13 @@ ser[0]
 ser.index[0]
 ```
 
-[Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
+- [Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
 
 ### DataFrame
 
 Two-dimensional, size-mutable, potentially heterogeneous tabular data.
 
-[DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html)
+- [DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html)
 
 ## Get data into DataFrames
 
@@ -113,7 +114,7 @@ df_dict = {"lengths": lengths, "lists": lists}
 df = pd.DataFrame(df_dict)
 ```
 
-[df from dicts and lists](https://pbpython.com/pandas-list-dict.html)
+- [df from dicts and lists](https://pbpython.com/pandas-list-dict.html)
 
 ### Dataframe from list of lists (list per row)
 
@@ -152,7 +153,7 @@ for node in xroot:
 out_df = pd.DataFrame(rows, columns = df_cols)
 ```
 
-[source](https://medium.com/@robertopreste/from-xml-to-pandas-dataframes-9292980b1c1c)
+- [source](https://medium.com/@robertopreste/from-xml-to-pandas-dataframes-9292980b1c1c)
 
 ### Srapping web (HTML)
 
@@ -181,15 +182,15 @@ import html5lib
 r = requests.get(url)
 dfs = pd.read_html(r.text,flavor='html5lib')
 
-# for desired html inputs write data
+# Prepared data for the post request
 data = {
-    'nameOfInput' : 'value',
-    'prace' : 'BP', # DP = diplomka, DR = disertace, RI = rigorozní
-    'nazev' : '%%%', # alespoň tři písmena z názvu hledané práce
-    'pocet' : '0',
-    'klic' : '', # alespoň tři písmena z klíčových slov
-    'kl' : 'c', # c = částečně odpovídá, n = plně odpovídá
-    'nameOfButton' : 'ActionValue'
+    'input_name':   'value',
+    'thesis':       'BP',     # Type of thesis options [BP, DP, DR, RI]
+    'name':         '%%%',    # The name must have at least three letters in its name
+    'number':       '0',
+    'keyword':      '',
+    'match':        'c',      # c = complete match, n = partial match
+    'button_name':  'ActionValue'
 }
 data_all = pd.DataFrame()
 r = requests.post(url, data)
@@ -208,9 +209,9 @@ df = ldf[0]
 pd.read_json("./time_spent.json", orient="index")
 ```
 
-[types of json structure](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html)
+- [types of json structure](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html)
 
-## Accessing the dataframes
+## Accessing the Dataframe
 
 ### First look at the Dataframe
 
@@ -240,7 +241,7 @@ display(df.head())
 pd.reset_option("max_columns")
 ```
 
-[source](https://towardsdatascience.com/how-to-show-all-columns-rows-of-a-pandas-dataframe-c49d4507fcf)
+- [source](https://towardsdatascience.com/how-to-show-all-columns-rows-of-a-pandas-dataframe-c49d4507fcf)
 
 ### Dataframe properties
 
@@ -264,7 +265,7 @@ df.dtypes
 ### Dataframe functions
 
 ```py
-# Number of uniqe values in every column (by default ignores NaN)
+# Number of unique values in every column (by default ignores NaN)
 df.nunique()
 
 # Sum all the data in every column
@@ -276,6 +277,8 @@ df.notnull()
 # Handy usage of previous functions, see number of NaN (/not NaN) values per column
 df.isnull().sum()
 df.notnull().sum()
+# Get number of not-NA values
+df.count()
 
 # Get max(/min) value for every column
 df.max() # df.min()
@@ -290,18 +293,21 @@ df1.equals(df2)
 
 # Get series where True means a row is duplicated
 df.duplicated()
-# By default, first occurance of a row is not duplicate, use False for every duplicated row be marked False 
+# By default, first occurrence of a row is not duplicate, use False for every duplicated row be marked False
 df.duplicated(False)
 
 # Return series where True means all values of specified axis are True (by default axis=0 ~ rows)
 df.all()
 # Return series where True means at least one value specified axis is True
 df.any()
+
+# Is the index unique?
+df.index.is_unique()
 ```
 
 ## Accessing data
 
-Access throung brackets `[]` prioritized colomns over rows, so `df[0]` will try to find column `0`.
+Bracket access `[]` prioritizes columns over rows, so `df[0]` will try to find column `0`.
 In case, **one** column is specified, `df["column"][0]` return the row `0`
 and `df["column"][[1,23,4]]` return rows `1`, `23` and `4`.
 
@@ -312,7 +318,7 @@ It does not matter the order of column slice specification,
 ### Accessing columns
 
 ```py
-# Atribute access of df column by its name
+# Attribute access of df column by its name
 df.Age
 # Access column by its string name (or columns of an multi-column (multiindex))
 data1['Age']
@@ -344,12 +350,15 @@ Usage: dataFrame.loc[<ROWS RANGE> , <COLUMNS RANGE>]
 ```py
 # LOC takes 2:5 like [2,3,4,5]
 data1.loc[2:5, ['Name', 'Age']]
-# Same as (the 5 is there correctly, wierd)
+# Same as (the 5 is there correctly, weird)
 data1.loc[[2,3,4,5], ['Name', 'Age']]
 # Access row 235426
 df.loc[235426]
 # Access rows by list of row numbers
 df.loc[[1,13452,3452]]
+# Access rows by index
+sample = df1.sample(n=5)
+df.loc[sample.index]
 ```
 
 ### iloc - Accessing through indices
@@ -361,12 +370,12 @@ Usage: dataFrame.iloc[<ROWS INDEX RANGE> , <COLUMNS INDEX RANGE>]
 data1.iloc[2:5, [3,5]]
 # Same as
 data1.iloc[[2,3,4], [3,5]]
-# i stands for integer (takes bool as well [bools].values)
-# iloc with bools (take arrays)
+# i stands for integer (takes bool as well [booleans].values)
+# iloc with booleans (take arrays)
 data1.iloc[(data1['Age'] < 30).values, [3,5]]
 ```
-[usages from here](https://thispointer.com/select-rows-columns-by-name-or-index-in-dataframe-using-loc-iloc-python-pandas/)
-[loc iloc source](https://www.pythonprogramming.in/what-is-difference-between-iloc-and-loc-in-pandas.html)
+- [usages from here](https://thispointer.com/select-rows-columns-by-name-or-index-in-dataframe-using-loc-iloc-python-pandas/)
+- [loc iloc source](https://www.pythonprogramming.in/what-is-difference-between-iloc-and-loc-in-pandas.html)
 
 ### Filtering rows
 
@@ -375,9 +384,9 @@ data1.iloc[(data1['Age'] < 30).values, [3,5]]
 filter = data1['Age'] > 30
 # Check if value is in list of values
 filter = data1['Age'].isin([30,31,32])
-# Aplying filter, returns rows where the filter row is True 
+# Applying filter, returns rows where the filter row is True
 data1[filter]
-# Aplying array filters only True will be returned
+# Applying array filters only True will be returned
 data1['Age'][-3:][[True, False, True]]
 # Same as
 data1['Age'][filter.values]
@@ -394,7 +403,7 @@ data1[filter1 | filter2]
 ### Column Functions
 
 ```py
-# List of unique values (incluedes nan)
+# List of unique values (includes nan)
 df.name.unique()
 
 # Counts unique values (excluding nan)
@@ -416,7 +425,7 @@ df["score"].var()
 df["score"].quantile(0.25)
 ```
 
-## Modifing the dataframe
+## Modifying the dataframe
 
 ### Work with the dataframe
 
@@ -424,11 +433,17 @@ df["score"].quantile(0.25)
 # First to deep copy the data (important)
 df = df_original.copy()
 
-# Contencat two DataFrames rows
+# Concatenate rows of multiple DataFrames
 df = pd.concat([df_1,df_2])
 # Ignore current indices
 df = pd.concat([df_1,df_2], ignore_index=True)
+# Concatenate columns of more dataframes
+df = df = pd.concat([df_1, df_2], axis=1)
+```
 
+- [pd.concat (Pandas documentation)](https://pandas.pydata.org/docs/reference/api/pandas.concat.html#pandas.concat)
+
+```py
 # Sort rows or columns # only kind='mergesort' is stable
 df.sort_values(by, axis=0, ascending=True, inplace=True, kind='quicksort')
 
@@ -447,14 +462,25 @@ df.set_index('column_name', verify_integrity=True)
 # Updating the index
 df.index = range(df.shape[0])
 
-# Sort index
+# Make column from index and set index to default
+df.reset_index()
+
+# Sort dataframe by index
 df = df.sort_index(ascending=False, ignore_index=True)
 
 # Remove duplicated indices
 df = df[~df3.index.duplicated(keep='first')]
+
+# Get common columns for two dataframes
+common_cols = df_1.index.intersection(df_2.index)
+
+# See what columns miss in the other dataframe
+add = train_X.columns.difference(test_X.columns) # Missing in test_X, needs to be added to test_X
+drop = test_X.columns.difference(train_X.columns) # Missing in train_X, needs to be dropped from test_X
 ```
 
 - [index](https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html)
+- [reset_index](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html)
 - [remove duplicated indices](https://stackoverflow.com/questions/13035764/remove-rows-with-duplicate-indices-pandas-dataframe-and-timeseries)
 
 ### Work with dataframe columns
@@ -462,19 +488,20 @@ df = df[~df3.index.duplicated(keep='first')]
 ```py
 # Drop columns
 df_tmp = df_tmp.drop(['FootSize',df.columns[0]], axis=1)
+df_tmp = df_tmp.drop(drop_cols, axis=1, errors='ignore') # ignore when columns are not present
 
 # Rename columns
 df.columns = [COLNAME1, COLNAME1, COLNAME1]
 # Rename specific columns
 df = df.rename(columns = {'BirthYear': 'Age'})
-# Rename colums with numbers from range
+# Rename columns with numbers from range
 df.columns = range(12)
 
 # Add multiple columns
 df[['nans', 'zeros']] = pd.DataFrame([[np.nan, 0]], index=df.index)
 # Add column (colNumber, name(multiindex here), columnData, allowDuplicates)
-df.insert(2, ("Age","Age"), [21, 23, 24, 21], True) 
-# Better exemple
+df.insert(2, ("Age","Age"), [21, 23, 24, 21], True)
+# Better example
 yearColumn = [year for x in range(candidates_tmp.shape[0])]
 candidates_tmp.insert(0, ("Rok","Rok"), yearColumn, False)
 
@@ -490,9 +517,8 @@ extracted_columns = df[feature].str.extract(extract_pattern)
 df = df.join(extracted_columns)
 ```
 
-[Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
-
-[add multiple columns 8 ways (stackoverflow)](https://stackoverflow.com/questions/39050539/how-to-add-multiple-columns-to-pandas-dataframe-in-one-assignment)
+- [Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
+- [add multiple columns 8 ways (stackoverflow)](https://stackoverflow.com/questions/39050539/how-to-add-multiple-columns-to-pandas-dataframe-in-one-assignment)
 
 ### Missing values
 
@@ -545,6 +571,9 @@ df["a"] = pd.to_numeric(df["a"])
 
 # Change columns type to datetime
 df[df.columns[0]] = pd.to_datetime(df.columns[0], format='%d.%m.%Y')
+# Convert column to timedelta
+df.cpu_time = pd.to_timedelta(df.cpu_time)
+df.wall_time = df.wall_time.apply(lambda x: pd.to_timedelta(x).total_seconds())
 
 # Using apply (conversion to string)
 df["column"] = df["column"].apply(str)
@@ -560,12 +589,12 @@ df[feature] = df[feature].cat.codes
 rfm[RECENCY] = rfm[RECENCY].astype('timedelta64[D]')
 ```
 
-[python date time formats](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
+- [python date time formats](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
 
 ### Modify values
 
 ```py
-# Unlike arrays, with df doesnt't work changing values of slices
+# Unlike arrays, with df doesn't work changing values of slices
 df['Age'][0:10] = 10
 # Change value of slice
 df.loc[0:10, ['Age']] = 0
@@ -583,7 +612,7 @@ Called with dataframe default `axis=0` i.e. iterates over columns `axis=1` itera
 data['Sex'] = data['Sex'].apply(lambda x: 1 if x == 'female' else 0)
 
 # Default axis for DataFrame.apply is axis=0 (goes through lines)
-# to acess columns use axis=1
+# to access columns use axis=1
 candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
     np.nan if (pd.isnull(x[0]) & pd.isnull(x[1])) else
         x[0] if pd.isnull(x[1]) else
@@ -593,9 +622,8 @@ candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
 df['col_3'] = df.apply(lambda x: f(x.col_1, x.col_2), axis=1)
 ```
 
-[link to lambda with function](https://stackoverflow.com/questions/13331698/how-to-apply-a-function-to-two-columns-of-pandas-dataframe)
-
-[apply](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html)
+- [link to lambda with function](https://stackoverflow.com/questions/13331698/how-to-apply-a-function-to-two-columns-of-pandas-dataframe)
+- [apply](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html)
 
 ### String methods
 
@@ -613,7 +641,7 @@ df["column"] = df["column"].str.strip()
 df["column"].str.isnumeric()
 ```
 
-[strip](https://www.geeksforgeeks.org/python-pandas-series-str-strip-lstrip-and-rstrip/)
+- [strip](https://www.geeksforgeeks.org/python-pandas-series-str-strip-lstrip-and-rstrip/)
 
 #### Match (regex)
 
@@ -626,7 +654,7 @@ display(df[~numeral_filter])
 Series.str.match(pattern, case=True, flags=0, na=nan)
 ```
 
-[pandas match](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.match.html)
+- [pandas match](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.match.html)
 
 #### Extract (regex)
 
@@ -643,7 +671,7 @@ Output:
 2    NaN   NaN
 ```
 
-[pandas extract](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.extract.html)
+- [pandas extract](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.extract.html)
 
 ```py
 degreeNP = r'DiS|Dipl\.um.'
@@ -665,9 +693,8 @@ columns = candidates[NAME_SURNAME].str.extract(postDegreePattern, flags=re.IGNOR
 df[NAME_SURNAME] = df[NAME_SURNAME].str.replace(postNominalPattern, '', flags=re.IGNORECASE)
 ```
 
-[pandas replace](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.replace.html)
-
-[How to use Regex in Pandas](https://kanoki.org/2019/11/12/how-to-use-regex-in-pandas/)
+- [pandas replace](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.replace.html)
+- [How to use Regex in Pandas](https://kanoki.org/2019/11/12/how-to-use-regex-in-pandas/)
 
 #### Contains (regex)
 
@@ -676,24 +703,54 @@ df[NAME_SURNAME] = df[NAME_SURNAME].str.replace(postNominalPattern, '', flags=re
 df[feature].str.contains(r"X\.\d+", case=False).sum()
 ```
 
-[contains (pandas documentation)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.contains.html)
+- [contains (pandas documentation)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.contains.html)
+
+### Discretize Column Values
+
+
+```py
+# Bin values into discrete intervals.
+feature = "age"
+interval_num = 10
+bin_labels = list(ranger(interval_num))
+
+# Equal width intervals
+pd.cut(df[feature], interval_num, labels=bin_labels)
+# Equal depth (frequency) intervals
+pd.qcut(df[feature], interval_num, labels=bin_labels)
+```
+
+- [cut](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html)
+- [qcut](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.qcut.html)
 
 ### Group by
 
 ```py
 # Groupby data like sql groupby
-dataUJAK[dataUJAK['Rok'] > 2000].groupby(['Název práce']).size().sort_values(ascending=False)
+UJAK_data[UJAK_data['Year'] > 2000].groupby(['Theses name']).size().sort_values(ascending=False)
+
+# Get sample of each category
+sample = df.groupby("category").sample(n=100)
+
+# Mean
+df = df.groupby(["method", "n"]).mean()
+
+# Aggregate
+df = df.agg(['mean', 'max'])
 
 # Mode
+mediumModes = df.groupby(DEP)[MED].apply(lambda x: x.mode())
+# Or
 mostCommonMediumForEveryDepartment = {}
 for dep, group in df[[DEP, MED]].groupby(DEP):
     sizes = group.groupby("Medium").size()
     mostCommonMediumForEveryDepartment[dep] = sizes[sizes == sizes.max()].index.values[0]
-
-mediumModes = df.groupby(DEP)[MED].apply(lambda x: x.mode())
 ```
-[groupby](https://pandas.pydata.org/pandas-docs/stable/reference/groupby.html)
 
+- [groupby](https://pandas.pydata.org/pandas-docs/stable/reference/groupby.html)
+- [groupby.sample](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.DataFrameGroupBy.sample.html)
+- [.agg()](https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.core.groupby.DataFrameGroupBy.agg.html)
+- [pivot table](https://tryolabs.com/blog/2017/03/16/pandas-seaborn-a-guide-to-handle-visualize-data-elegantly/)
 
 ## Poltting the data
 
@@ -726,8 +783,8 @@ graph1 = not_survived.Age.hist()
 data2.Age.plot.hist(ax = graph1)
 ```
 
-[area link ](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html)
-[area plot](https://stackoverflow.com/questions/55214249/how-to-create-an-area-plot-in-seaborn)
+- [area link ](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html)
+- [area plot](https://stackoverflow.com/questions/55214249/how-to-create-an-area-plot-in-seaborn)
 
 ## Advanced features
 
@@ -749,4 +806,25 @@ candidates_tmp = candidates_tmp.rename(columns = {'Kandidátnílistina': 'Kandid
 
 # Flatten the MultiIndex into Index of tuples
 columns1.to_flat_index()
+
+# Create columns from multiindex level
+df.reset_index()        # removes all levels
+df.reset_index(level=2) # removes only the second level
+
+# Stack level from columns to index
+df.stack()  # stacks the deepest column level into index
+df.stack(0) # stacks the outher column level into index
+
+# Create columns from index level
+df.unstack()        # Creates columns from the deepest index level
+df.unstack(level=0) # Creates columns from the most outher index level
+
+# From multiple columns one column with multiple rows
+df = pd.melt(df, id_vars=["data_name", "model_name"],
+        value_name="score_value").rename(columns={'variable':"score", "model_name":"model"})
 ```
+
+- [reset_index (pandas)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html)
+- [unstack](https://stackoverflow.com/questions/26255671/pandas-column-values-to-columns)
+- [melt](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.melt.html)
+- [melt (stackoverflow)](https://stackoverflow.com/questions/50098113/convert-columns-into-multiple-rows-in-pandas-dataframe)
