@@ -1,8 +1,10 @@
-# vi
+# Vi
 
 ## Contents <!-- omit in toc -->
 
 - [Introduction](#introduction)
+  - [Copy from and past to clipboard](#copy-from-and-past-to-clipboard)
+  - [Autocomplete](#autocomplete)
 - [Normal mode](#normal-mode)
   - [Move](#move)
   - [Edit](#edit)
@@ -20,34 +22,62 @@
 
 ## Introduction
 
-:Tutor - start tutorial.
+Where to learn vim
+1) In vim
+   - `:Tutor` - start tutorial.
+2) [vim tutor by Luke Smith](https://www.youtube.com/watch?v=d8XtNXutVto)
+3) [learn by playing a game (vim adventures)](https://vim-adventures.com/)
+4) [Basic Vi Commands (Colorado State University)](https://www.cs.colostate.edu/helpdocs/vi.html)
 
-j - move down.
-k - move up.
-h - move right.
-l - move left.
+#### Basic movement
 
-u - undo stuff
-ctrl+r - redo
+| Shortcut | Action      |
+| :---:    | ---         |
+| j        | move down.  |
+| k        | move up.    |
+| h        | move right. |
+| l        | move left.  |
 
-x - delete character.
-i a - start insert move before/after cursor.
-I A - start insert mode at the beginning/end of the line.
+#### Basic editing
 
-:q ZQ - quit.
-:wq ZZ x - save and quit.
+| Shortcut | Action                                          |
+| :---:    | ---                                             |
+| x        | Delete character.                               |
+| dd       | Delete current line.                            |
+| yy       | Yank (copy) current line.                       |
+| p        | Paste content below the cursor line.            |
+| i        | Start insert mode right before the cursor.      |
+| shift+i  | Start insert mode at the beginning of the line. |
+| a        | Start insert mode right after the cursor.       |
+| shift+a  | Start insert mode at the end of the line.       |
+| esc      | Exit insert mode = start normal mode.           |
+
+#### Basic operations
+
+| Shortcut        | Action         |
+| :---:           | ---            |
+| u               | Undo action.   |
+| ctrl+r          | Redo action.   |
+| :q shift+zq     | Quit.          |
+| :x :wq shift+zz | Save and quit. |
+
+#### Advanced movement
+
+| Shortcut | Action                                          |
+| :---:    | ---                                             |
+| w        | Move to the next beginning of a word.           |
+| shift+w  | Move one position after next whitespace.        |
+| b        | Move to the previous beginning of a word.       |
+| shift+b  | Move one position before previous whitespace.   |
+| e        | Move to the end of the next word.               |
+| shift+e  | Move at the position before next whitespace.    |
+| ge       | Move to the end of previous word.               |
+| $        | Move cursor to the end of a line.               |
+| 0        | Move cursor to the beginning of a line.         |
+| ^        | Move cursor to the beginning of the first word. |
 
 dw - delete to the end of the word
-D d$ - delete to the end of the line
-
-w - move to the next beginning of a word.
-e - move to the next end of a word.
-b - move to the previous beginning of a word. 
-$ - move cursor to the end of a line.
-0 - move cursor to the beginning of a line.
-^ - move cursor to the beginning of the first word.
-
-dd - delete line
+shift+d d$ - delete to the end of the line
 
 ctrl+u - move half page up
 ctrl+d - move half page down
@@ -58,6 +88,8 @@ zb - move cursor line to the bottom.
 
 { - move to the previous empty line.
 } - move to the next empty line.
+( - Move to the previous sentence.
+) - Move to the next sentence.
 
 daw dap da( da"
 diw dip di( di"
@@ -68,12 +100,11 @@ diw dip di( di"
 :earlier 15m
 :later 10m
 
-p - paste below the cursor
-
-r - replace content with something.
+r - Replace one character.
+shift+r - Replace multiple characters (replace, not insert).
 
 c - delete and trigger insert mode.
-C c$ - delete rest of the line and trigger insert mode.I
+shift+c c$ - delete rest of the line and trigger insert mode.I
 
 ctrl+g - show current line of the file and percentage.
 20% - move to the 20% of the document.
@@ -82,10 +113,10 @@ gg - move to the top of the document.
 
 / - go to the first result of searched thing
 n - go the next match
-shift+N - go to the previous match.
+shift+n - go to the previous match.
 
 o - creates paragraph bellow the cursor and trigger insert mode.
-O - creates paragraph beneath the cursor and trigger the insert mode.
+shift+o - creates paragraph beneath the cursor and trigger the insert mode.
 
 % - move the cursor (to matching) parentheses.
 
@@ -96,7 +127,6 @@ O - creates paragraph beneath the cursor and trigger the insert mode.
 
 :! - runs any terminal command
 
-y - yanks (copy)
 yap yaw  
 
 v - triggers visual mode.
@@ -110,6 +140,18 @@ z - get the dictionary to choose from.
 
 . - repeat last action.
 :norm 02wyl$p - example: go to the first character of second word and past it at the end.
+
+### Copy from and past to clipboard
+
+Use the `y` and `p` the same way, only type `"+` before the action.
+- e.g use `"+p` to paste the content from the clipboard or use `"+yy` to copy the current line.
+
+### Autocomplete
+
+| Shortcut | Action |
+| :---:    | --- |
+| ctrl+n   | Go to next recommendation.     |
+| ctrl+p   | Go to previous recommendation. |
 
 ## Normal mode
 
@@ -201,18 +243,19 @@ z - get the dictionary to choose from.
 
 ## Command mode
 
-- po stisku klavesy :
+Command mode starts with press of the key `:`.
 
-| Command     | Action |
-| ---         | --- |
-| :q          | ukonci |
-| :q!         | ukonci bez kontroly ulozeni |
-| :w          | zapis zmeny do existujiciho souboru |
-| :w filename | uloz soubor |
-| :r filename | otevri soubor |
-| :e filename | otevri novy soubor |
-| :wq         | zapis a ukonci |
-| :qa         | ukonci vsechny soubory |
+| Command     | Action                          |
+| ---         | ---                             |
+| :q          | Quit vi.                        |
+| :q!         | Force the quit no matter what.  |
+| :w          | Write the changes to the file.  |
+| :w filename | Write as a filename.            |
+| :r filename | Open file.                      |
+| :e filename | Open new file.                  |
+| :wq         | Write changes and quit.         |
+| :qa         | Quit all files.                 |
+| :retab      | Convert tabs to spaces.         |
 
 | Command          | Action |
 | ---              | --- |
@@ -220,14 +263,16 @@ z - get the dictionary to choose from.
 | :%s/Line/line/g  | rozsah celeho souboru
 | :%s/Line/line/gc | potvrzeni nahrady (y - ano, n - ne, a - ano a vsechny nasledujici, q - ukonci, l - ano a ukonci)
 
-| Command            | Action |
-| ---                | --- |
-| :set nu!           | zapne/vypne cisla radku |
-| :set tabstop=4     | nastavi pocet mezer tabulatoru |
+| Command            | Action                                         |
+| ---                | ---                                            |
+| :set nu!           | turns on/off the line number                   |
+| :set tabstop=4     | sets the number of spaces for tab              |
 | :set softtabstop=0 |
 | :set expandtab     |
 | :set shiftwidth=4  |
 | :set smarttab      |
+| :set ignorecase    | also `set ic` search will be case insensitive  |
+
 
 | Command  | Action |
 | ---      | --- |

@@ -12,7 +12,6 @@ Nice tool, enabling to work with code surounded by text smoothly.
   - [Edit Mode (press Enter to enable)](#edit-mode-press-enter-to-enable)
 - [IPython](#ipython)
   - [Magic functions](#magic-functions)
-  - [Measure cell time](#measure-cell-time)
 
 ## Installation
 
@@ -109,12 +108,20 @@ display(anything)
 
 ### Magic functions
 
-- Line magic functions
-- Cell magic functions starts with `%%`, gets the rest of the cell as an argument.
+#### Cell Magic Functions
 
-### Measure cell time
+- Cell magic functions starts with `%%`, gets the rest of the cell as an argument.
 
 ```ipynb
 %%time
+# Measure cell time
+```
 
+#### Line Magic Functions
+
+```ipynb
+# Measure execution time
+%time function()
+# Average run time of multiple executions
+%timeit function()
 ```

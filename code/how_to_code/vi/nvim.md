@@ -78,7 +78,7 @@ call plug#end()
 
 Restart nvim and run `:PlugInstall`.
 
-### [Make from nvim VSCode](https://www.youtube.com/watch?v=gnupOrSEikQ)
+### [How to Configure Vim like VSCode (benawad)](https://www.youtube.com/watch?v=gnupOrSEikQ)
 
 - [init.vim file from Ben Awad](https://gist.github.com/benawad/b768f5a5bbd92c8baabd363b7e79786f)
 

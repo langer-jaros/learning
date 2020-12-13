@@ -1,6 +1,55 @@
 # Term project
 
-## Assingments
+## Contents <!-- omit in toc -->
+- [Basics](#basics)
+  - [Study Links](#study-links)
+  - [Environment](#environment)
+  - [Models](#models)
+- [Assignments](#assignments)
+- [Approaches](#approaches)
+
+## Basics
+
+### Study Links
+
+- (machinelearningmastery)[https://machinelearningmastery.com/]
+- (AI, ML, DL (Amidi, Stanford))[https://stanford.edu/~shervine/teaching/]
+- (deeplearning.ai (coursera))[https://www.coursera.org/learn/convolutional-neural-networks?specialization=deep-learning]
+
+### Environment
+
+- [Kaggle vs Colab (towardsdatascience)](https://towardsdatascience.com/kaggle-vs-colab-faceoff-which-free-gpu-provider-is-tops-d4f0cd625029)
+- [Google Colab vs Kaggle (analyticsindiamag)](https://analyticsindiamag.com/google-colab-vs-kaggle-kernels-which-of-the-two-platforms-should-you-go-for/)
+
+#### Google Colab
+
+- gpu - tpu
+- connect with drive
+- open/push github
+
+#### Kaggle
+
+- [How to Use Kaggle](https://www.kaggle.com/docs/notebooks)
+- [upload data example](https://www.youtube.com/watch?v=0jQwAp7po00&feature=youtu.be)
+- [upload python scripts example](https://www.kaggle.com/rtatman/reproducing-research-men-also-like-shopping)
+- [download data from kaggle output](https://www.kaggle.com/product-feedback/109715)
+
+### Models
+
+- DNN
+  - checkpoint, early stopping
+  - save weights, load weights
+  - regularization (batch normalization)
+  - show the model
+  - custom loss function
+  - custom activation function
+- CNN
+  - conv2D
+  - Transfer learning
+  - save weights during learning
+  - conv1D
+
+## Assignments
 
 1) Pervasive Attention: 2D Convolutional Neural Networks for Sequence-to-Sequence Prediction
 2) Text clustering

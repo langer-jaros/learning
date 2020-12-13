@@ -1,6 +1,6 @@
 # NumPy
 
-`2020/10/31, Jaroslav Langer`
+`2020, Dec. 1st, Jaroslav Langer`
 
 Basically a mathematical library.
 
@@ -15,6 +15,7 @@ Basically a mathematical library.
 - [NumPy (N-dimensional) array (ndarray)](#numpy-n-dimensional-array-ndarray)
   - [Sort](#sort)
 - [array dtypes (Array-protocol type strings)](#array-dtypes-array-protocol-type-strings)
+- [Random](#random)
 
 ## Documentation
 
@@ -50,9 +51,13 @@ np.float64
 ```py
 # Round number
 np.round(theNumber, decimals=2)
+
+# cube-root of one element or every element of an array
+np.cbrt(x)
 ```
 
-[Round numpy](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.round_.html)
+- [Round numpy](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.round_.html)
+- [cbrt](https://numpy.org/doc/stable/reference/generated/numpy.cbrt.html)
 
 ## NumPy (N-dimensional) array (ndarray)
 
@@ -99,3 +104,12 @@ dt = np.dtype('c16')  # 128-bit complex floating-point number
 ```
 
 [array dtypes source](https://docs.scipy.org/doc/numpy-1.10.1/reference/arrays.dtypes.html)
+
+## Random
+
+```py
+numpy.random.seed(seed=42)  # Usually for testing purposes the seed is handy
+sample = np.random.Generator.choice(array, size=features_num, replace=False)
+```
+
+- [choice](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html#numpy.random.Generator.choice)

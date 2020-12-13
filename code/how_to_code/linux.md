@@ -2,9 +2,30 @@
 
 The art of using PC like a human being.
 
-```2020/11/14, Jaroslav Langer, using linux mint 19```
+`2020/11/14, Jaroslav Langer, using linux mint 19`
+
+## Contents <!-- omit in toc -->
+- [Terminal](#terminal)
+  - [Copy and past in terminal](#copy-and-past-in-terminal)
+  - [Linux directory structure](#linux-directory-structure)
+  - [Type special characters](#type-special-characters)
+- [Set caps lock to esc](#set-caps-lock-to-esc)
+- [Set key stroke rate](#set-key-stroke-rate)
+- [Redshift](#redshift)
+- [Computers](#computers)
+  - [BOM](#bom)
 
 ## Terminal
+
+### Terminal shortcuts
+
+| shortcut      | action                                            |
+| ---           | ---                                               |
+| ctrl+k        | Kill - cut the rest of the line from the cursor.  |
+| ctrl+w        | Kill the word right before the cursor.            |
+| ctrl+u        | Kill the begging of the line up to the cursor.    |
+| ctrl+y        | Yank - paste the text that was previously killed. |
+| alt+backspace | Delete by words, not by characters.               |
 
 ### Copy and past in terminal
 
@@ -48,6 +69,11 @@ Perhaps to write a dash, in linux there is a way to write unicode symbols.
 ```sh
 xset r rate 200 20
 ```
+## Redshift
+
+Program that lowers the temperature of the screen, so the eyes suffer much less.
+
+- [redshift](http://jonls.dk/redshift/)
 
 ## Computers
 

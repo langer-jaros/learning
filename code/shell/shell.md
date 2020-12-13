@@ -13,21 +13,20 @@
   - [Find anything](#find-anything)
   - [Install stuff](#install-stuff)
 - [Advanced](#advanced)
-  - [STDIN STDOUT STDERR](#stdin-stdout-stderr)
-  - [PIPE](#pipe)
-  - [User management and priviledges](#user-management-and-priviledges)
+  - [Stdin, stdout, stderr](#stdin-stdout-stderr)
+  - [Pipe](#pipe)
+  - [User management and privileges](#user-management-and-privileges)
   - [Files - advanced](#files---advanced)
   - [Useful commands](#useful-commands)
   - [Scripts](#scripts)
   - [Call a script](#call-a-script)
   - [SSH](#ssh)
   - [Processes](#processes)
-  - [Enviroments and variables](#enviroments-and-variables)
+  - [Environments and variables](#environments-and-variables)
   - [History](#history)
   - [Text transformation](#text-transformation)
   - [Expansions](#expansions)
   - [Regular Expressions](#regular-expressions)
-  - [BRE ERE](#bre-ere)
   - [Grep](#grep)
   - [split](#split)
   - [cat](#cat)
@@ -46,15 +45,15 @@
   - [Bracket tests](#bracket-tests)
   - [Conditions](#conditions)
   - [Loops](#loops)
-  - [Functions](#functions)
   - [Arguments](#arguments)
+  - [Functions](#functions)
 
 ---
 
 ## Introduction
 
 This document is written in purpose to simplify the access to the advanced usage of a computer.
-The knowledge is based on the PVS course at VSCHT, Prague.
+The knowledge is based on the PVS course at UCT, Prague.
 
 ### Conventions and symbols
 
@@ -350,29 +349,45 @@ tar -xvjf oldFile.tar.bz2 -C /path/Directory
 
 #### Links
 
-+ hard link
+**soft link**
+- Points to the original file, can be used as the original file for multiple purposes.
+
 ```sh
-ln FILENAME LINKNAME
-cp -l FILENAME LINKNAME
-```
-+ soft link
-```
+# Ways to create soft links
 ln -s FILENAME LINKNAME
 cp -s FILENAME LINKNAME
+```
+
+Example Usage
+- I installed "code_like_hell" editor with the executable file at /usr/share/code_like_hell/bin/code_like_hell
+- I want to open the editor just by typing `ch` to the terminal.
+- So I create an symbolic link called `ch` at the `/usr/bin` directory.
+
+```sh
+ln -s /usr/share/code_like_hell/bin/code_like_hell /usr/bin/ch
+```
+
+**hard link**
+- Acts like a synchronized copy of the original file, change in one file changes the other.
+
+```sh
+# Hard link creations
+ln FILENAME LINKNAME
+cp -l FILENAME LINKNAME
 ```
 
 ---
 
 ### Wildcards - symbols with special meaning
 
-Especially useful when we don't know the name exactly or we perpahps want to use more than one exact name.
+Especially useful when we don't know the name exactly or we perhaps want to use more than one exact name.
 
 ```sh
 * # Anything
 
 ? # One character
 
-# Not containig anything from bracket
+# Not containing anything from bracket
 [! ] # [^ ] # Equivalent in RegEx
 
 # Ranges
@@ -425,20 +440,16 @@ find /  -name   "toBeFound"     ACTIONS -delete
 #### Install from official repositories
 
 ```sh
-sudo apt-get install almost_anything
+sudo apt-get install ALMOST_ANYTHING
 ```
 
 #### Install from package .deb
 
-works the same way for an update
+Works the same way for an update.
 
 ```sh
-sudo dpkg -i package_name.deb
-```
-
-##### For resolving possibly corupted dependencies
-
-```sh
+sudo dpkg -i PACKAGE_NAME.deb
+# attempt to fix corrupted dependencies
 sudo apt-get install -f
 ```
 
@@ -447,7 +458,8 @@ sudo apt-get install -f
 #### Version of installed software
 
 ```sh
-anything --version
+# Most of the programs have implemented option --version
+COMMAND_NAME --version
 ```
 
 #### Search for package
@@ -467,7 +479,7 @@ dpkg-query -l 'someth*'
 
 ## Advanced
 
-### STDIN STDOUT STDERR
+### Stdin, stdout, stderr
 
 ```bash
 0<      1> >>   2>       
@@ -475,7 +487,7 @@ dpkg-query -l 'someth*'
 &> where_to
 ```
 
-### PIPE
+### Pipe
 
 Connects STDOUT of one command to STDIN of another
 
@@ -496,9 +508,9 @@ cat < pipe2
 
 - [mkfifo (how to forge)](https://www.howtoforge.com/linux-mkfifo-command/)
 
-### User management and priviledges
+### User management and privileges
 
-#### TBD Bacis commands
+#### TBD Basic commands
 
 ```sh
 groupmod
@@ -553,7 +565,7 @@ echo $SHLVL
 
 #### Superuser
 
-Login as superuser, superuser's password required.
+Login as superuser, superuser password required.
 ```sh
 su
 ```
@@ -561,27 +573,28 @@ Login as superuser, current user's password required.
 ```sh
 sudo su
 ```
-grant to the command priviledges of superuser
+Grant to the command privileges of superuser.
 ```sh
 sudo COMMAND
 ```
 
 #### User permissions
 
-Everything has set permissions.
+Everything has permissions set.
 
-Exemple
+Example
 
 ```sh
 ls -la
 #drwxrwxrwx NUMBER USER USER NUMBER DATE NAME_OF_THE_FILE
 ```
-The first 10 letters are the permissions, the structre follows
+The first 10 letters are the permissions, the structure follows
 ```
 -        ---  ---   ---
 filemode user group others
 ```
-filetypes
+
+File types
 
 + d - directory 
 + l - link 	
@@ -592,7 +605,7 @@ filetypes
 
 ```
 chmod u-x
-	rename needs directory priviladges
+	rename needs directory privileges
 	to read files directory needs r+x
 	to rename files directory needs w+x
 	--- 000	0
@@ -630,12 +643,12 @@ touch path/to/my/newFileName.anything
 echo sth
 
 # Take output of command and writes it to the file
-command > file
-echo text > fileExample
+COMMAND > FILE
+echo text > file_example
 
 # Take output of command and writes it at the end of file
-command >> file
-echo next >> soubor
+COMMAND >> APPENDED_FILE
+echo next >> APPENDED_FILE
 
 # Output every line from file
 cat file
@@ -677,8 +690,8 @@ file_2 as stdin
 some_command | diff file_1 -
 ```
 
-[source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
-[source2](https://www.computerhope.com/unix/udiff.htm)
+- [source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
+- [source2](https://www.computerhope.com/unix/udiff.htm)
 
 #### cmp
 
@@ -705,9 +718,9 @@ man -f COMMAND
 #### Show big files in a terminal
 
 ```sh
-# Ouput stays into terminal after pressing q to quit
+# Output stays into terminal after pressing q to quit
 more
-# File open in vim-like enviroment after pressing :q to quit the terminal is clean
+# File open in vim-like environment after pressing :q to quit the terminal is clean
 less
 ```
 
@@ -716,6 +729,12 @@ less
 Works like double-click
 ```sh
 xdg-open ANY_NAME.ANYTHING
+```
+
+#### wget - download file from url (webpage, image, etc.)
+
+```sh
+wget https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-2.jpg
 ```
 
 #### Browser folders like a pro
@@ -727,22 +746,26 @@ sudo apt-get instal ranger # install ranger
 ranger # start ranger
 ```
 
-| key | action                                  |
-| --- | ---                                     |
-| s   | write whatever like in normal terminal  |
-| zh  | see hidden files and directories        |
-| /   | search                                  |
+| key   | action                                |
+| ---   | ---                                   |
+| j k   | move up, move down                    |
+| h l   | move level up, move into directory    |
+| s     | open terminal console                 |
+| zh    | see hidden files and directories      |
+| / n N | search, go to next, previous match    |
 
-#### show terminal heigth and width
+- [ranger (digitalocean)](https://www.digitalocean.com/community/tutorials/installing-and-using-ranger-a-terminal-file-manager-on-a-ubuntu-vps)
+
+#### show terminal height and width
 
 ```sh
-# show heigth
+# show height
 tput lines
 # show width
 tput cols
 ```
 
-#### Push process the backround
+#### Push process the background
 
 "I have opened something with terminal, now i see the process and can not use the terminal anymore"
 
@@ -934,7 +957,7 @@ killall -9 chrome
 
 ---
 
-### Enviroments and variables
+### Environments and variables
 
 Variables and functions, can be exported (global) or not.
 
@@ -1139,7 +1162,7 @@ echo $((1238 % 17)) echo 14
 
 `“REGEX” or “REGEXP”?  ->  /REGEXP?/`
 
-### BRE ERE
+#### BRE ERE
 
 - BRE = Basic Regular Expressions
   - `. * [^- ] ^ $`
@@ -1679,7 +1702,7 @@ Test strings
 | ---       | ---         |
 | -n        |             |
 | -z        |             |
-| ==        |             |
+| =         |             |
 | !=        |             |
 | <         |             |
 | >         |             |
@@ -1701,7 +1724,7 @@ Example:
 [ f1 -nt f2 ]; echo $?
 ```
 
-#### Double square bracket test
+#### Double square bracket test (Bash only)
 
 Usage `[[_arg1 op arg2_]]`
 
@@ -1844,24 +1867,6 @@ continue number # implicit 1; starts next iteration of def. loop
 
 - [for loop link](https://www.cyberciti.biz/faq/bash-for-loop/)
 
-### Functions
-
-```sh
-function name{
-    commands;
-}
-
-name () {
-    commands;
-}
-
-return # if not, then exit status of function is the es of last function
-
-to return string:
-        last line echo var
-exec:   x=$(fu)
-```
-
 ### Arguments
 
 ```sh
@@ -1879,3 +1884,37 @@ echo $@ # Array of all arguments
 shift   # shift it by one
 shift 4 # shift it by 4
 ```
+
+### Functions
+
+What function can and can not do
+- `return` code in range 0-255
+- `exit` script with code 0-255
+- function has its own positional parameters e.g. $1 $@ (does not change the script one)
+- it can change variables that are outside of that function
+- anything else as code outside of a function
+
+```sh
+function name {
+    commands;
+}
+
+name () {
+    commands;
+}
+
+return # if not, then exit status of function is the es of last function
+```
+
+Return string from function
+```sh
+# The key is to echo at the last line of the function
+get_str() {
+    # Multiple lines of anything
+    echo str
+}
+
+x=$(get_str)
+```
+
+- [More - functions (shellscript)](https://www.shellscript.sh/functions.html)
