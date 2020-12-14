@@ -1,145 +1,143 @@
-# Vi
+# Vim
 
 ## Contents <!-- omit in toc -->
 
 - [Introduction](#introduction)
+  - [Where to learn vim](#where-to-learn-vim)
+  - [Vim modes](#vim-modes)
+- [Basics](#basics)
+  - [Basic movement](#basic-movement)
+  - [Basic editing](#basic-editing)
+  - [Basic operations](#basic-operations)
+  - [Basic commands](#basic-commands)
+  - [Search for pattern](#search-for-pattern)
   - [Copy from and past to clipboard](#copy-from-and-past-to-clipboard)
   - [Autocomplete](#autocomplete)
-- [Normal mode](#normal-mode)
-  - [Move](#move)
-  - [Edit](#edit)
+- [Advanced](#advanced)
+  - [Advanced movement](#advanced-movement)
+  - [Editing movement combination](#editing-movement-combination)
+  - [Visual modes](#visual-modes)
+  - [Change view](#change-view)
+  - [Replace pattern](#replace-pattern)
+  - [Other movements](#other-movements)
+  - [Commands](#commands)
+  - [Settings](#settings)
+  - [Check spelling](#check-spelling)
+- [Rest of the previous Czech version (something duplicated)](#rest-of-the-previous-czech-version-something-duplicated)
   - [Cut](#cut)
   - [Copy](#copy)
   - [Paste](#paste)
   - [General](#general)
   - [Find Character](#find-character)
   - [Find Pattern](#find-pattern)
-- [Insert mode](#insert-mode)
-- [Command mode](#command-mode)
-- [Visual mode](#visual-mode)
-- [More files](#more-files)
+  - [Commands](#commands-1)
+  - [Visual mode](#visual-mode)
+  - [More files](#more-files)
 - [Configuration file](#configuration-file)
 
 ## Introduction
 
-Where to learn vim
-1) In vim
+### Where to learn vim
+
+1) Inside the vim editor.
    - `:Tutor` - start tutorial.
 2) [vim tutor by Luke Smith](https://www.youtube.com/watch?v=d8XtNXutVto)
 3) [learn by playing a game (vim adventures)](https://vim-adventures.com/)
 4) [Basic Vi Commands (Colorado State University)](https://www.cs.colostate.edu/helpdocs/vi.html)
 
-#### Basic movement
+### Vim modes
 
-| Shortcut | Action      |
-| :---:    | ---         |
-| j        | move down.  |
-| k        | move up.    |
-| h        | move right. |
-| l        | move left.  |
+#### Normal mode
 
-#### Basic editing
+- Every vim session starts in normal mode.
+- In normal mode keys do not write down their letters, they all have special actions.
 
-| Shortcut | Action                                          |
-| :---:    | ---                                             |
-| x        | Delete character.                               |
-| dd       | Delete current line.                            |
-| yy       | Yank (copy) current line.                       |
-| p        | Paste content below the cursor line.            |
-| i        | Start insert mode right before the cursor.      |
-| shift+i  | Start insert mode at the beginning of the line. |
-| a        | Start insert mode right after the cursor.       |
-| shift+a  | Start insert mode at the end of the line.       |
-| esc      | Exit insert mode = start normal mode.           |
+#### Insert mode
 
-#### Basic operations
+- Insert mode works the same as normal text editor.
+    - If you type "b" the "b" appears on the screen.
+- To enter the insert mode press `i`.
+- Press `esc` to exit the insert mode.
 
-| Shortcut        | Action         |
-| :---:           | ---            |
-| u               | Undo action.   |
-| ctrl+r          | Redo action.   |
-| :q shift+zq     | Quit.          |
-| :x :wq shift+zz | Save and quit. |
+#### Visual mode
 
-#### Advanced movement
+- Visual mode enables to visually select the text and apply editing to the selection.
+- To enter the visual mode press `v`.
+- Press `esc` to exit the visual mode.
 
-| Shortcut | Action                                          |
-| :---:    | ---                                             |
-| w        | Move to the next beginning of a word.           |
-| shift+w  | Move one position after next whitespace.        |
-| b        | Move to the previous beginning of a word.       |
-| shift+b  | Move one position before previous whitespace.   |
-| e        | Move to the end of the next word.               |
-| shift+e  | Move at the position before next whitespace.    |
-| ge       | Move to the end of previous word.               |
-| $        | Move cursor to the end of a line.               |
-| 0        | Move cursor to the beginning of a line.         |
-| ^        | Move cursor to the beginning of the first word. |
+#### Command mode
 
-dw - delete to the end of the word
-shift+d d$ - delete to the end of the line
+- Command mode allows you to use advanced commands such as replacing text with regex.
+    - It also allows you to set up the editor e.g. set search to be case insensitive.
+- To enter the command mode press `:`.
+- Use `backspace` to exit the command mode.
 
-ctrl+u - move half page up
-ctrl+d - move half page down
+## Basics
 
-zt - move current line to the top.
-zz - move cursor line to the middle.
-zb - move cursor line to the bottom.
+### Basic movement
 
-{ - move to the previous empty line.
-} - move to the next empty line.
-( - Move to the previous sentence.
-) - Move to the next sentence.
+| Shortcut   | Action                  |
+| :---:      | ---                     |
+| j          | Move down.              |
+| k          | Move up.                |
+| h          | Move right.             |
+| l          | Move left.              |
+| gg         | Move to the first line. |
+| shift+g    | Move to the last line.  |
+| 12+shift+g | Move to the 12th line.  |
+| :12        | Move to the line 12.    |
+| ctrl+u     | Move half page up.      |
+| ctrl+d     | Move half page down.    |
 
-daw dap da( da"
-diw dip di( di"
+### Basic editing
 
-4k
+| Shortcut | Action                                                         |
+| :---:    | ---                                                            |
+| dd       | Delete current line.                                           |
+| yy       | Yank (copy) current line.                                      |
+| p        | Paste deleted or yanked line below the cursor.                 |
+| x        | Delete character under the cursor.                             |
+| r8       | Replace the cursor character with number 8.                    |
+| shift+r  | Start replacing all characters (like insert mode) until `esc`. |
+| shift+j  | Delete current line's newline.                                 |
 
-:sort
-:earlier 15m
-:later 10m
+#### Insert mode editing
 
-r - Replace one character.
-shift+r - Replace multiple characters (replace, not insert).
+| shift+x  | Delete character before the cursor (backspace).               |
+| i        | Start insert mode right before the cursor.                    |
+| shift+i  | Start insert mode at the beginning of the line.               |
+| a        | Start insert mode right after the cursor.                     |
+| shift+a  | Start insert mode at the end of the line.                     |
+| esc      | Exit insert mode = start normal mode.                         |
+| o        | Create paragraph bellow the cursor and enter the insert mode. |
+| shift+o  | Create paragraph above the cursor and enter the insert mode.  |
 
-c - delete and trigger insert mode.
-shift+c c$ - delete rest of the line and trigger insert mode.I
+### Basic operations
 
-ctrl+g - show current line of the file and percentage.
-20% - move to the 20% of the document.
-shift+g - move to the end of the document.
-gg - move to the top of the document.
+| Shortcut        | Action              |
+| :---:           | ---                 |
+| u               | Undo action.        |
+| ctrl+r          | Redo action.        |
+| .               | Repeat last action. |
 
-/ - go to the first result of searched thing
-n - go the next match
-shift+n - go to the previous match.
+### Basic commands
 
-o - creates paragraph bellow the cursor and trigger insert mode.
-shift+o - creates paragraph beneath the cursor and trigger the insert mode.
+| Command      | Action                                 |
+| ---          | ---                                    |
+| :q           | Quit vim.                              |
+| :q! shift+zq | Quit even though the file was changed. |
+| :w          | Write the changes to the file.          |
+| :x :wq shift+zz | Save and quit.                      |
 
-% - move the cursor (to matching) parentheses.
+### Search for pattern
 
-:/what_to_replace/with_what/ - replace one match
-:/what_to_replace/with_what/g - g for replacing every match
-
-'' - go to the previous location
-
-:! - runs any terminal command
-
-yap yaw  
-
-v - triggers visual mode.
-shift+v - triggers line visual mode.	
-ctrl+v - triggers block visual mode.
-
-:setlocal spell! spelllang=en_us
-:setlocal spell!
-z - get the dictionary to choose from.
-]s - go to next missspelled word.
-
-. - repeat last action.
-:norm 02wyl$p - example: go to the first character of second word and past it at the end.
+| Keystrokes | Action                                              |
+| :---:      | ---                                                 |
+| /something | Search for "something" and go to the first match.   |
+| n          | Go the next match.                                  |
+| shift+n    | Go to the previous match.                           |
+| *          | Search for the cursor word.                         |
+| :noh       | Abbreviation for :nohlsearch (no highlight search). |
 
 ### Copy from and past to clipboard
 
@@ -148,39 +146,109 @@ Use the `y` and `p` the same way, only type `"+` before the action.
 
 ### Autocomplete
 
-| Shortcut | Action |
-| :---:    | --- |
+| Shortcut | Action                         |
+| :---:    | ---                            |
 | ctrl+n   | Go to next recommendation.     |
 | ctrl+p   | Go to previous recommendation. |
 
-## Normal mode
+## Advanced
 
-### Move
+### Advanced movement
 
-| Shortkey | Action
-| ---      | --- |
-| h j k l  | kurzorove sipky |
-| gg       | prvni radek |
-| G        | posledni radek |
-| n G      | n-ty radek |
-| w        | zacatek dalsiho slova |
-| e        | konec dalsiho slova |
-| b        | zacatek predchoziho slova |
-| {        | nasledujici odstavec (prazdny radek) |
-| }        | predchozi odstavec (prazdny radek) |
+| Shortcut | Action                                        |
+| :---:    | ---                                           |
+| w        | Move to the beginning of the next word.       |
+| shift+w  | Move one position after next whitespace.      |
+| b        | Move to the beginning of the previous word.   |
+| shift+b  | Move one position before previous whitespace. |
+| e        | Move to the end of the next word.             |
+| shift+e  | Move at the position before next whitespace.  |
+| ge       | Move to the end of the previous word.         |
+| $        | Move to the end of the line.                  |
+| 0        | Move to the beginning of the line.            |
+| ^        | Move to the beginning of the first word.      |
+| {        | Move to the previous empty line (paragraph).  |
+| }        | Move to the next empty line (paragraph).      |
+| (        | Move to the previous sentence.                |
+| )        | Move to the next sentence.                    |
+| %        | Move to the matching  parentheses.            |
 
-### Edit
+### Editing movement combination
 
-| Shortkey | Action |
-| ---      | --- |
-| x        | vyjme znak na kurzoru (3x aktualni + 2 dalsi) |
-| X        | vyjme znak pred kurzorem (BACKSPACE) |
-| r [char] | nahradi znak na kurzoru |
-| J        | odstrani konec radku na kurzoru (spoji radky) |
-| a        | spusti editaci na aktualni pozici kurzoru (jako i) |
-| A        | spusti editaci na konci aktualniho radku |
-| o        | otevre novy radek pod aktualnim |
-| O        | otevre novy radek pred aktualnim |
+dw - delete to the end of the word
+shift+d d$ - delete to the end of the line
+
+daw dap da( da"
+diw dip di( di"
+
+4k - Every action may start with number of repetition.
+
+c - delete and trigger insert mode.
+shift+c c$ - delete rest of the line and trigger insert mode.I
+
+yap yaw
+
+### Visual modes
+
+v - triggers visual mode.
+shift+v - triggers line visual mode.
+ctrl+v - triggers block visual mode.
+
+:norm 02wyl$p - example: go to the first character of second word and past it at the end.
+
+### Change view
+
+zt - move current line to the top.
+zz - move cursor line to the middle.
+zb - move cursor line to the bottom.
+
+### Replace pattern
+
+:/what_to_replace/with_what/ - replace one match
+:/what_to_replace/with_what/g - g for replacing every match
+
+### Other movements
+
+ctrl+g - show current line of the file and percentage.
+20% - move to the 20% of the document.
+'' - go to the previous location
+
+### Commands
+
+Command mode starts with press of the key `:`.
+
+| Command      | Action                          |
+| :---:        | ---                             |
+| :retab       | Convert tabs to spaces.         |
+| :!           | Runs any terminal command.      |
+| :w filename  | Write as a filename.            |
+| :r filename  | Open file.                      |
+| :e filename  | Open new file.                  |
+| :qa          | Quit all files.                 |
+| :sort        |                                 |
+| :earlier 15m |                                 |
+| :later 10m   |                                 |
+
+### Settings
+
+| Command            | Action                                         |
+| ---                | ---                                            |
+| :set nu!           | turns on/off the line number                   |
+| :set tabstop=4     | sets the number of spaces for tab              |
+| :set softtabstop=0 |                                                |
+| :set expandtab     |                                                |
+| :set shiftwidth=4  |                                                |
+| :set smarttab      |                                                |
+| :set ignorecase    | also `set ic` search will be case insensitive  |
+
+### Check spelling
+
+| :setlocal spell! spelllang=en_us |                                    |
+| :setlocal spell!                 |                                    |
+| z                                | Get the dictionary to choose from. |
+| ]s                               | Go to next missspelled word.       |
+
+## Rest of the previous Czech version (something duplicated)
 
 ### Cut
 
@@ -235,27 +303,7 @@ Use the `y` and `p` the same way, only type `"+` before the action.
 | n           | najde dalsi vyskyt vzoru |
 | N           | najde dalsi vyskyt vzoru v opacnem smeru |
 
-## Insert mode
-
-- po stisku klavesy i v normalnim modu
-- umoznuje pouze zakladni editaci
-- ukonci se ESC
-
-## Command mode
-
-Command mode starts with press of the key `:`.
-
-| Command     | Action                          |
-| ---         | ---                             |
-| :q          | Quit vi.                        |
-| :q!         | Force the quit no matter what.  |
-| :w          | Write the changes to the file.  |
-| :w filename | Write as a filename.            |
-| :r filename | Open file.                      |
-| :e filename | Open new file.                  |
-| :wq         | Write changes and quit.         |
-| :qa         | Quit all files.                 |
-| :retab      | Convert tabs to spaces.         |
+### Commands
 
 | Command          | Action |
 | ---              | --- |
@@ -263,23 +311,13 @@ Command mode starts with press of the key `:`.
 | :%s/Line/line/g  | rozsah celeho souboru
 | :%s/Line/line/gc | potvrzeni nahrady (y - ano, n - ne, a - ano a vsechny nasledujici, q - ukonci, l - ano a ukonci)
 
-| Command            | Action                                         |
-| ---                | ---                                            |
-| :set nu!           | turns on/off the line number                   |
-| :set tabstop=4     | sets the number of spaces for tab              |
-| :set softtabstop=0 |
-| :set expandtab     |
-| :set shiftwidth=4  |
-| :set smarttab      |
-| :set ignorecase    | also `set ic` search will be case insensitive  |
-
 
 | Command  | Action |
 | ---      | --- |
 | :split   | rozdeli okno horizontalne
 | :vsplit  | rozdeli okno vertikalne
 
-## Visual mode
+### Visual mode
 
 | Shortkey | Action |
 | ---      | --- |
@@ -291,7 +329,7 @@ Command mode starts with press of the key `:`.
 - prikaz c smaze vybranou oblast a prejde do INSERT MODE
 - ukonci se ESC ESC
 
-## More files
+### More files
 
 ```bash
 # otevre soubory v horizontalne rozdelenem okne
@@ -308,3 +346,4 @@ vi -O file1 file2
 ## Configuration file
 
 - [How to configuration](https://www.linode.com/docs/guides/introduction-to-vim-customization/)
+
