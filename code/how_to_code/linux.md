@@ -19,13 +19,19 @@ The art of using PC like a human being.
 
 ### Terminal shortcuts
 
-| shortcut      | action                                            |
-| ---           | ---                                               |
-| ctrl+k        | Kill - cut the rest of the line from the cursor.  |
-| ctrl+w        | Kill the word right before the cursor.            |
-| ctrl+u        | Kill the begging of the line up to the cursor.    |
-| ctrl+y        | Yank - paste the text that was previously killed. |
-| alt+backspace | Delete by words, not by characters.               |
+| shortcut        | action                                               |
+| ---             | ---                                                  |
+| ctrl+shift+t    | Open new tab.                                        |
+| ctrl+shift+w    | Close current tab.                                   |
+| ctrl+pgup       | Go to upper (left) tab. Pgdn goes to the right tab). |
+| ctrl+1          | Go to tab 1 (works for all numbers).                 |
+| ctrl+shift+pgup | Move the tab one up (left). Pgdn moves to the right. |
+| ctrl+k          | Kill - cut the rest of the line from the cursor.     |
+| ctrl+k          | Kill - cut the rest of the line from the cursor.     |
+| ctrl+w          | Kill the word right before the cursor.               |
+| ctrl+u          | Kill the begging of the line up to the cursor.       |
+| ctrl+y          | Yank - paste the text that was previously killed.    |
+| alt+backspace   | Delete by words, not by characters.                  |
 
 ### Copy and past in terminal
 

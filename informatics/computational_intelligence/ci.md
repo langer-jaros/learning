@@ -1,46 +1,49 @@
-# Computational Intelligence Methods
+# Computational Intelligence
 
-Notes form lectures MIE-MVI/FIT/CTU
+Notes form lectures NI-MVI/FIT/CTU.
 
-`2020/10/29, Jaroslav Langer`
+`2020, Dec. 13th, Jaroslav Langer`
 
 ## Contents <!-- omit in toc -->
 
-- [Abstract](#abstract)
-- [Introduction](#introduction)
-  - [Introduction](#introduction-1)
+- [00 Abstract](#00-abstract)
+- [01 Introduction](#01-introduction)
+  - [Introduction](#introduction)
   - [Motivation and recent results](#motivation-and-recent-results)
-- [Machine Learning](#machine-learning)
+- [02 Machine Learning](#02-machine-learning)
   - [History](#history)
   - [Machine learning tasks](#machine-learning-tasks)
   - [Checkers example](#checkers-example)
   - [Machine learning methods](#machine-learning-methods)
   - [Ants AI challenge](#ants-ai-challenge)
-- [Evolutionary Algos](#evolutionary-algos)
-- [Neural Networks](#neural-networks)
+- [03 Evolutionary Algos](#03-evolutionary-algos)
+- [04 Neural Networks](#04-neural-networks)
   - [Overview](#overview)
   - [Perceptron](#perceptron)
   - [Backpropagation algorithm](#backpropagation-algorithm)
   - [Backpropagation algorithm variants](#backpropagation-algorithm-variants)
   - [MLP as universal approximator](#mlp-as-universal-approximator)
   - [Self-organizing Map](#self-organizing-map)
-- [Convolutional Networks](#convolutional-networks)
-- [Text and Graph Embeddings](#text-and-graph-embeddings)
-- [Autoencoders](#autoencoders)
-- [Neuroevolution](#neuroevolution)
-- [Recurent Neural Nets](#recurent-neural-nets)
-  - [Recurent Neural Nets](#recurent-neural-nets-1)
-  - [Attetion](#attetion)
+- [05 Convolutional Networks](#05-convolutional-networks)
+- [06 Autoencoders](#06-autoencoders)
+- [07 Text and Graph Embeddings](#07-text-and-graph-embeddings)
+- [08 Recurrent Neural Networks](#08-recurrent-neural-networks)
+  - [Recurrent Neural Nets](#recurrent-neural-nets)
+  - [Attention](#attention)
   - [Differentiable neural computers](#differentiable-neural-computers)
+- [09 Transformers](#09-transformers)
+- [10 Generative models](#10-generative-models)
+- [11 Neuroevolution](#11-neuroevolution)
 - [Metalearning](#metalearning)
 - [CMAES and Swarm Optimisation](#cmaes-and-swarm-optimisation)
 
-## Abstract
+## 00 Abstract
 
-Definitions, terms and knowledge from course NI-MVI.1 
-[Course page](https://courses.fit.cvut.cz/MIE-MVI/)
+Definitions, terms and knowledge from course NI-MVI.
+- [Course page](https://courses.fit.cvut.cz/MIE-MVI/).
+- [Computational intelligence vs artificial intelligence](https://ai.stackexchange.com/questions/7446/what-is-the-difference-between-artificial-intelligence-and-computational-intelli#:~:text=In%20the%20modern%20context%2C%20computational,focused%20on%20purely%20deductive%20reasoning.)
 
-## Introduction
+## 01 Introduction
 
 ### Introduction
 
@@ -48,7 +51,7 @@ Definitions, terms and knowledge from course NI-MVI.1
 
 #### Evolutionary
 
-#### Genotype fenotype
+#### Genotype phenotype
 
 - fitness function
 
@@ -56,9 +59,9 @@ Definitions, terms and knowledge from course NI-MVI.1
 
 #### Significant fields
 
--  self-driving cars
-- intelligent assistents
-- general artifical inteligence (play game from visual input)
+- self-driving cars
+- intelligent assistants
+- general artificial intelligence (play game from visual input)
 
 #### Research at Datalab
 
@@ -66,7 +69,7 @@ Definitions, terms and knowledge from course NI-MVI.1
 
 #### ethics
 
-## Machine Learning
+## 02 Machine Learning
 
 ### History
 
@@ -94,7 +97,7 @@ Definitions, terms and knowledge from course NI-MVI.1
 
 - supervised
 - unsupervised
-- semisupervised
+- semi-supervised
 - Active learning
 - transfer learning
 - few-shot learning
@@ -102,7 +105,7 @@ Definitions, terms and knowledge from course NI-MVI.1
 
 #### Examples by types
 
-#### Measuring the performace
+#### Measuring the performance
 
 #### Learning systems
 
@@ -110,46 +113,46 @@ Definitions, terms and knowledge from course NI-MVI.1
 
 - T - task ()
 - P - performance
-- E - expirience
+- E - experience
 
 #### Design learning system
 
 - database, prepare data
 - choose what to be learnt - target function
 - choose representation of target function
-- choose learning algoritm
+- choose learning algorithm
 - supply algorithm with performance metric
 
 ### Checkers example
 
 Building the database
 
-- Direct expirience
+- Direct experience
   - set of board with correct move
-- indirect expirience
+- indirect experience
   - sequences of game moves and final results
 
-Choose target funciton
+Choose target function
 
 - choseMove(board, legalMoves) -> bestMove
-- V(board) -> R (how favorible position) - can be applied for all legalMoves
+- V(board) -> R (how favorable position) - can be applied for all legalMoves
 
-Choose target funciton representation
+Choose target function representation
 
 ### Machine learning methods
 
 ### Ants AI challenge
 
-## Evolutionary Algos
+## 03 Evolutionary Algos
 
-## Neural Networks
+## 04 Neural Networks
 
 ### Overview
 
 - Introduction to artificial neural networks
 - Perceptron, gradient learning
 - MLP, Back-propagation of error
-- Unsupervized training - SOM
+- Unsupervised training - SOM
 
 ### Perceptron
 
@@ -157,7 +160,7 @@ Choose target funciton representation
 
 #### Perceptron gradient learning
 
-#### Deriving gradietn of error
+#### Deriving gradient of error
 
 #### Cross entropy loss
 
@@ -189,17 +192,15 @@ Choose target funciton representation
 
 ### Self-organizing Map
 
-## Convolutional Networks
+## 05 Convolutional Networks
 
-## Text and Graph Embeddings
+## 06 Autoencoders
 
-## Autoencoders
+## 07 Text and Graph Embeddings
 
-## Neuroevolution
+## 08 Recurrent Neural Networks
 
-## Recurent Neural Nets
-
-### Recurent Neural Nets
+### Recurrent Neural Nets
 
 #### Elman nets
 
@@ -209,14 +210,14 @@ Choose target funciton representation
 
 #### Supervised training
 
-- Backpropagation trhough time
+- Backpropagation through time
 - Reservoirs
 
 #### Bidirectional RNN
 
 #### LSTM - Long short-term memory
 
-#### Real-time recurent learning RTRL
+#### Real-time recurrent learning RTRL
 
 #### Clockwork RNN
 
@@ -224,10 +225,17 @@ Choose target funciton representation
 
 #### Neural Turing Machine
 
-### Attetion
+### Attention
 
 ### Differentiable neural computers
+
+## 09 Transformers
+
+## 10 Generative models
+
+## 11 Neuroevolution
 
 ## Metalearning
 
 ## CMAES and Swarm Optimisation
+
