@@ -6,16 +6,17 @@ Author:     Jaroslav Langer (langeja5@fit.cvut.cz)
 Date:       2020, Dec. 15th
 Version:    0.2
     Description:
-Python prototype solution to the first assignment from nonlinear optimization.
-The code will be rewritten to the c/c++, so the code will not be pythonic, because it should not be.
-    Version description:
-The final prototype, c version of this code should be the optimal solution to this problem.
+The final python prototype solution to the first assignment
+from nonlinear optimization course.
+The code will be rewritten to the c/c++, so the code will not be pythonic,
+because it should not be.
+C version of this code should be the optimal solution to this problem.
 """
 
 import sys
 from math import sqrt
 
-EPSILON = 0.0001
+EPSILON = 0.00001
 
 def read_matrix(matrix, m_file):
     """Read 1+n lines from given file, n is read from the first line.
@@ -71,13 +72,12 @@ def gradient_descent(A, b, x, verbose):
         # Ar:      A * r_k
         r_norm, alpha, Ar = next_r_norm_alpha_Ar(r, A)
 
-        if (r_norm < EPSILON): break # || r_k || < epsilon
+        if (r_norm < EPSILON): print(r_norm); break # || r_k || < epsilon
 
         x = next_x(x, alpha, r)  # x_{k+1} = x_k + (alpha_k * r_k)
         r = next_r(r, alpha, Ar) # r_{k+1} = r_k - (alpha_k * A * r_k)
 
-        if verbose: print(f'step: {i: <8} | residuum: {nr:.5}'); i += 1
-        k += 1
+        if verbose: print(f'step: {k: <8} | residuum: {r_norm:.5}'); k += 1
     return x
 
 
