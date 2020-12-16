@@ -206,6 +206,8 @@ sestrojit V’⊆V takovou, že
 
 ### FPTAS (Fully Polynomial Time Approximation Scheme)
 
+## Tabu prohledávání
+
 ## TODO
 
 ### Paretooptimální 
