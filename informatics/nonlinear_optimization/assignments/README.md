@@ -10,11 +10,11 @@ prováděných aritmetických operací).
 
 ## Assignment 02
 
-Rozˇsiˇrte program z ´ukolu ˇc. 1 tak, aby bylo moˇzn´e pouˇz´ıt pro ˇreˇsen´ı soustav
-line´arn´ıch algebraick´ych rovnic metodu sdruˇzen´ych gradient˚u. V prvn´ı f´azi
-pouˇzijte matici uloˇzenou jako plnou, to znamen´a do dvourozmˇern´eho pole.
-Algoritmus optimalizujte (snaˇzte se vyuˇz´ıt r˚uzn´e meziv´ysledky a uˇsetˇrit poˇcet
-prov´adˇen´ych aritmetick´ych operac´ı).
+Rozšiřte program z úkolu č. 1 tak, aby bylo možné použít pro řešení soustav
+lineárních algebraických rovnic metodu sdružených gradientů. V první fázi
+použijte matici uloženou jako plnou, to znamená do dvourozměrného pole.
+Algoritmus optimalizujte (snažte se využít různé mezivýsledky a ušetřit počet
+prováděných aritmetických operací).
 
 ## Assignment 03
 
