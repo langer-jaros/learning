@@ -1,49 +1,49 @@
 # Computational Intelligence
 
-Notes form lectures NI-MVI/FIT/CTU.
+A field of artificial intelligence focused on the study of adaptive mechanisms to enable intelligent behavior in complex and changing environments.
 
-`2020, Dec. 13th, Jaroslav Langer`
+`2020, Dec. 17th, Jaroslav Langer`
 
 ## Contents <!-- omit in toc -->
 
-- [00 Abstract](#00-abstract)
-- [01 Introduction](#01-introduction)
-  - [Introduction](#introduction)
+- [Abstract](#abstract)
+- [Introduction](#introduction)
+  - [Introduction](#introduction-1)
   - [Motivation and recent results](#motivation-and-recent-results)
-- [02 Machine Learning](#02-machine-learning)
+- [Machine Learning](#machine-learning)
   - [History](#history)
   - [Machine learning tasks](#machine-learning-tasks)
   - [Checkers example](#checkers-example)
   - [Machine learning methods](#machine-learning-methods)
   - [Ants AI challenge](#ants-ai-challenge)
-- [03 Evolutionary Algos](#03-evolutionary-algos)
-- [04 Neural Networks](#04-neural-networks)
+- [Evolutionary Algorithms](#evolutionary-algorithms)
+- [Neural Networks](#neural-networks)
   - [Overview](#overview)
   - [Perceptron](#perceptron)
   - [Backpropagation algorithm](#backpropagation-algorithm)
   - [Backpropagation algorithm variants](#backpropagation-algorithm-variants)
   - [MLP as universal approximator](#mlp-as-universal-approximator)
   - [Self-organizing Map](#self-organizing-map)
-- [05 Convolutional Networks](#05-convolutional-networks)
-- [06 Autoencoders](#06-autoencoders)
-- [07 Text and Graph Embeddings](#07-text-and-graph-embeddings)
-- [08 Recurrent Neural Networks](#08-recurrent-neural-networks)
+- [Convolutional Networks](#convolutional-networks)
+- [Autoencoders](#autoencoders)
+- [Text and Graph Embeddings](#text-and-graph-embeddings)
+- [Recurrent Neural Networks](#recurrent-neural-networks)
   - [Recurrent Neural Nets](#recurrent-neural-nets)
   - [Attention](#attention)
   - [Differentiable neural computers](#differentiable-neural-computers)
-- [09 Transformers](#09-transformers)
-- [10 Generative models](#10-generative-models)
-- [11 Neuroevolution](#11-neuroevolution)
+- [Transformers](#transformers)
+- [Generative models](#generative-models)
+- [Neuroevolution](#neuroevolution)
 - [Metalearning](#metalearning)
 - [CMAES and Swarm Optimisation](#cmaes-and-swarm-optimisation)
 
-## 00 Abstract
+## Abstract
 
-Definitions, terms and knowledge from course NI-MVI.
-- [Course page](https://courses.fit.cvut.cz/MIE-MVI/).
+The basis for this document are the lectures form course NI-MVI at FIT CTU, Prague.
+
+## Introduction
+
 - [Computational intelligence vs artificial intelligence](https://ai.stackexchange.com/questions/7446/what-is-the-difference-between-artificial-intelligence-and-computational-intelli#:~:text=In%20the%20modern%20context%2C%20computational,focused%20on%20purely%20deductive%20reasoning.)
-
-## 01 Introduction
 
 ### Introduction
 
@@ -69,7 +69,7 @@ Definitions, terms and knowledge from course NI-MVI.
 
 #### ethics
 
-## 02 Machine Learning
+## Machine Learning
 
 ### History
 
@@ -143,9 +143,9 @@ Choose target function representation
 
 ### Ants AI challenge
 
-## 03 Evolutionary Algos
+## Evolutionary Algorithms
 
-## 04 Neural Networks
+## Neural Networks
 
 ### Overview
 
@@ -192,13 +192,13 @@ Choose target function representation
 
 ### Self-organizing Map
 
-## 05 Convolutional Networks
+## Convolutional Networks
 
-## 06 Autoencoders
+## Autoencoders
 
-## 07 Text and Graph Embeddings
+## Text and Graph Embeddings
 
-## 08 Recurrent Neural Networks
+## Recurrent Neural Networks
 
 ### Recurrent Neural Nets
 
@@ -227,15 +227,17 @@ Choose target function representation
 
 ### Attention
 
+- In case of autoencoders, the attention mechanism is applied to the decoder part.
+- The attention layer (FFN+softmax) define weights to the encoded features so the decoder can easily focus on the more important parts to be decoded right.
+
 ### Differentiable neural computers
 
-## 09 Transformers
+## Transformers
 
-## 10 Generative models
+## Generative models
 
-## 11 Neuroevolution
+## Neuroevolution
 
 ## Metalearning
 
 ## CMAES and Swarm Optimisation
-
