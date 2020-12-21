@@ -34,8 +34,8 @@ for i, line in enumerate(mat.split('\n')):
     adr.append(a_len)
     n += 1
     for j, num in enumerate(line.split()):
-        #number = float(num)
-        number = int(num)
+        number = float(num)
+        #number = int(num)
         if (number != 0):
             a.append(number)
             ci.append(j)
@@ -44,17 +44,20 @@ for i, line in enumerate(mat.split('\n')):
 row = 0
 next_row_idx = adr[row + 1]
 
+print(n, a_len)
+
 for idx in range(a_len):
     if(idx == next_row_idx):
         row += 1
         next_row_idx = adr[row + 1] if (row + 1 < n) else 0
-    print(f"row {row} col {ci[idx]} val {a[idx]}")
+    # print(f"row {row} col {ci[idx]} val {a[idx]}")
+    print(f"\t{row}\t{ci[idx]}\t{a[idx]}")
 
 #------------------------------------------------------------------------------
 print('\n', ' Compressed row matrix '.center(79, '-'), '\n', sep='')
 
-row_idx = 0
-next_col_idx = row_idx + 1
+# row_idx = 0
+# next_col_idx = row_idx + 1
 
 # print('{', end='')                                     # wolfram alpha format
 for i in range(n):
@@ -99,8 +102,8 @@ vector = '''
 0
 0'''
 
-#v = [float(f) for f in vector.split()]
-v = [int(f) for f in vector.split()]
+v = [float(f) for f in vector.split()]
+#v = [int(f) for f in vector.split()]
 print(*v, sep='\n')
 
 # print('{', end='')                                      # wolfram alpha format
