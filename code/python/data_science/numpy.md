@@ -65,7 +65,14 @@ np.cbrt(x)
 a = np.array([[1,4],[3,1]])
 ```
 
-[numpy array](https://numpy.org/doc/stable/reference/generated/numpy.array.html)
+- [numpy array](https://numpy.org/doc/stable/reference/generated/numpy.array.html)
+
+### Indexing and slicing
+
+```py
+# It is possible to use comma instead of brackets
+arr[0,1] #= arr[0][1]
+```
 
 ### Sort
 
@@ -80,7 +87,7 @@ array([[1, 4],
        [1, 3]])
 ```
 
-[numpy sort](https://numpy.org/doc/stable/reference/generated/numpy.sort.html)
+- [numpy sort](https://numpy.org/doc/stable/reference/generated/numpy.sort.html)
 
 ## array dtypes (Array-protocol type strings)
 
@@ -103,7 +110,7 @@ dt = np.dtype('f8')   # 64-bit floating-point number
 dt = np.dtype('c16')  # 128-bit complex floating-point number
 ```
 
-[array dtypes source](https://docs.scipy.org/doc/numpy-1.10.1/reference/arrays.dtypes.html)
+- [array dtypes source](https://docs.scipy.org/doc/numpy-1.10.1/reference/arrays.dtypes.html)
 
 ## Random
 
@@ -113,3 +120,4 @@ sample = np.random.Generator.choice(array, size=features_num, replace=False)
 ```
 
 - [choice](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html#numpy.random.Generator.choice)
+

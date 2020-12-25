@@ -21,6 +21,8 @@
 
 ### Kaggle
 
+- Limits GPU and TPU usage to 30 hours/week [efficient-gpu-usage](https://www.kaggle.com/docs/efficient-gpu-usage).
+    - [See GPU and TPU hours left](http://kaggle.com/me/account)
 - [How to Use Kaggle](https://www.kaggle.com/docs/notebooks)
 - [upload data example](https://www.youtube.com/watch?v=0jQwAp7po00&feature=youtu.be)
 - [upload python scripts example](https://www.kaggle.com/rtatman/reproducing-research-men-also-like-shopping)

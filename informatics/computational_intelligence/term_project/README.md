@@ -1,0 +1,121 @@
+# Riiid! Answer Correctness Prediction
+
+## Contents
+
+## Competition
+
+### Rules
+
+- [riiid rules](https://www.kaggle.com/c/riiid-test-answer-prediction/rules)
+
+### Evaluation
+
+- AOC
+
+### Code requirements
+
+- CPU Notebook <= 9 hours run-time
+- GPU Notebook <= 9 hours run-time
+- TPU Notebook <= 3 hours run-time
+- Freely & publicly available external data is allowed, including pre-trained models
+- Submission file must be named submission.csv
+
+### Data description
+
+- [Dataset](https://www.kaggle.com/c/riiid-test-answer-prediction/data)
+    - [Parts](https://www.iibc-global.org/english/toeic/test/lr/about/format.html)
+
+### Competition API Detailed Introduction
+
+- [API introduction notebook](https://www.kaggle.com/sohier/competition-api-detailed-introduction)
+
+### Winning Model Documentation Guidelines
+
+- [Winning Model Documentation Guidelines](https://www.kaggle.com/WinningModelDocumentationGuidelines)
+
+## References
+
+- [Pytorch NN](https://pytorch.org/docs/stable/nn.html)
+- [masking_and_padding (keras)](https://www.tensorflow.org/guide/keras/masking_and_padding)
+    - [masking input shape](https://stackoverflow.com/questions/46982616/batch-input-shape-tuple-on-keras-lstm)
+
+## Literature
+
+- [2013 ad-click-prediction (FTRL)](https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf)
+- [2015 Deep Knowledge Tracing](https://papers.nips.cc/paper/2015/hash/bac9162b47c56fc8a4d2a519803d51b3-Abstract.html)
+- [2016 How Deep is Knowledge Tracing?](https://arxiv.org/pdf/1604.02416.pdf)
+    - [Deep Knowledge Tracing Implementation (github)](https://github.com/mmkhajah/dkt)
+- [2017 Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
+- [2018 Does Deep Knowledge Tracing Model Interactions Among Skills?](https://par.nsf.gov/biblio/10157351)
+- [2018 Deep Knowledge Tracing and Dynamic Student Classification for Knowledge Tracing](https://arxiv.org/pdf/1809.08713.pdf)
+- [2019 A Self-Attentive model for Knowledge Tracing](https://arxiv.org/abs/1907.06837)
+- [2019 Why Deep Knowledge Tracing Has Less Depth than Anticipated](https://eric.ed.gov/?id=ED599227)
+- [2019 settings Open AccessArticle Predicting Student Achievement Based on Temporal Learning Behavior in MOOCs](https://www.mdpi.com/2076-3417/9/24/5539/htm)
+- [2020 Time Series Forecasting with Deep Learning and Attention Mechanism](https://towardsdatascience.com/time-series-forecasting-with-deep-learning-and-attention-mechanism-2d001fc871fc)
+
+## Terminology
+
+| Abrv. | Name                                         | Description                |
+| :---: | ---                                          | ---                        |
+| EDM   | Educational Data Mining                      |                            | 
+| KT    | Knowledge Tracing                            |                            |
+| BKT   | Bayesian Knowledge Tracing                   |                            |
+| DKT   | Deep Knowledge Tracing                       |                            |
+| KC    | Knowledge Concept                            |                            |
+|       | Knowledge state                              |                            |
+|       |                                              | $X = (x_1, x_2, ..., x_t)$ |
+|       |                                              | $x_t = (e_t, r_t)$         |
+|       |                                              | $p(r_{t+1}=1|e_{t+1}, X)$  |
+| DKVMN | Dynamic Key-value Memory Network             |                            |
+| SAKT  | A self-Attentive model for Knowledge Tracing |                            |
+| DSP   | discriminative sequential pattern            |                            |
+
+## Exploratory Data Analysis
+
+- [Tutorial on reading large datasets](https://www.kaggle.com/rohanrao/tutorial-on-reading-large-datasets)
+- [comprehensive eda + baseline](https://www.kaggle.com/erikbruin/riiid-comprehensive-eda-baseline)
+
+## Models
+
+### Decision Tree
+
+- [0.753 Expanding on Simple LGBM](https://www.kaggle.com/dwit392/expanding-on-simple-lgbm#Modeling)
+    - [LightGBM](https://lightgbm.readthedocs.io/en/latest/)
+- [0.758 Riiid! LGBM Starter](https://www.kaggle.com/shoheiazuma/riiid-lgbm-starter)
+    - [LightGBM](https://lightgbm.readthedocs.io/en/latest/)
+- [0.766 Riiid! Training and Prediction using a state](https://www.kaggle.com/markwijkhuizen/riiid-training-and-prediction-using-a-state)
+    - [LightGBM](https://lightgbm.readthedocs.io/en/latest/)
+
+### Boosting
+
+- [0.704 Answer Correctness - RAPIDS crazy fast](https://www.kaggle.com/andradaolteanu/answer-correctness-rapids-crazy-fast)
+    - [XGBoost](https://xgboost.readthedocs.io/en/latest/)
+
+### Logistic regression
+
+- [0.754 Mike simple predictor](https://www.kaggle.com/mikel1/mike-simple-predictor)
+- [0.740 RIIID: FTRL FTW !](https://www.kaggle.com/rohanrao/riiid-ftrl-ftw)
+    - [FTRL](https://datatable.readthedocs.io/en/v0.10.1/ftrl.html)
+
+### Feed Forward Neural Network (FFN)
+
+- [????? Riiid:Super Cool EDA and Pytorch Baseline](https://www.kaggle.com/maunish/riiid-super-cool-eda-and-pytorch-baseline#Pytorch-Baseline-Model-%F0%9F%94%A5)
+    - [torch.nn.BatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html)
+    - [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html)
+- [0.751 Fastai Single NN](https://www.kaggle.com/gilfernandes/fastai-single-nn)
+    - [Fastai Tabular learner](https://docs.fast.ai/tabular.learner.html)
+- [0.767 Fastai Tabular with State](https://www.kaggle.com/gannonreynolds/fastai-tabular-with-state)
+    - [Fastai Tabular learner](https://docs.fast.ai/tabular.learner.html)
+
+### Recurrent Neural Network (RNN)
+
+- Also called Feedback Neural Network (FNN)
+
+### Attention
+
+- [0.771 SAKT with Randomization & State Updates](https://www.kaggle.com/leadbest/sakt-with-randomization-state-updates)
+- [0.765 A self-Attentive model for Knowledge Tracing](https://www.kaggle.com/wangsg/a-self-attentive-model-for-knowledge-tracing)
+    - [torch.nn.Embedding](https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html)
+    - [torch.nn.MultiheadAttention](https://pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html)
+- [0.541 SAKT Self-Attentive Knowledge Tracing Submitter](https://www.kaggle.com/leadbest/sakt-self-attentive-knowledge-tracing-submitter/comments)
+

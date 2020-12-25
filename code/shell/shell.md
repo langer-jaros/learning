@@ -1885,6 +1885,8 @@ shift   # shift it by one
 shift 4 # shift it by 4
 ```
 
+- [Process all arguments except the first one in a bash script](https://stackoverflow.com/questions/9057387/process-all-arguments-except-the-first-one-in-a-bash-script)
+
 ### Functions
 
 What function can and can not do

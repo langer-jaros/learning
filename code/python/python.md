@@ -853,6 +853,16 @@ if None.__class__ in types:
     print("Function getStuff is corrupted, returns None while it should not")
 ```
 
+### Garbage Collector
+
+```py
+import gc
+
+gc.collect() # returns number of the number of unreachable objects
+```
+
+- [Garbage Collector interface (docs)](https://docs.python.org/3/library/gc.html)
+
 ### ctypes
 
 - [top source](https://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/)
