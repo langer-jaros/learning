@@ -260,6 +260,9 @@ df.values
 
 # Types of columns
 df.dtypes
+
+# Information whether the dataframe empty
+df.empty
 ```
 
 ### Dataframe functions
@@ -580,16 +583,27 @@ df["column"] = df["column"].apply(str)
 
 # Astype
 df[NUM] = df[NUM].astype('float64')
+df[feature] = df[feature].astype(bool)
 # Categories
 data['embarked'] = data[['embarked']].astype('category').apply(lambda x: x.cat.codes)
 # Change to categories and replace values with category codes
 df[feature] = df[feature].astype('category').cat.codes
-df[feature] = df[feature].cat.codes
+# Ordinal categories # if there is missing category for a value, it is encoded with `-1`
+df[feature] = df[feature].astype(pd.CategoricalDtype(categories=['b', 'a'], ordered=True)).cat.codes
 # Days from datetime
 rfm[RECENCY] = rfm[RECENCY].astype('timedelta64[D]')
 ```
 
+- [CategoricalDtype](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.CategoricalDtype.html)
 - [python date time formats](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior)
+
+#### One-hot encoding
+
+```py
+pd.get_dummies(train_x[features], dtype=bool)
+```
+
+- [get_dummies](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.get_dummies.html)
 
 ### Modify values
 

@@ -436,6 +436,10 @@ for key, value in myDict.items():
     print(value)
 ```
 
+#### Set
+
+- [set (programiz)](https://www.programiz.com/python-programming/set)
+
 #### Comprehensions
 
 ```py
@@ -698,6 +702,8 @@ except json.decoder.JSONDecodeError as e:
     print(f'It was not possible to load "json_string" as a dictionary.',
         f'Error: "{e}", json_string: "{json_string}".')
 ```
+
+- [exceptions (docs)](https://docs.python.org/3/library/exceptions.html)
 
 ## Advanced
 

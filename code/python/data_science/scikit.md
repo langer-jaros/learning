@@ -37,8 +37,8 @@ import sklearn as skit
 ```py
 from sklearn.model_selection import train_test_split
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.33, random_state=42)
+train_x, test_x, train_y, test_y = train_test_split(
+    x, y, test_size=0.20, random_state=42)
 ```
 
 - [train_test_set](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html)
@@ -281,3 +281,30 @@ print(roc_auc_score(y_test, y_predicted))
 from sklearn.metrics import f1_score
 ```
 
+### Regression metrics
+
+- [mean_squared_log_error (RMSLE)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_log_error.html)
+
+### Preprocessing
+
+- [scikit preprocessing](https://scikit-learn.org/stable/modules/preprocessing.html)
+
+### Scalers
+
+- [**Compare different scalers**](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_all_scaling.html)
+    - [MaxAbsScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MaxAbsScaler.html)
+    - [MinMaxScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html)
+    - [PowerTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html)
+    - [QuantileTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html)
+    - [RobustScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html)
+    - [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)
+
+### Feature selection
+
+- [feature_selection](https://scikit-learn.org/stable/modules/feature_selection.html)
+- [recursive feature elimination](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html)
+- [SelectFromModel](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectFromModel.html)
+
+### Dimensionality reduction
+
+- [Principal component analysis](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html)

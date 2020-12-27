@@ -1,6 +1,6 @@
 # venv
 
-virtual enviroment
+Virtual enviroment
 
 ## Contents <!-- omit in toc -->
 
@@ -42,6 +42,7 @@ pip3 install html5lib
 pip3 install notebook
 pip3 install requests
 pip3 install pandas
+pip3 install Cython
 pip3 install -U scikit-learn
 pip3 install seaborn
 pip3 install lxml
@@ -53,3 +54,4 @@ pip3 install pillow
 pip3 install plotly
 pip3 install -U kaleido
 ```
+
