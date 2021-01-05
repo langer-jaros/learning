@@ -474,6 +474,9 @@ df = df.sort_index(ascending=False, ignore_index=True)
 # Remove duplicated indices
 df = df[~df3.index.duplicated(keep='first')]
 
+# Shift index by given number
+df = df.shift(-1)
+
 # Get common columns for two dataframes
 common_cols = df_1.index.intersection(df_2.index)
 
@@ -484,6 +487,7 @@ drop = test_X.columns.difference(train_X.columns) # Missing in train_X, needs to
 
 - [index](https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html)
 - [reset_index](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html)
+- [shift (pandas docs)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.shift.html)
 - [remove duplicated indices](https://stackoverflow.com/questions/13035764/remove-rows-with-duplicate-indices-pandas-dataframe-and-timeseries)
 
 ### Work with dataframe columns
@@ -739,9 +743,14 @@ pd.qcut(df[feature], interval_num, labels=bin_labels)
 
 ### Group by
 
+Returns DataFrameGroupBy object. Works similarly as sql groupby.
+
 ```py
-# Groupby data like sql groupby
-UJAK_data[UJAK_data['Year'] > 2000].groupby(['Theses name']).size().sort_values(ascending=False)
+# Get 5 students with largest number of unique questions.
+data.groupby('student')['question'].nunique().nlargest(5)
+
+# Get number of thesis with the same name sorted by number of occurrences.
+data[data['year'] > 2000].groupby(['theses_name']).size().sort_values(ascending=False)
 
 # Get sample of each category
 sample = df.groupby("category").sample(n=100)

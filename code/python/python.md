@@ -1,8 +1,9 @@
 # Python
 
-`2020 Dec. 9th, Jaroslav Langer`
+`2021 Jan 05, Jaroslav Langer`
 
-## Content <!-- omit in toc -->
+## Contents
+
 - [Tutorials](#tutorials)
 - [How to start](#how-to-start)
   - [Installation](#installation)
@@ -31,6 +32,7 @@
   - [Json](#json)
   - [Exceptions](#exceptions)
 - [Advanced](#advanced)
+  - [pdb — The Python Debugger](#pdb--the-python-debugger)
   - [Regex](#regex)
   - [Lambda](#lambda)
   - [Datetime](#datetime)
@@ -38,9 +40,9 @@
   - [argparse](#argparse)
   - [Compress, decompress, checksum](#compress-decompress-checksum)
   - [underscored names in python](#underscored-names-in-python)
+  - [Garbage Collector](#garbage-collector)
   - [ctypes](#ctypes)
   - [Python 2 differences](#python-2-differences)
-
 
 ## Tutorials
 
@@ -377,20 +379,26 @@ for x in almostAnything:
 #### Lists
 
 ```py
-l = ["a", "b"]
-ll = ["c", "d"]
-# Append
-l.append(ll)
-# Pop
-l.pop()
-# Extend
-ll.extend(l)
-# Insert
-ll.insert(index, item)
-# Convert string to list
+list_1 = ["a", "b"]
+list_2 = ["c", "d"]
+
+# Convert string to list of characters
 list("All the beautiful strings")
 
-# Sort
+# Append anything (e.g. list_2) to given list (list_1)
+list_1.append(list_2)
+
+# Pop (remove, delete) an item from list_1
+popped = list_1.pop()        # pop last item
+popped = list_1.pop(index)   # pop item at index e.g. index=0
+
+# Extend list_2 with multiple items (from list_1) at once
+list_2.extend(list_1)
+
+# Insert item to given index
+list_1.insert(1, "this string will fit between index 0 and index 1")
+
+# Sort list (inplace)
 l.sort()
 # Ascending/descending, preprocess keys by a function (-> sort names from longest)
 cars = ['Ford', 'Mitsubishi', 'BMW', 'VW']
@@ -404,16 +412,8 @@ cars.sort(reverse=True, key=cmp_len)
 cars.sort(reverse=True, key=lambda x: len(x))
 ```
 
-[sort example](https://www.w3schools.com/python/ref_list_sort.asp)
-
-##### Copy vs. deep copy
-
-```py
-# Shallow copy, changes in list2 affects list1
-list2 = list1
-# Two independent lists, changes in one doesn't effect the other one
-list2 = list1.copy()
-```
+- [list methods (programiz)](https://www.programiz.com/python-programming/methods/list)
+- [sort example](https://www.w3schools.com/python/ref_list_sort.asp)
 
 #### Dictionary
 
@@ -438,7 +438,45 @@ for key, value in myDict.items():
 
 #### Set
 
+```py
+my_set = set()
+my_set.add('a') # {'a'}
+my_set.add('a') # {'a'}
+```
+
 - [set (programiz)](https://www.programiz.com/python-programming/set)
+
+#### Assignment vs. copy vs. deepcopy
+
+Actions in one collection may affect others if were not created wisely.
+
+```py
+# Assignment - shallow copy e.i. copy by reference
+a = {'first': 1, 'second': [2]}
+b = a
+b['first'] = 9
+a['first']          # 9
+b['second'][0] = 9
+a['second']         # [9]
+
+# Collections copy - one level deep copy by value
+a = {'first': 1, 'second': [2]}
+b = a.copy()
+b['first'] = 9
+a['first']          # 1
+b['second'][0] = 9
+a['second']         # [9]
+
+# copy.deepcopy() - every nested collestion is copied by value
+import copy
+
+a = {'first': 1, 'second': [2]}
+b = copy.deepcopy(a)
+b['first'] = 9
+a['first']          # 1
+b['second'][0] = 9
+a['second']         # [2]
+```
 
 #### Comprehensions
 
@@ -485,6 +523,14 @@ class Data():
         self.attribute = attribute
 
 
+    def __repr__(self):
+        return f"<Data: attribute={attribute}>"
+
+
+    def __call__(self, param):
+        print(f'This is visible once the instance was called ({param})')
+
+
     def set_name_from_dict(self, dictionary):
         """Set attribute to the current object that is read from given dictionary."""
         self.attribute = dictionary.get("attribute")
@@ -495,9 +541,6 @@ class Data():
         """Creates Data object with attribute read from dictionary."""
         return cls(dictionary.get("attribute"))
 
-
-    def __repr__(self):
-        return f"<Data: attribute={attribute}>"
 ```
 
 - [multiple constructors (stackoverflow)](https://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python)
@@ -706,6 +749,14 @@ except json.decoder.JSONDecodeError as e:
 - [exceptions (docs)](https://docs.python.org/3/library/exceptions.html)
 
 ## Advanced
+
+### pdb — The Python Debugger
+
+```py
+import pdb; pdb.set_trace()
+```
+
+- [pdb (docs)](https://docs.python.org/3/library/pdb.html)
 
 ### Regex
 

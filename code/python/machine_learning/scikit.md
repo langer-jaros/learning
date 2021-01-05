@@ -281,7 +281,19 @@ print(roc_auc_score(y_test, y_predicted))
 from sklearn.metrics import f1_score
 ```
 
-### Regression metrics
+### Log loss (Cross entropy loss)
+
+Can be used to evaluate the probability outputs of a classifier instead of its discrete predictions.
+
+$y \in \{0, 1\}$ and $p = Pr(y = 1)$
+
+$$L_{log}(y,p) = - log(Pr(y | p)) = -\right(y log(p) + (1 - y) log (1 - p)\left)$$
+
+$$L_{log}(Y,P) = - log(Pr(Y | P)) = -\frac{1}{N} \sum_{i=0}^{N-1} \sum_{k=0}^{K-1} y_{i,k} log(p_{i,k})$$
+
+- [log_loss (scikit)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html)
+
+## Regression metrics
 
 - [mean_squared_log_error (RMSLE)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_log_error.html)
 

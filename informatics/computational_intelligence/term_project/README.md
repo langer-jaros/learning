@@ -38,6 +38,10 @@
 - [Pytorch NN](https://pytorch.org/docs/stable/nn.html)
 - [masking_and_padding (keras)](https://www.tensorflow.org/guide/keras/masking_and_padding)
     - [masking input shape](https://stackoverflow.com/questions/46982616/batch-input-shape-tuple-on-keras-lstm)
+- [Our implementation of the LSTM version of Deep Knowledge Tracing (DKT)](https://github.com/mmkhajah/dkt)
+- [deep knowledge tracing / tensorflow implement](https://github.com/jiangxinyang227/dkt)
+- [An implementation of the Deep Knowledge Tracing (DKT) using Tensorflow 2.0](https://github.com/lccasagrande/Deep-Knowledge-Tracing)
+- [Olszewski & Otmianowski: How to efficiently model learner’s knowledge with... | PyData Warsaw 2019](https://www.youtube.com/watch?v=CzRmRZNpB1Y)
 
 ## Literature
 
@@ -52,10 +56,13 @@
 - [2019 Why Deep Knowledge Tracing Has Less Depth than Anticipated](https://eric.ed.gov/?id=ED599227)
 - [2019 settings Open AccessArticle Predicting Student Achievement Based on Temporal Learning Behavior in MOOCs](https://www.mdpi.com/2076-3417/9/24/5539/htm)
 - [2020 Time Series Forecasting with Deep Learning and Attention Mechanism](https://towardsdatascience.com/time-series-forecasting-with-deep-learning-and-attention-mechanism-2d001fc871fc)
+- [2020 A Novel Approach for Knowledge State Representation and Prediction](https://dl.acm.org/doi/10.1145/3386527.3406745)
+- [2020 Interpretable Personalized Knowledge Tracing and Next Learning Activity Recommendation](https://dl.acm.org/doi/10.1145/3386527.3406739)
+- [2020 Cold Start Knowledge Tracing with Attentive Neural Turing Machine](https://assets.amazon.science/99/cf/0737f44b4de2bf41e7a8767a0858/cold-start-knowledge-tracing-with-attentive-neural-turing-machine.pdf)
 
 ## Terminology
 
-| Abrv. | Name                                         | Description                |
+| Abbr. | Name                                         | Description                |
 | :---: | ---                                          | ---                        |
 | EDM   | Educational Data Mining                      |                            | 
 | KT    | Knowledge Tracing                            |                            |
@@ -69,6 +76,7 @@
 | DKVMN | Dynamic Key-value Memory Network             |                            |
 | SAKT  | A self-Attentive model for Knowledge Tracing |                            |
 | DSP   | discriminative sequential pattern            |                            |
+| CCS   | Computing Classification System              |                            |
 
 ## Exploratory Data Analysis
 

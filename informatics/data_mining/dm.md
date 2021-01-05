@@ -22,6 +22,10 @@
 
 ## Decision Tree
 
+## Cross Entropy Loss
+
+- [cross_entropy_loss (gombru.github.io)](https://gombru.github.io/2018/05/23/cross_entropy_loss/)
+
 ## Ensemble Methods (Random Forests, Ada Boost)
 
 ## Hierarchical Clustering (Agglomerative Clustering, Ward Method)

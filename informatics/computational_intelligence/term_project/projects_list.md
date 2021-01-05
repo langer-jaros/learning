@@ -1,4 +1,4 @@
-# Assignments
+# Projects List
 
 1) Pervasive Attention: 2D Convolutional Neural Networks for Sequence-to-Sequence Prediction
 2) Text clustering

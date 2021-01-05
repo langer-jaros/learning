@@ -200,6 +200,8 @@ Choose target function representation
 
 ## Recurrent Neural Networks
 
+- [RNN (Carnegie Mellon University)](http://www.cs.cmu.edu/~mgormley/courses/10601-s18/slides/lecture17-rnn.pdf)
+
 ### Recurrent Neural Nets
 
 #### Elman nets

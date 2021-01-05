@@ -18,6 +18,7 @@
 - gpu - tpu
 - connect with drive
 - open/push github
+- [set tensorflow version](https://colab.research.google.com/notebooks/tensorflow_version.ipynb#scrollTo=-XbfkU7BeziQ)
 
 ### Kaggle
 
