@@ -36,3 +36,5 @@
 -   with new tensor flow (to work in kaggle),
 -   data as dataframe (to be able to load different data).
 
+- [Masking and padding with Keras](https://www.tensorflow.org/guide/keras/masking_and_padding)
+

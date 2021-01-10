@@ -1,6 +1,8 @@
 # Python
 
-`2021 Jan 05, Jaroslav Langer`
+Great language for prototyping, machine learning and anything else.
+
+`2021 Jan 09, Jaroslav Langer`
 
 ## Contents
 
@@ -40,6 +42,7 @@
   - [argparse](#argparse)
   - [Compress, decompress, checksum](#compress-decompress-checksum)
   - [underscored names in python](#underscored-names-in-python)
+  - [Python memory](#python-memory)
   - [Garbage Collector](#garbage-collector)
   - [ctypes](#ctypes)
   - [Python 2 differences](#python-2-differences)
@@ -362,16 +365,18 @@ string_from_bytes = bytes_1.decode()
 
 ### Conditions
 
-ternary assigning
 ```
-variable = value if (condition) else otherValue
+# Ternary conditional (assigning)
+variable = value if (condition) else another_value
 ```
 
 ### Loops
 
 ```py
-for x in almostAnything:
-    print(x)
+n = 5
+for x in range(n):
+    print(x, end=', ') if (x != n - 1) else print(x)
+# 0, 1, 2, 3, 4
 ```
 
 ### Collections
@@ -440,11 +445,22 @@ for key, value in myDict.items():
 
 ```py
 my_set = set()
-my_set.add('a') # {'a'}
-my_set.add('a') # {'a'}
+my_set.add('a')
+my_set                      # {'a'}
+my_set.add('a')
+my_set                      # {'a'}
+my_set.update(['b','c'])
+my_set                      # {'b', 'c', 'a'}
 ```
 
 - [set (programiz)](https://www.programiz.com/python-programming/set)
+
+#### Iteration over collection
+
+```
+for x in iterable:
+    print(x)
+```
 
 #### Assignment vs. copy vs. deepcopy
 
@@ -494,7 +510,18 @@ my_dict = {str(item): item%2354 for item in my_list}
 my_set = {val for val in my_dict.values()}
 ```
 
-[set comprehension](https://python-reference.readthedocs.io/en/latest/docs/comprehensions/set_comprehension.html)
+- [set comprehension](https://python-reference.readthedocs.io/en/latest/docs/comprehensions/set_comprehension.html)
+
+#### Collection functions
+
+```py
+# Sorted - return list of sorted items from iterable object given
+sorted([1,4,2,3])               # [1, 2, 3, 4 
+sorted((5,8,7,6))               # [5, 6, 7, 8]
+sorted({'d': 5, 'b': 1, 'c':2}) # ['b', 'c', 'd']
+```
+
+- [sorting (docs)](https://docs.python.org/3/howto/sorting.html)
 
 ### Functions
 
@@ -598,19 +625,27 @@ mode(values)    # 34
 ### Random
 
 ```py
-from random import uniform, randrange, choice, sample
+import random
+
+# Set seed, so the randomized behavior will repetetively be the same
+random.seed(42)     # usually it is handy for testing purposes
 
 # Random float from range (0,10)
-f = uniform(0, 10)
+f = random.uniform(0, 10)
 
 # Random integer from range
-i = randrange(0, 101, 1)
+i = random.randrange(0, 101, 1)
 
 # Random item of list
-item = choice(["Alice", "Bob", "Chuck"])
+item = random.choice(["Alice", "Bob", "Chuck"])
 
 # List sample of k elements
-samples = sample(["Alice", "Bob", "Chuck"], 2)
+samples = random.sample(["Alice", "Bob", "Chuck"], 2)
+
+# Shuffle list
+names = ['Peter', 'David', 'Thomas']
+random.shuffle(names)
+names   # ['David', 'Thomas', 'Peter']
 ```
 
 - [Random library (python documentation)](https://docs.python.org/3/library/random.html)
@@ -910,6 +945,19 @@ if None.__class__ in types:
     print("Function getStuff is corrupted, returns None while it should not")
 ```
 
+### Python memory
+
+```
+import sys
+
+zero = 0
+integer = 1
+
+# Size of given object in bytes
+sys.getsizeof(zero)     #  24
+sys.getsizeof(integer)  #  28
+```
+
 ### Garbage Collector
 
 ```py
@@ -947,4 +995,4 @@ c_fun("super unicode".encode())
 >>> 16**(1/2)
 1
 ```
----
+

@@ -1,0 +1,43 @@
+<style> 
+    body {
+        background-color: antiquewhite; 
+        padding: 50px;
+    }
+    canvas { 
+        border: solid;
+        touch-action: none;
+    }
+</style>
+<body>
+    <canvas id="canvas01" onpointermove="paint(event)" width="500px" height="500px" style="border:1px solid black;"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas01');
+        console.log('can: ', canvas);
+
+        var ctx = canvas.getContext('2d');
+        console.log('Jeho 2D-kontext: ', ctx);
+
+        var actionOut = function(evt){
+            alert('actionOut');
+        }
+
+        var paint = function(event) {
+            var rect = event.target.getBoundingClientRect();
+            var x = event.pageX - rect.left;
+            var y = event.pageY - rect.top;
+            ctx.fillRect(x, y, 5, 5);
+        }
+
+        var actionUp = function(evt){
+            alert('actionUP');
+        }
+
+        var actionDown = function(evt){
+            console.log('clientX/Y: ', evt.clientX, evt.clientY );
+            console.log('layerX/Y: ', evt.layerX, evt.layerY );
+            console.log('pageX/Y: ', evt.pageX, evt.pageY );
+            console.log('x/y', evt.x, evt.y );
+            console.log("---------------------");
+        }
+    </script>
+</body>

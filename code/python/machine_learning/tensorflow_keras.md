@@ -4,10 +4,46 @@
 Author:     Jaroslav Langer
 Software:
     TensorFlow 2.4.0
-Date:       2021 Jan 02
+Date:       2021 Jan 09
 ```
 
 ## Contents
+
+- [Introduction](#introduction)
+- [References](#references)
+- [TODO](#todo)
+- [Tensorflow](#tensorflow)
+  - [Tensor](#tensor)
+- [Keras](#keras)
+- [Model](#model)
+  - [Sequential](#sequential)
+  - [Model training](#model-training)
+  - [Compile](#compile)
+  - [Fit](#fit)
+  - [Evaluate](#evaluate)
+  - [Different loss values fit() vs. evaluate()](#different-loss-values-fit-vs-evaluate)
+  - [predict](#predict)
+  - [model.layers](#modellayers)
+- [Layers](#layers)
+  - [Layer](#layer)
+  - [Flatten](#flatten)
+  - [Dense](#dense)
+  - [Embedding](#embedding)
+  - [Masking](#masking)
+  - [SimpleRNN](#simplernn)
+  - [RNN](#rnn)
+  - [LSTM](#lstm)
+  - [TimeDistributed](#timedistributed)
+- [Model training APIs](#model-training-apis)
+- [Activations](#activations)
+- [Losses](#losses)
+  - [BinaryCrossentropy](#binarycrossentropy)
+  - [CategoricalCrossentropy](#categoricalcrossentropy)
+  - [Optimizers](#optimizers)
+- [Metrics](#metrics)
+  - [BinaryAccuracy](#binaryaccuracy)
+- [Utils](#utils)
+- [Theano](#theano)
 
 ## Introduction
 
@@ -88,6 +124,8 @@ model.add(layer)
 - fit
 - evaluate
 - predict
+- save_weights
+- load_weights
 - train_on_batch
 - test_on_batch 
 - predict_on_batch 
@@ -167,6 +205,7 @@ model.layers
 ```py
 layer.get_config()  # Returns the config of the layer.
 layer.get_weights() # Returns the current weights of the layer.
+layer.set_weights() # Set layer weights.
 ```
 
 - [Layer (tensorflow.org)](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Layer#attributes_1)

@@ -1,6 +1,27 @@
 # Riiid! Answer Correctness Prediction
 
+`2021 Jan 09, Jaroslav Langer`
+
 ## Contents
+
+- [Competition](#competition)
+  - [Rules](#rules)
+  - [Evaluation](#evaluation)
+  - [Code requirements](#code-requirements)
+  - [Data description](#data-description)
+  - [Competition API Detailed Introduction](#competition-api-detailed-introduction)
+  - [Winning Model Documentation Guidelines](#winning-model-documentation-guidelines)
+- [References](#references)
+- [Literature](#literature)
+- [Terminology](#terminology)
+- [Exploratory Data Analysis](#exploratory-data-analysis)
+- [Models](#models)
+  - [Decision Tree](#decision-tree)
+  - [Boosting](#boosting)
+  - [Logistic regression](#logistic-regression)
+  - [Feed Forward Neural Network (FFN)](#feed-forward-neural-network-ffn)
+  - [Recurrent Neural Network (RNN)](#recurrent-neural-network-rnn)
+  - [Attention](#attention)
 
 ## Competition
 
@@ -49,13 +70,19 @@
 - [2015 Deep Knowledge Tracing](https://papers.nips.cc/paper/2015/hash/bac9162b47c56fc8a4d2a519803d51b3-Abstract.html)
 - [2016 How Deep is Knowledge Tracing?](https://arxiv.org/pdf/1604.02416.pdf)
     - [Deep Knowledge Tracing Implementation (github)](https://github.com/mmkhajah/dkt)
+- [2019 LSTM Optimizer Choice ? (LSTM Optimizer Choice ?)](https://deepdatascience.wordpress.com/2016/11/18/which-lstm-optimizer-to-use/)
+- [2017 How to Update LSTM Networks During Training for Time Series Forecasting (machinelearningmastery.com)](https://machinelearningmastery.com/update-lstm-networks-training-time-series-forecasting/)
+- [2017 How to use Different Batch Sizes when Training and Predicting with LSTMs (machinelearningmastery.com)](https://machinelearningmastery.com/use-different-batch-sizes-training-predicting-python-keras/)
 - [2017 Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
 - [2018 Does Deep Knowledge Tracing Model Interactions Among Skills?](https://par.nsf.gov/biblio/10157351)
 - [2018 Deep Knowledge Tracing and Dynamic Student Classification for Knowledge Tracing](https://arxiv.org/pdf/1809.08713.pdf)
+- [2018 SAINT+: Integrating Temporal Features for EdNet Correctness Prediction](https://arxiv.org/pdf/2010.12042.pdf)
+- [2019 Understand the Impact of Learning Rate on Neural Network Performance (machinelearningmastery.com)](https://machinelearningmastery.com/understand-the-dynamics-of-learning-rate-on-deep-learning-neural-networks/)
 - [2019 A Self-Attentive model for Knowledge Tracing](https://arxiv.org/abs/1907.06837)
 - [2019 Why Deep Knowledge Tracing Has Less Depth than Anticipated](https://eric.ed.gov/?id=ED599227)
 - [2019 settings Open AccessArticle Predicting Student Achievement Based on Temporal Learning Behavior in MOOCs](https://www.mdpi.com/2076-3417/9/24/5539/htm)
 - [2020 Time Series Forecasting with Deep Learning and Attention Mechanism](https://towardsdatascience.com/time-series-forecasting-with-deep-learning-and-attention-mechanism-2d001fc871fc)
+- [2020 RNN-based Online Learning: An Efficient First-Order Optimization Algorithm with a Convergence Guarantee](https://arxiv.org/pdf/2003.03601v1.pdf)
 - [2020 A Novel Approach for Knowledge State Representation and Prediction](https://dl.acm.org/doi/10.1145/3386527.3406745)
 - [2020 Interpretable Personalized Knowledge Tracing and Next Learning Activity Recommendation](https://dl.acm.org/doi/10.1145/3386527.3406739)
 - [2020 Cold Start Knowledge Tracing with Attentive Neural Turing Machine](https://assets.amazon.science/99/cf/0737f44b4de2bf41e7a8767a0858/cold-start-knowledge-tracing-with-attentive-neural-turing-machine.pdf)
@@ -118,6 +145,8 @@
 ### Recurrent Neural Network (RNN)
 
 - Also called Feedback Neural Network (FNN)
+
+- [Riid Answer Correctness with RNN](https://www.kaggle.com/gianzlupko/riid-answer-correctness-with-rnn)
 
 ### Attention
 

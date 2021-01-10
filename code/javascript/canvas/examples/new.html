@@ -1,0 +1,47 @@
+<style> 
+    body {
+        background-color: antiquewhite; 
+        padding: 50px;
+    }
+    canvas { 
+        touch-action: none;
+    }
+</style>
+<body>
+    <canvas id="canvas01" onpointermove="paint(event)" onpointerdown="init(event)" width="300px" height="500px" style="border:1px solid black;"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas01');
+        console.log('can: ', canvas);
+
+        var ctx = canvas.getContext('2d');
+        console.log('Jeho 2D-kontext: ', ctx);
+
+        window.prevX = 0
+        window.prevY = 0;
+
+
+        ctx.drawLine = function(x, y){
+            this.beginPath();
+            this.moveTo(window.prevX, window.prevY);
+            this.lineTo(x, y);
+            this.stroke();
+            [window.prevX, window.prevY] = [ x, y ];
+        }
+
+        var init = function(event){
+            var rect = event.target.getBoundingClientRect();
+            var x = event.pageX - rect.left;
+            var y = event.pageY - rect.top;
+            [window.prevX, window.prevY] = [ x, y ];
+        }
+
+        var paint = function(event) {
+            var rect = event.target.getBoundingClientRect();
+            var x = event.pageX - rect.left;
+            var y = event.pageY - rect.top;
+            if(event.buttons>0)
+                ctx.drawLine(x, y, 5, 5);
+        }
+
+</script>
+</body>

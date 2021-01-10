@@ -2,7 +2,9 @@
 
 *The alpha and omega of data in python.*
 
-## Content <!-- omit in toc -->
+`2021 Jan 09, Jaroslav Langer`
+
+## Contents
 
 - [Documentation](#documentation)
 - [First things first](#first-things-first)
@@ -25,8 +27,10 @@
 - [Accessing data](#accessing-data)
   - [Accessing columns](#accessing-columns)
   - [Accessing rows](#accessing-rows)
-  - [loc - Specify rows, and cols at the same time](#loc---specify-rows-and-cols-at-the-same-time)
-  - [iloc - Accessing through indices](#iloc---accessing-through-indices)
+  - [Chained indexing](#chained-indexing)
+  - [Returning a view versus a copy - Chained indexing problem](#returning-a-view-versus-a-copy---chained-indexing-problem)
+  - [loc - specify rows, and cols at the same time](#loc---specify-rows-and-cols-at-the-same-time)
+  - [iloc - accessing rows and columns through indices](#iloc---accessing-rows-and-columns-through-indices)
   - [Filtering rows](#filtering-rows)
   - [Column Functions](#column-functions)
 - [Modifying the dataframe](#modifying-the-dataframe)
@@ -63,15 +67,57 @@ import pandas as pd
 One-dimensional ndarray with axis labels (including time series).
 
 ```py
-# Crate series
-ser = pd.Series([1,2,3,4], index=["Car", "Bus", "Train", "Plane"])
-# Series item
-ser[0]
-# Series item index
-ser.index[0]
+# Create a series
+ser_def = pd.Series(["car", "bus", "train", "plane"])
+ser_alpha = pd.Series(["car", "bus", "train", "plane"], index=list('abcd'))
+ser_num = pd.Series(["car", "bus", "train", "plane"], index=[4,3,2,1])
+
+# Show series with default index
+ser_def
+# 0      car
+# 1      bus
+# 2    train
+# 3    plane
+# dtype: object
+
+# Get Series values (np.array)
+ser_alpha.values        # array(['car', 'bus', 'train', 'plane'], dtype=object)
+
+# Get Series index
+ser_alpha.index         # Index(['a', 'b', 'c', 'd'], dtype='object')
 ```
 
 - [Series](https://pandas.pydata.org/pandas-docs/stable/reference/series.html)
+
+#### Accessing a series
+
+```py
+# Access item by index
+ser_alpha['a']      # 'car'
+# The dot notation is possible if the name is simple
+ser_alpha.a         # 'car'
+
+# Access item by position
+ser_alpha[0]        # 'car'
+
+# In case the index is numerical, the position access is not possible
+ser_num[1]          # 'plane'
+ser_num[0]          # KeyError: 0
+
+# The position access is possible trough values
+ser_num.values[0]   # 'car
+
+# It is possible to slice the series with a given range
+ser_num[0:1]
+# 4    car
+# dtype: object
+
+# Slice is also possible with enumeration of the inices you want to
+ser_num[[4,3]]
+# 4    car
+# 3    bus
+# dtype: object
+```
 
 ### DataFrame
 
@@ -147,7 +193,7 @@ for node in xroot:
     s_grade = node.find("grade").text if node is not None else None
     s_age = node.find("age").text if node is not None else None
     
-    rows.append({"name": s_name, "email": s_mail, 
+    rows.append({"name": s_name, "email": s_mail,
                  "grade": s_grade, "age": s_age})
 
 out_df = pd.DataFrame(rows, columns = df_cols)
@@ -310,25 +356,51 @@ df.index.is_unique()
 
 ## Accessing data
 
-Bracket access `[]` prioritizes columns over rows, so `df[0]` will try to find column `0`.
-In case, **one** column is specified, `df["column"][0]` return the row `0`
-and `df["column"][[1,23,4]]` return rows `1`, `23` and `4`.
+```py
+# Create dataframe with numerical columns and indices
+default_df = pd.DataFrame( [list('abc'),list('def'),list('ghi')])
 
-You can access rows straight-ahead by slices, `df[0:1]` will return row `0`.
-It does not matter the order of column slice specification,
-`df["column"][0:1]` and `df[0:1]["column"]` are the same.
+default_df
+#    0  1  2
+# 0  a  b  c
+# 1  d  e  f
+# 2  g  h  i
+
+# Create dataframe with letters as column indices
+letters_df = pd.DataFrame(
+    [list('abc'),list('def'),list('ghi')], columns=list('abc')
+)
+
+letters_df
+#    a  b  c
+# 0  a  b  c
+# 1  d  e  f
+# 2  g  h  i
+```
 
 ### Accessing columns
 
 ```py
-# Attribute access of df column by its name
-df.Age
-# Access column by its string name (or columns of an multi-column (multiindex))
-data1['Age']
-# Access Columns
-data2[['Name', 'Age']]
-# If column name is tuple ('Name', 'Age'), then 
-data2[('Name', 'Age')] # or data2['Name', 'Age']
+# Single bracket access [value] returns Series of a specified column
+letters_df['a']
+# 0    a
+# 1    d
+# 2    g
+# Name: 1, dtype: object
+
+# It is also possible to use attribute access of column by its name
+letters_df.a
+
+# Double bracket access [[]] returns dataframe slice of specified **columns**
+default_df[[0, 2]]
+#    0  2
+# 0  a  c
+# 1  d  f
+# 2  g  i
+
+# If column indices are tuples, or in case of multiindex, access with tuple
+data[('name', 'age')] # or data['name', 'age']
+
 # Access columns by type
 df.select_dtypes(include=['int64', 'float64'])
 ```
@@ -336,19 +408,45 @@ df.select_dtypes(include=['int64', 'float64'])
 ### Accessing rows
 
 ```py
-# Slices - row 100,101,102)
-df[100:103]
-# Slice - last 10 rows
-data1['Age'][-10:]
+# Specify rows like this is not possible, no matter the columns are letters
+letters_df[0]   # KeyError: 0
 
-# iterate rows
-for index, row in df.iterrows():
-    print(row['c1'], row['c2'])
+# The slice [range] always returns DataFrame of specified rows never columns
+default_df[1:2]
+#    0  1  2
+# 1  d  e  f
+
+# Rows can be iterated as (index, series of a row with column index)
+for index, series in default_df.iterrows():
+    print(f'index: {index}, row[1]: {series[1]}')
+# index: 0, row[1]: b
+# index: 1, row[1]: e
+# index: 2, row[1]: h
 ```
 
-### loc - Specify rows, and cols at the same time
+### Chained indexing
+
+As the result of a bracket accessing can be a dataframe or a series, another bracket access can be applied to the result so the brackets are chained.
+
+```py
+# First brackets returns series and second returns inidces 0 and 2
+letters_df['a'][[0,2]]
+# 0    a
+# 2    g
+# Name: a, dtype: object
+```
+
+### Returning a view versus a copy - Chained indexing problem
+
+There is not much a problem as long as the data are accessed for getting not for setting. As it was told with the chained indexing, the first brackets returns an object that can be accessed with another brackets, however it may not be the original data it can be a copy of it, so if we try to change values on result of two two bracket accesses we can not be sure we modify the original object because we can be modifying only its copy. In purpose to eliminate this risk there are two functions that can do column and row indexing at the same time so it is safe to modify the values returned by them.
+
+- [returning-a-view-versus-a-copy (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy)
+
+### loc - specify rows, and cols at the same time
 
 Usage: dataFrame.loc[<ROWS RANGE> , <COLUMNS RANGE>]
+
+WARNING: loc slices include the last element, not like python slices!
 
 ```py
 # LOC takes 2:5 like [2,3,4,5]
@@ -364,7 +462,7 @@ sample = df1.sample(n=5)
 df.loc[sample.index]
 ```
 
-### iloc - Accessing through indices
+### iloc - accessing rows and columns through indices
 
 Usage: dataFrame.iloc[<ROWS INDEX RANGE> , <COLUMNS INDEX RANGE>]
 
@@ -642,6 +740,17 @@ df['col_3'] = df.apply(lambda x: f(x.col_1, x.col_2), axis=1)
 
 - [link to lambda with function](https://stackoverflow.com/questions/13331698/how-to-apply-a-function-to-two-columns-of-pandas-dataframe)
 - [apply](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html)
+
+#### Map new values onto old ones
+
+```py
+# Substitute 'content_id' values with 'tags' by 'content_id'
+test_df['content_id'] = test_df['content_id']\
+    .map(questions_df.set_index('content_id')['tags'])
+```
+
+- [replace column values in one dataframe by values of another dataframe (stackoverflow)](https://stackoverflow.com/questions/36413993/replace-column-values-in-one-dataframe-by-values-of-another-dataframe)
+- [Series.map (pydata.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.map.html)
 
 ### String methods
 
