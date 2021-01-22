@@ -5,7 +5,13 @@
   - mat_cct_7650.txt, mat_cct_120600
   - mat_ps_8200.txt, pat_ps_128800.txt
 
-## Obsah <!-- omit in toc -->
+- [Mathematical Methods for Engineers II (ocw.mit)](https://ocw.mit.edu/courses/mathematics/18-086-mathematical-methods-for-engineers-ii-spring-2006/video-lectures/)
+
+- [Skyline Storage for symmetric and non-symmetric matrices (netlib.org jackDongarra)](http://www.netlib.org/utk/people/JackDongarra/etemplates/node378.html)
+
+
+## Obsah
+
 - [Přednáška 1](#přednáška-1)
   - [Funkce](#funkce)
   - [Derivace funkce](#derivace-funkce)

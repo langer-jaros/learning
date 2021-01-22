@@ -355,13 +355,16 @@ text = text[len('<!DOCTYPE html>\n'):]
 ### Bytes
 
 ```py
-bytes_1 = b"Bytes form this string"
-bytes_2 = "Bytes form this string".encode()
+# Bytes from string (encode string to bytes)
+b'some string'                  # b'some string'
+'some string'.encode()          # b'some string'
+bytes('some string', 'utf-8')   # b'some string'
 
-string_from_bytes = bytes_1.decode()
+# String from bytes (decode string from bytes)
+b'some string'.decode()         # 'some string'
 ```
 
-- [link](https://www.tutorialspoint.com/python/string_decode.htm)
+- [Converting to Bytes (docs)](https://docs.python.org/3/howto/unicode.html#converting-to-bytes)
 
 ### Conditions
 
@@ -791,6 +794,11 @@ except json.decoder.JSONDecodeError as e:
 import pdb; pdb.set_trace()
 ```
 
+```sh
+# Command line debugging
+python3 -m pdb ./my_script.py
+```
+
 - [pdb (docs)](https://docs.python.org/3/library/pdb.html)
 
 ### Regex
@@ -967,6 +975,21 @@ gc.collect() # returns number of the number of unreachable objects
 ```
 
 - [Garbage Collector interface (docs)](https://docs.python.org/3/library/gc.html)
+
+### base64 - base16, base32
+
+```py
+import base64
+
+# Encode bytes into base32 bytes
+base64.b32encode(b"some string")   # b'ONXW2ZJAON2HE2LOM4======'
+```
+
+- [base64 — Base16, Base32, Base64, Base85 Data Encodings (docs)](https://docs.python.org/3/library/base64.html)
+
+### Hashlib
+
+- [hashlib (docs)](https://docs.python.org/3/library/hashlib.html)
 
 ### ctypes
 
