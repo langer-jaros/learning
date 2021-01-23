@@ -642,7 +642,7 @@ i = random.randrange(0, 101, 1)
 # Random item of list
 item = random.choice(["Alice", "Bob", "Chuck"])
 
-# List sample of k elements
+# List sample of k unique elements
 samples = random.sample(["Alice", "Bob", "Chuck"], 2)
 
 # Shuffle list
@@ -801,6 +801,20 @@ python3 -m pdb ./my_script.py
 
 - [pdb (docs)](https://docs.python.org/3/library/pdb.html)
 
+Use pdb while reading form standard input (stdin)
+
+```py
+import sys
+sys.stdin = open('/dev/fd/3')
+import pdb; pdb.Pdb(stdin=sys.__stdin__, stdout=sys.__stdout__).set_trace()
+```
+
+```sh
+python3 3< module.py
+```
+
+- [debugging-with-python-pdb-module-with-stdin-redirection (bolgh.com)](https://www.bolgh.com/debugging-with-python-pdb-module-with-stdin-redirection-from-file.html)
+
 ### Regex
 
 ```py
@@ -925,6 +939,26 @@ checksum_1 = zlib.crc32(b"Also checksum of this.")
 print(checksum, checksum_1) 
 ```
 [python zlib](https://docs.python.org/3/library/zlib.html)
+
+### Time measurement
+
+```py
+import time
+
+# Measure CPU time
+start = time.process_time()
+# some code
+print(time.process_time() - start)
+
+# Mearure Wall time
+start = time.time()
+# some code
+print(time.time() - start)
+```
+
+- [measure-time-taken-between-lines (stackoverflow.com)](https://stackoverflow.com/questions/14452145/how-to-measure-time-taken-between-lines-of-code-in-python)
+- [timeit — Measure execution time of small code snippet (docs.python.org)](https://docs.python.org/3/library/timeit.html)
+- [Profiling Python using cProfile: a concrete case (julien.danjou.info)](https://julien.danjou.info/guide-to-python-profiling-cprofile-concrete-case-carbonara/)
 
 ### underscored names in python
 

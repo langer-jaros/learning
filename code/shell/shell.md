@@ -472,7 +472,7 @@ apt-cache search KEYWORD
 #### Check if installed
 
 ```sh
-dpkg-query -l 'someth*'
+dpkg-query -l 'someth'
 ```
 
 ---
@@ -486,6 +486,8 @@ dpkg-query -l 'someth*'
 1> where_to     2>&1
 &> where_to
 ```
+
+-[what-are-stdin-stdout-and-stderr-on-linux](https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux)
 
 ### Pipe
 
