@@ -814,6 +814,7 @@ python3 3< module.py
 ```
 
 - [debugging-with-python-pdb-module-with-stdin-redirection (bolgh.com)](https://www.bolgh.com/debugging-with-python-pdb-module-with-stdin-redirection-from-file.html)
+- [Use pdb.set_trace() in a script that reads stdin via a pipe (stackoverflow)](https://stackoverflow.com/questions/9178751/use-pdb-set-trace-in-a-script-that-reads-stdin-via-a-pipe)
 
 ### Regex
 

@@ -38,6 +38,7 @@
 | $\partial$         | `\partial`         |
 | $\nabla$           | `\nabla`           |
 | $\sum$             | `\sum`             |
+| $\prod$            | `\prod`            |
 
 - [Greek letters (overleaf.com)](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols)
 
