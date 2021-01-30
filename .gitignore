@@ -1,8 +1,7 @@
 # Informatics to be ignored
-informatics/combinatorial_optimization/homeworks/data
-informatics/combinatorial_optimization/homeworks/hw04/ins
-informatics/combinatorial_optimization/homeworks/hw04/neemiasbsilva
-informatics/combinatorial_optimization/homeworks/hw04/outs
+informatics/combinatorial_optimization/assignments/data
+informatics/combinatorial_optimization/assignments/3_experimental_measurements/gen
+informatics/combinatorial_optimization/assignments/4_local_search/code/prototypes/neemiasbsilva
 informatics/computational_intelligence/term_project/dkt
 informatics/computational_intelligence/term_project/sources_and_outputs
 informatics/numerical_math/mpi_cpp_tomas

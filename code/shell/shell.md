@@ -677,11 +677,16 @@ sudo du -a | sort -n -r | head -n 20
 #### Command diff
 
 ```sh
+# Show differences side by side
 diff --side-by-side --suppress-common-lines FILE_A FILE_B
-
-diff --side-by-side --suppress-common-lines FILE_A FILE_B | more
+# See the difference line by line with more command
+diff -y --suppress-common-lines FILE_A FILE_B | more
+# Get number of different lines
+diff -y --suppress-common-lines FILE_A FILE_B | wc -l
 ```
+
 or
+
 ```sh
 diff -u file1 file2
 ```
@@ -1158,7 +1163,7 @@ echo $((1238 % 17)) echo 14
 # quote removal
 ```
 
-[Documentation](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html)
+- [Documentation](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html)
 
 ### Regular Expressions
 
@@ -1565,6 +1570,8 @@ echo ${arr[@]} # full array
 echo ${arr[*]} # array as a string
 ```
 
+Shell parameter expansion
+
 ```bash
 var=
 # :-value -> pokud v proměnné není nic, vypíše se value, ale nepřiřadí se
@@ -1599,11 +1606,12 @@ ${var#pattern}
 ${var##pattern}
 # %pattern    -> trim pattern from right
 ${var%pattern}
-# %%pattern   -> trim the longest pattern form right
+# %%pattern   -> trim the longest pattern from right
 ${var%%pattern}
 ```
 
-[lowercase uppercase strings](https://linuxhint.com/bash_lowercase_uppercase_strings/)
+- [lowercase uppercase strings](https://linuxhint.com/bash_lowercase_uppercase_strings/)
+- [Shell Parameter Expansion (gnu.org)](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
 
 ```bash
 # :offset -> usekne 4 znaky od začátku a pouze do 6

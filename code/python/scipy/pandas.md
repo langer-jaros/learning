@@ -2,7 +2,7 @@
 
 *The alpha and omega of data in python.*
 
-`2021 Jan 09, Jaroslav Langer`
+`2021 Jan 30, Jaroslav Langer`
 
 ## Contents
 
@@ -622,8 +622,18 @@ extracted_columns = df[feature].str.extract(extract_pattern)
 df = df.join(extracted_columns)
 ```
 
+- [insert (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.insert.html)
 - [Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
 - [add multiple columns 8 ways (stackoverflow)](https://stackoverflow.com/questions/39050539/how-to-add-multiple-columns-to-pandas-dataframe-in-one-assignment)
+
+### More dataframes
+
+```py
+# SQL-like join, how=inner is the default option
+comparison_df = correct_df.merge(computed_df, on=['dataset', 'idx', 'n'])
+```
+
+- [merge (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge)
 
 ### Missing values
 
@@ -960,3 +970,4 @@ df = pd.melt(df, id_vars=["data_name", "model_name"],
 - [unstack](https://stackoverflow.com/questions/26255671/pandas-column-values-to-columns)
 - [melt](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.melt.html)
 - [melt (stackoverflow)](https://stackoverflow.com/questions/50098113/convert-columns-into-multiple-rows-in-pandas-dataframe)
+

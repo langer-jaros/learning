@@ -735,16 +735,25 @@ with open('image.png', mode='rb') as f:
     f.peek(NUMBER_OF_BYTES) 
 ```
 
-[source](http://vyuka.ookami.cz/materialy/python/files/basics.xml)
+- [[CZ] files basics (vyuka.ookami.cz)](http://vyuka.ookami.cz/materialy/python/files/basics.xml)
 
 ### os
 
 ```py
 import os
 
+# Iterate over files/ directories
+for root, dirs, files in os.walk(".", topdown=False):
+    for name in files:
+        print(os.path.join(root, name))
+    for name in dirs:
+        print(os.path.join(root, name))
+
 # Get full (absolute) path (maybe anti-pattern, dunno)
 os.path.abspath("./build/knapsack.so")
 ```
+
+- [os.walk (tutorialspoint)](https://www.tutorialspoint.com/python/os_walk.htm)
 
 ### Asserting
 ```py
