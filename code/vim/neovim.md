@@ -1,13 +1,30 @@
-# neovim
+# Neovim
 
-```
-Author: Jaroslav Langer
-Date:   2020 Nov. 18
-```
+Neovim - a Vim taken a step further.
+
+`2021 Jan 31, Jaroslav Langer`
 
 ## Contents
 
+<!-- TOC GFM -->
+
+* [Introduction](#introduction)
+* [Installation](#installation)
+    * [Install neovim](#install-neovim)
+    * [Create config file](#create-config-file)
+    * [Create space for plugins](#create-space-for-plugins)
+    * [Install vim-plug plugin manager](#install-vim-plug-plugin-manager)
+    * [Plugins](#plugins)
+        * [neoclide/coc.nvim](#neoclidecocnvim)
+        * [morhetz/gruvbox](#morhetzgruvbox)
+    * [Modify the config file](#modify-the-config-file)
+    * [How to Configure Vim like VSCode (benawad)](#how-to-configure-vim-like-vscode-benawad)
+
+<!-- /TOC -->
+
 ## Introduction
+
+- [Meet Neovim (vimcasts.org)](http://vimcasts.org/episodes/meet-neovim/)
 
 ## Installation
 

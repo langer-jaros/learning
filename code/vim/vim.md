@@ -1,41 +1,56 @@
 # Vim
 
-## Contents <!-- omit in toc -->
+Vi improved - visual text editor for life.
 
-- [Introduction](#introduction)
-  - [Where to learn vim](#where-to-learn-vim)
-  - [Vim modes](#vim-modes)
-- [Basics](#basics)
-  - [Basic movement](#basic-movement)
-  - [Basic editing](#basic-editing)
-  - [Basic operations](#basic-operations)
-  - [Basic commands](#basic-commands)
-  - [Search for pattern](#search-for-pattern)
-  - [Copy from and past to clipboard](#copy-from-and-past-to-clipboard)
-  - [Autocomplete](#autocomplete)
-- [Advanced](#advanced)
-  - [Advanced movement](#advanced-movement)
-  - [Editing movement combination](#editing-movement-combination)
-  - [Visual modes](#visual-modes)
-  - [Change view](#change-view)
-  - [Replace pattern](#replace-pattern)
-  - [Other movements](#other-movements)
-  - [Commands](#commands)
-  - [Settings](#settings)
-  - [Check spelling](#check-spelling)
-- [Rest of the previous Czech version (something duplicated)](#rest-of-the-previous-czech-version-something-duplicated)
-  - [Cut](#cut)
-  - [Copy](#copy)
-  - [Paste](#paste)
-  - [General](#general)
-  - [Find Character](#find-character)
-  - [Find Pattern](#find-pattern)
-  - [Commands](#commands-1)
-  - [Visual mode](#visual-mode)
-  - [More files](#more-files)
-- [Configuration file](#configuration-file)
+`2021 Jan 31, Jaroslav Langer`
+
+## Contents
+
+<!-- TOC GFM -->
+
+* [Introduction](#introduction)
+    * [Where to learn vim](#where-to-learn-vim)
+    * [Vim modes](#vim-modes)
+        * [Normal mode](#normal-mode)
+        * [Insert mode](#insert-mode)
+        * [Visual mode](#visual-mode)
+        * [Command mode](#command-mode)
+* [Basics](#basics)
+    * [Basic movement](#basic-movement)
+    * [Basic editing](#basic-editing)
+        * [Insert mode editing](#insert-mode-editing)
+    * [Basic operations](#basic-operations)
+    * [Basic commands](#basic-commands)
+    * [Search for pattern](#search-for-pattern)
+    * [Copy from and past to clipboard](#copy-from-and-past-to-clipboard)
+    * [Autocomplete](#autocomplete)
+* [Advanced](#advanced)
+    * [Advanced movement](#advanced-movement)
+    * [Editing movement combination](#editing-movement-combination)
+    * [Visual modes](#visual-modes)
+    * [Change view](#change-view)
+    * [Replace pattern](#replace-pattern)
+    * [Other movements](#other-movements)
+    * [Commands](#commands)
+    * [Settings](#settings)
+    * [Check spelling](#check-spelling)
+* [Rest of the previous Czech version (something duplicated)](#rest-of-the-previous-czech-version-something-duplicated)
+    * [Cut](#cut)
+    * [Copy](#copy)
+    * [Paste](#paste)
+    * [General](#general)
+    * [Find Character](#find-character)
+    * [Find Pattern](#find-pattern)
+    * [Commands](#commands-1)
+    * [Visual mode](#visual-mode-1)
+    * [More files](#more-files)
+* [Configuration file](#configuration-file)
+
+<!-- /TOC -->
 
 ## Introduction
+
+- [What Are The Differences Between Vi And Vim? (shell-tips.com)](https://www.shell-tips.com/linux/vi-vs-vim/)
 
 ### Where to learn vim
 
@@ -217,17 +232,20 @@ ctrl+g - show current line of the file and percentage.
 
 Command mode starts with press of the key `:`.
 
-| Command      | Action                          |
-| :---:        | ---                             |
-| :retab       | Convert tabs to spaces.         |
-| :!           | Runs any terminal command.      |
-| :w filename  | Write as a filename.            |
-| :r filename  | Open file.                      |
-| :e filename  | Open new file.                  |
-| :qa          | Quit all files.                 |
-| :sort        |                                 |
-| :earlier 15m |                                 |
-| :later 10m   |                                 |
+| Command | Example usage | Description                             |
+| :---:   | ---           | ---                                     |
+| retab   | :retab        | Convert tabs to spaces.                 |
+| !       | :!            | Runs any terminal command.              |
+| w       | :w filename   | Write as a filename.                    |
+| r       | :r filename   | Open file.                              |
+| e       | :e filename   | Open new file.                          |
+| qa      | :qa           | Quit all files.                         |
+| sort    | :sort         |                                         |
+| earlier | :earlier 15m  |                                         |
+| later   | :later 10m    |                                         |
+| source  | :so %         | Read file and treat it as a vim script. |
+
+- [https://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim (superuser.com)](https://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim)
 
 ### Settings
 

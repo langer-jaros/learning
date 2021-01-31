@@ -26,6 +26,8 @@ class Instance():
         self.n = n
         self.cpty = cpty
         self.items = items
+        self.total_weight = self.items[0].sum()
+        self.total_value = self.items[1].sum()
 
     def __repr__(self):
         return (f'<class Instance: '
@@ -74,9 +76,12 @@ class Solution():
 
     @classmethod
     def get_random(cls, inst):
+        """
+        Get random solution, the number of items is proportional
+        to the ratio of capacity to the sum of the items' weight.
+        """
 
-        total_weight = inst.items[0].sum()
-        one_prob = min((inst.cpty / total_weight), 1)
+        one_prob = min((inst.cpty / inst.total_weight), 1)
 
         rand_gen = np.random.default_rng(42)
         # solution vector randomly initialized with an appropriate number of ones.
@@ -124,37 +129,49 @@ class Solver():
 
         tabu_dict = {}  #(swap_idx, swap_value, value_curr, soln_tmp.value):
 
+        step = 0
+        soln_tmp = Solution.get_random(inst) # First solution is randomized
+        key_tmp = None
+        soln_next = Solution(inst=inst, value= - inst.total_weight - 1)
+        key_next = None
         soln_best = Solution(inst=inst, value=0,
             state=np.zeros(inst.n, dtype='i4'))
-        soln_tmp = Solution.get_random(inst) # First solution is randomized
-        soln_next = soln_tmp.copy()
-        key_next = None
 
         # max_iter = math.ceil(math.sqrt(inst.n))
         max_iter = inst.n
-        for step in range(max_iter):        # Iterate until max_iteration
+        for step in range(1, max_iter + 1): # Iterate until max_iteration
             value_curr = soln_tmp.value     # Current iteration value
 
-            for swap_idx in range(inst.n):  # Iteration order can be randomized
-                swap_value = soln_tmp.state[swap_idx]
+            # Iterate over all items, find the best transition
+            for swap_idx in range(inst.n):
 
-                if (soln_tmp.state[swap_idx] == 0):
-                    soln_tmp.state[swap_idx] = 1
-                else:
-                    soln_tmp.state[swap_idx] = 0
+                # Remember item's value, swap it and evaluate the swap
+                swap_value = soln_tmp.state[swap_idx] # Remember original value
+                soln_tmp.state[swap_idx] = (soln_tmp.state[swap_idx] + 1) % 2 # Swap item's value
+                soln_tmp.value = soln_tmp.eval_state()  # Evaluate solution
 
-                soln_tmp.value = soln_tmp.eval_state()
-                key_next = (swap_idx, swap_value, value_curr, soln_tmp.value)
-                if (tabu_dict.get(key_next, step - 1) < step):  # Is tabu?
+                # Create key describing the transition, check if tabu, assign next solution
+                key_tmp = (swap_idx, swap_value, value_curr, soln_tmp.value)
+                if (tabu_dict.get(key_tmp, step - 1) < step):   # Is tabu?
                     if (soln_tmp.value > soln_next.value):
                         soln_next.assign(soln_tmp)
+                        key_next = (            # Key that will be tabu
+                            key_tmp[0],         # item's index
+                            (key_tmp[1]+1)%2,   # item's next value (inverted original)
+                            key_tmp[3],         # next value
+                            key_tmp[2]          # previous value
+                        )
                     if (soln_tmp.value > soln_best.value):
                         soln_best.assign(soln_tmp)
-                soln_tmp.state[swap_idx] = swap_value
-                soln_tmp.value = value_curr
 
-            soln_tmp.assign(soln_next)
-            tabu_dict[key_next] = step + tabu_period
+                # Recover the temporary solution for other swap indices
+                soln_tmp.state[swap_idx] = swap_value   # Recover item's value
+                soln_tmp.value = value_curr             # Recover soln_tmp value
+
+            # Assign next solution to temporary solution, add it to the tabu list
+            soln_tmp.assign(soln_next)                  # Assign next solution
+            soln_next.value = (- inst.total_weight) - 1 # Make better any other
+            tabu_dict[key_next] = step + tabu_period    # Add transition to tabu
 
         return soln_best
 
@@ -175,7 +192,4 @@ if __name__ == "__main__":
     for inst in Instance.read_instances(lines):
         solution = Solver.tabu(inst)
         solution.write_down()
-
-# import pdb; pdb.set_trace()
-# breakpoint()
 

@@ -1,9 +1,6 @@
 #!/bin/bash
 
-
-base_path=~/Projects/learning/informatics/combinatorial_optimization/homeworks
-outs=${base_path}/hw04/ins_and_outs/outs
-solver=${base_path}/hw04/code/prototypes/knapsack_prototype.py
+source ~/Projects/learning/informatics/combinatorial_optimization/assignments/4_local_search/config.bash
 
 for dataset in ${base_path}/data/*; do
     for file in ${dataset}/*_{0,1}*soln*; do

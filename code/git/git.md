@@ -1,39 +1,45 @@
 # Git
 
-How to git successfully even with low background knowledge.
+How to use git successfully even with a little background knowledge.
 
-`2020/09/10, Jaroslav Langer`
+`2021 Jan 31, Jaroslav Langer`
 
-## MENU
+## Contents
 
-- [MENU](#menu)
-- [Basic information](#basic-information)
-- [Create git account](#create-git-account)
-- [Git installation and setup](#git-installation-and-setup)
-- [Create a project](#create-a-project)
-  - [Create repository from scratch](#create-repository-from-scratch)
-  - [Create repository from existing folder](#create-repository-from-existing-folder)
-  - [Start to work on someones repository (fork)](#start-to-work-on-someones-repository-fork)
-- [Contribute to a project](#contribute-to-a-project)
-  - [Contribute to someones repository (with push rights)](#contribute-to-someones-repository-with-push-rights)
-  - [Contribute without the rights to push - fork](#contribute-without-the-rights-to-push---fork)
-- [Branching](#branching)
-- [Commiting](#commiting)
-- [Showing](#showing)
-- [Merging](#merging)
-  - [Test a new branch before the merge](#test-a-new-branch-before-the-merge)
-- [Remote repositories - remotes](#remote-repositories---remotes)
-- [Push and Pull](#push-and-pull)
-- [Stash](#stash)
-- [Remove unwanted staging of many files](#remove-unwanted-staging-of-many-files)
-- [Remove changes after commit](#remove-changes-after-commit)
-- [Remove changes after push](#remove-changes-after-push)
-- [Create the pull request](#create-the-pull-request)
-- [Move repository form one GITSITE_OLD to another GITSITE_NEW](#move-repository-form-one-gitsite_old-to-another-gitsite_new)
-- [Duplicate a repository](#duplicate-a-repository)
-- [Add submodule](#add-submodule)
-- [In case of any troubles](#in-case-of-any-troubles)
+<!-- TOC GFM -->
 
+* [Basic information](#basic-information)
+* [Git --help](#git---help)
+* [Create git account](#create-git-account)
+* [Git installation and setup](#git-installation-and-setup)
+* [Create a project](#create-a-project)
+    * [Create repository from scratch](#create-repository-from-scratch)
+    * [Create repository from existing folder](#create-repository-from-existing-folder)
+    * [Start to work on someones repository (fork)](#start-to-work-on-someones-repository-fork)
+* [Contribute to a project](#contribute-to-a-project)
+    * [Contribute to someones repository (with push rights)](#contribute-to-someones-repository-with-push-rights)
+        * [Update the content from remote](#update-the-content-from-remote)
+        * [Develop the code as a new branch](#develop-the-code-as-a-new-branch)
+    * [Contribute without the rights to push - fork](#contribute-without-the-rights-to-push---fork)
+* [Branching](#branching)
+* [Add files to the index](#add-files-to-the-index)
+* [Ignore files form git structure](#ignore-files-form-git-structure)
+* [Committing](#committing)
+* [Showing](#showing)
+* [Merging](#merging)
+    * [Test a new branch before the merge](#test-a-new-branch-before-the-merge)
+* [Remote repositories - remotes](#remote-repositories---remotes)
+* [Push and Pull](#push-and-pull)
+* [Stash](#stash)
+* [Remove unwanted staging of many files](#remove-unwanted-staging-of-many-files)
+* [Remove changes after commit](#remove-changes-after-commit)
+* [Remove changes after push](#remove-changes-after-push)
+* [Create the pull request](#create-the-pull-request)
+* [Move repository form one GITSITE_OLD to another GITSITE_NEW](#move-repository-form-one-gitsite_old-to-another-gitsite_new)
+* [Duplicate a repository](#duplicate-a-repository)
+* [Add submodule](#add-submodule)
+
+<!-- /TOC -->
 
 ## Basic information
 
@@ -46,16 +52,27 @@ It enables you to work completely offline and synchronize the code with the remo
 In the git repository, every file can be in three states:
 1) modified - the file is changed but you don't want the change to be recorded in the next version (snapshot)
 2) staged - the file is changed and the change will be recorded with the next commit (~ the change is added to the index)
-3) commited - the change is safely stored in the local git database
+3) committed - the change is safely stored in the local git database
 
-clone - clones remote git repository to your machine as local git repository
-branch - branch is simply a pointer to specific snapshot (version) 
-HEAD - special pointer which point at the branch you are currently on
-checkout - changes branch at which the HEAD is pointing and updates the local files to match with that branch (switch branches)
-push - pushes local repository the the remote one
-fetch - downloads content from remote git repository
-merge - incorporates changes from given named branch to current branch
-pull - does git fetch and git merge
+| command  | Description                                                      |
+| ---      | ---                                                              |
+| clone    | Clones remote git repository to your machine as local git repository. |
+| branch   | Branch is simply a pointer to specific snapshot (version).       |
+| HEAD     | Special pointer which point at the branch you are currently on.  |
+| checkout | Changes branch at which the HEAD is pointing and updates the local files to match with that branch (switch branches). |
+| push     | Pushes local repository to the remote one.                       |
+| fetch    | Downloads content from remote git repository.                    |
+| merge    | Incorporates changes from given named branch to current branch.  |
+| pull     | Does git fetch and git merge.                                    |
+
+## Git --help
+
+Git has a beautifully done manual, so adding `--help` after any command is usually sufficient help once you start using the git.
+
+```sh
+# Example of help for rm command
+git rm --help
+```
 
 ## Create git account
 
@@ -78,7 +95,7 @@ It is either possible to create a new repository (project) or to find some alrea
 
 ### Create repository from scratch
 
-On your GITSITE create a new repository and get its url under button "clone" (e.g. https://github.com/USERNAME/PROJECT.git)
+On your GITSITE create a new repository and get its URL under button "clone" (e.g. https://github.com/USERNAME/PROJECT.git)
 
 ```sh
 # Clone the repository (project) to your machine
@@ -149,7 +166,7 @@ git pull # git pull origin
 
 #### Develop the code as a new branch
 
-Instead of modifing master, and pushing to the origin/master.
+Instead of modifying master, and pushing to the origin/master.
 Create a development branch and make the changes there. Don't merge the branch with master.
 Push the development branch to remote and let the owner know about it, i.e. let him merge it himself.
 
@@ -181,7 +198,7 @@ Once you are happy with your changes, create a pull request on the GITSITE.
 
 ## Branching
 
-The default branch (and usually the main one) is caled "master".
+The default branch (and usually the main one) is called "master".
 It is handy to create a new branch once you want to create new feature.
 
 ```sh
@@ -210,7 +227,7 @@ git branch -d BRANCH_NAME
 git branch -m NEW_BRANCH_NAME
 ```
 
-## Commiting
+## Add files to the index
 
 ```sh
 # Add file contents to the index (file will be commited)
@@ -226,15 +243,33 @@ git rm FILE
 git rm -r DIR # Recursive (directory) option
 git rm --cached FILE # Remove FILE only from index (will not be commited) dont delete it locally.
 git rm -f FILE # Force the removal - remove file from index and directory even when it has local modifications
+```
 
+- [source](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
+
+## Ignore files form git structure
+
+`.gitignore` file specifies intentionally untracked files to be ignored.
+
+```.gitignore
+# Ignore all .ipynb checkpoints
+.ipynb_checkpoints
+# Ignore knapsack instances directory
+./knapsack/instances
+```
+
+- [gitignore (git-scm.com)](https://git-scm.com/docs/gitignore)
+- [How to git ignore ipython notebook checkpoints anywhere in repository (stackoverflow.com)](https://stackoverflow.com/questions/35916658/how-to-git-ignore-ipython-notebook-checkpoints-anywhere-in-repository)
+
+## Committing
+
+```sh
 # Show status of git files, which where not added, which were deleted but added etc.
 git status
 
 # Commit added things
 git commit -m "Meaningful comment"
 ```
-
-[source](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
 
 ## Showing
 
@@ -411,10 +446,3 @@ rm -rf NEW_REPOSITORY.git
 git submodule add https://github.com/NEW_REPOSITORY.git REPO_NAME
 ```
 
-## In case of any troubles
-
-```sh
-git help
-```
-
-[Documentation](https://git-scm.com/doc)

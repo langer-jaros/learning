@@ -1,4 +1,6 @@
-# Informatics to be ignored
+# Ignored file types
+.ipynb_checkpoints
+# Informatics directories to be ignored
 informatics/combinatorial_optimization/assignments/data
 informatics/combinatorial_optimization/assignments/3_experimental_measurements/gen
 informatics/combinatorial_optimization/assignments/4_local_search/code/prototypes/neemiasbsilva

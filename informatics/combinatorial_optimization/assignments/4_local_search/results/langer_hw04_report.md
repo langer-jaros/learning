@@ -1,8 +1,30 @@
 # Local Search for Knapsack Problem
 
-`2021 Jan 30, Jaroslav Langer`
+`2021 Jan 31, Jaroslav Langer`
+
+## TODO
+
+- Check tabu behaviour for miserable outcomes of easy problems (n=4,10).
+- Rename `tabu_period` to `tabu_tenure`.
+- Add `max_iter` to input parameters.
+- Change `tabu_tenure` to function call of n.
+- Argparser handle for debug, metadata.
+- Metadata logging, solutions, number of evaluations, time.
 
 ## Contents
+
+<!-- TOC GFM -->
+
+* [Algorithm Choice and Description](#algorithm-choice-and-description)
+* [Experimental Results](#experimental-results)
+    * [Number of Iterations](#number-of-iterations)
+    * [Tabu Period Impact](#tabu-period-impact)
+* [Conclusions](#conclusions)
+* [References](#references)
+    * [Literature](#literature)
+    * [Examples](#examples)
+
+<!-- /TOC -->
 
 ## Algorithm Choice and Description
 
