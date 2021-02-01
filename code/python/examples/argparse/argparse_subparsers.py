@@ -1,4 +1,19 @@
-if __name__ == "__main__":
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Subparsers Example
+
+Bunch of lines i have probably used/tested in the past.
+I did not have the time to go through them and clean this up.
+
+Author:     Jaroslav Langer
+Modified:   2021 Jan 31
+"""
+
+if __name__ == '__main__':
+    import sys
+    import argparse
+
     # create the top-level parser
     parser = argparse.ArgumentParser(description=__doc__)
     # parser.add_argument('action', type=str, help="Name of desired action",
@@ -91,20 +106,4 @@ if __name__ == "__main__":
     function(**args_dict) if (function is not None) else parser.print_help()
     # print(f"args_dict: {args_dict}")
     # args.func(**vars(args))
-
-
-
-
-
-    # args = parser.parse_args()
-    # for name, sequence in reformatSequences(args.type):
-    #     writeSequence(name, sequence)
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('integers', type=int, nargs='2', help='range of letters both edges included, first letter has number 1')
-    args = parser.parse_args()
-    for name, sequence in iterSequences(NA, filter=True):
-        print("PL")
-        # print(sequence[args.integers[0] - 1 : args.integers[1]])
 

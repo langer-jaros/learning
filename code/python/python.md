@@ -1,51 +1,88 @@
 # Python
 
-Great language for prototyping, machine learning and anything else.
+Great language for prototyping, scripting, machine learning and anything else.
 
-`2021 Jan 09, Jaroslav Langer`
+`2021 Feb 01, Jaroslav Langer`
 
 ## Contents
 
-- [Tutorials](#tutorials)
-- [How to start](#how-to-start)
-  - [Installation](#installation)
-  - [Run python](#run-python)
-- [Basics](#basics)
-  - [First things first](#first-things-first)
-  - [Comments](#comments)
-  - [Printing](#printing)
-  - [Variables](#variables)
-  - [String](#string)
-  - [Accessing Different data](#accessing-different-data)
-  - [Bytes](#bytes)
-  - [Conditions](#conditions)
-  - [Loops](#loops)
-  - [Collections](#collections)
-  - [Functions](#functions)
-  - [Classes and Objects](#classes-and-objects)
-  - [Methods for loops](#methods-for-loops)
-  - [Math](#math)
-  - [Random](#random)
-  - [Imports](#imports)
-  - [Inputs, outputs](#inputs-outputs)
-  - [Files](#files)
-  - [os](#os)
-  - [Asserting](#asserting)
-  - [Json](#json)
-  - [Exceptions](#exceptions)
-- [Advanced](#advanced)
-  - [pdb — The Python Debugger](#pdb--the-python-debugger)
-  - [Regex](#regex)
-  - [Lambda](#lambda)
-  - [Datetime](#datetime)
-  - [pickle](#pickle)
-  - [argparse](#argparse)
-  - [Compress, decompress, checksum](#compress-decompress-checksum)
-  - [underscored names in python](#underscored-names-in-python)
-  - [Python memory](#python-memory)
-  - [Garbage Collector](#garbage-collector)
-  - [ctypes](#ctypes)
-  - [Python 2 differences](#python-2-differences)
+<!-- TOC GFM -->
+
+* [Tutorials](#tutorials)
+* [How to start](#how-to-start)
+    * [Installation](#installation)
+        * [Venv](#venv)
+        * [pip](#pip)
+    * [Run python](#run-python)
+        * [Terminal](#terminal)
+        * [Scripts](#scripts)
+* [Basics](#basics)
+    * [First things first](#first-things-first)
+    * [Comments](#comments)
+        * [Docstrings](#docstrings)
+    * [Printing](#printing)
+    * [Variables](#variables)
+    * [String](#string)
+        * [Raw string](#raw-string)
+        * [Format and f string](#format-and-f-string)
+        * [String functions](#string-functions)
+    * [Accessing Different data](#accessing-different-data)
+        * [type and isinstance](#type-and-isinstance)
+        * [Equality, Identity and ID](#equality-identity-and-id)
+        * [len()](#len)
+        * [Slices](#slices)
+    * [Bytes](#bytes)
+    * [Conditions](#conditions)
+    * [Loops](#loops)
+    * [Collections](#collections)
+        * [Lists](#lists)
+        * [Dictionary](#dictionary)
+        * [Set](#set)
+        * [Iteration over collection](#iteration-over-collection)
+        * [Assignment vs. copy vs. deepcopy](#assignment-vs-copy-vs-deepcopy)
+        * [Comprehensions](#comprehensions)
+        * [Collection functions](#collection-functions)
+    * [Functions](#functions)
+    * [Classes and Objects](#classes-and-objects)
+    * [Methods for loops](#methods-for-loops)
+    * [Math](#math)
+        * [Statistics](#statistics)
+    * [Random](#random)
+    * [Imports](#imports)
+    * [Inputs, outputs](#inputs-outputs)
+        * [Input arguments](#input-arguments)
+        * [Standard input](#standard-input)
+    * [Files](#files)
+        * [Modes](#modes)
+        * [Text files](#text-files)
+        * [Binary files](#binary-files)
+    * [os](#os)
+    * [Asserting](#asserting)
+    * [Json](#json)
+    * [Exceptions](#exceptions)
+* [Advanced](#advanced)
+    * [pdb — The Python Debugger](#pdb--the-python-debugger)
+    * [Regex](#regex)
+        * [Match](#match)
+        * [fullmatch](#fullmatch)
+        * [The special characters](#the-special-characters)
+    * [Lambda](#lambda)
+    * [Datetime](#datetime)
+    * [pickle](#pickle)
+    * [argparse](#argparse)
+    * [Compress, decompress, checksum](#compress-decompress-checksum)
+    * [Time measurement](#time-measurement)
+    * [underscored names in python](#underscored-names-in-python)
+        * [Dunders (double underscores)](#dunders-double-underscores)
+    * [Python memory](#python-memory)
+    * [Garbage Collector](#garbage-collector)
+    * [base64 - base16, base32](#base64---base16-base32)
+    * [Hashlib](#hashlib)
+    * [ctypes](#ctypes)
+    * [Python 2 differences](#python-2-differences)
+        * [Math in python 2 doesn't work well](#math-in-python-2-doesnt-work-well)
+
+<!-- /TOC -->
 
 ## Tutorials
 
@@ -535,8 +572,15 @@ def fu(arg1, arg2=".", *args, **kwargs):
 fu("Hello", "world", "!", sep=" ", end="\n")
 ```
 
-- [Python does not have function overloading](https://www.codementor.io/@arpitbhayani/overload-functions-in-python-13e32ahzqt)
-- [*args and **kwargs](https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3)
+* [Python does not have function overloading](https://www.codementor.io/@arpitbhayani/overload-functions-in-python-13e32ahzqt)
+* [`*args and **kwargs`](https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3)
+
+```py
+callable(fu) # True
+callable({}) # False
+```
+
+* [callable() in Python (geeksforgeeks.org)](https://www.geeksforgeeks.org/callable-in-python/)
 
 ### Classes and Objects
 
@@ -808,9 +852,23 @@ import pdb; pdb.set_trace()
 python3 -m pdb ./my_script.py
 ```
 
-- [pdb (docs)](https://docs.python.org/3/library/pdb.html)
+* [pdb (docs)](https://docs.python.org/3/library/pdb.html)
 
 Use pdb while reading form standard input (stdin)
+
+```py
+input_iter = args.input.readlines()  # lines = sys.stdin.readlines()
+sys.stdin = open('/dev/tty')
+import pdb; pdb.set_trace()
+```
+
+```sh
+./module.py < input_file
+```
+
+* [Use pdb.set_trace() in a script that reads stdin via a pipe (stackoverflow)](https://stackoverflow.com/questions/9178751/use-pdb-set-trace-in-a-script-that-reads-stdin-via-a-pipe)
+
+If the input can not be read at once, different file descriptor can be used.
 
 ```py
 import sys
@@ -819,11 +877,10 @@ import pdb; pdb.Pdb(stdin=sys.__stdin__, stdout=sys.__stdout__).set_trace()
 ```
 
 ```sh
-python3 3< module.py
+module.py 3< input_file
 ```
 
-- [debugging-with-python-pdb-module-with-stdin-redirection (bolgh.com)](https://www.bolgh.com/debugging-with-python-pdb-module-with-stdin-redirection-from-file.html)
-- [Use pdb.set_trace() in a script that reads stdin via a pipe (stackoverflow)](https://stackoverflow.com/questions/9178751/use-pdb-set-trace-in-a-script-that-reads-stdin-via-a-pipe)
+* [debugging-with-python-pdb-module-with-stdin-redirection (bolgh.com)](https://www.bolgh.com/debugging-with-python-pdb-module-with-stdin-redirection-from-file.html)
 
 | command   | description                           |
 | ---       | ---                                   |
@@ -831,7 +888,7 @@ python3 3< module.py
 | `b`       | Show all breakpoints.                 |
 | `cl <b>`  | Clear breakpoint number `<b>`.        |
 
-- [Breakpoints (bashdb.sourceforge.net)](http://bashdb.sourceforge.net/pydb/pydb/lib/subsubsection-brkpts.html)
+* [Breakpoints (bashdb.sourceforge.net)](http://bashdb.sourceforge.net/pydb/pydb/lib/subsubsection-brkpts.html)
 
 ### Regex
 
@@ -941,6 +998,8 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--type", choices=[NA, AA], help="reformat nucleic acid or amino acid sequence")
     args = parser.parse_args()
 ```
+
+* [argparse (docs.python.org)](https://docs.python.org/3/library/argparse.html)
 
 ### Compress, decompress, checksum
 
