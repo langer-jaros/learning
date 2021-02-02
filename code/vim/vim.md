@@ -2,7 +2,7 @@
 
 Vi improved - visual text editor for life.
 
-`2021 Jan 31, Jaroslav Langer`
+`2021 Feb 02, Jaroslav Langer`
 
 ## Contents
 
@@ -50,7 +50,7 @@ Vi improved - visual text editor for life.
 
 ## Introduction
 
-- [What Are The Differences Between Vi And Vim? (shell-tips.com)](https://www.shell-tips.com/linux/vi-vs-vim/)
+* [What Are The Differences Between Vi And Vim? (shell-tips.com)](https://www.shell-tips.com/linux/vi-vs-vim/)
 
 ### Where to learn vim
 
@@ -64,28 +64,28 @@ Vi improved - visual text editor for life.
 
 #### Normal mode
 
-- Every vim session starts in normal mode.
-- In normal mode keys do not write down their letters, they all have special actions.
+* Every vim session starts in normal mode.
+* In normal mode keys do not write down their letters, they all have special actions.
 
 #### Insert mode
 
-- Insert mode works the same as normal text editor.
-    - If you type "b" the "b" appears on the screen.
-- To enter the insert mode press `i`.
-- Press `esc` to exit the insert mode.
+* Insert mode works the same as normal text editor.
+    * If you type "b" the "b" appears on the screen.
+* To enter the insert mode press `i`.
+* Press `esc` to exit the insert mode.
 
 #### Visual mode
 
-- Visual mode enables to visually select the text and apply editing to the selection.
-- To enter the visual mode press `v`.
-- Press `esc` to exit the visual mode.
+* Visual mode enables to visually select the text and apply editing to the selection.
+* To enter the visual mode press `v`.
+* Press `esc` to exit the visual mode.
 
 #### Command mode
 
-- Command mode allows you to use advanced commands such as replacing text with regex.
-    - It also allows you to set up the editor e.g. set search to be case insensitive.
-- To enter the command mode press `:`.
-- Use `backspace` to exit the command mode.
+* Command mode allows you to use advanced commands such as replacing text with regex.
+    * It also allows you to set up the editor e.g. set search to be case insensitive.
+* To enter the command mode press `:`.
+* Use `backspace` to exit the command mode.
 
 ## Basics
 
@@ -137,12 +137,13 @@ Vi improved - visual text editor for life.
 
 ### Basic commands
 
-| Command      | Action                                 |
-| ---          | ---                                    |
-| :q           | Quit vim.                              |
-| :q! shift+zq | Quit even though the file was changed. |
-| :w          | Write the changes to the file.          |
-| :x :wq shift+zz | Save and quit.                      |
+| Keystrokes | Action                                               | Alternatives |
+| ---        | ---                                                  |              |
+| :q         | Quit vim.                                            |              |
+| shift+zq   | Quit even though the file was changed.               | :q!          |
+| :w         | Save file (write the changes to the file).           |              |
+| shift+zz   | Save and quit.                                       | :x :wq       |
+| :w !sh     | Execute like a shell script (write buffer to shell). | :w !bash     |
 
 ### Search for pattern
 
@@ -157,7 +158,7 @@ Vi improved - visual text editor for life.
 ### Copy from and past to clipboard
 
 Use the `y` and `p` the same way, only type `"+` before the action.
-- e.g use `"+p` to paste the content from the clipboard or use `"+yy` to copy the current line.
+* e.g use `"+p` to paste the content from the clipboard or use `"+yy` to copy the current line.
 
 ### Autocomplete
 
@@ -245,7 +246,7 @@ Command mode starts with press of the key `:`.
 | later   | :later 10m    |                                         |
 | source  | :so %         | Read file and treat it as a vim script. |
 
-- [https://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim (superuser.com)](https://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim)
+* [https://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim (superuser.com)](https://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim)
 
 ### Settings
 
@@ -363,5 +364,5 @@ vi -O file1 file2
 
 ## Configuration file
 
-- [How to configuration](https://www.linode.com/docs/guides/introduction-to-vim-customization/)
+* [How to configuration](https://www.linode.com/docs/guides/introduction-to-vim-customization/)
 

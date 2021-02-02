@@ -4,7 +4,7 @@
 Knapsack 0/1 Tabu Search Prototype
 
 Author:     Jaroslav Langer
-Modified:   2021 Jan 23
+Modified:   2021 Feb 02
 """
 
 import sys
@@ -50,7 +50,8 @@ class Instance():
 
 
 class Solution():
-    """Knapsack solution class.
+    """
+    Knapsack solution class.
 
     It should contain reference to the problem instance.
     Value represents the sum of item values.
@@ -105,7 +106,8 @@ class Solution():
             raise AttributeError('Assign called over different instances.')
 
     def eval_state(self, inst=None):
-        """Evaluate knapsack state.
+        """
+        Evaluate knapsack state.
 
         Return total value.
         Return -1 if the total weight exceeds knapsack's capacity.

@@ -2,7 +2,7 @@
 
 Great language for prototyping, scripting, machine learning and anything else.
 
-`2021 Feb 01, Jaroslav Langer`
+`2021 Feb 02, Jaroslav Langer`
 
 ## Contents
 
@@ -469,7 +469,11 @@ dict_tmp = dict([("another", "key"), ("and_many", "more")])
 my_dict["new_key"] = "anything"
 # Add all key-values from another dictionary
 my_dict.update(dict_tmp)
+# Merge two dictionaries into a new one
+new_dict = {**dict_1, **dict_2}
 ```
+
+* [How do i merge two dictionaries (stackoverflow.com)](https://stackoverflow.com/questions/38987/how-do-i-merge-two-dictionaries-in-a-single-expression-in-python-taking-union-o)
 
 ```py
 # For loop with dictionaries
@@ -1022,12 +1026,12 @@ print(checksum, checksum_1)
 ```py
 import time
 
-# Measure CPU time
+# Measure CPU time (in seconds)
 start = time.process_time()
 # some code
 print(time.process_time() - start)
 
-# Mearure Wall time
+# Mearure Wall time (in seconds)
 start = time.time()
 # some code
 print(time.time() - start)

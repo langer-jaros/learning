@@ -1,12 +1,10 @@
 # Local Search for Knapsack Problem
 
-`2021 Feb 01, Jaroslav Langer`
+`2021 Feb 02, Jaroslav Langer`
 
 ## TODO
 
-* Parse metadata into dataframe.
-* Make percentual progress of the solution.
-* Discretize the percentual progress to 10 slots by mean.
+* Test bad examples with big max_iter and  tabu_tenure.
 * Based on the max_iter analysis, choose `m` and test multiple `tabu_tenure`s.
 * Evaluate rel_error, time and number of evaluations.
 

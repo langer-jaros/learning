@@ -1,52 +1,68 @@
 # pandas
 
-*The alpha and omega of data in python.*
+*The alpha and omega of work with data.*
 
-`2021 Jan 30, Jaroslav Langer`
+`2021 Feb 02, Jaroslav Langer`
 
 ## Contents
 
-- [Documentation](#documentation)
-- [First things first](#first-things-first)
-  - [Import pandas](#import-pandas)
-- [DataFrame and Series](#dataframe-and-series)
-  - [Series](#series)
-  - [DataFrame](#dataframe)
-- [Get data into DataFrames](#get-data-into-dataframes)
-  - [Get dataframe from csv](#get-dataframe-from-csv)
-  - [Write dataframe to csv](#write-dataframe-to-csv)
-  - [Dataframe form dictionary](#dataframe-form-dictionary)
-  - [Dataframe from list of lists (list per row)](#dataframe-from-list-of-lists-list-per-row)
-  - [DataFrame from XML](#dataframe-from-xml)
-  - [Srapping web (HTML)](#srapping-web-html)
-  - [Dataframe from json](#dataframe-from-json)
-- [Accessing the Dataframe](#accessing-the-dataframe)
-  - [First look at the Dataframe](#first-look-at-the-dataframe)
-  - [Dataframe properties](#dataframe-properties)
-  - [Dataframe functions](#dataframe-functions)
-- [Accessing data](#accessing-data)
-  - [Accessing columns](#accessing-columns)
-  - [Accessing rows](#accessing-rows)
-  - [Chained indexing](#chained-indexing)
-  - [Returning a view versus a copy - Chained indexing problem](#returning-a-view-versus-a-copy---chained-indexing-problem)
-  - [loc - specify rows, and cols at the same time](#loc---specify-rows-and-cols-at-the-same-time)
-  - [iloc - accessing rows and columns through indices](#iloc---accessing-rows-and-columns-through-indices)
-  - [Filtering rows](#filtering-rows)
-  - [Column Functions](#column-functions)
-- [Modifying the dataframe](#modifying-the-dataframe)
-  - [Work with the dataframe](#work-with-the-dataframe)
-  - [Index stuff](#index-stuff)
-  - [Work with dataframe columns](#work-with-dataframe-columns)
-  - [Missing values](#missing-values)
-  - [Columns datatypes](#columns-datatypes)
-  - [Modify values](#modify-values)
-  - [String methods](#string-methods)
-  - [Discretize Column Values](#discretize-column-values)
-  - [Group by](#group-by)
-- [Poltting the data](#poltting-the-data)
-  - [Plot the data](#plot-the-data)
-- [Advanced features](#advanced-features)
-  - [MultiIndex](#multiindex)
+<!-- TOC GFM -->
+
+* [Documentation](#documentation)
+* [First things first](#first-things-first)
+    * [Import pandas](#import-pandas)
+* [DataFrame and Series](#dataframe-and-series)
+    * [Series](#series)
+        * [Accessing a series](#accessing-a-series)
+    * [DataFrame](#dataframe)
+* [Get data into DataFrames](#get-data-into-dataframes)
+    * [Get dataframe from csv](#get-dataframe-from-csv)
+    * [Write dataframe to csv](#write-dataframe-to-csv)
+    * [Dataframe form dictionary](#dataframe-form-dictionary)
+    * [Dataframe from list of lists (list per row)](#dataframe-from-list-of-lists-list-per-row)
+    * [DataFrame from XML](#dataframe-from-xml)
+    * [Srapping web (HTML)](#srapping-web-html)
+        * [Using requests library](#using-requests-library)
+    * [Dataframe from json](#dataframe-from-json)
+* [Accessing the Dataframe](#accessing-the-dataframe)
+    * [First look at the Dataframe](#first-look-at-the-dataframe)
+        * [Show all columns (if not shown by default)](#show-all-columns-if-not-shown-by-default)
+    * [Dataframe properties](#dataframe-properties)
+    * [Dataframe functions](#dataframe-functions)
+* [Accessing data](#accessing-data)
+    * [Accessing columns](#accessing-columns)
+    * [Accessing rows](#accessing-rows)
+    * [Chained indexing](#chained-indexing)
+    * [Returning a view versus a copy - Chained indexing problem](#returning-a-view-versus-a-copy---chained-indexing-problem)
+    * [loc - specify rows, and cols at the same time](#loc---specify-rows-and-cols-at-the-same-time)
+    * [iloc - accessing rows and columns through indices](#iloc---accessing-rows-and-columns-through-indices)
+    * [Filtering rows](#filtering-rows)
+    * [Column Functions](#column-functions)
+* [Modifying the dataframe](#modifying-the-dataframe)
+    * [Work with the dataframe](#work-with-the-dataframe)
+    * [Index stuff](#index-stuff)
+    * [Work with dataframe columns](#work-with-dataframe-columns)
+    * [More dataframes](#more-dataframes)
+    * [Missing values](#missing-values)
+        * [Example](#example)
+    * [Columns datatypes](#columns-datatypes)
+        * [One-hot encoding](#one-hot-encoding)
+    * [Modify values](#modify-values)
+        * [Apply](#apply)
+        * [Map new values onto old ones](#map-new-values-onto-old-ones)
+    * [String methods](#string-methods)
+        * [Match (regex)](#match-regex)
+        * [Extract (regex)](#extract-regex)
+        * [Replace (regex)](#replace-regex)
+        * [Contains (regex)](#contains-regex)
+    * [Discretize Column Values](#discretize-column-values)
+    * [Group by](#group-by)
+* [Poltting the data](#poltting-the-data)
+    * [Plot the data](#plot-the-data)
+* [Advanced features](#advanced-features)
+    * [MultiIndex](#multiindex)
+
+<!-- /TOC -->
 
 ## Documentation
 
@@ -572,8 +588,11 @@ df = df.sort_index(ascending=False, ignore_index=True)
 # Remove duplicated indices
 df = df[~df3.index.duplicated(keep='first')]
 
-# Shift index by given number
-df = df.shift(-1)
+# Shift index values
+df.index = df.index - 2     # shrink index values by 2
+
+# Shift values by given axis
+df = df.shift(-1) # shift rows one up (lose first row, get last row empty)
 
 # Get common columns for two dataframes
 common_cols = df_1.index.intersection(df_2.index)
@@ -936,18 +955,19 @@ Way how to better structure data in 2D
 
 ```py
 # Create MultiIndex #
-columns2 = pd.MultiIndex.from_tuples([
-    ('Kandidátní listina',  'číslo'),
-    ('Mandát',              'Mandát')
-],)
+df.columns = pd.MultiIndex.from_tuples([
+    ('n',  ''),
+    ('step', 'first'),
+    ('step', 'second'),
+])
 # Compare two MultiIndices #
-len(columns1.difference(columns2).values) > 0
+len(df.columns.difference(df_2.columns).values) > 0
 
 # Rename MultiIndex columns
-candidates_tmp = candidates_tmp.rename(columns = {'Kandidátnílistina': 'Kandidátní listina'}, level=1)
+df = df.rename(columns={'first': 0, 'second': 1}, level=1)
 
 # Flatten the MultiIndex into Index of tuples
-columns1.to_flat_index()
+df.columns.to_flat_index()
 
 # Create columns from multiindex level
 df.reset_index()        # removes all levels
@@ -966,8 +986,9 @@ df = pd.melt(df, id_vars=["data_name", "model_name"],
         value_name="score_value").rename(columns={'variable':"score", "model_name":"model"})
 ```
 
-- [reset_index (pandas)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html)
-- [unstack](https://stackoverflow.com/questions/26255671/pandas-column-values-to-columns)
-- [melt](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.melt.html)
-- [melt (stackoverflow)](https://stackoverflow.com/questions/50098113/convert-columns-into-multiple-rows-in-pandas-dataframe)
+* [MultiIndex / advanced indexing (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html)
+* [reset_index (pandas)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html)
+* [unstack](https://stackoverflow.com/questions/26255671/pandas-column-values-to-columns)
+* [melt](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.melt.html)
+* [melt (stackoverflow)](https://stackoverflow.com/questions/50098113/convert-columns-into-multiple-rows-in-pandas-dataframe)
 

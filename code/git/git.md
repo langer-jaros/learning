@@ -2,7 +2,7 @@
 
 How to use git successfully even with a little background knowledge.
 
-`2021 Jan 31, Jaroslav Langer`
+`2021 Feb 02, Jaroslav Langer`
 
 ## Contents
 
@@ -22,10 +22,12 @@ How to use git successfully even with a little background knowledge.
         * [Develop the code as a new branch](#develop-the-code-as-a-new-branch)
     * [Contribute without the rights to push - fork](#contribute-without-the-rights-to-push---fork)
 * [Branching](#branching)
-* [Add files to the index](#add-files-to-the-index)
-* [Ignore files form git structure](#ignore-files-form-git-structure)
+* [Show files status (untracked/modified/added/deleted)](#show-files-status-untrackedmodifiedaddeddeleted)
+* [File differences](#file-differences)
+* [Add files to or remove from the index](#add-files-to-or-remove-from-the-index)
+* [Ignore files from the git structure](#ignore-files-from-the-git-structure)
 * [Committing](#committing)
-* [Showing](#showing)
+* [Show changes and commits](#show-changes-and-commits)
 * [Merging](#merging)
     * [Test a new branch before the merge](#test-a-new-branch-before-the-merge)
 * [Remote repositories - remotes](#remote-repositories---remotes)
@@ -113,7 +115,8 @@ git commit -m "Initial commit, readme created"
 # Pushes the local commit to the remote site, the clone have set origin to git@YOUR_PROJECT_PATH.git
 git push -u origin master
 ```
-[source](https://about.gitlab.com/)
+
+* [From gitlab.com](https://about.gitlab.com/)
 
 ### Create repository from existing folder
 
@@ -136,7 +139,8 @@ git remote add origin git@GITSITE.com:USER_NAME/REPOSITORY_NAME.git
 # Push the local content to master branch of origin
 git push -u origin master
 ```
-[source](https://github.com/)
+
+* [From github.com](https://github.com/)
 
 ### Start to work on someones repository (fork)
 
@@ -227,7 +231,21 @@ git branch -d BRANCH_NAME
 git branch -m NEW_BRANCH_NAME
 ```
 
-## Add files to the index
+## Show files status (untracked/modified/added/deleted)
+
+```sh
+# Show status of git files, which where not added, which were deleted but added etc.
+git status
+```
+
+## File differences
+
+```sh
+# Show file last change (difference between the file and it's index representation)
+git diff path/to/file.sth
+```
+
+## Add files to or remove from the index
 
 ```sh
 # Add file contents to the index (file will be commited)
@@ -245,9 +263,9 @@ git rm --cached FILE # Remove FILE only from index (will not be commited) dont d
 git rm -f FILE # Force the removal - remove file from index and directory even when it has local modifications
 ```
 
-- [source](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
+* [source](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
 
-## Ignore files form git structure
+## Ignore files from the git structure
 
 `.gitignore` file specifies intentionally untracked files to be ignored.
 
@@ -258,29 +276,34 @@ git rm -f FILE # Force the removal - remove file from index and directory even w
 ./knapsack/instances
 ```
 
-- [gitignore (git-scm.com)](https://git-scm.com/docs/gitignore)
-- [How to git ignore ipython notebook checkpoints anywhere in repository (stackoverflow.com)](https://stackoverflow.com/questions/35916658/how-to-git-ignore-ipython-notebook-checkpoints-anywhere-in-repository)
+* [gitignore (git-scm.com)](https://git-scm.com/docs/gitignore)
+* [How to git ignore ipython notebook checkpoints anywhere in repository (stackoverflow.com)](https://stackoverflow.com/questions/35916658/how-to-git-ignore-ipython-notebook-checkpoints-anywhere-in-repository)
 
 ## Committing
 
 ```sh
-# Show status of git files, which where not added, which were deleted but added etc.
-git status
-
 # Commit added things
 git commit -m "Meaningful comment"
 ```
 
-## Showing
+## Show changes and commits
 
 ```sh
-### Show changes between last merge and last commit
+# Show changes between last merge and last commit
 git show
 
-### Show all commits
+# Show all commits
 git log
+
+# Show commits affecting the a specific file
+git log --oneline path/to/file.sth
+
+# File difference to specific commit from the previous step
+git diff 0a42637 path/to/file.sht
 ```
----
+
+* [git diff file against its last change (stackoverflow.com)](https://stackoverflow.com/questions/10176601/git-diff-file-against-its-last-change)
+
 
 ## Merging
 
@@ -301,7 +324,8 @@ git merge --allow-unrelated-histories REMOTE_NAME/BRANCH_NAME
 # No fast-foreward (--no-ff)
 git merge --no-ff BRANCH_NAME
 ```
-[No fast-foreward](https://nvie.com/posts/a-successful-git-branching-model/).
+
+* [No fast-foreward - A successful Git branching model (nvie.com)](https://nvie.com/posts/a-successful-git-branching-model/).
 
 ### Test a new branch before the merge
 
@@ -396,7 +420,7 @@ git reset --hard HASH_OF_COMMIT
 git reset --soft HASH_OF_COMMIT
 ```
 
-[more](#https://git-scm.com/docs/git-reset)
+* [git-reset (git-scm.com)](#https://git-scm.com/docs/git-reset)
 
 ## Remove changes after push
 
@@ -405,13 +429,9 @@ git reset --soft HASH_OF_COMMIT
 git revert
 ```
 
----
-
 ## Create the pull request
 
-[Create the pull request](#https://git-scm.com/docs/git-request-pull)
-
----
+* [Create the pull request](#https://git-scm.com/docs/git-request-pull)
 
 ## Move repository form one GITSITE_OLD to another GITSITE_NEW
 
@@ -436,9 +456,8 @@ cd ..
 
 rm -rf NEW_REPOSITORY.git
 ```
-[source](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/duplicating-a-repository)
 
----
+* [source](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/duplicating-a-repository)
 
 ## Add submodule
 
