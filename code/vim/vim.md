@@ -145,6 +145,8 @@ Vi improved - visual text editor for life.
 | shift+zz   | Save and quit.                                       | :x :wq       |
 | :w !sh     | Execute like a shell script (write buffer to shell). | :w !bash     |
 
+* [Execute current buffer as bash script from vim (stackexchange.com)](https://vi.stackexchange.com/questions/10209/execute-current-buffer-as-bash-script-from-vim)
+
 ### Search for pattern
 
 | Keystrokes | Action                                              |

@@ -2,7 +2,7 @@
 
 *The alpha and omega of work with data.*
 
-`2021 Feb 02, Jaroslav Langer`
+`2021 Feb 03, Jaroslav Langer`
 
 ## Contents
 
@@ -39,12 +39,11 @@
     * [Filtering rows](#filtering-rows)
     * [Column Functions](#column-functions)
 * [Modifying the dataframe](#modifying-the-dataframe)
-    * [Work with the dataframe](#work-with-the-dataframe)
+    * [Dataframe copying and joining](#dataframe-copying-and-joining)
+    * [Drop duplicates, replace values, sort axis](#drop-duplicates-replace-values-sort-axis)
+    * [Missing values types](#missing-values-types)
     * [Index stuff](#index-stuff)
     * [Work with dataframe columns](#work-with-dataframe-columns)
-    * [More dataframes](#more-dataframes)
-    * [Missing values](#missing-values)
-        * [Example](#example)
     * [Columns datatypes](#columns-datatypes)
         * [One-hot encoding](#one-hot-encoding)
     * [Modify values](#modify-values)
@@ -74,6 +73,7 @@
 
 ```py
 import pandas as pd
+import numpy as np
 ```
 
 ## DataFrame and Series
@@ -544,7 +544,7 @@ df["score"].quantile(0.25)
 
 ## Modifying the dataframe
 
-### Work with the dataframe
+### Dataframe copying and joining
 
 ```py
 # First to deep copy the data (important)
@@ -556,17 +556,85 @@ df = pd.concat([df_1,df_2])
 df = pd.concat([df_1,df_2], ignore_index=True)
 # Concatenate columns of more dataframes
 df = df = pd.concat([df_1, df_2], axis=1)
+
+# SQL-like join, how=inner is the default option
+comparison_df = computed_df.merge(correct_df, how='left', on=['dataset', 'idx', 'n'])
 ```
 
-- [pd.concat (Pandas documentation)](https://pandas.pydata.org/docs/reference/api/pandas.concat.html#pandas.concat)
+* [pd.concat (Pandas documentation)](https://pandas.pydata.org/docs/reference/api/pandas.concat.html#pandas.concat)
+* [merge (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge)
+
+### Drop duplicates, replace values, sort axis
 
 ```py
+# Drop duplicated rows
+df = df.drop_duplicates(keep='first')
+# Drop rows with the same 'dataset', 'n' and 'idx' values
+df = df.drop_duplicates(subset=['dataset', 'n', 'idx'])
+
+# Replace values
+df = df.replace('?', np.nan)
+
 # Sort rows or columns # only kind='mergesort' is stable
 df.sort_values(by, axis=0, ascending=True, inplace=True, kind='quicksort')
-
-# Replace values with
-df = df.replace('?', np.nan)
 ```
+
+* [drop_duplicates (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop_duplicates.html)
+
+### Missing values types
+
+There are multiple ways the missing values may be represented. Now do not consider values that are missing by the values logic (e.g. string "?") let's talk only values that are missing by its type.
+
+```py
+type('')            # <class 'str'>
+
+type(None)          # <class 'NoneType'>
+
+type(float('nan'))  # <class 'float'>
+
+type(np.nan)        # <class 'float'>
+
+type(pd.NA)         # <class 'pandas._libs.missing.NAType'>
+```
+
+Fill missing values, drop rows (/columns) with missing values.
+
+```py
+df = pd.DataFrame([
+        ['?', '?'],
+        ['', ''],
+        ['None', None],
+        ["float('nan')", float('nan')],
+        ['np.nan', np.nan],
+        ['pd.NA', pd.NA],
+])
+
+print(df)
+#               0     1
+# 0             ?     ?
+# 1                    
+# 2          None  None
+# 3  float('nan')   NaN
+# 4        np.nan   NaN
+# 5         pd.NA  <NA>
+
+print(df.fillna('XXX'))
+#               0    1
+# 0             ?    ?
+# 1                   
+# 2          None  XXX
+# 3  float('nan')  XXX
+# 4        np.nan  XXX
+# 5         pd.NA  XXX
+
+print(df.dropna())
+#    0  1
+# 0  ?  ?
+# 1      
+```
+
+* [fillna (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html)
+* [dropna (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html)
 
 ### Index stuff
 
@@ -644,58 +712,6 @@ df = df.join(extracted_columns)
 - [insert (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.insert.html)
 - [Join](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
 - [add multiple columns 8 ways (stackoverflow)](https://stackoverflow.com/questions/39050539/how-to-add-multiple-columns-to-pandas-dataframe-in-one-assignment)
-
-### More dataframes
-
-```py
-# SQL-like join, how=inner is the default option
-comparison_df = correct_df.merge(computed_df, on=['dataset', 'idx', 'n'])
-```
-
-- [merge (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge)
-
-### Missing values
-
-There are multiple ways the missing values may be represented. Now do not consider values that are missing by the values logic (e.g. string "?") let's talk only values that are missing by its type.
-
-```py
-# None
-missing = None
-type(missing) # <class 'NoneType'>
-# float("nan")
-missing = float("nan")
-type(missing) # <class 'float'>
-# np.nan
-missing = np.nan
-type(missing) # <class 'float'>
-# pd.NA
-missing = pd.NA
-type(missing) # <class 'pandas._libs.missing.NAType'>
-```
-
-#### Example
-
-```py
-df_list = [
-    ["value", 20],
-    [None, np.nan],
-    ["?", 123.412],
-    [np.nan, None],
-    ["", pd.NA]
-]
-df = pd.DataFrame(df_list)
-
-print(df)
-
-df[0].apply(type).unique()
-df[1].apply(type).unique()
-
-df = df.fillna(np.nan)
-print(df)
-
-df[0].apply(type).unique()
-df[1].apply(type).unique()
-```
 
 ### Columns datatypes
 
@@ -969,6 +985,9 @@ df = df.rename(columns={'first': 0, 'second': 1}, level=1)
 # Flatten the MultiIndex into Index of tuples
 df.columns.to_flat_index()
 
+# Drop level from multiindex
+df.columns.droplevel(1)
+
 # Create columns from multiindex level
 df.reset_index()        # removes all levels
 df.reset_index(level=2) # removes only the second level
@@ -982,11 +1001,12 @@ df.unstack()        # Creates columns from the deepest index level
 df.unstack(level=0) # Creates columns from the most outher index level
 
 # From multiple columns one column with multiple rows
-df = pd.melt(df, id_vars=["data_name", "model_name"],
-        value_name="score_value").rename(columns={'variable':"score", "model_name":"model"})
+df = pd.melt(df, id_vars=["data_name", 'model_name'],
+        var_name='score', value_name='score_value')
 ```
 
 * [MultiIndex / advanced indexing (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html)
+* [droplevel (pandas.pydata.org)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.MultiIndex.droplevel.html)
 * [reset_index (pandas)](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html)
 * [unstack](https://stackoverflow.com/questions/26255671/pandas-column-values-to-columns)
 * [melt](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.melt.html)

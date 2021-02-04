@@ -2,8 +2,8 @@
 
 source ~/Projects/learning/informatics/combinatorial_optimization/assignments/4_local_search/config.bash
 
-m=n
-t=sqrt
+m=n^2 #n # 
+t=n^2 # sqrt # 
 tabu_m_t=${outs}/tabu_${m}_${t}
 
 for dataset in ${base_path}/data/*; do

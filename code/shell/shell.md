@@ -1,54 +1,143 @@
 # Shell 
 
-`2020 Nov. 18th, Jaroslav Langer`
+`2021 Feb 03, Jaroslav Langer`
 
-## Content <!-- omit in toc -->
+## Contents
 
-- [Introduction](#introduction)
-  - [Conventions and symbols](#conventions-and-symbols)
-- [Basics](#basics)
-  - [First of all](#first-of-all)
-  - [Files and directories](#files-and-directories)
-  - [Wildcards - symbols with special meaning](#wildcards---symbols-with-special-meaning)
-  - [Find anything](#find-anything)
-  - [Install stuff](#install-stuff)
-- [Advanced](#advanced)
-  - [Stdin, stdout, stderr](#stdin-stdout-stderr)
-  - [Pipe](#pipe)
-  - [User management and privileges](#user-management-and-privileges)
-  - [Files - advanced](#files---advanced)
-  - [Useful commands](#useful-commands)
-  - [Scripts](#scripts)
-  - [Call a script](#call-a-script)
-  - [SSH](#ssh)
-  - [Processes](#processes)
-  - [Environments and variables](#environments-and-variables)
-  - [History](#history)
-  - [Text transformation](#text-transformation)
-  - [Expansions](#expansions)
-  - [Regular Expressions](#regular-expressions)
-  - [Grep](#grep)
-  - [split](#split)
-  - [cat](#cat)
-  - [cut](#cut)
-  - [paste](#paste)
-  - [sort](#sort)
-  - [shuf](#shuf)
-  - [sed](#sed)
-  - [awk](#awk)
-  - [Vi basics](#vi-basics)
-- [Shell scripts](#shell-scripts)
-  - [Comments](#comments)
-  - [Variables](#variables)
-  - [Printf](#printf)
-  - [Exit status](#exit-status)
-  - [Bracket tests](#bracket-tests)
-  - [Conditions](#conditions)
-  - [Loops](#loops)
-  - [Arguments](#arguments)
-  - [Functions](#functions)
+<!-- TOC GFM -->
 
----
+* [Introduction](#introduction)
+    * [Conventions and symbols](#conventions-and-symbols)
+* [Basics](#basics)
+    * [First of all](#first-of-all)
+        * [Open terminal](#open-terminal)
+            * [Putty access from Windows](#putty-access-from-windows)
+        * [The terminal enviroment](#the-terminal-enviroment)
+        * [Shell principle](#shell-principle)
+        * [What happens when I type to terminal](#what-happens-when-i-type-to-terminal)
+        * [Commands structure](#commands-structure)
+        * [Types of commands](#types-of-commands)
+        * [Info about commands](#info-about-commands)
+        * [USE TAB autocompletion](#use-tab-autocompletion)
+        * [Expansions and suppressions](#expansions-and-suppressions)
+        * [Commented text](#commented-text)
+    * [Files and directories](#files-and-directories)
+        * [Paths](#paths)
+        * [Manipulation with files and directories](#manipulation-with-files-and-directories)
+        * [Information about files, directories](#information-about-files-directories)
+            * [Commands: ls, tree, du, wc, stat](#commands-ls-tree-du-wc-stat)
+        * [Compression and decompression](#compression-and-decompression)
+        * [Command zip](#command-zip)
+        * [Command tar](#command-tar)
+        * [Links](#links)
+    * [Wildcards - symbols with special meaning](#wildcards---symbols-with-special-meaning)
+    * [Find anything](#find-anything)
+        * [locate](#locate)
+        * [find](#find)
+    * [Install stuff](#install-stuff)
+        * [Install from official repositories](#install-from-official-repositories)
+        * [Install from package .deb](#install-from-package-deb)
+        * [Version of installed software](#version-of-installed-software)
+        * [Search for package](#search-for-package)
+        * [Check if installed](#check-if-installed)
+* [Advanced](#advanced)
+    * [Stdin, stdout, stderr](#stdin-stdout-stderr)
+    * [Pipe](#pipe)
+    * [User management and privileges](#user-management-and-privileges)
+        * [TBD Basic commands](#tbd-basic-commands)
+        * [Add,delete  user | group](#adddelete--user--group)
+        * [Add user to group](#add-user-to-group)
+        * [Group information](#group-information)
+        * [Change password](#change-password)
+        * [Switch user](#switch-user)
+        * [Superuser](#superuser)
+        * [User permissions](#user-permissions)
+        * [Change permissions](#change-permissions)
+        * [Change ownership](#change-ownership)
+    * [Files - advanced](#files---advanced)
+        * [Compare two files](#compare-two-files)
+        * [Command diff](#command-diff)
+        * [cmp](#cmp)
+    * [Useful commands](#useful-commands)
+        * [Get basic info about command](#get-basic-info-about-command)
+        * [Show big files in a terminal](#show-big-files-in-a-terminal)
+        * [Open anything in terminal](#open-anything-in-terminal)
+        * [wget - download file from url (webpage, image, etc.)](#wget---download-file-from-url-webpage-image-etc)
+        * [Browser folders like a pro](#browser-folders-like-a-pro)
+        * [show terminal height and width](#show-terminal-height-and-width)
+        * [Push process the background](#push-process-the-background)
+            * [How to do it?](#how-to-do-it)
+        * [Copy from terminal to clipboard](#copy-from-terminal-to-clipboard)
+        * [calculator bc](#calculator-bc)
+        * [Get Date](#get-date)
+        * [See images in asciiart](#see-images-in-asciiart)
+    * [Scripts](#scripts)
+    * [Call a script](#call-a-script)
+        * [Call scripts inside of a script](#call-scripts-inside-of-a-script)
+    * [SSH](#ssh)
+        * [Copy files over ssh](#copy-files-over-ssh)
+        * [Screen](#screen)
+        * [SSHFS](#sshfs)
+        * [Mount local direcotry to remote directory](#mount-local-direcotry-to-remote-directory)
+        * [If user on local is different than the one logging with ssh](#if-user-on-local-is-different-than-the-one-logging-with-ssh)
+        * [Unmount](#unmount)
+    * [Processes](#processes)
+        * [Find process](#find-process)
+        * [Kill process](#kill-process)
+    * [Environments and variables](#environments-and-variables)
+        * [set](#set)
+        * [Print value of variable](#print-value-of-variable)
+        * [compgen -v](#compgen--v)
+        * [GLOBAL: env, printenv ...](#global-env-printenv-)
+            * [env](#env)
+        * [printenv](#printenv)
+        * [LOCAL](#local)
+        * [Open new shell](#open-new-shell)
+    * [History](#history)
+    * [Text transformation](#text-transformation)
+        * [tr](#tr)
+    * [Expansions](#expansions)
+    * [Regular Expressions](#regular-expressions)
+        * [BRE ERE](#bre-ere)
+        * [Classes](#classes)
+        * [Quantifiers](#quantifiers)
+        * [Special characters](#special-characters)
+        * [Alternations](#alternations)
+        * [Groups](#groups)
+    * [Grep](#grep)
+        * [Move in terminal](#move-in-terminal)
+        * [Manipulation with text in terminal](#manipulation-with-text-in-terminal)
+    * [split](#split)
+    * [cat](#cat)
+    * [cut](#cut)
+    * [paste](#paste)
+    * [sort](#sort)
+    * [shuf](#shuf)
+    * [sed](#sed)
+        * [options](#options)
+        * [addresses](#addresses)
+        * [commands (singleline)](#commands-singleline)
+        * [Other](#other)
+    * [awk](#awk)
+    * [Vi basics](#vi-basics)
+* [Shell scripts](#shell-scripts)
+    * [Comments](#comments)
+    * [Variables](#variables)
+        * [Numbers (arithmetic expansion)](#numbers-arithmetic-expansion)
+        * [Variable Scope](#variable-scope)
+    * [Tuples](#tuples)
+    * [Printf](#printf)
+    * [Exit status](#exit-status)
+    * [Bracket tests](#bracket-tests)
+        * [Square bracket test](#square-bracket-test)
+        * [Double square bracket test (Bash only)](#double-square-bracket-test-bash-only)
+        * [Double bracket test](#double-bracket-test)
+    * [Conditions](#conditions)
+    * [Loops](#loops)
+    * [Arguments](#arguments)
+    * [Functions](#functions)
+
+<!-- /TOC -->
 
 ## Introduction
 
@@ -1620,6 +1709,14 @@ echo ${aaa:4:6}
 echo ${aaa -6:3}
 ```
 
+**Cast string to integer**
+
+```sh
+num=$(($num+0))
+```
+
+* [Bash: comparing a string as an integer (stackoverflow.com)](https://stackoverflow.com/questions/16264311/bash-comparing-a-string-as-an-integer/17093431)
+
 #### Numbers (arithmetic expansion)
 
 ```bash
@@ -1633,14 +1730,27 @@ echo $((0x10)) # 16
 echo $((7#13)) # 10
 ```
 
-- [math in bash scripts](http://faculty.salina.k-state.edu/tim/unix_sg/bash/math.html)
-
+* [math in bash scripts](http://faculty.salina.k-state.edu/tim/unix_sg/bash/math.html)
 
 #### Variable Scope
 
 ```sh
 [implicit (global) | local optional] variablename
 ```
+
+### Tuples
+
+```sh
+OLDIFS=$IFS
+IFS=','
+for i in c,3 e,5; do
+    set -- $i
+    echo $1 and $2
+done;
+IFS=$OLDIFS
+```
+
+* [Loop over tuples in bash? (stackoverflow.com)](https://stackoverflow.com/questions/9713104/loop-over-tuples-in-bash)
 
 ### Printf
 
@@ -1731,6 +1841,9 @@ Test numbers
 Example:
 
 ```bash
+n=5
+if [ $n -lt 10 ]; then echo n is lower than 10; fi
+
 [ f1 -nt f2 ]; echo $?
 ```
 
@@ -1929,4 +2042,5 @@ get_str() {
 x=$(get_str)
 ```
 
-- [More - functions (shellscript)](https://www.shellscript.sh/functions.html)
+* [More - functions (shellscript)](https://www.shellscript.sh/functions.html)
+

@@ -2,35 +2,52 @@
 
 Python libraries for making visualizations.
 
-```
-Author:     Jaroslav Langer
-Date:       2020, Nov. 29th
-Libraries:  seaborn [0.11.0], matplotlib [3.3.3]
-```
+`2021 Feb 03, Jaroslav Langer`
 
-## Contents <!-- omit in toc -->
-- [Seaborn](#seaborn)
-  - [Introduction](#introduction)
-  - [Basics](#basics)
-  - [Plotting Functions](#plotting-functions)
-  - [Bar Chart (barplot)](#bar-chart-barplot)
-  - [Histogram (histplot, countplot)](#histogram-histplot-countplot)
-  - [Box Plot (boxplot)](#box-plot-boxplot)
-  - [Line Chart (lineplot)](#line-chart-lineplot)
-  - [Scatter Plot (scatterplot)](#scatter-plot-scatterplot)
-  - [Heat Map (heatmap)](#heat-map-heatmap)
-  - [Multi-plot Grids (pairplot, PairGrid, FacetGrid)](#multi-plot-grids-pairplot-pairgrid-facetgrid)
-  - [Plot aesthetics (set_style, color_pallete, dash styles)](#plot-aesthetics-set_style-color_pallete-dash-styles)
-- [Matplotlib](#matplotlib)
-  - [Basics](#basics-1)
-  - [Set title](#set-title)
-  - [Plot Multiple Graphs (subplots, subplot)](#plot-multiple-graphs-subplots-subplot)
-  - [Set Figure Size](#set-figure-size)
-  - [Legend](#legend)
-  - [Colors](#colors)
-  - [Save figure as png](#save-figure-as-png)
-  - [Ticks (xtics, yticks)](#ticks-xtics-yticks)
-- [TODO](#todo)
+Libraries:  seaborn [0.11.0], matplotlib [3.3.3]
+
+## Contents
+
+<!-- TOC GFM -->
+
+* [Seaborn](#seaborn)
+    * [Introduction](#introduction)
+    * [Basics](#basics)
+        * [Import](#import)
+    * [Plotting Functions](#plotting-functions)
+    * [Bar Chart (barplot)](#bar-chart-barplot)
+        * [Percentages Over Bars](#percentages-over-bars)
+    * [Histogram (histplot, countplot)](#histogram-histplot-countplot)
+    * [Box Plot (boxplot)](#box-plot-boxplot)
+    * [Line Chart (lineplot)](#line-chart-lineplot)
+    * [Scatter Plot (scatterplot)](#scatter-plot-scatterplot)
+    * [Heat Map (heatmap)](#heat-map-heatmap)
+    * [Multi-plot Grids (pairplot, PairGrid, FacetGrid)](#multi-plot-grids-pairplot-pairgrid-facetgrid)
+        * [pairplot](#pairplot)
+        * [PairGrid](#pairgrid)
+        * [FacetGrid](#facetgrid)
+    * [Plot aesthetics (set_style, color_pallete, dash styles)](#plot-aesthetics-set_style-color_pallete-dash-styles)
+        * [Set style](#set-style)
+        * [Color palettes](#color-palettes)
+        * [Dash styles](#dash-styles)
+* [Matplotlib](#matplotlib)
+    * [Basics](#basics-1)
+        * [pyplot](#pyplot)
+        * [The Axes Class](#the-axes-class)
+        * [Figure Class](#figure-class)
+    * [Set title](#set-title)
+    * [Plot Multiple Graphs (subplots, subplot)](#plot-multiple-graphs-subplots-subplot)
+        * [subplots](#subplots)
+        * [subplot](#subplot)
+    * [Set Figure Size](#set-figure-size)
+    * [Legend](#legend)
+    * [Colors](#colors)
+    * [Save figure as png](#save-figure-as-png)
+    * [Ticks (xtics, yticks)](#ticks-xtics-yticks)
+        * [Format time from seconds](#format-time-from-seconds)
+* [TODO](#todo)
+
+<!-- /TOC -->
 
 ## Seaborn
 
@@ -168,7 +185,8 @@ _ = g.map(sns.barplot)
 
 ```py
 # Create a grid
-g = sns.FacetGrid(df, col="method", row="dataset", hue="score", sharey=False, sharex=False, height=3.5)
+g = sns.FacetGrid(col="method", row="dataset", data=df, hue="score",
+        sharey=False, sharex=False, height=3.5) # aspect=2
 # Map the plots onto the gird
 g.map(sns.boxplot, self.params[-1], feature, order=self.values[-1])
 
@@ -266,6 +284,7 @@ The top level container for all the plot elements.
 feature = "age"
 ax = sns.distplot(df[feature], kde=False)
 ax.set_title(f"{feature.capitalize()} distribution")
+
 # Add a centered title to the figure.
 plt.subplots_adjust(top=0.7) # Otherwise the figure will collide with the title 
 fig.suptitle('All the Beautiful Charts')
@@ -342,7 +361,7 @@ fig.savefig(f"{project_path}/figures/n_time_boxplot.png")
 ax.set(xticks=df["x_column"].nunique(), xticklabels=df["x_column"].nunique())
 
 # Rotate x ticks (handy if the ticks are too long)
-plt.xticks(rotation=‌​45)
+plt.xticks(rotation=45)
 
 # Rotate x ticks by given ax
 ax.set_xticklabels(ax.get_xticklabels(), rotation=70)

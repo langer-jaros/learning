@@ -284,7 +284,12 @@ git rm -f FILE # Force the removal - remove file from index and directory even w
 ```sh
 # Commit added things
 git commit -m "Meaningful comment"
+
+# Write commit message first and then use it for commit
+git commit -eF commit_message.txt
 ```
+
+* [Preparing a git commit message before committing? (stackoverflow.com)](https://stackoverflow.com/questions/20438293/preparing-a-git-commit-message-before-committing)
 
 ## Show changes and commits
 
