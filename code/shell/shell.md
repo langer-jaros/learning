@@ -1,6 +1,6 @@
 # Shell 
 
-`2021 Feb 03, Jaroslav Langer`
+`2021 Feb 04, Jaroslav Langer`
 
 ## Contents
 
@@ -11,7 +11,6 @@
 * [Basics](#basics)
     * [First of all](#first-of-all)
         * [Open terminal](#open-terminal)
-            * [Putty access from Windows](#putty-access-from-windows)
         * [The terminal enviroment](#the-terminal-enviroment)
         * [Shell principle](#shell-principle)
         * [What happens when I type to terminal](#what-happens-when-i-type-to-terminal)
@@ -25,11 +24,8 @@
         * [Paths](#paths)
         * [Manipulation with files and directories](#manipulation-with-files-and-directories)
         * [Information about files, directories](#information-about-files-directories)
-            * [Commands: ls, tree, du, wc, stat](#commands-ls-tree-du-wc-stat)
-        * [Compression and decompression](#compression-and-decompression)
-        * [Command zip](#command-zip)
-        * [Command tar](#command-tar)
-        * [Links](#links)
+    * [Compression and decompression](#compression-and-decompression)
+    * [Links](#links)
     * [Wildcards - symbols with special meaning](#wildcards---symbols-with-special-meaning)
     * [Find anything](#find-anything)
         * [locate](#locate)
@@ -66,7 +62,6 @@
         * [Browser folders like a pro](#browser-folders-like-a-pro)
         * [show terminal height and width](#show-terminal-height-and-width)
         * [Push process the background](#push-process-the-background)
-            * [How to do it?](#how-to-do-it)
         * [Copy from terminal to clipboard](#copy-from-terminal-to-clipboard)
         * [calculator bc](#calculator-bc)
         * [Get Date](#get-date)
@@ -89,7 +84,6 @@
         * [Print value of variable](#print-value-of-variable)
         * [compgen -v](#compgen--v)
         * [GLOBAL: env, printenv ...](#global-env-printenv-)
-            * [env](#env)
         * [printenv](#printenv)
         * [LOCAL](#local)
         * [Open new shell](#open-new-shell)
@@ -146,14 +140,12 @@ The knowledge is based on the PVS course at UCT, Prague.
 
 ### Conventions and symbols
 
-| symbols | meaning |
-| --- | --- |
-| `[ ]` (square brackets) | means optionality i.e. the things inside may be left out
-| `/` (slash) | means exclusive or i.e. it is possible to use either the left or the right part but not both |
-| `|` (vertical bar) | means logical (inclusive) or between the the things on the right and on the left |
-| `CAPITAL_LETTER` | the words written in uppercase means they should be substituted - in this case with "A" for example.  |
-
----
+| Symbols                 | Meaning                                                                                          |
+| ---                     | ---                                                                                              |
+| `[ ]` (square brackets) | Means optionality i.e. the things inside may be left out.                                        |
+| `/` (slash)             | Means exclusive or i.e. it is possible to use either the left or the right part but not both.    |
+| `|` (vertical bar)      | Means logical (inclusive) or between the the things on the right and on the left.                |
+| `CAPITAL_LETTER`        | Words written in uppercase means they should be substituted - in this case with "A" for example. |
 
 ## Basics
 
@@ -177,7 +169,7 @@ If it does not work:
 1) type "term" and you should see either "Terminal", "xterm" or something similar.
 1) open it ~ press Enter (double-click).
 
-##### Putty access from Windows
+**Putty access from Windows**
 
 TBD
 
@@ -363,7 +355,7 @@ rm -r   # Remove directory (recursively with all files)
 
 #### Information about files, directories
 
-##### Commands: ls, tree, du, wc, stat
+**Commands: ls, tree, du, wc, stat**
 
 ```sh
 # Shows all files of given directory
@@ -387,11 +379,11 @@ du -hs FILE_NAME # Display info in human readable form (-h) only for the top fol
 stat file1
 ```
 
-#### Compression and decompression
+### Compression and decompression
 
 (Uploading and downloading in ohter way is **damn** slow)
 
-#### Command zip
+**Command zip**
 
 Zip files into new.zip
 
@@ -400,15 +392,17 @@ zip new file1 file2 file3
 ```
 
 Unzip files from new.zip
+
 ```sh
 unzip new.zip
 # to NEW_DIR
 unzip new.zip -d PATH/NEW_DIR
 ```
 
-#### Command tar
+**Command tar**
 
-+ Compress files to new.tar.gz
+Compress files to new.tar.gz
+
 ```sh
 # -c = create
 # -v = verbose
@@ -417,13 +411,16 @@ unzip new.zip -d PATH/NEW_DIR
 
 tar -cvzf new.tar.gz file1 file2 file3
 ```
-+ Decompress from new.tar.gz
+
+Decompress from new.tar.gz
+
 ```
 # -x = extract
 
 tar -xvzf oldFile.tar.gz
 ```
-+ Decompress from new.tar.bz2
+Decompress from new.tar.bz2
+
 ```
 # -j = bz2
 # -C = where to extract
@@ -431,15 +428,14 @@ tar -xvzf oldFile.tar.gz
 tar -xvjf oldFile.tar.bz2 -C /path/Directory
 ```
 
-[source](https://www.interserver.net/tips/kb/use-tar-command-linux-examples/) |
-[source - bz2](https://linuxize.com/post/how-to-extract-unzip-tar-bz2-file/)
+* [How to use Tar Command in Linux with examples (interserver.net)](https://www.interserver.net/tips/kb/use-tar-command-linux-examples/) |
+* [How to Extract (Unzip) Tar Bz2 File (linuxize.com)](https://linuxize.com/post/how-to-extract-unzip-tar-bz2-file/)
 
----
-
-#### Links
+### Links
 
 **soft link**
-- Points to the original file, can be used as the original file for multiple purposes.
+
+Points to the original file, can be used as the original file for multiple purposes.
 
 ```sh
 # Ways to create soft links
@@ -448,24 +444,23 @@ cp -s FILENAME LINKNAME
 ```
 
 Example Usage
-- I installed "code_like_hell" editor with the executable file at /usr/share/code_like_hell/bin/code_like_hell
-- I want to open the editor just by typing `ch` to the terminal.
-- So I create an symbolic link called `ch` at the `/usr/bin` directory.
+* I installed "code_like_hell" editor with the executable file at /usr/share/code_like_hell/bin/code_like_hell
+* I want to open the editor just by typing `ch` to the terminal.
+* So I create an symbolic link called `ch` at the `/usr/bin` directory.
 
 ```sh
 ln -s /usr/share/code_like_hell/bin/code_like_hell /usr/bin/ch
 ```
 
 **hard link**
-- Acts like a synchronized copy of the original file, change in one file changes the other.
+
+Acts like a synchronized copy of the original file, change in one file changes the other.
 
 ```sh
 # Hard link creations
 ln FILENAME LINKNAME
 cp -l FILENAME LINKNAME
 ```
-
----
 
 ### Wildcards - symbols with special meaning
 
@@ -867,22 +862,23 @@ tput cols
 
 Situation as described is the single most common example when is super nice to push the process to the background.
 
-##### How to do it?
+**How to do it?**
 
 Press **Ctrl+Z**, then type
+
 ```sh
 bg
 ```
 
-the proccess will continue in background.
+The proccess will continue in background.
 
 If you want to bring the process back to the foreground, type
+
 ```sh
 fg
 ```
-[source](https://superuser.com/questions/154486/how-to-run-programs-from-a-linux-terminal-without-blocking-the-terminal)
 
----
+* [How to run programs from a linux terminal without blocking the terminal? (superuser.com)](https://superuser.com/questions/154486/how-to-run-programs-from-a-linux-terminal-without-blocking-the-terminal)
 
 #### Copy from terminal to clipboard
 
@@ -890,7 +886,7 @@ fg
 pwd | xclip -selection clipboard
 ```
 
-[Source](https://askubuntu.com/questions/597788/copy-to-clipboard-current-path-from-console-with-no-mouse)
+* [copy to clipboard current path from console with no mouse \[duplicate\] (askubuntu.com)](https://askubuntu.com/questions/597788/copy-to-clipboard-current-path-from-console-with-no-mouse)
 
 #### calculator bc
 
@@ -1069,7 +1065,7 @@ echo ${...}
 
 #### compgen -v
 
-outputs only names of all shell variables, exported or not.
+Outputs only names of all shell variables, exported or not.
 
 - [compgen](https://askubuntu.com/questions/953579/what-is-the-difference-between-env-declare-and-compgen-v)
 
@@ -1083,13 +1079,13 @@ export
 export -p
 ```
 
-##### env
+**env**
 
-The env command can run other commands with modified environments. If no command is given, env prints environment variables (i.e., exported variables)
+The env command can run other commands with modified environments. If no command is given, env prints environment variables (i.e., exported variables).
 
 #### printenv
 
-prints environment variables
+Prints environment variables.
 
 #### LOCAL
 

@@ -63,6 +63,7 @@ sudo apt-get install texlive-latex-base
 | mod $\quad$ p      | `\quad`            |
 | $\dots$            | `\dots`            |
 | $\implies$         | `\implies`         |
+| $\iff$             | `\iff`             |
 | $\equiv$           | `\equiv`           |
 | $\partial$         | `\partial`         |
 | $\nabla$           | `\nabla`           |

@@ -2,34 +2,39 @@
 
 The fundamental package for scientific computing with Python.
 
-`2021 Jan 09, Jaroslav Langer`
+`2021 Feb 07, Jaroslav Langer`
 
-## Content
+## Contents
 
-- [References](#references)
-- [Installation](#installation)
-- [Import](#import)
-- [Variable types](#variable-types)
-- [Math functions](#math-functions)
-- [Randomness](#randomness)
-- [NumPy (N-dimensional) array (ndarray)](#numpy-n-dimensional-array-ndarray)
-  - [Create numpy array](#create-numpy-array)
-  - [Too big array problem](#too-big-array-problem)
-  - [Array basics](#array-basics)
-  - [Array dtypes (Array-protocol type strings)](#array-dtypes-array-protocol-type-strings)
-  - [Indexing and slicing](#indexing-and-slicing)
-  - [Copy](#copy)
-  - [Useful functions](#useful-functions)
-  - [Matrix functions](#matrix-functions)
-- [Linear Algebra](#linear-algebra)
-- [Statistics](#statistics)
-- [Binary Operations](#binary-operations)
-- [Logic](#logic)
+<!-- TOC GFM -->
+
+* [References](#references)
+* [Installation](#installation)
+* [Import](#import)
+* [Variable types](#variable-types)
+* [Math functions](#math-functions)
+* [Randomness](#randomness)
+* [Statistics](#statistics)
+* [NumPy (N-dimensional) array (ndarray)](#numpy-n-dimensional-array-ndarray)
+    * [Create numpy array](#create-numpy-array)
+    * [Array dtypes (Array-protocol type strings)](#array-dtypes-array-protocol-type-strings)
+    * [Indexing and slicing](#indexing-and-slicing)
+    * [Copy](#copy)
+    * [Logic functions](#logic-functions)
+    * [Sorting, searching, and counting](#sorting-searching-and-counting)
+    * [Array manipulation](#array-manipulation)
+    * [Set routines](#set-routines)
+    * [Matrix functions](#matrix-functions)
+    * [Too big array problem](#too-big-array-problem)
+* [Linear Algebra](#linear-algebra)
+* [Binary Operations](#binary-operations)
+
+<!-- /TOC -->
 
 ## References
 
-- [Tentative_NumPy_Tutorial](https://scipy.github.io/old-wiki/pages/Tentative_NumPy_Tutorial)
-- [NumPy documentation](https://numpy.org/doc/stable/reference/)
+* [Tentative_NumPy_Tutorial](https://scipy.github.io/old-wiki/pages/Tentative_NumPy_Tutorial)
+* [NumPy documentation](https://numpy.org/doc/stable/reference/)
 
 ## Installation
 
@@ -47,10 +52,13 @@ import numpy as np
 # Create NaN
 NaN = np.nan
 
-# nans can not be compered with ==, because the undefined things can not be the same
-np.nan == np.nan # False
+# nans can not be compered with '==', because two undefined things are not the same
+var = np.nan
+(var == np.nan)     # False
+(np.nan == np.nan)  # False
 
-np.isnan(np.nan) # True
+# Check if variable is nan the right way
+np.isnan(var)       # True
 
 # Float
 np.float
@@ -68,8 +76,8 @@ np.round(theNumber, decimals=2)
 np.cbrt(x)
 ```
 
-- [Round numpy](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.round_.html)
-- [cbrt](https://numpy.org/doc/stable/reference/generated/numpy.cbrt.html)
+* [Round numpy](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.round_.html)
+* [cbrt](https://numpy.org/doc/stable/reference/generated/numpy.cbrt.html)
 
 ## Randomness
 
@@ -86,8 +94,34 @@ numpy.random.seed(seed=42)  # Usually for testing purposes the seed is handy
 np.random.choice(5, 3)
 ```
 
-- [np.random.Generator](https://numpy.org/devdocs/reference/random/generator.html#numpy.random.Generator)
-- [choice](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html#numpy.random.Generator.choice)
+* [np.random.Generator](https://numpy.org/devdocs/reference/random/generator.html#numpy.random.Generator)
+* [choice](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html#numpy.random.Generator.choice)
+
+## Statistics
+
+```py
+# Sum - sum of array elements over a given axis.
+np.sum([[3, 4], [2, 1]], axis=1)        # array([7, 3])
+
+# Mean - mean elements over given axis (mean of all element if axis not given)
+np.mean([[3, 4], [2, 1]], axis=0)       # array([2.5, 2.5])
+
+# Max - return the maximal number
+np.max([[3,4], [1,5]])                  # 5
+np.array([[3, 4], [1, 5]]).max()        # 5
+
+# Argmax - returns the index of the maximal value(s) along an axis.
+np.argmax([[3, 4], [2, 1]], axis=1)     # array([1, 0])
+
+# Correlation matrix for given arrays (Pearson)
+np.corrcoef([1, 2, 3], [3, 1, 2])       # array([[ 1. , -0.5], [-0.5,  1. ]])
+```
+
+* [np.sum](https://numpy.org/doc/stable/reference/generated/numpy.sum.html)
+* [np.mean](https://numpy.org/doc/stable/reference/generated/numpy.mean.html)
+* [ndarray.max](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.max.html)
+* [np.argmax](https://numpy.org/doc/stable/reference/generated/numpy.argmax.html)
+* [np.corrcoef](https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html)
 
 ## NumPy (N-dimensional) array (ndarray)
 
@@ -95,50 +129,31 @@ np.random.choice(5, 3)
 
 ```py
 # Create from list
-np.array([[1,4],[3,1]])
+array = np.array([[1, 4], [3, 1]])
 
-# Create array by shape
+# Shape - Return the shape of an array.
+array.shape         # (2, 2)
+
+# Reshape array
+np.reshape([1, 4, 3, 1], (2, 2))    # array([[[1, 4]], [[3, 1]]])
+
+# Create randomely initialized array by shape
 np.ndarray((2,2))   # array([[1.07917455e-316, 6.93631821e-310], [6.93631821e-310, 3.39285907e-310]])
 
-# Create 0s array (filled with zeros)
+# Create array filled with zeros by shape
 np.zeros((2,2,1))   # array([[[0.], [0.]], [[0.], [0.]]])
 
-# Create 1s array (filled with ones)
+# Create array filled with ones by shape
 np.ones((2,1,2))    # array([[[1., 1.]], [[1., 1.]]])
 
 # Create array of evenly spaced values (i.e. 1, 2, 3)
 np.arange(4)        # array([0, 1, 2, 3])
 ```
 
-- [np.array](https://numpy.org/doc/stable/reference/generated/numpy.array.html)
-- [np.zeros](https://numpy.org/doc/stable/reference/generated/numpy.zeros.html)
-- [np.arange](https://numpy.org/doc/stable/reference/generated/numpy.arange.html)
-
-### Too big array problem
-
-Be careful, when array is created with zeros(), ones() etc. the array is not really initialized, so you can create array bigger than can fit to the memory. It will crash as you will need to use the values. It was not clear to me from the beginning.
-
-- [ Why doesn't numpy.zeros allocate all of its memory on creation? And how can I force it to?](https://stackoverflow.com/questions/51314255/why-doesnt-numpy-zeros-allocate-all-of-its-memory-on-creation-and-how-can-i-fo)
-
-### Array basics
-
-```py
-# Shape - Return the shape of an array.
-arr.shape               # (2, 2)
-
-# Delete item(s) - delte first column
-arr = np.delete(arr, 0, axis=1)     # array([[4], [1]])
-
-# Reshape array arr. arr.shape == (2, 2) -> (2, 1, 2)
-arr = np.reshape(arr, (2, 1, 2))    # array([[[1, 4]], [[3, 1]]])
-
-# Append items to the array
-np.append([[1, 2], [3, 4]], [[5], [6]], axis=1) # array([[1, 2, 5], [3, 4, 6]])
-```
-
-- [np.delete](https://numpy.org/doc/stable/reference/generated/numpy.delete.html)
-- [np.reshape](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html)
-- [np.append](https://numpy.org/doc/stable/reference/generated/numpy.append.html)
+* [np.array](https://numpy.org/doc/stable/reference/generated/numpy.array.html)
+* [np.reshape](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html)
+* [np.zeros](https://numpy.org/doc/stable/reference/generated/numpy.zeros.html)
+* [np.arange](https://numpy.org/doc/stable/reference/generated/numpy.arange.html)
 
 ### Array dtypes (Array-protocol type strings)
 
@@ -159,6 +174,10 @@ Smallest data type has 1 byte per value. [stackoverflow](https://stackoverflow.c
 Examples:
 
 ```py
+# Convert array type
+array = np.array([1, 0])                    # array([1, 0])
+array.astype(dtype='bool')                  # array([ True, False])
+
 # 32-bit signed integer ~ dtype('int32')
 np.dtype('i4')                              # dtype('int32')
 np.zeros((2,2), dtype='i4').dtype           # dtype('int32')
@@ -168,14 +187,14 @@ np.ones((2,2), dtype=np.dtype('f8')).dtype  # dtype('float64')
 np.ones((2,2), dtype='f4').dtype            # dtype('float32')
 
 # 128-bit complex floating-point number
-np.eye(2, dtype='c16').dtype                # dtype('complex128')
+np.arange(2, dtype='c16').dtype             # dtype('complex128')
 ```
 
-- [array dtypes source](https://docs.scipy.org/doc/numpy-1.10.1/reference/arrays.dtypes.html)
+* [array dtypes source](https://docs.scipy.org/doc/numpy-1.10.1/reference/arrays.dtypes.html)
 
 ### Indexing and slicing
 
-- [Indexing (numpy.org)](https://numpy.org/devdocs/reference/arrays.indexing.html)
+* [Indexing (numpy.org)](https://numpy.org/devdocs/reference/arrays.indexing.html)
 
 ```py
 arr = np.array([[1,4,7],[2,5,8],[3,6,9]])
@@ -187,13 +206,13 @@ arr[:][0] # [1,4,7] - [:] does nothing, equivalent to a[0]
 arr[:,0]  # [1,2,3] - [:,0] this specifies all items along axis=0 and first indices along axis=1
 ```
 
-- [numpy indexing (stackoverflow](https://stackoverflow.com/questions/38113994/why-does-indexing-numpy-arrays-with-brackets-and-commas-differ-in-behavior)
+* [numpy indexing (stackoverflow](https://stackoverflow.com/questions/38113994/why-does-indexing-numpy-arrays-with-brackets-and-commas-differ-in-behavior)
 
 ### Copy
 
 ```py
 # Copy - classics a = b will be the same matrix
-a = np.array([[1,2,3],[3,4,5]])
+a = np.array([[1, 2, 3], [3, 4, 5]])
 b = a;
 a[0][0] = 666
 print(b[0][0])  # 666
@@ -204,45 +223,74 @@ a[0][0] = 666
 print(b[0][0])  # 1
 ```
 
-- [copy (numpy.org)](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.copy.html)
+* [copy (numpy.org)](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.copy.html)
 
-### Useful functions
+### Logic functions
+
+* [Logic functions (numpy.org)](https://numpy.org/doc/stable/reference/routines.logic.html)
 
 ```py
-# Sum - sum of array elements over a given axis.
-np.sum([[3,4], [2,1]], axis=1)      # array([7, 3])
-
-# Mean - mean elements over given axis (mean of all element if axis not given)
-np.mean([[3,4], [2,1]], axis=0)      # array([2.5, 2.5])
-
-# Max - return the maximal number
-np.array([[3,4], [1,5]]).max()      # 5
-np.max([[3,4], [1,5]])              # 5
-
-# Argmax - returns the index of the maximal value(s) along an axis.
-np.argmax([[3,4], [2,1]], axis=1)   # array([1, 0])
-
 # Elementwise check for NaNs
-np.isnan([[3,4], [np.nan,1]])       # array([[False, False], [ True, False]])
-
-# Sort along the last axis
-np.sort([[1,4],[3,1]])  # array([[1, 4], [1, 3]])
+np.isnan([[3,4], [np.nan,1]])   # array([[False, False], [ True, False]])
 
 # Check whether arrays are equal
-np.array_equal(arr_1, arr_2)
-# Convert array type
-
-arr = np.array([1, 0])              # array([1, 0])
-arr.astype(dtype='bool')            # array([ True, False])
+np.array_equal(arr_1, arr_2)    # True
 ```
 
-- [np.sum](https://numpy.org/doc/stable/reference/generated/numpy.sum.html)
-- [np.mean](https://numpy.org/doc/stable/reference/generated/numpy.mean.html)
-- [ndarray.max](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.max.html)
-- [np.argmax](https://numpy.org/doc/stable/reference/generated/numpy.argmax.html)
-- [np.isnan](https://numpy.org/doc/stable/reference/generated/numpy.isnan.html)
-- [numpy sort](https://numpy.org/doc/stable/reference/generated/numpy.sort.html)
-- [np.array_equal](https://numpy.org/doc/stable/reference/generated/numpy.array_equal.html)
+* [np.isnan](https://numpy.org/doc/stable/reference/generated/numpy.isnan.html)
+* [np.array_equal](https://numpy.org/doc/stable/reference/generated/numpy.array_equal.html)
+
+### Sorting, searching, and counting
+
+* [Sorting, searching, and counting (numpy.org)](https://numpy.org/doc/stable/reference/routines.sort.html)
+
+```py
+# Sort along the last axis
+np.sort([[1,4],[3,1]])      # array([[1, 4], [1, 3]])
+
+# Searching
+array = np.array([[0,2,1],[1,1,6]])
+array == 1                  # array([[False, False,  True], [ True,  True, False]])
+
+# Get indices of one numbers (grouped by the 1 numbers)
+np.argwhere(array == 1)     # array([[0, 2], [1, 0], [1, 1]])
+
+# Get indices of one numbers (grouped by axis)
+np.nonzero(array == 1)      # (array([0, 1, 1]), array([2, 0, 1]))
+```
+
+* [np.sort](https://numpy.org/doc/stable/reference/generated/numpy.sort.html)
+* [np.argwhere](https://numpy.org/doc/stable/reference/generated/numpy.argwhere.html)
+* [np.nonzero](https://numpy.org/doc/stable/reference/generated/numpy.nonzero.html)
+
+### Array manipulation
+
+* [Array manipulation routines (numpy.org)](https://numpy.org/doc/stable/reference/routines.array-manipulation.html)
+
+```py
+# Delete item(s) - delte first column
+np.delete(arr, 0, axis=1)       # array([[4], [1]])
+
+# Append items to the array
+np.append([[1, 2], [3, 4]], [[5], [6]], axis=1) # array([[1, 2, 5], [3, 4, 6]])
+```
+
+* [np.delete](https://numpy.org/doc/stable/reference/generated/numpy.delete.html)
+* [np.append](https://numpy.org/doc/stable/reference/generated/numpy.append.html)
+
+### Set routines
+
+* [Set routines (numpy.org)](https://numpy.org/doc/stable/reference/routines.set.html)
+
+```py
+# Array from unique elements
+np.unique([0,0,1,2,2])          # array([0, 1, 2])
+
+# Tuple of unique elements and their counts
+np.unique([0,0,1,2,2], return_counts=True) # (array([0, 1, 2]), array([2, 1, 2]))
+```
+
+* [np.unique](https://numpy.org/doc/stable/reference/generated/numpy.unique.html)
 
 ### Matrix functions
 
@@ -263,9 +311,15 @@ np.tril([[3,4], [2,1]])             # array([[3, 0], [2, 1]])
 np.tril([[3,4], [2,1]], -1)         # array([[0, 0], [2, 0]])
 ```
 
-- [np.identity](https://numpy.org/doc/stable/reference/generated/numpy.identity.html)
-- [np.diag](https://numpy.org/doc/stable/reference/generated/numpy.diag.html)
-- [np.tril](https://numpy.org/doc/stable/reference/generated/numpy.tril.html)
+* [np.identity](https://numpy.org/doc/stable/reference/generated/numpy.identity.html)
+* [np.diag](https://numpy.org/doc/stable/reference/generated/numpy.diag.html)
+* [np.tril](https://numpy.org/doc/stable/reference/generated/numpy.tril.html)
+
+### Too big array problem
+
+Be careful, when array is created with zeros(), ones() etc. the array is not really initialized, so you can create array bigger than can fit to the memory. It will crash as you will need to use the values. It was not clear to me from the beginning.
+
+* [ Why doesn't numpy.zeros allocate all of its memory on creation? And how can I force it to?](https://stackoverflow.com/questions/51314255/why-doesnt-numpy-zeros-allocate-all-of-its-memory-on-creation-and-how-can-i-fo)
 
 ## Linear Algebra
 
@@ -304,25 +358,16 @@ np.linalg.inv(B)        # array([[ 0.5  ,  0.   ], [-0.375,  0.25 ]])
 np.linalg.eigvals(A)    # array([1., 5.])
 ```
 
-- [Tentative_NumPy_Tutorial](https://scipy.github.io/old-wiki/pages/Tentative_NumPy_Tutorial)
-- [i-th row by i-th element (stackoverflow)](https://stackoverflow.com/questions/18522216/multiplying-across-in-a-numpy-array)
-- [np.linalg.norm](https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html)
-- [Symmetry check (stackoverflow)](https://stackoverflow.com/questions/42908334/checking-if-a-matrix-is-symmetric-in-numpy)
-- [np.linalg.inv](https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html)
-- [np.linalg.eigvals](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvals.html)
-
-## Statistics
-
-```py
-# Correlation matrix for given arrays (Pearson)
-np.corrcoef(np.arange(10), np.arange(10, 0, -1))    # array([[ 1., -1.], [-1.,  1.]])
-```
-
-- [np.corrcoef](https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html)
+* [Tentative_NumPy_Tutorial](https://scipy.github.io/old-wiki/pages/Tentative_NumPy_Tutorial)
+* [i-th row by i-th element (stackoverflow)](https://stackoverflow.com/questions/18522216/multiplying-across-in-a-numpy-array)
+* [np.linalg.norm](https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html)
+* [Symmetry check (stackoverflow)](https://stackoverflow.com/questions/42908334/checking-if-a-matrix-is-symmetric-in-numpy)
+* [np.linalg.inv](https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html)
+* [np.linalg.eigvals](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvals.html)
 
 ## Binary Operations
 
-- [Binary operations (numpy.org)](https://numpy.org/doc/stable/reference/routines.bitwise.html)
+* [Binary operations (numpy.org)](https://numpy.org/doc/stable/reference/routines.bitwise.html)
 
 ```py
 bool_arr = [ True,  True, False, False]
@@ -348,11 +393,7 @@ np.bitwise_and(bin_arr, bin_2)      # array([1, 0, 0, 0])
 np.bitwise_and(int_arr, int_2)      # array([0, 0, 0, 0])
 ```
 
-- [np.bitwise_not = np.bitwise_invert](https://numpy.org/doc/stable/reference/generated/numpy.invert.html)
-- [np.bitwise_or](https://numpy.org/doc/stable/reference/generated/numpy.bitwise_or.html)
-- [np.bitwise_and](https://numpy.org/doc/stable/reference/generated/numpy.bitwise_and.html)
-
-## Logic
-
-- [logic functions (numpy.org)](https://numpy.org/doc/stable/reference/routines.logic.html)
+* [np.bitwise_not = np.bitwise_invert](https://numpy.org/doc/stable/reference/generated/numpy.invert.html)
+* [np.bitwise_or](https://numpy.org/doc/stable/reference/generated/numpy.bitwise_or.html)
+* [np.bitwise_and](https://numpy.org/doc/stable/reference/generated/numpy.bitwise_and.html)
 
