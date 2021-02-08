@@ -1,120 +1,103 @@
 # Shell 
 
-`2021 Feb 04, Jaroslav Langer`
+Command line interface you become addicted to.
+
+`2021 Feb 08, Jaroslav Langer`
 
 ## Contents
 
 <!-- TOC GFM -->
 
 * [Introduction](#introduction)
-    * [Conventions and symbols](#conventions-and-symbols)
-* [Basics](#basics)
-    * [First of all](#first-of-all)
-        * [Open terminal](#open-terminal)
-        * [The terminal enviroment](#the-terminal-enviroment)
-        * [Shell principle](#shell-principle)
-        * [What happens when I type to terminal](#what-happens-when-i-type-to-terminal)
-        * [Commands structure](#commands-structure)
-        * [Types of commands](#types-of-commands)
-        * [Info about commands](#info-about-commands)
-        * [USE TAB autocompletion](#use-tab-autocompletion)
-        * [Expansions and suppressions](#expansions-and-suppressions)
-        * [Commented text](#commented-text)
-    * [Files and directories](#files-and-directories)
-        * [Paths](#paths)
-        * [Manipulation with files and directories](#manipulation-with-files-and-directories)
-        * [Information about files, directories](#information-about-files-directories)
+* [Basics - shell, terminal, commands](#basics---shell-terminal-commands)
+    * [Shell principle - commands and keywords](#shell-principle---commands-and-keywords)
+    * [Comments - tell shell to ignore it](#comments---tell-shell-to-ignore-it)
+    * [Command Arguments and Options](#command-arguments-and-options)
+    * [Command Types](#command-types)
+    * [More information about commands](#more-information-about-commands)
+    * [USE TAB AUTOCOMPLETION](#use-tab-autocompletion)
+    * [Expansions and suppressions](#expansions-and-suppressions)
+* [Files and directories](#files-and-directories)
+    * [Paths](#paths)
+    * [Manipulation with files and directories](#manipulation-with-files-and-directories)
+    * [Information about files, directories](#information-about-files-directories)
     * [Compression and decompression](#compression-and-decompression)
     * [Links](#links)
     * [Wildcards - symbols with special meaning](#wildcards---symbols-with-special-meaning)
     * [Find anything](#find-anything)
         * [locate](#locate)
         * [find](#find)
-    * [Install stuff](#install-stuff)
-        * [Install from official repositories](#install-from-official-repositories)
-        * [Install from package .deb](#install-from-package-deb)
-        * [Version of installed software](#version-of-installed-software)
-        * [Search for package](#search-for-package)
-        * [Check if installed](#check-if-installed)
-* [Advanced](#advanced)
-    * [Stdin, stdout, stderr](#stdin-stdout-stderr)
-    * [Pipe](#pipe)
-    * [User management and privileges](#user-management-and-privileges)
-        * [TBD Basic commands](#tbd-basic-commands)
-        * [Add,delete  user | group](#adddelete--user--group)
-        * [Add user to group](#add-user-to-group)
-        * [Group information](#group-information)
-        * [Change password](#change-password)
-        * [Switch user](#switch-user)
-        * [Superuser](#superuser)
-        * [User permissions](#user-permissions)
-        * [Change permissions](#change-permissions)
-        * [Change ownership](#change-ownership)
-    * [Files - advanced](#files---advanced)
-        * [Compare two files](#compare-two-files)
-        * [Command diff](#command-diff)
-        * [cmp](#cmp)
-    * [Useful commands](#useful-commands)
-        * [Get basic info about command](#get-basic-info-about-command)
-        * [Show big files in a terminal](#show-big-files-in-a-terminal)
-        * [Open anything in terminal](#open-anything-in-terminal)
-        * [wget - download file from url (webpage, image, etc.)](#wget---download-file-from-url-webpage-image-etc)
-        * [Browser folders like a pro](#browser-folders-like-a-pro)
-        * [show terminal height and width](#show-terminal-height-and-width)
-        * [Push process the background](#push-process-the-background)
-        * [Copy from terminal to clipboard](#copy-from-terminal-to-clipboard)
-        * [calculator bc](#calculator-bc)
-        * [Get Date](#get-date)
-        * [See images in asciiart](#see-images-in-asciiart)
-    * [Scripts](#scripts)
-    * [Call a script](#call-a-script)
-        * [Call scripts inside of a script](#call-scripts-inside-of-a-script)
-    * [SSH](#ssh)
-        * [Copy files over ssh](#copy-files-over-ssh)
-        * [Screen](#screen)
-        * [SSHFS](#sshfs)
-        * [Mount local direcotry to remote directory](#mount-local-direcotry-to-remote-directory)
-        * [If user on local is different than the one logging with ssh](#if-user-on-local-is-different-than-the-one-logging-with-ssh)
-        * [Unmount](#unmount)
-    * [Processes](#processes)
-        * [Find process](#find-process)
-        * [Kill process](#kill-process)
-    * [Environments and variables](#environments-and-variables)
-        * [set](#set)
-        * [Print value of variable](#print-value-of-variable)
-        * [compgen -v](#compgen--v)
-        * [GLOBAL: env, printenv ...](#global-env-printenv-)
-        * [printenv](#printenv)
-        * [LOCAL](#local)
-        * [Open new shell](#open-new-shell)
-    * [History](#history)
-    * [Text transformation](#text-transformation)
-        * [tr](#tr)
-    * [Expansions](#expansions)
-    * [Regular Expressions](#regular-expressions)
-        * [BRE ERE](#bre-ere)
-        * [Classes](#classes)
-        * [Quantifiers](#quantifiers)
-        * [Special characters](#special-characters)
-        * [Alternations](#alternations)
-        * [Groups](#groups)
-    * [Grep](#grep)
-        * [Move in terminal](#move-in-terminal)
-        * [Manipulation with text in terminal](#manipulation-with-text-in-terminal)
+    * [Read files](#read-files)
+    * [Standard input, standard output, standard error output (Stdin, stdout, stderr)](#standard-input-standard-output-standard-error-output-stdin-stdout-stderr)
+    * [Pipe - command output redirection](#pipe---command-output-redirection)
+    * [Compare two files](#compare-two-files)
+* [Install stuff](#install-stuff)
+    * [Install from official repositories](#install-from-official-repositories)
+    * [Install from package .deb](#install-from-package-deb)
+    * [Version of installed software](#version-of-installed-software)
+    * [Search for package](#search-for-package)
+    * [Check if installed](#check-if-installed)
+* [User management and privileges](#user-management-and-privileges)
+    * [TBD Basic commands](#tbd-basic-commands)
+    * [Add,delete  user | group](#adddelete--user--group)
+    * [Add user to group](#add-user-to-group)
+    * [Group information](#group-information)
+    * [Change password](#change-password)
+    * [Switch user](#switch-user)
+    * [Superuser](#superuser)
+    * [User permissions](#user-permissions)
+    * [Change permissions](#change-permissions)
+    * [Change ownership](#change-ownership)
+* [Useful commands](#useful-commands)
+    * [Get basic info about command](#get-basic-info-about-command)
+    * [Show big files in a terminal](#show-big-files-in-a-terminal)
+    * [Open anything in terminal](#open-anything-in-terminal)
     * [split](#split)
     * [cat](#cat)
     * [cut](#cut)
     * [paste](#paste)
     * [sort](#sort)
     * [shuf](#shuf)
-    * [sed](#sed)
-        * [options](#options)
-        * [addresses](#addresses)
-        * [commands (singleline)](#commands-singleline)
-        * [Other](#other)
-    * [awk](#awk)
-    * [Vi basics](#vi-basics)
+    * [wget - download file from url (webpage, image, etc.)](#wget---download-file-from-url-webpage-image-etc)
+    * [Browser folders like a pro](#browser-folders-like-a-pro)
+    * [show terminal height and width](#show-terminal-height-and-width)
+    * [Push process the background](#push-process-the-background)
+    * [Copy from terminal to clipboard](#copy-from-terminal-to-clipboard)
+    * [calculator bc](#calculator-bc)
+    * [Get Date](#get-date)
+    * [See images in asciiart](#see-images-in-asciiart)
+* [SSH](#ssh)
+    * [Copy files over ssh](#copy-files-over-ssh)
+    * [Screen](#screen)
+    * [SSHFS](#sshfs)
+    * [Mount local direcotry to remote directory](#mount-local-direcotry-to-remote-directory)
+    * [If user on local is different than the one logging with ssh](#if-user-on-local-is-different-than-the-one-logging-with-ssh)
+    * [Unmount](#unmount)
+* [Processes](#processes)
+    * [Find process](#find-process)
+    * [Kill process](#kill-process)
+* [Environments and variables](#environments-and-variables)
+    * [set](#set)
+    * [Print value of variable](#print-value-of-variable)
+    * [compgen -v](#compgen--v)
+    * [GLOBAL: env, printenv ...](#global-env-printenv-)
+    * [printenv](#printenv)
+    * [LOCAL](#local)
+    * [Open new shell](#open-new-shell)
+    * [History](#history)
+* [Text transformation](#text-transformation)
+    * [tr](#tr)
+* [Expansions](#expansions)
+* [Regular Expressions](#regular-expressions)
+    * [Grep](#grep)
+* [Move in terminal](#move-in-terminal)
+    * [Manipulation with text in terminal](#manipulation-with-text-in-terminal)
+* [sed](#sed)
+* [awk](#awk)
+* [Vi basics](#vi-basics)
 * [Shell scripts](#shell-scripts)
+    * [Call a script](#call-a-script)
+        * [Call scripts inside of a script](#call-scripts-inside-of-a-script)
     * [Comments](#comments)
     * [Variables](#variables)
         * [Numbers (arithmetic expansion)](#numbers-arithmetic-expansion)
@@ -124,8 +107,6 @@
     * [Exit status](#exit-status)
     * [Bracket tests](#bracket-tests)
         * [Square bracket test](#square-bracket-test)
-        * [Double square bracket test (Bash only)](#double-square-bracket-test-bash-only)
-        * [Double bracket test](#double-bracket-test)
     * [Conditions](#conditions)
     * [Loops](#loops)
     * [Arguments](#arguments)
@@ -135,10 +116,9 @@
 
 ## Introduction
 
-This document is written in purpose to simplify the access to the advanced usage of a computer.
-The knowledge is based on the PVS course at UCT, Prague.
+This document is written in purpose to simplify the access to the advanced usage of a computer. It started as a notes of a Shell Programming course at UCT, Prague.
 
-### Conventions and symbols
+**Conventions and symbols**
 
 | Symbols                 | Meaning                                                                                          |
 | ---                     | ---                                                                                              |
@@ -147,27 +127,26 @@ The knowledge is based on the PVS course at UCT, Prague.
 | `|` (vertical bar)      | Means logical (inclusive) or between the the things on the right and on the left.                |
 | `CAPITAL_LETTER`        | Words written in uppercase means they should be substituted - in this case with "A" for example. |
 
-## Basics
+## Basics - shell, terminal, commands
 
-### First of all
+**Difference between shell, terminal, bash, command line and prompt**
 
-Difference between shell, terminal, bash, command line and prompt
+- <ctrl><alt><t> opens **terminal emulator** (the window is the terminal emulator).
+- The terminal runs the **shell programming language** (bash, dash, zsh or other shell language).
+- The line where you can write commands is called the **command line**.
+- First letters of the command line that are static (does not change by typing) are called the **prompt**.
 
-- ctrl+alt+t opens terminal emulator (the window is the terminal emulator).
-- The terminal runs the shell programming language (bash, dash, zsh or other shell language).
-- The line where you can write commands is called the command line.
-- First letters of the command line that are static (does not change by typing) are called the prompt.
+* [If not clear see this video](https://www.youtube.com/watch?v=hMSByvFHOro)
 
-- [If not clear see this video](https://www.youtube.com/watch?v=hMSByvFHOro)
+**Open terminal**
 
-#### Open terminal
-
-Press Ctrl+Alt+T.
+Press <ctrl><alt><t>.
 
 If it does not work:
-1) open menu ~ press super key (windows key)
-1) type "term" and you should see either "Terminal", "xterm" or something similar.
-1) open it ~ press Enter (double-click).
+
+1) Open menu ~ press super key (windows key).
+2) Type "term" and you should see either "Terminal", "xterm" or something similar.
+3) Open it ~ press Enter (double-click).
 
 **Putty access from Windows**
 
@@ -175,58 +154,106 @@ TBD
 
 147.251.253.55
 
-#### The terminal enviroment
+**The terminal enviroment**
 
-Once the terminal is open, what you see is the Command-line interface (CLI).
-On the left to the cursor is the prompt, which prompts you to take action.
+Once the terminal is open, what you see is the Command-line interface (CLI). On the left to the cursor is the prompt, which prompts you to take action.
 
 Usually the prompts tells a name of a current user, the name of the machine (hostname) and the location where the user is relatively to the machine (path). Typicaly it also shows, whether the logged user is a normal user ($) or superuser (#).
 
-Example of common appearance should be:
+Example of common appearance could be:
 
 ```
 USER_NAME@HOSTNAME:PATH$
 ```
 
-#### Shell principle 
+### Shell principle - commands and keywords
 
-There are planty of things you can do in terminal. 
-However the more programming-like stuff will be usually enclosed to bash script.
-That means, the work with terminal (shell) will be mostly about using commands to do the job for you.
+Shell is a scripting language, so you can do basically anything as in any other programming language. However shell is also a command language so most of the time you will run commands that someone already made for you. Once you will be able to use these commands, you will probably combine them into shell scripts.
 
-#### What happens when I type to terminal
+**What happens when I type something to the terminal**
 
-Shell has many words reserved it can be "echo" for printing, "exit" for leaving, or "if" for conditioning.
-Besides these, anything you write to the terminal shell expects to be a command.
+Many words have special meaning. Some words are reserved for the shell programming language, they are called **keywords**, multiple words are **built-in commands** and usually there are also many **executable commands** prepared for you.
 
-#### Commands structure
+### Comments - tell shell to ignore it
 
-Next to the prompt there is a place for typing commands. 
-Shell is case-sensitive, so `exit` works, where `Exit` doesn't.
+Everything between a hash sign `#` and the end of the line is ignored. So it is perfect for making comments or remarks.
 
-The shell works like this. 
-- The line is executed on press of an enter.
-- Most simple is to put one command on one line.
-- For one command scenario, the line starts with a command name, folow options and arguments
-- Options can be either
-    + single letter, starts with hyphen-minus character `-x`
-    + full text (no spaces), stars with double minus `--xxxx`
-- Argument can be anything
-
-Command structure
 ```sh
-command [-o | --options] [arguments]
+# anything written here is ignored
 ```
 
-#### Types of commands
+Sometimes I will use the `#` sign to show you the command's output. It is ignored, so it does not matter if you copy-past the lines with it or not.
 
-| type | description |
-| --- | --- |
-| unkonwn | |
-| builtins | use `enable` or `compgen -b` |
+**command exit**
+
+`exit` command terminates current shell. If you run only one shell, it also close the terminal. Shell is case-sensitive, so while `exit` followed by enter closes the terminal, `Exit` only tells you that `Exit: command not found`.
+
+```sh
+Exit
+# Exit: command not found
+```
+
+**command echo**
+
+Let's start with printing "Hello world!". Type `echo Hello world!` and press enter.
+
+```sh
+echo Hello world! # Hello world!
+```
+
+### Command Arguments and Options
+
+You can pass arguments to the commands such you passed `Hello world!` to `echo` command. Commonly, the commands also have multiple options to be run with.
+
+Probably the most common option is the option `--help` or `-h` that should help you with the command usage.
+
+```sh
+exit --help
+# exit: exit [n]
+#     Exit the shell.
+#     
+#     Exits the shell with a status of N.  If N is omitted, the exit status
+#     is that of the last command executed.
+```
+
+It is common there are two types of options.
+
+* Single letter, starts with hyphen-minus character `-x`
+* full text (no spaces), stars with double minus `--xxxx`
+
+So the command structure look like this `command [-o | --options] [arguments]`.
+
+### Command Types
+
+There are several command types:
+
+| Type       | Description                   |
+| ---        | ---                           |
+| unknown    |                               |
+| builtin    | use `enable` or `compgen -b`  |
 | executable | files in `/bin` or `/usr/bin` |
-| functions | defined functions (by user) |
-| aliases | concatenating more commands |
+| functions  | defined functions (by user)   |
+| aliases    | concatenating more commands   |
+
+
+**command type**
+
+Let's check the type of the `echo` command.
+
+```sh
+type echo # echo is a shell builtin
+```
+
+Ok, `echo` is a built-in command. Can i find where it is?
+
+```sh
+# type command with option -a
+type -a echo
+# echo is a shell builtin
+# echo is /bin/echo
+```
+
+**command enable, command compgen, command function, command alias, command unalias**
 
 ```sh
 # To enable or disable shell builtins
@@ -243,48 +270,57 @@ alias my_alias='command_1; command_2'
 unalias
 ```
 
-#### Info about commands
+### More information about commands
 
-1) help
-1) man
-1) info
-1) apropos / man -k 
+**command help, command info, command man, command apropos**
 
-#### USE TAB autocompletion
-
-Whenever, you press tab, the terminal autocomplete the word you are writting.
-If there is more than one posibility, nothing happens. Until you press tab twice.
-Than it shows you the all the possible completions.
-**It's unbeliveable great feature**.
-
----
-
-#### Expansions and suppressions
-
-Not everything you write shell interprets as you wrote it. Some characters are suppresed, other are expanded.
-- white space characters are suppresed
-- Example of expansion:
-  - Character ~ is expanded as /home/your_username
-
-There are various [expansions](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html)
-for now is good to know this:
-- "double quotes" - suppress all except $ notation
-  - does not suppres `$USER` expansion
-- 'single quotes' - suppress everything
-
----
-
-#### Commented text
-
-Everything between a hash sign `#` and the end of the line is ignored.
-
-```sh
-# here can be written anything and nothing happens
+```
+man -k
 ```
 
-### Files and directories
+### USE TAB AUTOCOMPLETION
 
-#### Paths
+Whenever, you press tab, the terminal autocomplete the word you are writing. If there is more than one posibility, nothing happens. Until you press tab twice.  Than it shows you the all the possible completions.
+
+**It's unbelievable great feature**.
+
+### Expansions and suppressions
+
+Not everything you write to shell is interpreted as you wrote it. Some characters are suppressed and others are expanded.
+
+White space characters are suppressed.
+
+```sh
+echo   The   triple   spaces   are   shrinken   .
+# The triple spaces are shrinken .
+```
+
+Some character such as tilda `~` are expanded.
+
+```sh
+echo ~
+# /home/YOUR_USERNAME
+```
+
+There are various [expansions](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html) for now it is good to know this:
+
+**"double quotes"** - prevents all suppressions and expansions except $ notations.
+
+```
+echo "~   $USER    ."
+# ~   YOUR_USERNAME    .
+```
+
+**'single quotes'** - takes it as it is.
+
+```
+echo '~   $USER    .'
+# ~   $USER    .
+```
+
+## Files and directories
+
+### Paths
 
 There is always a need to specify a path to the file a directory you want to work with.
 The file can be a document you want to read, an image or simply anything.
@@ -321,7 +357,7 @@ If i would have a directory called "tutorial" in my user directory, the path wou
 ./tutorial
 ```
 
-#### Manipulation with files and directories
+### Manipulation with files and directories
 
 ```sh
 # Create new directory
@@ -351,9 +387,9 @@ rm file # Remove file
 rm -r   # Remove directory (recursively with all files)
 ```
 
-- [replace spaces link](https://vitux.com/how-to-replace-spaces-in-filenames-with-underscores-on-the-linux-shell/)
+* [replace spaces link](https://vitux.com/how-to-replace-spaces-in-filenames-with-underscores-on-the-linux-shell/)
 
-#### Information about files, directories
+### Information about files, directories
 
 **Commands: ls, tree, du, wc, stat**
 
@@ -490,9 +526,7 @@ ls ?[[:digit:]]*
 ls ?[4-6]
 ```
 
-[More information](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm)
-
----
+* [More information](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm)
 
 ### Find anything
 
@@ -517,71 +551,57 @@ find /  -name   "toBeFound"     ACTIONS -delete
 		-group
 ```
 
----
-
-### Install stuff
-
-#### Install from official repositories
+### Read files
 
 ```sh
-sudo apt-get install ALMOST_ANYTHING
+# Create new (empty) file
+touch path/to/my/newFileName.anything
+
+# Output every line from file
+cat file
+
+# Output every line from file in reverse order
+tac file
+
+# Output first 5 lines from file in reverse order
+head file
+# Output first n lines from file in reverse order
+head -n 3 file
+
+# Output last 5 lines from file in reverse order
+tail file
 ```
 
-#### Install from package .deb
-
-Works the same way for an update.
-
-```sh
-sudo dpkg -i PACKAGE_NAME.deb
-# attempt to fix corrupted dependencies
-sudo apt-get install -f
-```
-
-- [source](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt)
-
-#### Version of installed software
-
-```sh
-# Most of the programs have implemented option --version
-COMMAND_NAME --version
-```
-
-#### Search for package
-
-```sh
-apt-cache search KEYWORD
-```
-[source](https://askubuntu.com/questions/160897/how-do-i-search-for-available-packages-from-the-command-line)
-
-#### Check if installed
-
-```sh
-dpkg-query -l 'someth'
-```
-
----
-
-## Advanced
-
-### Stdin, stdout, stderr
+### Standard input, standard output, standard error output (Stdin, stdout, stderr)
 
 ```bash
-0<      1> >>   2>       
-1> where_to     2>&1
-&> where_to
+# 0<      1> >>   2>       
+# 1> where_to     2>&1
+# &> where_to
+
+# Take output of command and writes it to the file
+# COMMAND > FILE
+echo Hello world! > file_example.txt
+
+# Take output of command and writes it at the end of file
+# COMMAND >> APPENDED_FILE
+echo Hello another world! >> file_example.txt
 ```
 
--[what-are-stdin-stdout-and-stderr-on-linux](https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux)
+* [what-are-stdin-stdout-and-stderr-on-linux](https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux)
 
-### Pipe
+### Pipe - command output redirection
 
-Connects STDOUT of one command to STDIN of another
+Connects standard output of one command to the standard input of another command.
 
 ```bash
-any_command | sort, uniq, less, head
-tail -f
-tee
-file
+# any_command | sort, uniq, less, head
+# tail -f
+# tee
+# file
+
+# Sort output
+sudo du -a | sort -n -r | head -n 20
 ```
 
 Named pipes (Advanced)
@@ -592,11 +612,95 @@ ls > pipe2
 cat < pipe2
 ```
 
-- [mkfifo (how to forge)](https://www.howtoforge.com/linux-mkfifo-command/)
+* [mkfifo (how to forge)](https://www.howtoforge.com/linux-mkfifo-command/)
 
-### User management and privileges
+### Compare two files
 
-#### TBD Basic commands
+**Command diff**
+
+```
+# Show differences of files FILE_A, FILE_B (e.g. "< UNIQUE LINE OF FILE_A")
+diff FILE_A FILE_B
+
+# Unified format - more information about the files, changes have a context
+diff -u FILE_A FILE_B
+
+# Compare file with a pipe redirection
+SOME_COMMAND | diff FILE_A -
+
+# Show non-printing characters
+diff FILE_A FILE_B | cat -t
+```
+
+* [Linux diff command (computerhope)](https://www.computerhope.com/unix/udiff.htm)
+* [How to compare two files for non-printing characters (superuser.com)](https://superuser.com/questions/560050/how-to-compare-two-files-for-non-printing-characters)
+
+
+Show differences side by side (usually preferred, not always)
+
+```sh
+# Show differences side by side
+diff --side-by-side --suppress-common-lines FILE_A FILE_B
+
+# See the difference line by line with more command
+diff -y --suppress-common-lines FILE_A FILE_B | more
+
+# Get number of different lines
+diff -y --suppress-common-lines FILE_A FILE_B | wc -l
+```
+
+* [How can i make "Diff" only show differences between two files? (community.spiceworks.com)](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
+
+**Command cmp**
+
+```sh
+cmp file1 file2
+```
+
+
+## Install stuff
+
+### Install from official repositories
+
+```sh
+sudo apt-get install ALMOST_ANYTHING
+```
+
+### Install from package .deb
+
+Works the same way for an update.
+
+```sh
+sudo dpkg -i PACKAGE_NAME.deb
+# attempt to fix corrupted dependencies
+sudo apt-get install -f
+```
+
+* [source](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt)
+
+### Version of installed software
+
+```sh
+# Most of the programs have implemented option --version
+COMMAND_NAME --version
+```
+
+### Search for package
+
+```sh
+apt-cache search KEYWORD
+```
+[source](https://askubuntu.com/questions/160897/how-do-i-search-for-available-packages-from-the-command-line)
+
+### Check if installed
+
+```sh
+dpkg-query -l 'someth'
+```
+
+## User management and privileges
+
+### TBD Basic commands
 
 ```sh
 groupmod
@@ -605,7 +709,7 @@ who
 groups
 ```
 
-#### Add,delete  user | group
+### Add,delete  user | group
 
 ```sh
 adduser USERNAME
@@ -614,13 +718,13 @@ groupadd GROUPNAME
 goupdel GROUPNAME
 ```
 
-#### Add user to group
+### Add user to group
 
 ```sh
 usermod -a -G GROUP USER
 ```
 
-#### Group information
+### Group information
 
 Read file containing information about groups.
 Every line of the file has following structure:
@@ -630,13 +734,13 @@ GROUP_NAME:PASSWORD:GROUP_ID:GROUP_USER_1, GROUP_USER_2, GROUP_USER_3
 less /etc/group
 ```
 
-#### Change password
+### Change password
 
 ```sh
 [sudo] passwd [username]
 ```
 
-#### Switch user
+### Switch user
 
 ```sh
 su USERNAME
@@ -649,7 +753,7 @@ Every su opens a new shell.
 echo $SHLVL
 ```
 
-#### Superuser
+### Superuser
 
 Login as superuser, superuser password required.
 ```sh
@@ -664,7 +768,7 @@ Grant to the command privileges of superuser.
 sudo COMMAND
 ```
 
-#### User permissions
+### User permissions
 
 Everything has permissions set.
 
@@ -687,7 +791,7 @@ File types
 + b - bloc type (harddisc) 
 + c - chartype
 
-#### Change permissions
+### Change permissions
 
 ```
 chmod u-x
@@ -711,90 +815,15 @@ sticky bit 		chmod	+t ...	1777
 umask	0224		d- 777	f- 666
 ```
 
-#### Change ownership
+### Change ownership
 
 ```sh
 chown USER[:GROUP] OBJECT
 ```
 
----
+## Useful commands
 
-### Files - advanced
-
-```sh
-# Create new (empty) file
-touch path/to/my/newFileName.anything
-
-# Print sth to terminal
-echo sth
-
-# Take output of command and writes it to the file
-COMMAND > FILE
-echo text > file_example
-
-# Take output of command and writes it at the end of file
-COMMAND >> APPENDED_FILE
-echo next >> APPENDED_FILE
-
-# Output every line from file
-cat file
-
-# Output every line from file in reverse order
-tac file
-
-# Output first 5 lines from file in reverse order
-head file
-# Output first n lines from file in reverse order
-head -n 3 file
-
-# Output last 5 lines from file in reverse order
-tail file
-
-# Sort output
-
-# Example 
-sudo du -a | sort -n -r | head -n 20
-```
-
-#### Compare two files
-
-#### Command diff
-
-```sh
-# Show differences side by side
-diff --side-by-side --suppress-common-lines FILE_A FILE_B
-# See the difference line by line with more command
-diff -y --suppress-common-lines FILE_A FILE_B | more
-# Get number of different lines
-diff -y --suppress-common-lines FILE_A FILE_B | wc -l
-```
-
-or
-
-```sh
-diff -u file1 file2
-```
-
-file_2 as stdin
-
-```sh
-some_command | diff file_1 -
-```
-
-- [source1](https://community.spiceworks.com/topic/85704-how-can-i-make-diff-only-show-differences-between-two-files) |
-- [source2](https://www.computerhope.com/unix/udiff.htm)
-
-#### cmp
-
-```sh
-cmp file1 file2
-```
-
----
-
-### Useful commands
-
-#### Get basic info about command
+### Get basic info about command
 
 ```sh
 # Path to the executable file i.e. command COMMAND
@@ -806,7 +835,7 @@ whatis COMMAND
 man -f COMMAND
 ```
 
-#### Show big files in a terminal
+### Show big files in a terminal
 
 ```sh
 # Output stays into terminal after pressing q to quit
@@ -815,538 +844,12 @@ more
 less
 ```
 
-#### Open anything in terminal
+### Open anything in terminal
 
 Works like double-click
 ```sh
 xdg-open ANY_NAME.ANYTHING
 ```
-
-#### wget - download file from url (webpage, image, etc.)
-
-```sh
-wget https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-2.jpg
-```
-
-#### Browser folders like a pro
-
-Ranger
-
-```sh
-sudo apt-get instal ranger # install ranger
-ranger # start ranger
-```
-
-| key   | action                                |
-| ---   | ---                                   |
-| j k   | move up, move down                    |
-| h l   | move level up, move into directory    |
-| s     | open terminal console                 |
-| zh    | see hidden files and directories      |
-| / n N | search, go to next, previous match    |
-
-- [ranger (digitalocean)](https://www.digitalocean.com/community/tutorials/installing-and-using-ranger-a-terminal-file-manager-on-a-ubuntu-vps)
-
-#### show terminal height and width
-
-```sh
-# show height
-tput lines
-# show width
-tput cols
-```
-
-#### Push process the background
-
-"I have opened something with terminal, now i see the process and can not use the terminal anymore"
-
-Situation as described is the single most common example when is super nice to push the process to the background.
-
-**How to do it?**
-
-Press **Ctrl+Z**, then type
-
-```sh
-bg
-```
-
-The proccess will continue in background.
-
-If you want to bring the process back to the foreground, type
-
-```sh
-fg
-```
-
-* [How to run programs from a linux terminal without blocking the terminal? (superuser.com)](https://superuser.com/questions/154486/how-to-run-programs-from-a-linux-terminal-without-blocking-the-terminal)
-
-#### Copy from terminal to clipboard
-
-```sh
-pwd | xclip -selection clipboard
-```
-
-* [copy to clipboard current path from console with no mouse \[duplicate\] (askubuntu.com)](https://askubuntu.com/questions/597788/copy-to-clipboard-current-path-from-console-with-no-mouse)
-
-#### calculator bc
-
-```sh
-echo "scale=2; 3/2" | bc
-
-echo "obase=10; ibase=2; 1101" | bc
-```
-
-#### Get Date
-
-```sh
-date            # Get current date
-date -r FILE    # Get last modification date of a file
-date +%T.%N     # Specify the datetime format (start with + for datetime format use %)
-```
-
-#### See images in asciiart
-
-```sh
-cacaview image.jpg
-```
-
----
-
-### Scripts
-
-Commands are great, scripts are better.
-
-### Call a script
-
-`. (source or dot operator)`
-
-```bash
-# .
-. path/to/file.sh
-# source
-source path/to/file.sh
-
-# Add executable right and use the file as command
-chmod +x ./path/to/file.sh
-# execute
-./path/to/file.sh
-```
-
-- [. (source or dot operator)](https://ss64.com/bash/source.html#:~:text=source%20is%20a%20synonym%20for,maximum%20compatibility%20use%20the%20period.&text=When%20a%20script%20is%20run%20using%20'source'%20it%20runs%20within,available%20after%20the%20script%20completes.)
-
-#### Call scripts inside of a script
-
-```bash
-#!/bin/bash
-
-MY_SCRIPT=/path/to/script.sh
-
-$MY_SCRIPT input_1 input_2
-```
-
-[source](https://unix.stackexchange.com/questions/1496/why-doesnt-my-bash-script-recognize-aliases)
-
----
-
-### SSH
-
-```sh
-ssh USER@99.888.777.22
-```
-
-#### Copy files over ssh
-
-scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
-
-```sh
-scp -r compute  USER@78.128.250.10:/home/USER/computing/
-```
-
-[scp link](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/)
-
-#### Screen
-
-```sh
-# How to use screen from terminal
-screen      # Create screen 
-screen -d   # Detach from screen
-screen -r   # Reattach to screen
-screen -ls  # List all screens
-
-# Kill screen
-screen -X -S SESSION_ID_FROM_LS kill
-```
-
-- [screen link](https://linuxize.com/post/how-to-use-linux-screen/)
-- [kill screen](https://stackoverflow.com/questions/1509677/kill-detached-screen-session)
-
-**How to work inside of a screen**
-
-Press `Ctrl+a+OPTION`
-
-| OPTION | Action             |
-| --- | ---                   |
-| c   | create new bash       |
-| "   | show open bash        |
-| S   | devide horizontaly    |
-| |   | devide verticaly      |
-| tab | change region         |
-| A   | rename region         |
-| k   | kill actual screen    |
-| X   | close region          |
-| Q   | close regions         |
-| esc | relase cursor up/down |
-
-#### SSHFS
-
-#### Mount local direcotry to remote directory
-
-```sh
-sshfs $USER@remote.example.com:/home/$USER/code ~/remote_code
-```
-#### If user on local is different than the one logging with ssh
-
-Uncomment user allow_other in /etc/fuse.conf
-
-```/etc/fuse.conf
-user_allow_other
-```
-
-```sh
-sshfs -o allow_other user@myserver:/home/user/myprojects ~/mount/myprojects
-```
-
-#### Unmount
-
-```sh
-fusermount -u ~/mount/myprojects
-```
-
-### Processes
-
-```sh
-# shows processes
-top
-```
-
-#### Find process
-
-```sh
-ps aux | grep cat
-```
-
-#### Kill process
-
-```sh
-# kill one specific precess id
-kill -9 3827
-
-# kill family of proceses
-killall -9 chrome
-```
-
-[source](https://www.linux.com/training-tutorials/how-kill-process-command-line/)
-
----
-
-### Environments and variables
-
-Variables and functions, can be exported (global) or not.
-
-#### set
-
-can be used to set various shell options, or the positional parameters. If no arguments or options are given, then it prints all shell variables and functions.
-
-#### Print value of variable
-
-```sh
-echo ${...}
-```
-
-#### compgen -v
-
-Outputs only names of all shell variables, exported or not.
-
-- [compgen](https://askubuntu.com/questions/953579/what-is-the-difference-between-env-declare-and-compgen-v)
-
-
-#### GLOBAL: env, printenv ...
-
-```sh
-# Export can be used to export variables or functions.
-export
-# With the -p option, it prints exported variables and functions
-export -p
-```
-
-**env**
-
-The env command can run other commands with modified environments. If no command is given, env prints environment variables (i.e., exported variables).
-
-#### printenv
-
-Prints environment variables.
-
-#### LOCAL
-
-```
-set | grep ''
-var_a=123a
-```
-
-```sh
-# CONSTANTS
-$USER; $PATH; $SHLVL; $SHELL;
-
-# variables
-name=value [[:alnum:]]
-
-unset ... (local)
-declare [-i; -r] ...
-```
-
-#### Open new shell
-
-```sh
-# Open (some) shell
-bash # open bash
-dash # open dash
-sh   # open shell
-
-# Tell current shell language
-echo $0
-# See shell level
-echo $SHLVL
-# exit shell i.e. go to the previous enviroment
-exit
-```
-
-```sh
-bash    child[sub]   interactive / uninteractiv - | read   
-```
-```sh
-startup
-```
-
-```sh
-login shell            
-    /etc/profile
-    $HOME/ [.profile; .bash_profile; .bash_login]
-non-login shell
-    /etc/.bashrc
-    $HOME/.bashrc
-    source
-```
-
----
-
-### History
-
-settings of history file 
-```sh
-~/.bashrc
-```
-Edit size of history command and history file
-```sh
-HISTSIZE=1000
-HISTFILESIZE=10000
-```
-path to historyfile
-```sh
-echo $HISTFILE
-```
-how to stop logging ls command in history
-```sh
-echo 'export HISTIGNORE="ls:tree:cat:tail:head:bash"' >> ~/.bashrc
-```
-run 111st command
-```sh
-history !111
-```
-
-press - ctrl+R - for searching of a commands from past
-
-[Source](https://www.rootusers.com/17-bash-history-command-examples-in-linux/)
-
----
-
-### Text transformation
-
-#### tr
-
-```sh
-# Example: Remove spaces from filename
-ls # name\ with\ spaces.txt
-for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
-ls # name_with_spaces.txt
-```
-
-Translate, squeeze, and/or delete characters from standard input, writing to standard output.
-
-```
-tr [OPTIONS] SET1 [SET2]
-```
-
-Translate charactes
-
-Command expects arguments `SET1 SET2` where SET1 are characters to be translated with SET2.
-prikaz ocekava dva argumenty: sadu znaku, ktere ma nahradit a sadu znaku, kterymi je ma nahradit
-sady znaku mohou byt vyjadreny tremi zpusoby
-
-```sh
-# Characters specified by enumeration
-echo "characters" | tr abc 123
-# Characters specified by range
-echo "characters" | tr a-z 1-3
-echo "chArACtERs" | tr a-z A-Z
-# Characters specified by POSIX
-echo "chArACtERs" | tr [:lower:] [:upper:]
-# First range is shorter - nothing special
-echo "aaabbbccc" | tr a-b 1-3
-# First range is longer - characters from SET1 without partner are replaced with last form SET2
-echo "aaabbbccc" | tr a-c 1-2
-```
-
-Remove characters
-
-```sh
-# remove characters
-echo "aaabbbccc" | tr -d ab
-# replace repetitions with one occurance
-echo "aaabbbccc" | tr -s ab 
-echo "abcabcabc" | tr -s ab
-```
-
-### Expansions
-
-```sh 
-# wild cards * ? ' ' $
-mv old/* new/
-
-# paths \ . ..
-ls ..
-
-# brace expansion {}
-mkdir task_{a,b,c} # mkdir task_a task_b task_c
-mkdir task{01..03} # mkdir task01 task02 task03
-
-# tilde expansion
-ls ~/Documents # ls /home/$USER/Documents
-
-# parameter and variable expansion
-variable=10
-echo ${variable} # echo 10
-
-# command substitution
-echo Hello \"$(ls)\" folders!
-
-# arithmetic expansion + - * / % ** ++ --
-echo $((1238 % 17)) echo 14
-
-# word splitting
-# filename expansion
-# quote removal
-```
-
-- [Documentation](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html)
-
-### Regular Expressions
-
-`“REGEX” or “REGEXP”?  ->  /REGEXP?/`
-
-#### BRE ERE
-
-- BRE = Basic Regular Expressions
-  - `. * [^- ] ^ $`
-- ERE = Extended Regular Expressions
-  - `+ ? { } ( ) | \`
-
-#### Classes
-
-- Enumerated classes: `[abc987]`
-- Range-based classes: `[a-e5-8]`
-- POSIX classes `[: :]`
-
-| POSIX       | Classes       |
-| ---         | ---           |
-| `[:alpha:]` | `[a-zA-Z]`    |
-| `[:digit:]` | `[0-9]`       |
-| `[:lower:]` |               |
-| `[:upper:]` |               |
-| `[:alnum:]` |               |
-| `[:word:]`  | `[a-zA-Z_]`   |
-| `[:blank:]` | `[\ \t]`      |
-| `[:xdigit]` | `[a-fA-F0-9]` |
-
-#### Quantifiers
-
-| Quantifier   | Description                              |
-| ---          | ---                                      |
-| `*`          | Any quantity                             |
-| `+`          | At least once                            |
-| `?`          | Once at maximum                          |
-| `{min, max}` | within min, max range includeing min max |
-
-#### Special characters
-
-| s.c. | Desc. |
-| ---  | ---   |
-| \b   |       | 
-| \<   |       | 
-| \>   |       | 
-| \w   |       | 
-| \W   |       | 
-| \s   |       | skoro_i
-| \d   |       |
-
-#### Alternations
-
-`RE1|RE2`
-
-#### Groups
-
-`'<(h[1-6])>.*</\1>'`
-
-Commands
-
-```bash
-# BRE
-grep - BRE
-
-# ERE
-egrep
-grep -E
-grep \ERE 
-```
-
-### Grep
-
-Usage: `grep -options 'RE' where`
-
-options: `-n -c -i -v`
-
-- fgrep
-- rgrep
-
-Examples
-
-```bash
-less /
-locate --regexp [bre] --regex [ere]
-```
-
----
-
-#### Move in terminal
-
-- alt B / F
-
-#### Manipulation with text in terminal
-
-- alt U / l
-- alt t
-- ctrl t
-- kill ring CTRL K ctrl+y alt y
 
 ### split
 
@@ -1375,7 +878,7 @@ echo "First line" | cat - second_file            # minus make the first file_str
 echo "first" | cat - lines > tmp && mv tmp lines # prepend "first" to lines file.
 ```
 
-- [prepend text to file](https://www.cyberciti.biz/faq/bash-prepend-text-lines-to-file/)
+* [prepend text to file](https://www.cyberciti.biz/faq/bash-prepend-text-lines-to-file/)
 
 ### cut
 
@@ -1438,7 +941,487 @@ sort -t ':' -k 7 /etc/passwd
 shuf -n N input > output
 ```
 
-### sed
+### wget - download file from url (webpage, image, etc.)
+
+```sh
+wget https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-2.jpg
+```
+
+### Browser folders like a pro
+
+Ranger
+
+```sh
+sudo apt-get instal ranger # install ranger
+ranger # start ranger
+```
+
+| key   | action                                |
+| ---   | ---                                   |
+| j k   | move up, move down                    |
+| h l   | move level up, move into directory    |
+| s     | open terminal console                 |
+| zh    | see hidden files and directories      |
+| / n N | search, go to next, previous match    |
+
+* [ranger (digitalocean)](https://www.digitalocean.com/community/tutorials/installing-and-using-ranger-a-terminal-file-manager-on-a-ubuntu-vps)
+
+### show terminal height and width
+
+```sh
+# show height
+tput lines
+# show width
+tput cols
+```
+
+### Push process the background
+
+"I have opened something with terminal, now i see the process and can not use the terminal anymore"
+
+Situation as described is the single most common example when is super nice to push the process to the background.
+
+**How to do it?**
+
+Press **Ctrl+Z**, then type
+
+```sh
+bg
+```
+
+The proccess will continue in background.
+
+If you want to bring the process back to the foreground, type
+
+```sh
+fg
+```
+
+* [How to run programs from a linux terminal without blocking the terminal? (superuser.com)](https://superuser.com/questions/154486/how-to-run-programs-from-a-linux-terminal-without-blocking-the-terminal)
+
+### Copy from terminal to clipboard
+
+```sh
+pwd | xclip -selection clipboard
+```
+
+* [copy to clipboard current path from console with no mouse \[duplicate\] (askubuntu.com)](https://askubuntu.com/questions/597788/copy-to-clipboard-current-path-from-console-with-no-mouse)
+
+### calculator bc
+
+```sh
+echo "scale=2; 3/2" | bc
+
+echo "obase=10; ibase=2; 1101" | bc
+```
+
+### Get Date
+
+```sh
+date            # Get current date
+date -r FILE    # Get last modification date of a file
+date +%T.%N     # Specify the datetime format (start with + for datetime format use %)
+```
+
+### See images in asciiart
+
+```sh
+cacaview image.jpg
+```
+
+## SSH
+
+```sh
+ssh USER@99.888.777.22
+```
+
+### Copy files over ssh
+
+scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
+
+```sh
+scp -r compute  USER@78.128.250.10:/home/USER/computing/
+```
+
+[scp link](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/)
+
+### Screen
+
+```sh
+# How to use screen from terminal
+screen      # Create screen 
+screen -d   # Detach from screen
+screen -r   # Reattach to screen
+screen -ls  # List all screens
+
+# Kill screen
+screen -X -S SESSION_ID_FROM_LS kill
+```
+
+* [screen link](https://linuxize.com/post/how-to-use-linux-screen/)
+* [kill screen](https://stackoverflow.com/questions/1509677/kill-detached-screen-session)
+
+**How to work inside of a screen**
+
+Press `Ctrl+a+OPTION`
+
+| OPTION | Action             |
+| --- | ---                   |
+| c   | create new bash       |
+| "   | show open bash        |
+| S   | devide horizontaly    |
+| |   | devide verticaly      |
+| tab | change region         |
+| A   | rename region         |
+| k   | kill actual screen    |
+| X   | close region          |
+| Q   | close regions         |
+| esc | relase cursor up/down |
+
+### SSHFS
+
+### Mount local direcotry to remote directory
+
+```sh
+sshfs $USER@remote.example.com:/home/$USER/code ~/remote_code
+```
+### If user on local is different than the one logging with ssh
+
+Uncomment user allow_other in /etc/fuse.conf
+
+```/etc/fuse.conf
+user_allow_other
+```
+
+```sh
+sshfs -o allow_other user@myserver:/home/user/myprojects ~/mount/myprojects
+```
+
+### Unmount
+
+```sh
+fusermount -u ~/mount/myprojects
+```
+
+## Processes
+
+```sh
+# shows processes
+top
+```
+
+### Find process
+
+```sh
+ps aux | grep cat
+```
+
+### Kill process
+
+```sh
+# kill one specific precess id
+kill -9 3827
+
+# kill family of proceses
+killall -9 chrome
+```
+
+* [source](https://www.linux.com/training-tutorials/how-kill-process-command-line/)
+
+## Environments and variables
+
+Variables and functions, can be exported (global) or not.
+
+### set
+
+can be used to set various shell options, or the positional parameters. If no arguments or options are given, then it prints all shell variables and functions.
+
+### Print value of variable
+
+```sh
+echo ${...}
+```
+
+### compgen -v
+
+Outputs only names of all shell variables, exported or not.
+
+* [compgen](https://askubuntu.com/questions/953579/what-is-the-difference-between-env-declare-and-compgen-v)
+
+
+### GLOBAL: env, printenv ...
+
+```sh
+# Export can be used to export variables or functions.
+export
+# With the -p option, it prints exported variables and functions
+export -p
+```
+
+**env**
+
+The env command can run other commands with modified environments. If no command is given, env prints environment variables (i.e., exported variables).
+
+### printenv
+
+Prints environment variables.
+
+### LOCAL
+
+```
+set | grep ''
+var_a=123a
+```
+
+```sh
+# CONSTANTS
+$USER; $PATH; $SHLVL; $SHELL;
+
+# variables
+name=value [[:alnum:]]
+
+unset ... (local)
+declare [-i; -r] ...
+```
+
+### Open new shell
+
+```sh
+# Open (some) shell
+bash # open bash
+dash # open dash
+sh   # open shell
+
+# Tell current shell language
+echo $0
+# See shell level
+echo $SHLVL
+# exit shell i.e. go to the previous enviroment
+exit
+```
+
+```sh
+bash    child[sub]   interactive / uninteractiv - | read   
+```
+```sh
+startup
+```
+
+```sh
+login shell            
+    /etc/profile
+    $HOME/ [.profile; .bash_profile; .bash_login]
+non-login shell
+    /etc/.bashrc
+    $HOME/.bashrc
+    source
+```
+
+### History
+
+settings of history file 
+```sh
+~/.bashrc
+```
+Edit size of history command and history file
+```sh
+HISTSIZE=1000
+HISTFILESIZE=10000
+```
+path to historyfile
+```sh
+echo $HISTFILE
+```
+how to stop logging ls command in history
+```sh
+echo 'export HISTIGNORE="ls:tree:cat:tail:head:bash"' >> ~/.bashrc
+```
+run 111st command
+```sh
+history !111
+```
+
+press - ctrl+R - for searching of a commands from past
+
+[Source](https://www.rootusers.com/17-bash-history-command-examples-in-linux/)
+
+## Text transformation
+
+### tr
+
+```sh
+# Example: Remove spaces from filename
+ls # name\ with\ spaces.txt
+for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
+ls # name_with_spaces.txt
+```
+
+Translate, squeeze, and/or delete characters from standard input, writing to standard output.
+
+```
+tr [OPTIONS] SET1 [SET2]
+```
+
+Translate charactes
+
+Command expects arguments `SET1 SET2` where SET1 are characters to be translated with SET2.
+prikaz ocekava dva argumenty: sadu znaku, ktere ma nahradit a sadu znaku, kterymi je ma nahradit
+sady znaku mohou byt vyjadreny tremi zpusoby
+
+```sh
+# Characters specified by enumeration
+echo "characters" | tr abc 123
+# Characters specified by range
+echo "characters" | tr a-z 1-3
+echo "chArACtERs" | tr a-z A-Z
+# Characters specified by POSIX
+echo "chArACtERs" | tr [:lower:] [:upper:]
+# First range is shorter - nothing special
+echo "aaabbbccc" | tr a-b 1-3
+# First range is longer - characters from SET1 without partner are replaced with last form SET2
+echo "aaabbbccc" | tr a-c 1-2
+```
+
+Remove characters
+
+```sh
+# remove characters
+echo "aaabbbccc" | tr -d ab
+# replace repetitions with one occurance
+echo "aaabbbccc" | tr -s ab 
+echo "abcabcabc" | tr -s ab
+```
+
+## Expansions
+
+```sh 
+# wild cards * ? ' ' $
+mv old/* new/
+
+# paths \ . ..
+ls ..
+
+# brace expansion {}
+mkdir task_{a,b,c} # mkdir task_a task_b task_c
+mkdir task{01..03} # mkdir task01 task02 task03
+
+# tilde expansion
+ls ~/Documents # ls /home/$USER/Documents
+
+# parameter and variable expansion
+variable=10
+echo ${variable} # echo 10
+
+# command substitution
+echo Hello \"$(ls)\" folders!
+
+# arithmetic expansion + - * / % ** ++ --
+echo $((1238 % 17)) echo 14
+
+# word splitting
+# filename expansion
+# quote removal
+```
+
+* [Documentation](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html)
+
+## Regular Expressions
+
+`“REGEX” or “REGEXP”?  ->  /REGEXP?/`
+
+**BRE ERE**
+
+- BRE = Basic Regular Expressions
+  - `. * [^- ] ^ $`
+- ERE = Extended Regular Expressions
+  - `+ ? { } ( ) | \`
+
+**Classes**
+
+- Enumerated classes: `[abc987]`
+- Range-based classes: `[a-e5-8]`
+- POSIX classes `[: :]`
+
+| POSIX       | Classes       |
+| ---         | ---           |
+| `[:alpha:]` | `[a-zA-Z]`    |
+| `[:digit:]` | `[0-9]`       |
+| `[:lower:]` |               |
+| `[:upper:]` |               |
+| `[:alnum:]` |               |
+| `[:word:]`  | `[a-zA-Z_]`   |
+| `[:blank:]` | `[\ \t]`      |
+| `[:xdigit]` | `[a-fA-F0-9]` |
+
+**Quantifiers**
+
+| Quantifier   | Description                              |
+| ---          | ---                                      |
+| `*`          | Any quantity                             |
+| `+`          | At least once                            |
+| `?`          | Once at maximum                          |
+| `{min, max}` | within min, max range includeing min max |
+
+**Special characters**
+
+| s.c. | Desc. |
+| ---  | ---   |
+| \b   |       | 
+| \<   |       | 
+| \>   |       | 
+| \w   |       | 
+| \W   |       | 
+| \s   |       | skoro_i
+| \d   |       |
+
+**Alternations**
+
+`RE1|RE2`
+
+**Groups**
+
+`'<(h[1-6])>.*</\1>'`
+
+Commands
+
+```bash
+# BRE
+grep - BRE
+
+# ERE
+egrep
+grep -E
+grep \ERE 
+```
+
+### Grep
+
+Usage: `grep -options 'RE' where`
+
+options: `-n -c -i -v`
+
+- fgrep
+- rgrep
+
+Examples
+
+```bash
+less /
+locate --regexp [bre] --regex [ere]
+```
+
+## Move in terminal
+
+- alt B / F
+
+### Manipulation with text in terminal
+
+- alt U / l
+- alt t
+- ctrl t
+- kill ring CTRL K ctrl+y alt y
+
+## sed
 
 - stream editor pro filtrovani a transformaci textu
 
@@ -1446,14 +1429,14 @@ shuf -n N input > output
 Usage: `sed options 'script' file`
 
 
-#### options
+**options**
 
 ```
 -n  potlaci autoprint radku
 -i  potlaci presmerovani na obrazovku a zmeny zapise do souboru
 ```
 
-#### addresses
+**addresses**
 
 ```
 n           cislo radky
@@ -1465,7 +1448,7 @@ addr!       vsechny ostatni radky krome definovanych (definovane mohou byt vsemi
 /regexp/    radka, ktera splnuje definovany BRE vyraz (delimiter je delimiter / nebo \cregexpc kde c je libovolny znak)
 ```
 
-#### commands (singleline)
+**commands (singleline)**
 
 ```
 p   tisk vybraneho radku
@@ -1507,7 +1490,7 @@ y/set1/set2/   transliterace
          nepodporuje rozsah (-) ani POSIX znakove tridy => vycet znaku musi byt presne definovan
 ```
 
-#### Other
+**Other**
 
 ```bash
 # vice prikazu najednou (oddeluji se strednikem ve slozenych zavorkach s option -e)
@@ -1532,7 +1515,7 @@ sed i a =   p d n
 #   sed '/^$/{N; /treti/D}' radky1
 ```
 
-### awk
+## awk
 
 - Programming language desined by Alfred Aho, Peter Weinberger, and Brian Kernighan 
 
@@ -1562,7 +1545,7 @@ awk [-options]  '{program}' filenames
         for(){}
 ```
 
-### Vi basics
+## Vi basics
 
 ```sh
 vi 		normal mode		hjkl	gg G 	w e b 	x X 	r 	J 	o O 	
@@ -1575,9 +1558,9 @@ vi 		normal mode		hjkl	gg G 	w e b 	x X 	r 	J 	o O
 		visual mode		v V ctrl+V
 ```
 
----
-
 ## Shell scripts
+
+Commands are great, now let's get rid of the command repetitions by writing scripts.
 
 ```sh
 shell
@@ -1603,9 +1586,40 @@ script
         X NEVER - echo "abc" | read
 ```
 
+### Call a script
+
+`. (source or dot operator)`
+
+```bash
+# .
+. path/to/file.sh
+# source
+source path/to/file.sh
+
+# Add executable right and use the file as command
+chmod +x ./path/to/file.sh
+# execute
+./path/to/file.sh
+```
+
+* [. (source or dot operator)](https://ss64.com/bash/source.html#:~:text=source%20is%20a%20synonym%20for,maximum%20compatibility%20use%20the%20period.&text=When%20a%20script%20is%20run%20using%20'source'%20it%20runs%20within,available%20after%20the%20script%20completes.)
+
+#### Call scripts inside of a script
+
+```bash
+#!/bin/bash
+
+MY_SCRIPT=/path/to/script.sh
+
+$MY_SCRIPT input_1 input_2
+```
+
+* [Why doesn't my Bash script recognize aliases?](https://unix.stackexchange.com/questions/1496/why-doesnt-my-bash-script-recognize-aliases)
+
+
 ### Comments
 
-Comments are also more useful for writting bash scripts but it is important to know what the hesh means.
+Comments are also more useful for writing bash scripts but it is important to know what the hesh means.
 
 ```bash
 <<< #here-string
@@ -1695,8 +1709,8 @@ ${var%pattern}
 ${var%%pattern}
 ```
 
-- [lowercase uppercase strings](https://linuxhint.com/bash_lowercase_uppercase_strings/)
-- [Shell Parameter Expansion (gnu.org)](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
+* [lowercase uppercase strings](https://linuxhint.com/bash_lowercase_uppercase_strings/)
+* [Shell Parameter Expansion (gnu.org)](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
 
 ```bash
 # :offset -> usekne 4 znaky od začátku a pouze do 6
@@ -1843,7 +1857,7 @@ if [ $n -lt 10 ]; then echo n is lower than 10; fi
 [ f1 -nt f2 ]; echo $?
 ```
 
-#### Double square bracket test (Bash only)
+**Double square bracket test (Bash only)**
 
 Usage `[[_arg1 op arg2_]]`
 
@@ -1852,7 +1866,7 @@ Usage `[[_arg1 op arg2_]]`
 3) `x1 =~ ERE`
 
 
-#### Double bracket test
+**Double bracket test**
 
 Usage `((_arg1 op arg2_))`
 
@@ -1863,13 +1877,13 @@ Assign value
 
 | binary_op | description |
 | ---       | ---         |
-| +=        |             |
-| -=        |             |
-| /=        |             |
-| %=        |             |
-| *=:       |             |
-| ++        |             |
-| --        |             |
+| `+=`      |             |
+| `-=`      |             |
+| `/=`      |             |
+| `%=`      |             |
+| `*=:`     |             |
+| `++`      |             |
+| `--`      |             |
 
 Ternary operator (conditional)
 
@@ -1984,7 +1998,7 @@ break number    # breaks to the defined level
 continue number # implicit 1; starts next iteration of def. loop
 ```
 
-- [for loop link](https://www.cyberciti.biz/faq/bash-for-loop/)
+* [for loop link](https://www.cyberciti.biz/faq/bash-for-loop/)
 
 ### Arguments
 
@@ -2004,7 +2018,7 @@ shift   # shift it by one
 shift 4 # shift it by 4
 ```
 
-- [Process all arguments except the first one in a bash script](https://stackoverflow.com/questions/9057387/process-all-arguments-except-the-first-one-in-a-bash-script)
+* [Process all arguments except the first one in a bash script](https://stackoverflow.com/questions/9057387/process-all-arguments-except-the-first-one-in-a-bash-script)
 
 ### Functions
 

@@ -213,12 +213,13 @@
 </head>
 <body>
 <h1 id="sudoku">Sudoku</h1>
-<p><code>2021 Feb 05, Jaroslav Langer</code></p>
+<p><code>2021 Feb 08, Jaroslav Langer</code></p>
 <h2 id="contents">Contents</h2>
 <!-- TOC GFM -->
 <ul>
 <li><a href="#introduction-and-problem-definition">Introduction and Problem Definition</a>
 <ul>
+<li><a href="#sudoku-defined-as-a-constraint-satisfaction-problem">Sudoku Defined As a Constraint Satisfaction Problem</a></li>
 <li><a href="#sudoku-example">Sudoku Example</a></li>
 </ul></li>
 <li><a href="#algorithms-description">Algorithms Description</a>
@@ -233,7 +234,7 @@
 </ul>
 <!-- /TOC -->
 <h2 id="introduction-and-problem-definition">Introduction and Problem Definition</h2>
-<p>Sudoku is a number-placement puzzle. There are more versions of this game, here will be presented the most common one. You are given matrix <span class="math inline">\(M\)</span>, <span class="math inline">\(M \in \{0,1,2,3,4,5,6,7,8,9\}^{9,9}\)</span> (the <span class="math inline">\(0\)</span> can be represented in various ways such as empty space, or any other symbol). The goal is to create matrix <span class="math inline">\(M&#39;\)</span> where following rules are satisfied:</p>
+<p>Sudoku is a number-placement puzzle. There are more versions of this game, here will be presented the most common one. You are given matrix <span class="math inline">\(M\)</span>, <span class="math inline">\(M \in \{0,1,2,3,4,5,6,7,8,9\}^{9,9}\)</span> (the <span class="math inline">\(0\)</span> can be represented in various ways such as empty space, or any other symbol). The goal is to create matrix <span class="math inline">\(M&#39;\)</span> where following conditions are satisfied:</p>
 <ol type="1">
 <li><span class="math inline">\(\forall i,j \in \{1,2, \dots, 9\},\quad M_{i,j} \neq 0 \iff M_{i,j} = M&#39;_{i,j}\)</span></li>
 <li><span class="math inline">\(\forall i \in \{1,2, \dots, 9\},\quad |\{m: m \in M_{i,:}\}| = 9\)</span></li>
@@ -241,27 +242,27 @@
 <li><span class="math inline">\(\forall k,l \in \{1,2,3\},\quad |\{m: m \in M_{k+3n,l+3o},\quad \forall n,o \in \{0,1,2\} \}| = 9\)</span></li>
 </ol>
 <p>The mathematical definition will be handy for the algorithm. More human-friendly definition offers perhaps <a href="https://en.wikipedia.org/wiki/Sudoku">Wikipedia’s sudoku</a>.</p>
-<p>The conditions about the number’s “uniqueness” is most often defined using (a) binary conditions (b) allDifferent constraints. I defined the problem with set sizes and I believe all three definitions are indeed equivalent.</p>
+<h3 id="sudoku-defined-as-a-constraint-satisfaction-problem">Sudoku Defined As a Constraint Satisfaction Problem</h3>
+<p>Let’s define sudoku as a Constraint Satisfaction Problem to be able to use classical CSP algorithms such as Backtracking or Backjumping.</p>
+<p>Sudoku in terms of CSP is an tuple <span class="math inline">\((X, D, C)\)</span>, where</p>
+<ul>
+<li><span class="math inline">\(X = \{(a,b): \forall a,b \in \{1,2,3,4,5,6,7,8,9\}\}\)</span>, i.e. <span class="math inline">\(X\)</span> is a set of variables, in this case the variables are the indices of matrix <span class="math inline">\(M\)</span> defined above.</li>
+<li><span class="math inline">\(D = \{1,2,3,4,5,6,7,8,9\}\)</span></li>
+<li><span class="math inline">\(C = \{allDifferent(S)\}\)</span>, where <span class="math inline">\(S\)</span> is a set of <span class="math inline">\(27\)</span> sets. <span class="math inline">\(9\)</span> sets are from all row variables, <span class="math inline">\(9\)</span> sets are from the column variables and <span class="math inline">\(9\)</span> sets are from variables of the <span class="math inline">\(3 \times 3\)</span> continuous non-overlapping boxes. Defined in the fourth condition above.</li>
+</ul>
 <h3 id="sudoku-example">Sudoku Example</h3>
 <p>Following is an example of a sudoku instance. Every number is followed with one filler symbol (can be anything). Zeros are represented with space character <code>' '</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># Format description</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a># Lines starting with hash are ignored</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a># Odd columns are ignored (first column is even)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a># Numbers are extracted from the even columns (here below hashes)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a># Zeros can be denoted with 0 or with space character (&#39; &#39;)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a># # # # # # # # #</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>5 3  |  7  |     |</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>6    |1 9 5|     |</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  9 8|     |  6  |</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>#-----------------</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>8    |  6  |    3|</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>4    |8   3|    1|</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>7    |  2  |    6|</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>#-----------------</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  6  |     |2 8  |</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>     |4 1 9|    5|</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>     |  8  |  7 9|</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>5 3  |  7  |     |</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>6    |1 9 5|     |</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  9 8|     |  6  |</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>#----+-----+------</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>8    |  6  |    3|</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>4    |8   3|    1|</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>7    |  2  |    6|</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>#----+-----+------</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  6  |     |2 8  |</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     |4 1 9|    5|</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>     |  8  |  7 9|</span></code></pre></div>
 <h2 id="algorithms-description">Algorithms Description</h2>
 <h3 id="backtracking-bt">Backtracking (BT)</h3>
 <h3 id="maintaining-arc-consistency-mac-bt">Maintaining Arc-Consistency (MAC-BT)</h3>

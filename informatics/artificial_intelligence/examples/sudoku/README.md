@@ -1,1 +1,1 @@
-sudoku.md
+documentation/sudoku.md

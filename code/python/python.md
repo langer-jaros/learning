@@ -2,7 +2,7 @@
 
 Great language for prototyping, scripting, machine learning and anything else.
 
-`2021 Feb 02, Jaroslav Langer`
+`2021 Feb 07, Jaroslav Langer`
 
 ## Contents
 
@@ -463,17 +463,24 @@ cars.sort(reverse=True, key=lambda x: len(x))
 #### Dictionary
 
 ```py
-my_dict = {"Key": "value", "k": 1, "list": [1,2,3]}
-dict_tmp = dict([("another", "key"), ("and_many", "more")])
+dict_1 = {"Key": "value", "k": 1, "list": [1,2,3]}
+dict_2 = dict([("another", "key"), ("and_many", "more")])
+
 # Add key-value pair
-my_dict["new_key"] = "anything"
+dict_1["new_key"] = "anything"
+
 # Add all key-values from another dictionary
-my_dict.update(dict_tmp)
+dict_1.update(dict_2)
+
 # Merge two dictionaries into a new one
-new_dict = {**dict_1, **dict_2}
+dict_3 = {**dict_1, **dict_2}
+
+# Pop some item
+dict_3.popitem()
 ```
 
 * [How do i merge two dictionaries (stackoverflow.com)](https://stackoverflow.com/questions/38987/how-do-i-merge-two-dictionaries-in-a-single-expression-in-python-taking-union-o)
+* [Access an arbitrary element in a dictionary in Python (stackoverflow.com)](https://stackoverflow.com/questions/3097866/access-an-arbitrary-element-in-a-dictionary-in-python)
 
 ```py
 # For loop with dictionaries
@@ -488,16 +495,26 @@ for key, value in myDict.items():
 #### Set
 
 ```py
+# Create a set
 my_set = set()
-my_set.add('a')
+
+# Add item to set
+my_set.add('a')             # None
+my_set.add('a')             # None
 my_set                      # {'a'}
-my_set.add('a')
-my_set                      # {'a'}
-my_set.update(['b','c'])
+
+# Add multiple items to set
+my_set.update(['b','c'])    # None
 my_set                      # {'b', 'c', 'a'}
+
+# Remove item from set if present
+my_set.discard('d')         # None
+my_set                      # {'b', 'c', 'a'}
+my_set.discard('a')         # None
+my_set                      # {'b', 'c'}
 ```
 
-- [set (programiz)](https://www.programiz.com/python-programming/set)
+* [class set([iterable]) (docs.python.org)](https://docs.python.org/3/library/stdtypes.html#set)
 
 #### Iteration over collection
 

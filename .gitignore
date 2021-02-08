@@ -1,6 +1,7 @@
 # Ignored file types
 .ipynb_checkpoints
 # Informatics directories to be ignored
+informatics/artificial_intelligence/examples/sudoku/data/inst_test
 informatics/combinatorial_optimization/assignments/data
 informatics/combinatorial_optimization/assignments/3_experimental_measurements/gen
 informatics/combinatorial_optimization/assignments/4_local_search/code/neemiasbsilva
