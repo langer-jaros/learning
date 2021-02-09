@@ -1,7 +1,8 @@
 # Ignored file types
 .ipynb_checkpoints
+__pycache__
 # Informatics directories to be ignored
-informatics/artificial_intelligence/examples/sudoku/data/inst_test
+informatics/artificial_intelligence/examples/2_sudoku/data/inst_test
 informatics/combinatorial_optimization/assignments/data
 informatics/combinatorial_optimization/assignments/3_experimental_measurements/gen
 informatics/combinatorial_optimization/assignments/4_local_search/code/neemiasbsilva
@@ -10,3 +11,4 @@ informatics/computational_intelligence/term_project/sources_and_outputs
 informatics/numerical_math/mpi_cpp_tomas
 # Ignore commit message file
 commit_message.txt
+

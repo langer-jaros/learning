@@ -2,7 +2,7 @@
 
 Great language for prototyping, scripting, machine learning and anything else.
 
-`2021 Feb 07, Jaroslav Langer`
+`2021 Feb 09, Jaroslav Langer`
 
 ## Contents
 
@@ -65,6 +65,7 @@ Great language for prototyping, scripting, machine learning and anything else.
     * [Regex](#regex)
         * [Match](#match)
         * [fullmatch](#fullmatch)
+        * [findall](#findall)
         * [The special characters](#the-special-characters)
     * [Lambda](#lambda)
     * [Datetime](#datetime)
@@ -86,9 +87,9 @@ Great language for prototyping, scripting, machine learning and anything else.
 
 ## Tutorials
 
-- [Tutorial place](https://realpython.com/)
+* [Tutorial place](https://realpython.com/)
 - Consider [the Little Book of Python Anti-Patterns](https://docs.quantifiedcode.com/python-anti-patterns/)
-- [Tutorials in Czech language (by Jiří Znamenáček)](http://vyuka.ookami.cz/index.python.html)
+* [Tutorials in Czech language (by Jiří Znamenáček)](http://vyuka.ookami.cz/index.python.html)
 
 ## How to start
 
@@ -296,7 +297,7 @@ print(f"# a: {a: <8} b: {b: <8} c: {c}")
 # a: 55555    b: 1        c: 7777777
 ```
 
-- [Python string format cookbook](https://mkaz.blog/code/python-string-format-cookbook/)
+* [Python string format cookbook](https://mkaz.blog/code/python-string-format-cookbook/)
 
 #### String functions
 
@@ -312,6 +313,10 @@ print(f"# a: {a: <8} b: {b: <8} c: {c}")
 
 # slit
 "string string2".split()
+# rsplit - split from right (split only once)
+"string1.string2.string3".rsplit('.', maxsplit=1)
+# ['string1.string2', 'string3']
+
 # join
 ' '.join(['string', 'string2', 'string3'])
 # strip
@@ -335,13 +340,15 @@ question.count("coin") # 3
 "1234.2".isnumeric() # False
 ```
 
-- [is numeric (tutorials point)](https://www.tutorialspoint.com/python/string_isnumeric.htm)
+* [Built-in Types (docs.python.org)](https://docs.python.org/3/library/stdtypes.html)
+* [is numeric (tutorials point)](https://www.tutorialspoint.com/python/string_isnumeric.htm)
 
 ### Accessing Different data
 
 #### type and isinstance
 
 Recognize type of a passed object
+
 ```py
 var = {1: "2"}
 
@@ -369,7 +376,7 @@ id(True)    # 10299104
 
 #### len()
 
-priceless method, can be used for number of characters of a string as well as number of elements of an array
+A priceless method, can be used for number of characters of a string as well as number of elements of an array.
 
 #### Slices
 
@@ -401,7 +408,7 @@ bytes('some string', 'utf-8')   # b'some string'
 b'some string'.decode()         # 'some string'
 ```
 
-- [Converting to Bytes (docs)](https://docs.python.org/3/howto/unicode.html#converting-to-bytes)
+* [Converting to Bytes (docs)](https://docs.python.org/3/howto/unicode.html#converting-to-bytes)
 
 ### Conditions
 
@@ -457,8 +464,8 @@ cars.sort(reverse=True, key=cmp_len)
 cars.sort(reverse=True, key=lambda x: len(x))
 ```
 
-- [list methods (programiz)](https://www.programiz.com/python-programming/methods/list)
-- [sort example](https://www.w3schools.com/python/ref_list_sort.asp)
+* [list methods (programiz)](https://www.programiz.com/python-programming/methods/list)
+* [sort example](https://www.w3schools.com/python/ref_list_sort.asp)
 
 #### Dictionary
 
@@ -571,7 +578,7 @@ my_dict = {str(item): item%2354 for item in my_list}
 my_set = {val for val in my_dict.values()}
 ```
 
-- [set comprehension](https://python-reference.readthedocs.io/en/latest/docs/comprehensions/set_comprehension.html)
+* [set comprehension](https://python-reference.readthedocs.io/en/latest/docs/comprehensions/set_comprehension.html)
 
 #### Collection functions
 
@@ -582,7 +589,7 @@ sorted((5,8,7,6))               # [5, 6, 7, 8]
 sorted({'d': 5, 'b': 1, 'c':2}) # ['b', 'c', 'd']
 ```
 
-- [sorting (docs)](https://docs.python.org/3/howto/sorting.html)
+* [sorting (docs)](https://docs.python.org/3/howto/sorting.html)
 
 ### Functions
 
@@ -607,7 +614,7 @@ callable({}) # False
 
 Because everything in python is an object, it is essential to know, how to create your own objects.
 
-- [OOP (tutorialspoint)](https://www.tutorialspoint.com/python/python_classes_objects.htm)
+* [OOP (tutorialspoint)](https://www.tutorialspoint.com/python/python_classes_objects.htm)
 
 ```py
 class Data():
@@ -638,8 +645,8 @@ class Data():
 
 ```
 
-- [multiple constructors (stackoverflow)](https://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python)
-- [repr (programiz)](https://www.programiz.com/python-programming/methods/built-in/repr)
+* [multiple constructors (stackoverflow)](https://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python)
+* [repr (programiz)](https://www.programiz.com/python-programming/methods/built-in/repr)
 
 ### Methods for loops
 
@@ -676,8 +683,8 @@ from math import ceil, floor
 ceil(2.1) == floor(3.9) # True
 ```
 
-- [Round function (w3school)](https://www.w3schools.com/python/ref_func_round.asp)
-- [Multiple comparison python 2.3 doc, still valid)](https://docs.python.org/2.3/ref/comparisons.html)
+* [Round function (w3school)](https://www.w3schools.com/python/ref_func_round.asp)
+* [Multiple comparison python 2.3 doc, still valid)](https://docs.python.org/2.3/ref/comparisons.html)
 
 #### Statistics
 
@@ -716,7 +723,7 @@ random.shuffle(names)
 names   # ['David', 'Thomas', 'Peter']
 ```
 
-- [Random library (python documentation)](https://docs.python.org/3/library/random.html)
+* [Random library (python documentation)](https://docs.python.org/3/library/random.html)
 
 ### Imports
 ```py
@@ -760,7 +767,7 @@ with open("file_1.txt", mode="r") as f_in, open("file_2.txt", mode="w") as f_out
     f_out.write(f_in.readline())
 ```
 
-[source](https://www.w3schools.com/python/python_file_write.asp)
+* [Python File Write (w3school.com)](https://www.w3schools.com/python/python_file_write.asp)
 
 #### Modes
 
@@ -777,7 +784,7 @@ with open("file_1.txt", mode="r") as f_in, open("file_2.txt", mode="w") as f_out
 - a+: 
 - ab+:
 
-[source](https://stackabuse.com/file-handling-in-python/)
+* [File Handling in Python (stackabuse.com)](https://stackabuse.com/file-handling-in-python/)
 
 #### Text files
 
@@ -800,7 +807,7 @@ with open('image.png', mode='rb') as f:
     f.peek(NUMBER_OF_BYTES) 
 ```
 
-- [[CZ] files basics (vyuka.ookami.cz)](http://vyuka.ookami.cz/materialy/python/files/basics.xml)
+* [[CZ] files basics (vyuka.ookami.cz)](http://vyuka.ookami.cz/materialy/python/files/basics.xml)
 
 ### os
 
@@ -818,7 +825,7 @@ for root, dirs, files in os.walk(".", topdown=False):
 os.path.abspath("./build/knapsack.so")
 ```
 
-- [os.walk (tutorialspoint)](https://www.tutorialspoint.com/python/os_walk.htm)
+* [os.walk (tutorialspoint)](https://www.tutorialspoint.com/python/os_walk.htm)
 
 ### Asserting
 ```py
@@ -858,7 +865,7 @@ except json.decoder.JSONDecodeError as e:
         f'Error: "{e}", json_string: "{json_string}".')
 ```
 
-- [exceptions (docs)](https://docs.python.org/3/library/exceptions.html)
+* [exceptions (docs)](https://docs.python.org/3/library/exceptions.html)
 
 ## Advanced
 
@@ -920,38 +927,43 @@ import re
 x = re.findall(r'CAT.+?END','Cat \n eND',flags=re.I | re.DOTALL)
 ```
 
+* [Module re](https://docs.python.org/2/library/re.html)
+* [Regular Expression HOWTO](https://docs.python.org/3/howto/regex.html)
+* [re — Regular expression operations](https://docs.python.org/3/library/re.html)
+
 #### Match 
 
 Matches from the beginning of the string.
 
 #### fullmatch
 
-the whole pattern must match
+Whole pattern must match.
 
-[Module re](https://docs.python.org/2/library/re.html)
-[Regular Expression HOWTO](https://docs.python.org/3/howto/regex.html)
+#### findall
+
+Return all non-overlapping matches of pattern in string, as a list of strings.
 
 #### The special characters
 
-| Pattern | Match group |
-| --- | --- |
-| `.` | in the default mode, this matches any character except a newline |
-| `*` | Causes the resulting RE to match 0 or more repetitions of the preceding character |
-| `+` | Causes the resulting RE to match 1 or more repetitions of the preceding character or RE |
-| `?` | Causes the resulting RE to match 0 or 1 repetitions of the preceding RE |
-| `|` | `A|B`, where A and B can be arbitrary REs, creates a regular expression that will match either A or B|
-| `[]` | matches set of character (examples: [ce] match {'c', 'e'}, [c-e], match {'c', 'd', 'e'} [ce+] match {'c', 'd', '+'}, [^c] match anything except 'c')
-| `\A` | matches only at the start of the string |
-| `\Z` | matches only at the end of the string |
-| `\d` | Matches any Unicode decimal digit |
-| `\D` | matches any non-digit character; this is equivalent to the class [^0-9] |
-| `\s` | Matches Unicode whitespace characters |
-| `\S` | Matches any character which is not a whitespace character |
-| `\w` | Matches Unicode word characters; this includes most characters that can be part of a word in any language, as well as numbers and the underscore |
-| `\W` | Matches any character which is not a word character. This is the opposite of \w |
-| `(?=...)` | Matches if ... matches next, but doesn’t consume any of the string |
-| `(?!...)` | Matches if ... doesn’t match next |
-| `(?<=...)` | Matches if the current position in the string is preceded by a match for ... that ends at the current position |
+| Pattern    | Match group                                                    |
+| ---        | ---                                                            |
+| `.`        | In the default mode, this matches any character except a newline. |
+| `*`        | Causes the resulting RE to match 0 or more repetitions of the preceding character. |
+| `+`        | Causes the resulting RE to match 1 or more repetitions of the preceding character or RE. |
+| `?`        | Causes the resulting RE to match 0 or 1 repetitions of the preceding RE. |
+| `|`        | `A|B`, where A and B can be arbitrary REs, creates a regular expression that will match either A or B. |
+| `[]`       | matches set of character (examples: [ce] match {'c', 'e'}, [c-e], match {'c', 'd', 'e'} [ce+] match {'c', 'd', '+'}, [^c] match anything except 'c'). |
+| `\A`       | Matches only at the start of the string.                       |
+| `\Z`       | Matches only at the end of the string.                         |
+| `\d`       | Matches any Unicode decimal digit.                             |
+| `\D`       | Matches any non-digit character; this is equivalent to the class [^0-9]. |
+| `\s`       | Matches Unicode whitespace characters.                         |
+| `\S`       | Matches any character which is not a whitespace character.     |
+| `\w`       | Matches Unicode word characters; this includes most characters that can be part of a word in any language, as well as numbers and the underscore. |
+| `\W`       | Matches any character which is not a word character. This is the opposite of \w. |
+| `(?=...)`  | Matches if ... matches next, but doesn’t consume any of the string. |
+| `(?!...)`  | Matches if ... doesn’t match next.                             |
+| `(?<=...)` | Matches if the current position in the string is preceded by a match for ... that ends at the current position. |
 | `(?<!...)` | Matches if the current position in the string is not preceded by a match for .... |
 
 ### Lambda
@@ -963,7 +975,7 @@ candidates[DEGREE] = candidates[[DEGREE, DEGREE_TMP]].apply(lambda x:
             x[1] if pd.isnull(x[0]) else x[0]+x[1], axis=1)
 ```
 
-[More information](https://thispointer.com/python-how-to-use-if-else-elif-in-lambda-functions/)
+* [More information](https://thispointer.com/python-how-to-use-if-else-elif-in-lambda-functions/)
 
 ### Datetime
 
@@ -1054,9 +1066,9 @@ start = time.time()
 print(time.time() - start)
 ```
 
-- [measure-time-taken-between-lines (stackoverflow.com)](https://stackoverflow.com/questions/14452145/how-to-measure-time-taken-between-lines-of-code-in-python)
-- [timeit — Measure execution time of small code snippet (docs.python.org)](https://docs.python.org/3/library/timeit.html)
-- [Profiling Python using cProfile: a concrete case (julien.danjou.info)](https://julien.danjou.info/guide-to-python-profiling-cprofile-concrete-case-carbonara/)
+* [measure-time-taken-between-lines (stackoverflow.com)](https://stackoverflow.com/questions/14452145/how-to-measure-time-taken-between-lines-of-code-in-python)
+* [timeit — Measure execution time of small code snippet (docs.python.org)](https://docs.python.org/3/library/timeit.html)
+* [Profiling Python using cProfile: a concrete case (julien.danjou.info)](https://julien.danjou.info/guide-to-python-profiling-cprofile-concrete-case-carbonara/)
 
 ### underscored names in python
 
@@ -1106,7 +1118,7 @@ import gc
 gc.collect() # returns number of the number of unreachable objects
 ```
 
-- [Garbage Collector interface (docs)](https://docs.python.org/3/library/gc.html)
+* [Garbage Collector interface (docs)](https://docs.python.org/3/library/gc.html)
 
 ### base64 - base16, base32
 
@@ -1117,19 +1129,19 @@ import base64
 base64.b32encode(b"some string")   # b'ONXW2ZJAON2HE2LOM4======'
 ```
 
-- [base64 — Base16, Base32, Base64, Base85 Data Encodings (docs)](https://docs.python.org/3/library/base64.html)
+* [base64 — Base16, Base32, Base64, Base85 Data Encodings (docs)](https://docs.python.org/3/library/base64.html)
 
 ### Hashlib
 
-- [hashlib (docs)](https://docs.python.org/3/library/hashlib.html)
+* [hashlib (docs)](https://docs.python.org/3/library/hashlib.html)
 
 ### ctypes
 
-- [top source](https://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/)
-- [real python c binding](https://realpython.com/python-bindings-overview/)
-- [documentation for c/python types](https://docs.python.org/3.6/library/ctypes.html)
-- [source 2](https://medium.com/@stephenscotttucker/interfacing-python-with-c-using-ctypes-classes-and-arrays-42534d562ce7)
-- [source 3](https://solarianprogrammer.com/2019/07/18/python-using-c-cpp-libraries-ctypes/)
+* [Calling C++ Classes from Python, with ctypes… (auctoris.co.uk)](https://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/)
+* [real python c binding](https://realpython.com/python-bindings-overview/)
+* [documentation for c/python types](https://docs.python.org/3.6/library/ctypes.html)
+* [Interfacing Python with C++ using ctypes: classes and arrays (medium.com)](https://medium.com/@stephenscotttucker/interfacing-python-with-c-using-ctypes-classes-and-arrays-42534d562ce7)
+* [Python - using C and C++ libraries with ctypes (solarianprogrammer.com)](https://solarianprogrammer.com/2019/07/18/python-using-c-cpp-libraries-ctypes/)
 
 ```cpp
 void c_fun(const char * bytes);
@@ -1138,7 +1150,7 @@ void c_fun(const char * bytes);
 ```py
 c_fun("super unicode".encode())
 ```
-[pass unicode as bytes](https://stackoverflow.com/questions/27285405/how-can-ctypes-be-used-to-parse-unicode-strings)
+* [pass unicode as bytes](https://stackoverflow.com/questions/27285405/how-can-ctypes-be-used-to-parse-unicode-strings)
 
 ### Python 2 differences
 
