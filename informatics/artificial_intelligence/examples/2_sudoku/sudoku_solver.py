@@ -3,8 +3,9 @@
 """
 Sudoku Solver Using Constraint Satisfaction Problem Approach
 
-Author:     Jaroslav Langer
-Modified:   2021 Feb 06
+2021 Feb 06, Jaroslav Langer
+
+https://github.com/langer-jaros/learning/tree/master/informatics/artificial_intelligence/examples/2_sudoku
 """
 
 import sys
@@ -98,19 +99,21 @@ class Solver():
 
     @classmethod
     def backtracking_rec(cls, unassigned, matrix):
-        if (len(unassigned) == 0):
-            return matrix
-        var, work_domain = unassigned.popitem()
-        for value in work_domain:
+        if (len(unassigned) == 0):              # If all variables are assigned
+            return matrix                       # return full matrix
+
+        var, work_domain = unassigned.popitem() # Choose some unassigned variable
+        for value in work_domain:               # iterate over it's work domain
             cls.states_visited += 1
-            matrix[var] = value
-            if cls.is_consistent(var, matrix):
+            matrix[var] = value                 # Assign the value to the variable
+
+            if cls.is_consistent(var, matrix):  # Check if the matrix is consistent
                 result = cls.backtracking_rec(
                         unassigned=copy.deepcopy(unassigned), matrix=matrix
                 )
-                if (result is not None):
-                    return result
-            matrix[var] = 0
+                if (result is not None):        # Return result if it is not None,
+                    return result               # None means, the solution was not found
+            matrix[var] = 0                     # unassign the variable and continue
         return None
 
 
