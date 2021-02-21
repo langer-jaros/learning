@@ -2,13 +2,14 @@
 
 Great language for prototyping, scripting, machine learning and anything else.
 
-`2021 Feb 09, Jaroslav Langer`
+`2021 Feb 21, Jaroslav Langer`
 
 ## Contents
 
 <!-- TOC GFM -->
 
 * [Tutorials](#tutorials)
+* [TODO](#todo)
 * [How to start](#how-to-start)
     * [Installation](#installation)
         * [Venv](#venv)
@@ -90,6 +91,72 @@ Great language for prototyping, scripting, machine learning and anything else.
 * [Tutorial place](https://realpython.com/)
 - Consider [the Little Book of Python Anti-Patterns](https://docs.quantifiedcode.com/python-anti-patterns/)
 * [Tutorials in Czech language (by Jiří Znamenáček)](http://vyuka.ookami.cz/index.python.html)
+
+## TODO
+
+* ?Change python markdowns to jupyter notebooks?
+
+* **maxsize**
+
+```py
+import sys
+sys.maxsize
+```
+
+* [maxsize](https://stackoverflow.com/questions/38314118/overflowerror-python-int-too-large-to-convert-to-c-long-on-windows-but-not-ma)
+
+* **Map, filter, reduce**
+
+* [Map, filter, reduce](https://book.pythontips.com/en/latest/map_filter.html)
+
+* **Sort dictionaries (homework from python)**
+
+```
+correlation = dict(zip(cor_matrix['survived'].index, abs(cor_matrix['survived'].values)))
+correlation = sorted(correlation.items(), key = lambda kv:(kv[1]), reverse=True)
+```
+* https://www.geeksforgeeks.org/python-sort-python-dictionaries-by-key-or-value/
+* https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value
+
+* **Pickle**
+* https://docs.python.org/3/library/xml.etree.elementtree.html
+* https://stackoverflow.com/questions/13046240/parseerror-not-well-formed-invalid-token-using-celementtree
+* https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find
+* https://beautiful-soup-4.readthedocs.io/en/latest/
+* https://stackoverflow.com/questions/11465555/can-we-use-xpath-with-beautifulsoup
+* https://requests.readthedocs.io/en/master/
+* https://stackoverflow.com/questions/31205497/how-can-i-download-full-webpage-by-a-python-program
+* https://www.codementor.io/@aviaryan/downloading-files-from-urls-in-python-77q3bs0un
+* https://requests.readthedocs.io/en/master/user/quickstart/
+* [pathlib Path](https://docs.python.org/3/library/pathlib.html)
+
+* [list comprehension, flattening list :oooooooooooo](https://stackoverflow.com/questions/952914/how-to-make-a-flat-list-out-of-list-of-lists)
+* [dict comprehension](https://www.datacamp.com/community/tutorials/python-dictionary-comprehension)
+* [exceptions](https://docs.python.org/3.3/tutorial/errors.html)
+* [raising exceptions](https://www.kite.com/python/answers/how-to-raise-a-valueerror-in-python)
+* [standard exceptions](https://docs.python.org/3/library/exceptions.html)
+* [not implemented](https://stackoverflow.com/questions/44315961/when-to-use-raise-notimplementederror)
+* [dict.items()](https://realpython.com/iterate-through-dictionary-python/)
+* [detect last iteration of for i in dict.items()](https://stackoverflow.com/questions/6090417/detect-last-iteration-over-dictionary-iteritems-in-python)
+* [argparse](https://docs.python.org/3/howto/argparse.html)
+* [argparse doc](https://docs.python.org/3/library/argparse.html#module-argparse)
+* [argparse optional stdin stdout](https://stackoverflow.com/questions/7576525/optional-stdin-in-python-with-argparse)
+* [argparse optional stdin stdout doc](https://docs.python.org/dev/library/argparse.html#nargs)
+* [stdout.write vs print() vs print(sth, file=...)](https://stackoverflow.com/questions/3263672/the-difference-between-sys-stdout-write-and-print)
+* [print file param](https://www.geeksforgeeks.org/python-file-parameter-print/)
+* [call function based on argparse](https://stackoverflow.com/questions/27529610/call-function-based-on-argparse)
+* [locals() globals()](https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string)
+* [argparse subparsers](https://docs.python.org/3/library/argparse.html)
+* [*args, **kwargs](https://www.geeksforgeeks.org/args-kwargs-python/)
+* [namespace object vars()](https://stackoverflow.com/questions/20828277/what-is-a-namespace-object)
+* [argparse case insensitive](https://medium.com/python-in-plain-english/python-case-in-sensitive-argparse-choices-a380e9169fff)
+* [argparse aliases](https://docs.python.org/3/library/argparse.html)
+* [argparse set defaults](https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.set_defaults)
+* [compare string to bool](https://stackoverflow.com/questions/715417/converting-from-a-string-to-boolean-in-python)
+* [how to parameters, optional, then positional, last not required, default...]
+* [nargs='?' '*'](https://stackoverflow.com/questions/4480075/argparse-optional-positional-arguments)
+* [parser print help, when nohing selected](https://stackoverflow.com/questions/3636967/python-argparse-how-can-i-display-help-automatically-on-error)
+* closures
 
 ## How to start
 
@@ -266,6 +333,8 @@ another multiline string
 """
 ```
 
+* [string (docs.python.org)](https://docs.python.org/3/library/string.html)
+
 #### Raw string
 
 ```py
@@ -295,9 +364,13 @@ print("{:.2f}".format(a)) # 0.33
 a, b, c = 55555, 1, 7777777
 print(f"# a: {a: <8} b: {b: <8} c: {c}")
 # a: 55555    b: 1        c: 7777777
+
+# Binary representation 0 padding
+print(f'{20:08b}')      # 00010100
 ```
 
 * [Python string format cookbook](https://mkaz.blog/code/python-string-format-cookbook/)
+* [Convert to binary and keep leading zeros in Python](https://stackoverflow.com/questions/16926130/convert-to-binary-and-keep-leading-zeros-in-python)
 
 #### String functions
 
@@ -384,16 +457,24 @@ Basically anything that can be iterated retrieves a slice when applying operator
 
 ```py
 string[first_letter : letter_not_to_be_seen]
+
 array[ : n_th_item]     # Items from index 0 up to n_th_item (not including n_th_item).
 array[first_item : ]    # Items from first_item (including it) to the end.
 array[first_item : -1]  # All items except the last one.
 array[first_item : -5]  # All items from the first_item up to the -5th (not including it).
 ```
 
-Examples
+Slice with step `[start : end : step]`
+
 ```py
-# Slice DOCTYPE out of html #
-text = text[len('<!DOCTYPE html>\n'):]
+# Iterate over the items from the biggest index -2 for every step
+[0, 1, 2, 3, 4][:: -2]  # [6, 4, 2]
+
+# Reverse letters in a string
+'sedun dnes'[:: -1]     # 'send nudes'
+
+# Skip part of a string e.g. doctype at the beginning
+text = text[len('<!DOCTYPE html>\n') :]
 ```
 
 ### Bytes
@@ -1162,4 +1243,3 @@ c_fun("super unicode".encode())
 >>> 16**(1/2)
 1
 ```
-

@@ -2,12 +2,13 @@
 
 How to use git successfully even with a little background knowledge.
 
-`2021 Feb 02, Jaroslav Langer`
+`2021 Feb 21, Jaroslav Langer`
 
 ## Contents
 
 <!-- TOC GFM -->
 
+* [TODO](#todo)
 * [Basic information](#basic-information)
 * [Git --help](#git---help)
 * [Create git account](#create-git-account)
@@ -42,6 +43,13 @@ How to use git successfully even with a little background knowledge.
 * [Add submodule](#add-submodule)
 
 <!-- /TOC -->
+
+## TODO
+
+* [7.11 Git Tools - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+* [Splitting a subfolder out into a new repository](https://docs.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository)
+* [How to split and merge multiple git repositories while keeping the history](https://dev.to/itminds/how-to-split-and-merge-multiple-git-repositories-and-keep-the-history-2938)
+* [Undo git filter-branch](https://stackoverflow.com/questions/14542326/undo-git-filter-branch)
 
 ## Basic information
 
@@ -469,4 +477,3 @@ rm -rf NEW_REPOSITORY.git
 ```sh
 git submodule add https://github.com/NEW_REPOSITORY.git REPO_NAME
 ```
-

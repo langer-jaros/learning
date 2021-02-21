@@ -2,7 +2,7 @@
 
 Python libraries for making visualizations.
 
-`2021 Feb 03, Jaroslav Langer`
+`2021 Feb 12, Jaroslav Langer`
 
 Libraries:  seaborn [0.11.0], matplotlib [3.3.3]
 
@@ -42,7 +42,7 @@ Libraries:  seaborn [0.11.0], matplotlib [3.3.3]
     * [Set Figure Size](#set-figure-size)
     * [Legend](#legend)
     * [Colors](#colors)
-    * [Save figure as png](#save-figure-as-png)
+    * [Save Image](#save-image)
     * [Ticks (xtics, yticks)](#ticks-xtics-yticks)
         * [Format time from seconds](#format-time-from-seconds)
 * [TODO](#todo)
@@ -346,13 +346,23 @@ color="tab:blue"
 
 - [Names colors (matplotlib)](https://matplotlib.org/3.1.0/gallery/color/named_colors.html)
 
-### Save figure as png
+### Save Image
+
+**Save figure as png**
 
 ```py
 fig = sns.boxplot(x="time" y="n", orient="h", data=df)
 
 fig.savefig(f"{project_path}/figures/n_time_boxplot.png")
 ```
+
+**Save matrix as png**
+
+```py
+plt.imsave(file_name, array)
+```
+
+* [imsave (matplotlib.org)](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.imsave.html)
 
 ### Ticks (xtics, yticks)
 

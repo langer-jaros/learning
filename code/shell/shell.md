@@ -2,12 +2,13 @@
 
 Command line interface you become addicted to.
 
-`2021 Feb 08, Jaroslav Langer`
+`2021 Feb 21, Jaroslav Langer`
 
 ## Contents
 
 <!-- TOC GFM -->
 
+* [TODO](#todo)
 * [Introduction](#introduction)
 * [Basics - shell, terminal, commands](#basics---shell-terminal-commands)
     * [Shell principle - commands and keywords](#shell-principle---commands-and-keywords)
@@ -113,6 +114,10 @@ Command line interface you become addicted to.
     * [Functions](#functions)
 
 <!-- /TOC -->
+
+## TODO
+
+- [Displey cursore under the prompt](https://unix.stackexchange.com/questions/275684/how-do-i-automate-to-display-cursor-under-the-prompt-on-shell)
 
 ## Introduction
 
@@ -570,6 +575,8 @@ head -n 3 file
 
 # Output last 5 lines from file in reverse order
 tail file
+# Monitor a file as that other software writes to
+tail -f
 ```
 
 ### Standard input, standard output, standard error output (Stdin, stdout, stderr)
@@ -596,7 +603,6 @@ Connects standard output of one command to the standard input of another command
 
 ```bash
 # any_command | sort, uniq, less, head
-# tail -f
 # tee
 # file
 
@@ -1956,6 +1962,8 @@ done
 
 ### Loops
 
+**For loop**
+
 ```bash
 for  var [in ${LIST}]; do
     commands;
@@ -1983,6 +1991,10 @@ for $@; do
 for ((i=0; i<10; i++))
 ```
 
+* [for loop link](https://www.cyberciti.biz/faq/bash-for-loop/)
+
+**while loop**
+
 ```sh
 while commands; do
     commands;
@@ -1997,8 +2009,6 @@ done
 break number    # breaks to the defined level 
 continue number # implicit 1; starts next iteration of def. loop
 ```
-
-* [for loop link](https://www.cyberciti.biz/faq/bash-for-loop/)
 
 ### Arguments
 
@@ -2053,4 +2063,3 @@ x=$(get_str)
 ```
 
 * [More - functions (shellscript)](https://www.shellscript.sh/functions.html)
-

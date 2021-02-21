@@ -2,7 +2,7 @@
 
 The fundamental package for scientific computing with Python.
 
-`2021 Feb 07, Jaroslav Langer`
+`2021 Feb 21, Jaroslav Langer`
 
 ## Contents
 
@@ -82,11 +82,18 @@ np.cbrt(x)
 ## Randomness
 
 ```py
-# the generator approach
+# Initialize randomness generator
 rg = np.random.default_rng(42)
+
+# Randomly get items subset
 rg.choice([1,2,3,4], size=2, replace=False)     # array([1, 4])
 rg.choice([1,2,3,4], size=2, replace=False)     # array([3, 2])
-sample = rng.choice(array, size=features_num, replace=False)
+
+# Get random items from given domain
+rg.choice([0,1], size=6)                        # array([1, 0, 0, 1, 0, 1])
+
+# Sample binomial distribution (p = 0.3)
+np.random.binomial(1, 0.3, size=10000)
 
 # The old way
 numpy.random.seed(seed=42)  # Usually for testing purposes the seed is handy
@@ -94,8 +101,9 @@ numpy.random.seed(seed=42)  # Usually for testing purposes the seed is handy
 np.random.choice(5, 3)
 ```
 
-* [np.random.Generator](https://numpy.org/devdocs/reference/random/generator.html#numpy.random.Generator)
-* [choice](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html#numpy.random.Generator.choice)
+* [np.random.Generator (numpy.org)](https://numpy.org/devdocs/reference/random/generator.html#numpy.random.Generator)
+* [np.random.Generator.choice (numpy.org)](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.choice.html#numpy.random.Generator.choice)
+* [np.random.binomial (numpy.org)](https://numpy.org/doc/stable/reference/random/generated/numpy.random.binomial.html)
 
 ## Statistics
 
@@ -132,26 +140,27 @@ np.corrcoef([1, 2, 3], [3, 1, 2])       # array([[ 1. , -0.5], [-0.5,  1. ]])
 array = np.array([[1, 4], [3, 1]])
 
 # Shape - Return the shape of an array.
-array.shape         # (2, 2)
+array.shape             # (2, 2)
 
 # Reshape array
-np.reshape([1, 4, 3, 1], (2, 2))    # array([[[1, 4]], [[3, 1]]])
+np.reshape([1, 4, 3, 1], newshape=(2, 2))   # array([[[1, 4]], [[3, 1]]])
 
-# Create randomely initialized array by shape
-np.ndarray((2,2))   # array([[1.07917455e-316, 6.93631821e-310], [6.93631821e-310, 3.39285907e-310]])
+# Create randomely initialized array by shape (it is the same as np.ndarray())
+np.empty(shape=(2,2))   # array([[2.38529993e-316, 0.00000000e+000], [0.00000000e+000, 4.94065646e-324]])
 
 # Create array filled with zeros by shape
-np.zeros((2,2,1))   # array([[[0.], [0.]], [[0.], [0.]]])
+np.zeros(shape=(2,2,1)) # array([[[0.], [0.]], [[0.], [0.]]])
 
 # Create array filled with ones by shape
-np.ones((2,1,2))    # array([[[1., 1.]], [[1., 1.]]])
+np.ones(shape=(2,1,2))  # array([[[1., 1.]], [[1., 1.]]])
 
 # Create array of evenly spaced values (i.e. 1, 2, 3)
-np.arange(4)        # array([0, 1, 2, 3])
+np.arange(4)            # array([0, 1, 2, 3])
 ```
 
 * [np.array](https://numpy.org/doc/stable/reference/generated/numpy.array.html)
 * [np.reshape](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html)
+* [np.empty](https://numpy.org/doc/stable/reference/generated/numpy.empty.html)
 * [np.zeros](https://numpy.org/doc/stable/reference/generated/numpy.zeros.html)
 * [np.arange](https://numpy.org/doc/stable/reference/generated/numpy.arange.html)
 
@@ -396,4 +405,3 @@ np.bitwise_and(int_arr, int_2)      # array([0, 0, 0, 0])
 * [np.bitwise_not = np.bitwise_invert](https://numpy.org/doc/stable/reference/generated/numpy.invert.html)
 * [np.bitwise_or](https://numpy.org/doc/stable/reference/generated/numpy.bitwise_or.html)
 * [np.bitwise_and](https://numpy.org/doc/stable/reference/generated/numpy.bitwise_and.html)
-
