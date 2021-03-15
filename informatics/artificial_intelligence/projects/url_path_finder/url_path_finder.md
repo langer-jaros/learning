@@ -1,6 +1,6 @@
-# URL Traveler
+# URL Path Finder
 
-Find a route between two URL sites just by following links form one to another.
+Search for shortest clicking path between two websites. If found you get from site A to site B just by clicking links.
 
 `2021 Feb 10, Jaroslav Langer`
 
@@ -8,13 +8,13 @@ Find a route between two URL sites just by following links form one to another.
 
 ```sh
 # From fit.cvut.cz to mit.edu
-./url_traveler.py -l
+code/url_path_finder.py -l
 
 # From fit.cvut.cz to mit.edu
-./url_traveler.py -s fit.cvut.cz -e mit.edu -o mit_route.txt -l mit_log.txt
+code/url_path_finder.py -s fit.cvut.cz -e mit.edu -o fit_to_mit_path.txt -l log.txt
 
 # To see all the options
-./url_traveler.py --help
+code/url_path_finder.py --help
 ```
 
 ## Contents
@@ -87,4 +87,3 @@ IDS combines the advantages of BFS's optimality with DFS's low memory requiremen
 ## Heuristics
 
 Sites with the same domains as the final are prioritized i.e. in case of BFS for route to mit.edu, on level n, will be all sites with .edu visited before any others.
-

@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-URL Traveler - find a route from one site to another just by following links.
+URL Path Finder - find a path from one site to another just by clicking links.
 
 2021 Feb 08, Jaroslav Langer
-
-https://github.com/langer-jaros/learning/tree/master/informatics/artificial_intelligence/examples/1_url_traveler
 """
 
 import sys
@@ -25,16 +23,16 @@ def get_url_regex_obj():
 
     scheme = r'(https?)?:?\/*(www\.)?'
 
-    sou = r'(\s|\A|\(|\{|\[|\'|\")' # START OF URL''
+    vbs = r'(\s|\A|\(|\{|\[|\'|\")' # Valid Beginning Separator
     user = r'[-a-zA-Z0-9._+~]{1,256}@'
     host = r'[-a-zA-Z0-9._+~]{1,256}'
     port = r':[0-9]{0,5}'
     domains = '|'.join(tlds)
     path = r'/[-a-zA-Z0-9()@:%_+.~&=/]*'
     query_fragment = r'((\?|\#)[-a-zA-Z0-9()@:%_\+.~#?&//=]*)?'
-    eou = r'(\s|\Z|\)|\}|\]|\'|\")' # END OF URL
+    ves = r'(\s|\Z|\)|\}|\]|\'|\")' # Valid Ending Separator
 
-    pattern_url = fr'{sou}{scheme}(({user})?{host}({port})?\.({domains})({path})?){query_fragment}{eou}'
+    pattern_url = fr'{vbs}{scheme}(({user})?{host}({port})?\.({domains})({path})?){query_fragment}{ves}'
 
     return re.compile(pattern_url, flags=re.IGNORECASE)
 
@@ -43,7 +41,7 @@ def standardize_url(url):
     return f'https://{url[:-1]}' if (url.endswith('/')) else f'https://{url}'
 
 
-class UrlTraveler():
+class UrlPathFinder():
     """Class for URL traveler"""
 
     url_regex_obj = None
@@ -52,12 +50,12 @@ class UrlTraveler():
     visited = None
     end = None
     ignore_url_inside = '@'
-    ignored_url_ends = [
-            '.jpg', '.jpeg', '.png', '.ico', '.gif', '.svg',
-            '.mp3',
-            '.mov', '.mp4',
-            '.css', '.json', '.js',
-            '()', '(',
+    ignored_url_ends = [    # Sites ending with following ends are ignored
+            '.jpg', '.jpeg', '.png', '.ico', '.gif', '.svg',    # Images
+            '.mp3',                                             # Music
+            '.mov', '.mp4',                                     # Video
+            '.css', '.json', '.js',                             # Code
+            '()', '(',                                          # Discutable
     ]
     route = None
 
@@ -218,6 +216,7 @@ if __name__ == '__main__':
     if (args.debug):
         import pdb; pdb.set_trace()
 
-    UrlTraveler.find_route(site_start=args.start, site_end=args.end,
-            method=args.method, file_out=args.output, file_log=args.logging)
-
+    UrlPathFinder.find_route(
+            site_start=args.start, site_end=args.end,
+            method=args.method, file_out=args.output, file_log=args.logging
+    )

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>url_traveler</title>
+  <title>url_path_finder</title>
   <style>
     html {
       line-height: 1.5;
@@ -212,18 +212,18 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="url-traveler">URL Traveler</h1>
-<p>Find a route between two URL sites just by following links form one to another.</p>
+<h1 id="url-path-finder">URL Path Finder</h1>
+<p>Search for shortest clicking path between two websites. If found you get from site A to site B just by clicking links.</p>
 <p><code>2021 Feb 10, Jaroslav Langer</code></p>
 <h2 id="sample-usage">Sample usage</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From fit.cvut.cz to mit.edu</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./url_traveler.py</span> <span class="at">-l</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">code/url_path_finder.py</span> <span class="at">-l</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># From fit.cvut.cz to mit.edu</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./url_traveler.py</span> <span class="at">-s</span> fit.cvut.cz <span class="at">-e</span> mit.edu <span class="at">-o</span> mit_route.txt <span class="at">-l</span> mit_log.txt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">code/url_path_finder.py</span> <span class="at">-s</span> fit.cvut.cz <span class="at">-e</span> mit.edu <span class="at">-o</span> fit_to_mit_path.txt <span class="at">-l</span> log.txt</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To see all the options</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./url_traveler.py</span> <span class="at">--help</span></span></code></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">code/url_path_finder.py</span> <span class="at">--help</span></span></code></pre></div>
 <h2 id="contents">Contents</h2>
 <!-- TOC GFM -->
 <ul>
@@ -256,7 +256,7 @@
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (url_end <span class="kw">in</span> next_links):</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># If url_end is between next_links return path from start_url to </span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># If url_end is between next_links return path from start_url to</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># end_url, pehaps using the (link, perv_link) pairs in visited</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> create_path(url_end, next_links, links, visited)</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
