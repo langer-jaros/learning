@@ -18,30 +18,31 @@ How to use git successfully even with a little background knowledge.
     * [Create repository from scratch](#create-repository-from-scratch)
     * [Create repository from existing folder](#create-repository-from-existing-folder)
     * [Start to work on someones repository (fork)](#start-to-work-on-someones-repository-fork)
-    * [Contribute to a project](#contribute-to-a-project)
-        * [Contribute to someones repository (with push rights)](#contribute-to-someones-repository-with-push-rights)
-        * [Update the content from remote](#update-the-content-from-remote)
-        * [Develop the code as a new branch](#develop-the-code-as-a-new-branch)
-        * [Contribute without the rights to push - fork](#contribute-without-the-rights-to-push---fork)
+* [Contribute to a project](#contribute-to-a-project)
+    * [Contribute to someones repository (with push rights)](#contribute-to-someones-repository-with-push-rights)
+    * [Update the content from remote](#update-the-content-from-remote)
+    * [Develop the code as a new branch](#develop-the-code-as-a-new-branch)
+    * [Contribute without the rights to push - fork](#contribute-without-the-rights-to-push---fork)
 * [Branching](#branching)
-* [Show files status (untracked/modified/added/deleted)](#show-files-status-untrackedmodifiedaddeddeleted)
-* [File differences](#file-differences)
-* [Add files to or remove from the index](#add-files-to-or-remove-from-the-index)
-* [Ignore files from the git structure](#ignore-files-from-the-git-structure)
+    * [Show files status (untracked/modified/added/deleted)](#show-files-status-untrackedmodifiedaddeddeleted)
+    * [File differences](#file-differences)
+    * [Add files to or remove from the index](#add-files-to-or-remove-from-the-index)
+    * [Ignore files from the git structure](#ignore-files-from-the-git-structure)
 * [Committing](#committing)
-* [Show changes and commits](#show-changes-and-commits)
+    * [Show changes and commits](#show-changes-and-commits)
 * [Merging](#merging)
+    * [Change file in every commit](#change-file-in-every-commit)
     * [Test a new branch before the merge](#test-a-new-branch-before-the-merge)
 * [Remote repositories - remotes](#remote-repositories---remotes)
-* [Push and Pull](#push-and-pull)
-* [Stash](#stash)
-* [Remove unwanted staging of many files](#remove-unwanted-staging-of-many-files)
-* [Remove changes after commit](#remove-changes-after-commit)
-* [Remove changes after push](#remove-changes-after-push)
-* [Create the pull request](#create-the-pull-request)
-* [Move repository form one GITSITE_OLD to another GITSITE_NEW](#move-repository-form-one-gitsite_old-to-another-gitsite_new)
-* [Duplicate a repository](#duplicate-a-repository)
-* [Add submodule](#add-submodule)
+    * [Push and Pull](#push-and-pull)
+    * [Stash](#stash)
+    * [Remove unwanted staging of many files](#remove-unwanted-staging-of-many-files)
+    * [Remove changes after commit](#remove-changes-after-commit)
+    * [Remove changes after push](#remove-changes-after-push)
+    * [Create the pull request](#create-the-pull-request)
+    * [Move repository form one GITSITE_OLD to another GITSITE_NEW](#move-repository-form-one-gitsite_old-to-another-gitsite_new)
+    * [Duplicate a repository](#duplicate-a-repository)
+    * [Add submodule](#add-submodule)
 
 <!-- /TOC -->
 
@@ -148,7 +149,7 @@ git add . # git add README.md # git add --all
 # Commits the added content
 git commit -m "First commit"
 
-# Adds remote site git@GITSITE:USER/REPOSITORY.git as origin
+# Add remote site git@GITSITE:USER/REPOSITORY.git as origin
 git remote add origin git@GITSITE.com:USER_NAME/REPOSITORY_NAME.git
 
 # Push the local content to master branch of origin
@@ -163,16 +164,16 @@ There is an option to use an existing project as your starting point by making a
 It is called a fork, by doing so you will have your own copy of the whole project.
 Then you can just git clone and start doing stuff.
 
-### Contribute to a project
+## Contribute to a project
 
-#### Contribute to someones repository (with push rights)
+### Contribute to someones repository (with push rights)
 
 ```sh
 # Clone the repository
 git clone git@GITSITE.com:PROJECT_PATH.git
 ```
 
-#### Update the content from remote
+### Update the content from remote
 
 If there is a time lag between cloning and the time you want to work on the repository, the remote repository may have changed.
 Then it is reasonable to update the local content from the remote i.e. pull the changes.
@@ -183,7 +184,7 @@ git checkout master
 git pull # git pull origin 
 ```
 
-#### Develop the code as a new branch
+### Develop the code as a new branch
 
 Instead of modifying master, and pushing to the origin/master.
 Create a development branch and make the changes there. Don't merge the branch with master.
@@ -209,7 +210,7 @@ git commit -m "Meaningful description of the changes"
 git push -u origin BRANCH_NAME
 ```
 
-#### Contribute without the rights to push - fork
+### Contribute without the rights to push - fork
 
 Fork the repository. Clone it and treat it as your own.
 
@@ -246,21 +247,21 @@ git branch -d BRANCH_NAME
 git branch -m NEW_BRANCH_NAME
 ```
 
-## Show files status (untracked/modified/added/deleted)
+### Show files status (untracked/modified/added/deleted)
 
 ```sh
 # Show status of git files, which where not added, which were deleted but added etc.
 git status
 ```
 
-## File differences
+### File differences
 
 ```sh
 # Show file last change (difference between the file and it's index representation)
 git diff path/to/file.sth
 ```
 
-## Add files to or remove from the index
+### Add files to or remove from the index
 
 ```sh
 # Add file contents to the index (file will be commited)
@@ -284,7 +285,7 @@ git mv file/path new/file/path
 * [How to fix “modified content, untracked content” in git? (stackoverflow.com)](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
 * [git mv (git-scm.com)](https://git-scm.com/docs/git-mv)
 
-## Ignore files from the git structure
+### Ignore files from the git structure
 
 `.gitignore` file specifies intentionally untracked files to be ignored.
 
@@ -310,7 +311,7 @@ git commit -eF commit_message.txt
 
 * [Preparing a git commit message before committing? (stackoverflow.com)](https://stackoverflow.com/questions/20438293/preparing-a-git-commit-message-before-committing)
 
-## Show changes and commits
+### Show changes and commits
 
 ```sh
 # Show changes between last merge and last commit
@@ -331,17 +332,13 @@ git diff 0a42637 path/to/file.sht
 
 ## Merging
 
-Merge the NEW_BRANCH to master at origin 
+Merge the NEW_BRANCH to master.
 
 ```sh
 git checkout master
 
 git merge NEW_BRANCH
 
-git push origin master
-```
-
-```sh
 # Merge the local content with BRANCH_NAME of REMOTE_NAME
 git merge --allow-unrelated-histories REMOTE_NAME/BRANCH_NAME
 
@@ -351,10 +348,23 @@ git merge --no-ff BRANCH_NAME
 
 * [No fast-foreward - A successful Git branching model (nvie.com)](https://nvie.com/posts/a-successful-git-branching-model/).
 
+### Change file in every commit
+
+```
+# Delete file from every commit
+git filter-branch --index-filter 'git rm --cached --ignore-unmatch path/to/file' HEAD
+
+# Move (rename) file through all history
+git filter-branch -f --tree-filter 'if [ -d path/to/dir ]; then mkdir -p path/to/new/dir && git mv path/to/dir path/to/new/dir; fi' HEAD
+```
+
+* [git filter-branch (git-scm.com)](https://git-scm.com/docs/git-filter-branch)
+* [Is it possible to move/rename files in Git and maintain their history?](https://stackoverflow.com/questions/2314652/is-it-possible-to-move-rename-files-in-git-and-maintain-their-history)
+
 ### Test a new branch before the merge
 
 ```sh
-# Fetch the file from origin (remote site)
+# Fetch files from origin (remote site)
 git fetch origin
 
 # Create the desired BRANCH_NAME from origin and change to it 
@@ -385,11 +395,13 @@ git remote remove NAME URL
 git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
 
-## Push and Pull
+### Push and Pull
 
 ```sh
 # Pushes the code to the origin
 git push -u origin
+# Forcing push if necessary
+git push -f
 
 # Git pull - equivalent to git fetch and git merge
 git pull
@@ -400,7 +412,7 @@ git fetch
 git merge FETCH_HEAD
 ```
 
-## Stash
+### Stash
 
 Save the changes from the last commit on and clean them
 
@@ -423,15 +435,15 @@ git stash show -p stash@{1}
 git stash drop
 ```
 
-## Remove unwanted staging of many files
+### Remove unwanted staging of many files
 
 ```sh
 git reset
 ```
 
-## Remove changes after commit
+### Remove changes after commit
 
-Reset current head to the specific state (commit)
+Reset current head to the specific state (commit).
 
 ```sh
 # Reset the HEAD to the given commit, files are untouched but not marked for commit
@@ -446,18 +458,18 @@ git reset --soft HASH_OF_COMMIT
 
 * [git-reset (git-scm.com)](#https://git-scm.com/docs/git-reset)
 
-## Remove changes after push
+### Remove changes after push
 
 ```sh
 # Revert some existing commits (Requires no local modifications from the HEAD commit)
 git revert
 ```
 
-## Create the pull request
+### Create the pull request
 
 * [Create the pull request](#https://git-scm.com/docs/git-request-pull)
 
-## Move repository form one GITSITE_OLD to another GITSITE_NEW
+### Move repository form one GITSITE_OLD to another GITSITE_NEW
 
 ```sh
 git clone git@GITSITE_OLD.com:USER/PROJECT.git # cd existing_git_repo
@@ -467,7 +479,7 @@ git push -u origin --all
 git push -u origin --tags
 ```
 
-## Duplicate a repository
+### Duplicate a repository
 
 ```sh
 git clone --bare https://githost.org/OLD_REPOSITORY.git
@@ -483,7 +495,7 @@ rm -rf NEW_REPOSITORY.git
 
 * [source](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/duplicating-a-repository)
 
-## Add submodule
+### Add submodule
 
 ```sh
 git submodule add https://github.com/NEW_REPOSITORY.git REPO_NAME
