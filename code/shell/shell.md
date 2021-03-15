@@ -2,7 +2,7 @@
 
 Command line interface you become addicted to.
 
-`2021 Feb 21, Jaroslav Langer`
+`2021 Mar 15, Jaroslav Langer`
 
 ## Contents
 
@@ -862,16 +862,14 @@ xdg-open ANY_NAME.ANYTHING
 - Split content
 
 ```bash
-# (rozdeli soubor podle definovaneho poctu radku)
-split -l 100 filename
-# (rozdeli soubor na zadany pocet souboru, proporcne podle velikosti)
+# Split file into multiple n-lines files
+split -l 100 FILE_NAME NEW_NAME
+# Split file into 50MB files, with numerical suffix
+split -d -b 50m data.csv data_ --additional-suffix='.csv'
+# Proportionally split file into n files
 split -n 3 filename a
-# (zmeni abecedni suffix na numericky)
-split -n 3 -d filename
-# (zmeni delku suffixu, implicitne 2)
+# Change suffix length (by default 2 characters)
 split -n 3 -a 5 filename
-# (zmeni implicitni prefix x na uzivatelem definovany)
-split -n 3 filename prefix
 ```
 
 ### cat

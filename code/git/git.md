@@ -2,7 +2,7 @@
 
 How to use git successfully even with a little background knowledge.
 
-`2021 Feb 21, Jaroslav Langer`
+`2021 Mar 15, Jaroslav Langer`
 
 ## Contents
 
@@ -10,18 +10,19 @@ How to use git successfully even with a little background knowledge.
 
 * [TODO](#todo)
 * [Basic information](#basic-information)
-* [Git --help](#git---help)
-* [Create git account](#create-git-account)
-* [Git installation and setup](#git-installation-and-setup)
-* [Create a project](#create-a-project)
+* [Git Basics](#git-basics)
+    * [Git --help](#git---help)
+    * [Git installation and setup](#git-installation-and-setup)
+    * [Create git account](#create-git-account)
+    * [Create a project](#create-a-project)
     * [Create repository from scratch](#create-repository-from-scratch)
     * [Create repository from existing folder](#create-repository-from-existing-folder)
     * [Start to work on someones repository (fork)](#start-to-work-on-someones-repository-fork)
-* [Contribute to a project](#contribute-to-a-project)
-    * [Contribute to someones repository (with push rights)](#contribute-to-someones-repository-with-push-rights)
+    * [Contribute to a project](#contribute-to-a-project)
+        * [Contribute to someones repository (with push rights)](#contribute-to-someones-repository-with-push-rights)
         * [Update the content from remote](#update-the-content-from-remote)
         * [Develop the code as a new branch](#develop-the-code-as-a-new-branch)
-    * [Contribute without the rights to push - fork](#contribute-without-the-rights-to-push---fork)
+        * [Contribute without the rights to push - fork](#contribute-without-the-rights-to-push---fork)
 * [Branching](#branching)
 * [Show files status (untracked/modified/added/deleted)](#show-files-status-untrackedmodifiedaddeddeleted)
 * [File differences](#file-differences)
@@ -46,10 +47,14 @@ How to use git successfully even with a little background knowledge.
 
 ## TODO
 
+* [How To: Merge a Git submodule into its main repository](https://medium.com/walkme-engineering/how-to-merge-a-git-submodule-into-its-main-repository-d83a215a319c)
 * [7.11 Git Tools - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 * [Splitting a subfolder out into a new repository](https://docs.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository)
 * [How to split and merge multiple git repositories while keeping the history](https://dev.to/itminds/how-to-split-and-merge-multiple-git-repositories-and-keep-the-history-2938)
 * [Undo git filter-branch](https://stackoverflow.com/questions/14542326/undo-git-filter-branch)
+* [git config --global core.editor "vim"](https://stackoverflow.com/questions/2596805/how-do-i-make-git-use-the-editor-of-my-choice-for-commits)
+* `git config --list --show-origin`
+* https://git-scm.com/docs/git-ls-tree
 
 ## Basic information
 
@@ -64,6 +69,8 @@ In the git repository, every file can be in three states:
 2) staged - the file is changed and the change will be recorded with the next commit (~ the change is added to the index)
 3) committed - the change is safely stored in the local git database
 
+## Git Basics
+
 | command  | Description                                                      |
 | ---      | ---                                                              |
 | clone    | Clones remote git repository to your machine as local git repository. |
@@ -75,7 +82,7 @@ In the git repository, every file can be in three states:
 | merge    | Incorporates changes from given named branch to current branch.  |
 | pull     | Does git fetch and git merge.                                    |
 
-## Git --help
+### Git --help
 
 Git has a beautifully done manual, so adding `--help` after any command is usually sufficient help once you start using the git.
 
@@ -84,13 +91,7 @@ Git has a beautifully done manual, so adding `--help` after any command is usual
 git rm --help
 ```
 
-## Create git account
-
-First step is to create account on some git site such as GitHub, GitLab etc.
-
-Once you have it, add your public SSH key to it.
-
-## Git installation and setup
+### Git installation and setup
 
 After the git installation, there is a need of some configurations.
 
@@ -99,7 +100,13 @@ git config --global user.name "Name Surname"
 git config --global user.email "username@email.com"
 ```
 
-## Create a project
+### Create git account
+
+First step is to create account on some git site such as GitHub, GitLab etc.
+
+Once you have it, add your public SSH key to it.
+
+### Create a project
 
 It is either possible to create a new repository (project) or to find some already existing.
 
@@ -156,9 +163,9 @@ There is an option to use an existing project as your starting point by making a
 It is called a fork, by doing so you will have your own copy of the whole project.
 Then you can just git clone and start doing stuff.
 
-## Contribute to a project
+### Contribute to a project
 
-### Contribute to someones repository (with push rights)
+#### Contribute to someones repository (with push rights)
 
 ```sh
 # Clone the repository
@@ -202,7 +209,7 @@ git commit -m "Meaningful description of the changes"
 git push -u origin BRANCH_NAME
 ```
 
-### Contribute without the rights to push - fork
+#### Contribute without the rights to push - fork
 
 Fork the repository. Clone it and treat it as your own.
 
@@ -269,9 +276,13 @@ git rm FILE
 git rm -r DIR # Recursive (directory) option
 git rm --cached FILE # Remove FILE only from index (will not be commited) dont delete it locally.
 git rm -f FILE # Force the removal - remove file from index and directory even when it has local modifications
+
+# Move or rename files
+git mv file/path new/file/path
 ```
 
-* [source](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
+* [How to fix “modified content, untracked content” in git? (stackoverflow.com)](https://stackoverflow.com/questions/50167969/how-to-fix-modified-content-untracked-content-in-git)
+* [git mv (git-scm.com)](https://git-scm.com/docs/git-mv)
 
 ## Ignore files from the git structure
 
